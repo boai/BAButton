@@ -15,7 +15,7 @@
 		C4FD44E81CB26F9000D1B0DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4FD44E61CB26F9000D1B0DB /* LaunchScreen.storyboard */; };
 		C4FD44F31CB26F9000D1B0DB /* BAButtonDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FD44F21CB26F9000D1B0DB /* BAButtonDemoTests.m */; };
 		C4FD44FE1CB26F9000D1B0DB /* BAButtonDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FD44FD1CB26F9000D1B0DB /* BAButtonDemoUITests.m */; };
-		C4FD450E1CB26FD100D1B0DB /* BAButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FD450D1CB26FD100D1B0DB /* BAButton.m */; };
+		C4FD45121CB2A52700D1B0DB /* BAButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FD45101CB2A52700D1B0DB /* BAButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,8 +52,8 @@
 		C4FD44F91CB26F9000D1B0DB /* BAButtonDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BAButtonDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4FD44FD1CB26F9000D1B0DB /* BAButtonDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BAButtonDemoUITests.m; sourceTree = "<group>"; };
 		C4FD44FF1CB26F9000D1B0DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C4FD450C1CB26FD100D1B0DB /* BAButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAButton.h; sourceTree = "<group>"; };
-		C4FD450D1CB26FD100D1B0DB /* BAButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAButton.m; sourceTree = "<group>"; };
+		C4FD45101CB2A52700D1B0DB /* BAButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAButton.m; sourceTree = "<group>"; };
+		C4FD45111CB2A52700D1B0DB /* BAButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAButton.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +84,7 @@
 		C4FD44CC1CB26F9000D1B0DB = {
 			isa = PBXGroup;
 			children = (
-				C4FD450B1CB26FD100D1B0DB /* BAButton */,
+				C4FD450F1CB2A50700D1B0DB /* BAButton */,
 				C4FD44D71CB26F9000D1B0DB /* BAButtonDemo */,
 				C4FD44F11CB26F9000D1B0DB /* BAButtonDemoTests */,
 				C4FD44FC1CB26F9000D1B0DB /* BAButtonDemoUITests */,
@@ -144,11 +144,11 @@
 			path = BAButtonDemoUITests;
 			sourceTree = "<group>";
 		};
-		C4FD450B1CB26FD100D1B0DB /* BAButton */ = {
+		C4FD450F1CB2A50700D1B0DB /* BAButton */ = {
 			isa = PBXGroup;
 			children = (
-				C4FD450C1CB26FD100D1B0DB /* BAButton.h */,
-				C4FD450D1CB26FD100D1B0DB /* BAButton.m */,
+				C4FD45101CB2A52700D1B0DB /* BAButton.m */,
+				C4FD45111CB2A52700D1B0DB /* BAButton.h */,
 			);
 			path = BAButton;
 			sourceTree = "<group>";
@@ -283,7 +283,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C4FD450E1CB26FD100D1B0DB /* BAButton.m in Sources */,
+				C4FD45121CB2A52700D1B0DB /* BAButton.m in Sources */,
 				C4FD44E01CB26F9000D1B0DB /* ViewController.m in Sources */,
 				C4FD44DD1CB26F9000D1B0DB /* AppDelegate.m in Sources */,
 				C4FD44DA1CB26F9000D1B0DB /* main.m in Sources */,

@@ -17,7 +17,7 @@
 
 >##完全实现button的自定义，
 
-![image](https://github.com/boai/BADemoTest/blob/master/Image/gif6.gif)
+![image](https://github.com/boai/BAButton/tree/master/BAButtonDemo/images/image.png)
 
 ``` 用枚举展示button的类型：
 BAAligenmentStatusNormal, // 默认
@@ -26,6 +26,7 @@ BAAligenmentStatusCenter, // 居中对齐
 BAAligenmentStatusRight, // 右对齐
 BAAligenmentStatusTop, // 图标在上，文本在下(居中)
 BAAligenmentStatusBottom, // 图标在下，文本在上(居中)
+
 
 ```
 BACustomButton *btn1 = [BACustomButton BA_ShareButton];
@@ -38,6 +39,7 @@ btn1.buttonCornerRadius = 5.0;
 btn1.titleLabel.font = [UIFont systemFontOfSize:15];
 btn1.frame = CGRectMake(CGRectGetMinX(btn.frame), CGRectGetMaxY(btn.frame) + 10, 200, 50);
 [self.view addSubview:btn1];
+
 
 ```
 BACustomButton *btn5 = [[BACustomButton alloc] initWitAligenmentStatus:BAAligenmentStatusTop];
