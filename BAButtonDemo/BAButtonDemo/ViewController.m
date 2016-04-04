@@ -30,7 +30,7 @@
     [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     btn.buttonStatus = BAAligenmentStatusNormal;
     btn.buttonCornerRadius = 5.0;
-    btn.frame = CGRectMake(100, 100, 200, 50);
+    btn.frame = CGRectMake(50, 50, 200, 50);
     [self.view addSubview:btn];
     
     //    BAButton *btn = [[BAButton alloc] initWithFrame:CGRectMake(100, 100, 200, 30) image:[UIImage imageNamed:@"btn_share"] highlightedImage:[UIImage imageNamed:@"btn_share"] fadeDuration:3];
@@ -51,7 +51,7 @@
     btn1.buttonStatus = BAAligenmentStatusLeft;
     btn1.buttonCornerRadius = 5.0;
     btn1.titleLabel.font = [UIFont systemFontOfSize:15];
-    btn1.frame = CGRectMake(100, CGRectGetMaxY(btn.frame) + 10, 200, 50);
+    btn1.frame = CGRectMake(CGRectGetMinX(btn.frame), CGRectGetMaxY(btn.frame) + 10, 200, 50);
     [self.view addSubview:btn1];
     
     BACustomButton *btn2 = [BACustomButton BA_ShareButton];
@@ -62,7 +62,7 @@
     btn2.buttonStatus = BAAligenmentStatusCenter;
     btn2.buttonCornerRadius = 5.0;
     btn2.titleLabel.font = [UIFont systemFontOfSize:14];
-    btn2.frame = CGRectMake(100, CGRectGetMaxY(btn1.frame) + 10, 300, 50);
+    btn2.frame = CGRectMake(CGRectGetMinX(btn.frame), CGRectGetMaxY(btn1.frame) + 10, 300, 50);
     [self.view addSubview:btn2];
     
     BACustomButton *btn3 = [BACustomButton BA_ShareButton];
@@ -73,7 +73,7 @@
     [btn3 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     btn3.buttonStatus = BAAligenmentStatusRight;
     btn3.buttonCornerRadius = 5.0;
-    btn3.frame = CGRectMake(100, CGRectGetMaxY(btn2.frame) + 10, 200, 50);
+    btn3.frame = CGRectMake(CGRectGetMinX(btn.frame), CGRectGetMaxY(btn2.frame) + 10, 200, 50);
     [self.view addSubview:btn3];
     
     BACustomButton *btn4 = [[BACustomButton alloc] initWitAligenmentStatus:BAAligenmentStatusLeft];
@@ -83,7 +83,7 @@
     btn4.titleLabel.font = [UIFont systemFontOfSize:10];
     btn4.buttonCornerRadius = 5.0;
     [btn4 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    btn4.frame = CGRectMake(100, CGRectGetMaxY(btn3.frame) + 10, 200, 50);
+    btn4.frame = CGRectMake(CGRectGetMinX(btn.frame), CGRectGetMaxY(btn3.frame) + 10, 200, 50);
     [self.view addSubview:btn4];
     
     BACustomButton *btn5 = [[BACustomButton alloc] initWitAligenmentStatus:BAAligenmentStatusTop];
@@ -93,7 +93,7 @@
     btn5.titleLabel.font = [UIFont systemFontOfSize:10];
     btn5.buttonCornerRadius = 5.0;
     [btn5 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    btn5.frame = CGRectMake(100, CGRectGetMaxY(btn4.frame) + 10, 200, 80);
+    btn5.frame = CGRectMake(CGRectGetMinX(btn.frame), CGRectGetMaxY(btn4.frame) + 10, 200, 80);
     [self.view addSubview:btn5];
     
     BACustomButton *btn6 = [[BACustomButton alloc] initWitAligenmentStatus:BAAligenmentStatusBottom];
@@ -103,7 +103,7 @@
     btn6.titleLabel.font = [UIFont systemFontOfSize:10];
     btn6.buttonCornerRadius = 5.0;
     [btn6 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    btn6.frame = CGRectMake(100, CGRectGetMaxY(btn5.frame) + 10, 150, 80);
+    btn6.frame = CGRectMake(CGRectGetMinX(btn.frame), CGRectGetMaxY(btn5.frame) + 10, 150, 80);
     [self.view addSubview:btn6];
     
     BACustomButton *btn7 = [[BACustomButton alloc] init];
@@ -114,7 +114,7 @@
     btn7.titleLabel.font = [UIFont systemFontOfSize:13];
     btn7.buttonCornerRadius = 5.0;
     [btn7 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    btn7.frame = CGRectMake(100, CGRectGetMaxY(btn6.frame) + 10, 150, 80);
+    btn7.frame = CGRectMake(CGRectGetMinX(btn.frame), CGRectGetMaxY(btn6.frame) + 10, 150, 80);
     [self.view addSubview:btn7];
 }
 
