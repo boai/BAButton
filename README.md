@@ -23,7 +23,10 @@
 
 ###pod 导入：pod 'BAButton', '~> 1.0.0'
 
-###项目中导入头文件：```#import <BAButton.h> 即可
+###项目中导入头文件：
+```
+#import <BAButton.h> 即可
+```
 
 ``` 用枚举展示button的类型：
 BAAligenmentStatusNormal, // 默认
