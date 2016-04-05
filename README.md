@@ -17,7 +17,9 @@
 
 ###示例展示：
 
-![image](https://github.com/boai/BAButton/tree/master/BAButtonDemo/images/image.png)
+![image](https://github.com/boai/BAButton/tree/master/BAButtonDemo/images/image1.png)
+![image](https://github.com/boai/BAButton/tree/master/BAButtonDemo/images/image2.png)
+
 
 >##完全实现button的自定义，
 

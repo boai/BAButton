@@ -147,8 +147,8 @@
 		C4FD450F1CB2A50700D1B0DB /* BAButton */ = {
 			isa = PBXGroup;
 			children = (
-				C4FD45101CB2A52700D1B0DB /* BAButton.m */,
 				C4FD45111CB2A52700D1B0DB /* BAButton.h */,
+				C4FD45101CB2A52700D1B0DB /* BAButton.m */,
 			);
 			path = BAButton;
 			sourceTree = "<group>";
