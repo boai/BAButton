@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "BAButton"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.summary      = 'A collection of iOS components.'
   s.homepage     = "https://github.com/boai/BAButton.git"
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/boai/BAButton.git", :tag => s.version.to_s }
 
   s.requires_arc = true
-  s.source_files = "BAButton/**/*.{h,m}"
-  s.public_header_files = "BAButton/**/*.h"
+  s.source_files = 'BAButton/**/*.{h,m}'
+  s.public_header_files = 'BAButton/**/*.{h}'
 
 end
