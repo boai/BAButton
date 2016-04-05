@@ -15,9 +15,15 @@
 
 ## 2016.04.4 --- 
 
->##完全实现button的自定义，
+###示例展示：
 
 ![image](https://github.com/boai/BAButton/tree/master/BAButtonDemo/images/image.png)
+
+>##完全实现button的自定义，
+
+###pod 导入：pod 'BAButton', '~> 1.0.0'
+
+###项目中导入头文件：#import <BAButton.h> 即可
 
 ``` 用枚举展示button的类型：
 BAAligenmentStatusNormal, // 默认
@@ -51,6 +57,5 @@ btn5.buttonCornerRadius = 5.0;
 [btn5 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 btn5.frame = CGRectMake(CGRectGetMinX(btn.frame), CGRectGetMaxY(btn4.frame) + 10, 200, 80);
 [self.view addSubview:btn5];
-
 
 
