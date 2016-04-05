@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class BAButton_image_text,BARadioButton;
-/*! 自定义按钮1：可以设置按钮的消失时间 */
+/*! 自定义按钮1: */
 @interface BAButton : UIButton
 
 /**
