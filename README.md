@@ -23,7 +23,7 @@
 
 ###pod 导入：pod 'BAButton', '~> 1.0.0'
 
-###项目中导入头文件：#import <BAButton.h> 即可
+###项目中导入头文件：```#import <BAButton.h> 即可
 
 ``` 用枚举展示button的类型：
 BAAligenmentStatusNormal, // 默认
@@ -33,8 +33,6 @@ BAAligenmentStatusRight, // 右对齐
 BAAligenmentStatusTop, // 图标在上，文本在下(居中)
 BAAligenmentStatusBottom, // 图标在下，文本在上(居中)
 
-
-```
 BACustomButton *btn1 = [BACustomButton BA_ShareButton];
 [btn1 setBackgroundColor:[UIColor greenColor]];
 [btn1 setImage:[UIImage imageNamed:@"btn_share"] forState:UIControlStateNormal];
@@ -46,8 +44,6 @@ btn1.titleLabel.font = [UIFont systemFontOfSize:15];
 btn1.frame = CGRectMake(CGRectGetMinX(btn.frame), CGRectGetMaxY(btn.frame) + 10, 200, 50);
 [self.view addSubview:btn1];
 
-
-```
 BACustomButton *btn5 = [[BACustomButton alloc] initWitAligenmentStatus:BAAligenmentStatusTop];
 [btn5 setBackgroundColor:[UIColor greenColor]];
 [btn5 setImage:[UIImage imageNamed:@"btn_share"] forState:UIControlStateNormal];
