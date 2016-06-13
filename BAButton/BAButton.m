@@ -1,10 +1,55 @@
-//
-//  BAButton.m
-//  demoTest
-//
-//  Created by 博爱 on 16/3/31.
-//  Copyright © 2016年 博爱之家. All rights reserved.
-//
+
+/*!
+ *  @header BAKit.h
+ *          demoTest
+ *
+ *  @brief  BAKit
+ *
+ *  @author 博爱
+ *  @copyright    Copyright © 2016年 博爱. All rights reserved.
+ *  @version    V1.0
+ */
+
+/*!
+ *
+ *          ┌─┐       ┌─┐
+ *       ┌──┘ ┴───────┘ ┴──┐
+ *       │                 │
+ *       │       ───       │
+ *       │  ─┬┘       └┬─  │
+ *       │                 │
+ *       │       ─┴─       │
+ *       │                 │
+ *       └───┐         ┌───┘
+ *           │         │
+ *           │         │
+ *           │         │
+ *           │         └──────────────┐
+ *           │                        │
+ *           │                        ├─┐
+ *           │                        ┌─┘
+ *           │                        │
+ *           └─┐  ┐  ┌───────┬──┐  ┌──┘
+ *             │ ─┤ ─┤       │ ─┤ ─┤
+ *             └──┴──┘       └──┴──┘
+ *                 神兽保佑
+ *                 代码无BUG!
+ */
+
+/*
+ 
+ *********************************************************************************
+ *
+ * 在使用BAKit的过程中如果出现bug请及时以以下任意一种方式联系我，我会及时修复bug
+ *
+ * QQ     : 可以添加SDAutoLayout群 497140713 在这里找到我(博爱1616【137361770】)
+ * 微博    : 博爱1616
+ * Email  : 137361770@qq.com
+ * GitHub : https://github.com/boai
+ * 博客园  : http://www.cnblogs.com/boai/
+ *********************************************************************************
+ 
+ */
 
 #import "BAButton.h"
 
@@ -81,7 +126,12 @@
 
 + (instancetype)BA_ShareButton
 {
-    return [[self alloc] init];
+    static BACustomButton *baButton = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        baButton = [[BACustomButton alloc] init];
+    });
+    return baButton;
 }
 
 - (instancetype)initWitAligenmentStatus:(BAAligenmentStatus)status
@@ -159,10 +209,11 @@
     
     CGFloat imageX = (BA_btnWidth - BA_imageWidth) * 0.5;
     self.imageView.frame = CGRectMake(imageX, BA_btnHeight * 0.5 - BA_imageHeight * BA_ButtonTopRadio, BA_imageWidth, BA_imageHeight);
-    self.titleLabel.frame = CGRectMake((self.center.x - frame.size.width) * 0.5, BA_btnHeight * 0.5 + BA_labelHeight * BA_ButtonTopRadio, BA_labelWidth, BA_labelHeight);
+    self.titleLabel.frame = CGRectMake((self.center.x - frame.size.width) * 0.5, BA_btnHeight * 0.5 + BA_labelHeight * BA_ButtonTopRadio, BA_btnWidth, BA_labelHeight);
     CGPoint labelCenter = self.titleLabel.center;
     labelCenter.x = self.imageView.center.x;
     self.titleLabel.center = labelCenter;
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
 }
 
 #pragma mark - 图标在下，文本在上(居中)
@@ -171,11 +222,12 @@
     CGRect frame = [self getTitleLabelWith];
     
     CGFloat imageX = (BA_btnWidth - BA_imageWidth) * 0.5;
-    self.titleLabel.frame = CGRectMake((self.center.x - frame.size.width) * 0.5, BA_btnHeight * 0.5 - BA_labelHeight * (1 + BA_ButtonBottomRadio), BA_labelWidth, BA_labelHeight);
+    self.titleLabel.frame = CGRectMake((self.center.x - frame.size.width) * 0.5, BA_btnHeight * 0.5 - BA_labelHeight * (1 + BA_ButtonBottomRadio), BA_btnWidth, BA_labelHeight);
     self.imageView.frame = CGRectMake(imageX, BA_btnHeight * 0.5, BA_imageWidth, BA_imageHeight);
     CGPoint labelCenter = self.titleLabel.center;
     labelCenter.x = self.imageView.center.x;
     self.titleLabel.center = labelCenter;
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
 }
 
 - (void)setButtonCornerRadius:(CGFloat)buttonCornerRadius

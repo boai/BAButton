@@ -126,7 +126,12 @@
 
 + (instancetype)BA_ShareButton
 {
-    return [[self alloc] init];
+    static BACustomButton *baButton = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        baButton = [[BACustomButton alloc] init];
+    });
+    return baButton;
 }
 
 - (instancetype)initWitAligenmentStatus:(BAAligenmentStatus)status
@@ -204,10 +209,11 @@
     
     CGFloat imageX = (BA_btnWidth - BA_imageWidth) * 0.5;
     self.imageView.frame = CGRectMake(imageX, BA_btnHeight * 0.5 - BA_imageHeight * BA_ButtonTopRadio, BA_imageWidth, BA_imageHeight);
-    self.titleLabel.frame = CGRectMake((self.center.x - frame.size.width) * 0.5, BA_btnHeight * 0.5 + BA_labelHeight * BA_ButtonTopRadio, BA_labelWidth, BA_labelHeight);
+    self.titleLabel.frame = CGRectMake((self.center.x - frame.size.width) * 0.5, BA_btnHeight * 0.5 + BA_labelHeight * BA_ButtonTopRadio, BA_btnWidth, BA_labelHeight);
     CGPoint labelCenter = self.titleLabel.center;
     labelCenter.x = self.imageView.center.x;
     self.titleLabel.center = labelCenter;
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
 }
 
 #pragma mark - 图标在下，文本在上(居中)
@@ -216,11 +222,12 @@
     CGRect frame = [self getTitleLabelWith];
     
     CGFloat imageX = (BA_btnWidth - BA_imageWidth) * 0.5;
-    self.titleLabel.frame = CGRectMake((self.center.x - frame.size.width) * 0.5, BA_btnHeight * 0.5 - BA_labelHeight * (1 + BA_ButtonBottomRadio), BA_labelWidth, BA_labelHeight);
+    self.titleLabel.frame = CGRectMake((self.center.x - frame.size.width) * 0.5, BA_btnHeight * 0.5 - BA_labelHeight * (1 + BA_ButtonBottomRadio), BA_btnWidth, BA_labelHeight);
     self.imageView.frame = CGRectMake(imageX, BA_btnHeight * 0.5, BA_imageWidth, BA_imageHeight);
     CGPoint labelCenter = self.titleLabel.center;
     labelCenter.x = self.imageView.center.x;
     self.titleLabel.center = labelCenter;
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
 }
 
 - (void)setButtonCornerRadius:(CGFloat)buttonCornerRadius

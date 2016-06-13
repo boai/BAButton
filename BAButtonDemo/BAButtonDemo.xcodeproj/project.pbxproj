@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C4389F331D0EAC99002599AB /* 播放次数@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C4389F311D0EAC99002599AB /* 播放次数@2x.png */; };
+		C4389F341D0EAC99002599AB /* 播放次数@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C4389F321D0EAC99002599AB /* 播放次数@3x.png */; };
 		C4FD44DA1CB26F9000D1B0DB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FD44D91CB26F9000D1B0DB /* main.m */; };
 		C4FD44DD1CB26F9000D1B0DB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FD44DC1CB26F9000D1B0DB /* AppDelegate.m */; };
 		C4FD44E01CB26F9000D1B0DB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FD44DF1CB26F9000D1B0DB /* ViewController.m */; };
@@ -36,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C4389F311D0EAC99002599AB /* 播放次数@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "播放次数@2x.png"; sourceTree = "<group>"; };
+		C4389F321D0EAC99002599AB /* 播放次数@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "播放次数@3x.png"; sourceTree = "<group>"; };
 		C4FD44D51CB26F9000D1B0DB /* BAButtonDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BAButtonDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4FD44D91CB26F9000D1B0DB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C4FD44DB1CB26F9000D1B0DB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -105,6 +109,8 @@
 		C4FD44D71CB26F9000D1B0DB /* BAButtonDemo */ = {
 			isa = PBXGroup;
 			children = (
+				C4389F311D0EAC99002599AB /* 播放次数@2x.png */,
+				C4389F321D0EAC99002599AB /* 播放次数@3x.png */,
 				C4FD44DB1CB26F9000D1B0DB /* AppDelegate.h */,
 				C4FD44DC1CB26F9000D1B0DB /* AppDelegate.m */,
 				C4FD44DE1CB26F9000D1B0DB /* ViewController.h */,
@@ -256,7 +262,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4389F331D0EAC99002599AB /* 播放次数@2x.png in Resources */,
 				C4FD44E81CB26F9000D1B0DB /* LaunchScreen.storyboard in Resources */,
+				C4389F341D0EAC99002599AB /* 播放次数@3x.png in Resources */,
 				C4FD44E51CB26F9000D1B0DB /* Assets.xcassets in Resources */,
 				C4FD44E31CB26F9000D1B0DB /* Main.storyboard in Resources */,
 			);
