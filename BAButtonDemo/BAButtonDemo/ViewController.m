@@ -31,6 +31,11 @@
     btn.buttonStatus = BAAligenmentStatusNormal;
     btn.buttonCornerRadius = 5.0;
     btn.frame = CGRectMake(50, 50, 200, 50);
+    /*! 文字和图片的间距用这两行代码更改就行了 */
+    btn.imageEdgeInsets = UIEdgeInsetsMake(0, 5, 0, btn.titleLabel.frame.size.width+5);
+    btn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
+    btn.titleLabel.textAlignment = NSTextAlignmentRight;
+    
     [self.view addSubview:btn];
     
     //    BAButton *btn = [[BAButton alloc] initWithFrame:CGRectMake(100, 100, 200, 30) image:[UIImage imageNamed:@"btn_share"] highlightedImage:[UIImage imageNamed:@"btn_share"] fadeDuration:3];
