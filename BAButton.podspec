@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
     s.name         = 'BAButton'
     s.version      = '2.0'
-    s.summary      = '更新内容：\n2.0.1、优化方法名命名规范\n2.0.2、删除多余代码，简化方法名和属性名，详见demo\n2.0.3、新增旧方法更新提示'
+    s.summary      = '更新内容：2.0.1、优化方法名命名规范 2.0.2、删除多余代码，简化方法名和属性名，详见demo 2.0.3、新增旧方法更新提示'
     s.homepage     = 'https://github.com/boai/BAButton'
     s.license      = 'MIT'
     s.authors      = { 'boai' => 'sunboyan@outlook.com' }
