@@ -226,6 +226,7 @@
 				TargetAttributes = {
 					C4FD44D41CB26F9000D1B0DB = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 5MLEPWQRVD;
 					};
 					C4FD44ED1CB26F9000D1B0DB = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -435,6 +436,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 5MLEPWQRVD;
 				INFOPLIST_FILE = BAButtonDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = boai.BAButtonDemo;
@@ -446,6 +448,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 5MLEPWQRVD;
 				INFOPLIST_FILE = BAButtonDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = boai.BAButtonDemo;
