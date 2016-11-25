@@ -38,16 +38,6 @@
     
     [self.view addSubview:btn];
     
-    //    BAButton *btn = [[BAButton alloc] initWithFrame:CGRectMake(100, 100, 200, 30) image:[UIImage imageNamed:@"btn_share"] highlightedImage:[UIImage imageNamed:@"btn_share"] fadeDuration:3];
-    //    btn.backgroundColor = [UIColor greenColor];
-    //    //    [btn setImage:[UIImage imageNamed:@"tabbar_discover"] forState:UIControlStateNormal];
-    //    [btn setTitle:@"默认" forState:UIControlStateNormal];
-    //    //    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    //    //    btn.buttonStatus = BABAButtonStatusNormal;
-    //    //    btn.buttonCornerRadius = 5.0;
-    //    //    btn.frame = CGRectMake(100, 100, 200, 30);
-    //    [self.view addSubview:btn];
-    
     BAButton *btn1 = [[BAButton alloc] init];
     [btn1 setBackgroundColor:[UIColor greenColor]];
     [btn1 setImage:[UIImage imageNamed:@"播放次数"] forState:UIControlStateNormal];
