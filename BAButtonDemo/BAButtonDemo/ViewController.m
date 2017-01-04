@@ -28,7 +28,7 @@
     [btn setImage:[UIImage imageNamed:@"播放次数"] forState:UIControlStateNormal];
     [btn setTitle:@"系统默认样式" forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    btn.buttonStatus = BABAButtonStatusNormal;
+    btn.buttonStatus = BAButtonStatusNormal;
     btn.buttonCornerRadius = 5.0;
     btn.frame = CGRectMake(50, 50, 200, 50);
     /*! 文字和图片的间距用这两行代码更改就行了 */
@@ -43,7 +43,7 @@
     [btn1 setImage:[UIImage imageNamed:@"播放次数"] forState:UIControlStateNormal];
     [btn1 setTitle:@"左对齐[文字左图片右]" forState:UIControlStateNormal];
     [btn1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    btn1.buttonStatus = BABAButtonStatusLeft;
+    btn1.buttonStatus = BAButtonStatusLeft;
     btn1.buttonCornerRadius = 5.0;
     btn1.titleLabel.font = [UIFont systemFontOfSize:15];
     btn1.frame = CGRectMake(CGRectGetMinX(btn.frame), CGRectGetMaxY(btn.frame) + 10, 200, 50);
@@ -54,7 +54,7 @@
     [btn2 setImage:[UIImage imageNamed:@"播放次数"] forState:UIControlStateNormal];
     [btn2 setTitle:@"中心对齐[文字左图片右]" forState:UIControlStateNormal];
     [btn2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    btn2.buttonStatus = BABAButtonStatusCenter;
+    btn2.buttonStatus = BAButtonStatusCenter;
     btn2.buttonCornerRadius = 5.0;
     btn2.titleLabel.font = [UIFont systemFontOfSize:14];
     btn2.frame = CGRectMake(CGRectGetMinX(btn.frame), CGRectGetMaxY(btn1.frame) + 10, 300, 50);
@@ -66,13 +66,13 @@
     [btn3 setTitle:@"右对齐[文字左图片右]" forState:UIControlStateNormal];
     btn3.titleLabel.font = [UIFont systemFontOfSize:10];
     [btn3 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    btn3.buttonStatus = BABAButtonStatusRight;
+    btn3.buttonStatus = BAButtonStatusRight;
     btn3.buttonCornerRadius = 5.0;
     btn3.frame = CGRectMake(CGRectGetMinX(btn.frame), CGRectGetMaxY(btn2.frame) + 10, 200, 50);
     [self.view addSubview:btn3];
     
     BAButton *btn4 = [[BAButton alloc] init];
-    btn4.buttonStatus = BABAButtonStatusLeft;
+    btn4.buttonStatus = BAButtonStatusLeft;
     [btn4 setBackgroundColor:[UIColor greenColor]];
     [btn4 setImage:[UIImage imageNamed:@"播放次数"] forState:UIControlStateNormal];
     [btn4 setTitle:@"左对齐[文字左图片右]" forState:UIControlStateNormal];
@@ -83,7 +83,7 @@
     [self.view addSubview:btn4];
     
     BAButton *btn5 = [[BAButton alloc] init];
-    btn5.buttonStatus = BABAButtonStatusTop;
+    btn5.buttonStatus = BAButtonStatusTop;
     [btn5 setBackgroundColor:[UIColor greenColor]];
     [btn5 setImage:[UIImage imageNamed:@"播放次数"] forState:UIControlStateNormal];
     [btn5 setTitle:@"图片在上，文字在下" forState:UIControlStateNormal];
@@ -94,7 +94,7 @@
     [self.view addSubview:btn5];
     
     BAButton *btn6 = [[BAButton alloc] init];
-    btn6.buttonStatus = BABAButtonStatusBottom;
+    btn6.buttonStatus = BAButtonStatusBottom;
     [btn6 setBackgroundColor:[UIColor greenColor]];
     [btn6 setImage:[UIImage imageNamed:@"播放次数"] forState:UIControlStateNormal];
     [btn6 setTitle:@"图片在下，文字在上" forState:UIControlStateNormal];
@@ -105,7 +105,7 @@
     [self.view addSubview:btn6];
     
     BAButton *btn7 = [[BAButton alloc] init];
-    btn7.buttonStatus = BABAButtonStatusBottom;
+    btn7.buttonStatus = BAButtonStatusBottom;
     [btn7 setBackgroundColor:[UIColor greenColor]];
     [btn7 setImage:[UIImage imageNamed:@"播放次数"] forState:UIControlStateNormal];
     [btn7 setTitle:@"图片在下，文字在上" forState:UIControlStateNormal];

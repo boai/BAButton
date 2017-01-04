@@ -24,7 +24,7 @@
 
 @implementation BAButton
 
-- (void)setButtonStatus:(BABAButtonStatus)buttonStatus
+- (void)setButtonStatus:(BAButtonStatus)buttonStatus
 {
     _buttonStatus = buttonStatus;
 }
@@ -124,26 +124,26 @@
 {
     [super layoutSubviews];
     
-    if (_buttonStatus == BABAButtonStatusNormal)
+    if (_buttonStatus == BAButtonStatusNormal)
     {
     }
-    else if (_buttonStatus == BABAButtonStatusLeft)
+    else if (_buttonStatus == BAButtonStatusLeft)
     {
         [self alignmentLeft];
     }
-    else if (_buttonStatus == BABAButtonStatusCenter)
+    else if (_buttonStatus == BAButtonStatusCenter)
     {
         [self alignmentCenter];
     }
-    else if (_buttonStatus == BABAButtonStatusRight)
+    else if (_buttonStatus == BAButtonStatusRight)
     {
         [self alignmentRight];
     }
-    else if (_buttonStatus == BABAButtonStatusTop)
+    else if (_buttonStatus == BAButtonStatusTop)
     {
         [self alignmentTop];
     }
-    else if (_buttonStatus == BABAButtonStatusBottom)
+    else if (_buttonStatus == BAButtonStatusBottom)
     {
         [self alignmentBottom];
     }

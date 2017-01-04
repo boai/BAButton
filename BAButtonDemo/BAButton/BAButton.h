@@ -79,17 +79,17 @@
 /*! 过期属性或方法名提醒 */
 #define BANetManagerDeprecated(instead) __deprecated_msg(instead)
 
-typedef NS_ENUM(NSUInteger, BABAButtonStatus) {
-    BABAButtonStatusNormal, // 默认
-    BABAButtonStatusLeft, // 左对齐
-    BABAButtonStatusCenter, // 居中对齐
-    BABAButtonStatusRight, // 右对齐
-    BABAButtonStatusTop, // 图标在上，文本在下(居中)
-    BABAButtonStatusBottom, // 图标在下，文本在上(居中)
+typedef NS_ENUM(NSUInteger, BAButtonStatus) {
+    BAButtonStatusNormal, // 默认
+    BAButtonStatusLeft, // 左对齐
+    BAButtonStatusCenter, // 居中对齐
+    BAButtonStatusRight, // 右对齐
+    BAButtonStatusTop, // 图标在上，文本在下(居中)
+    BAButtonStatusBottom, // 图标在下，文本在上(居中)
 };
 
 /*! 设置样式 */
-@property (nonatomic, assign) BABAButtonStatus buttonStatus;
+@property (nonatomic, assign) BAButtonStatus buttonStatus;
 /*! 设置圆角 */
 @property (nonatomic, assign) CGFloat buttonCornerRadius;
 
@@ -97,7 +97,7 @@ typedef NS_ENUM(NSUInteger, BABAButtonStatus) {
 
 #pragma mark - 过期方法
 + (instancetype _Nonnull)BA_ShareButton BANetManagerDeprecated("方法已过期，请使用最新方法名：BAButton *btn1 = [[BAButton alloc] init]");
-- (instancetype _Nonnull)initWitButtonStatus:(BABAButtonStatus)status BANetManagerDeprecated("方法已过期，请使用最新方法名：BAButton *btn1 = [[BAButton alloc] init]");
+- (instancetype _Nonnull)initWitButtonStatus:(BAButtonStatus)status BANetManagerDeprecated("方法已过期，请使用最新方法名：BAButton *btn1 = [[BAButton alloc] init]");
 
 @end
 
