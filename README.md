@@ -13,7 +13,8 @@
 
 # 更新记录：
 
-## 2016.04.4 --- 
+## 2016.12.4 - 
+pod 最新上架，修复部分已知bug，代码更精简！
 
 ###示例展示：
 
@@ -37,13 +38,13 @@
 ```
 
 ``` 用枚举展示button的类型：
-typedef NS_ENUM(NSUInteger, BABAButtonStatus) {
-BABAButtonStatusNormal, // 默认
-BABAButtonStatusLeft, // 左对齐
-BABAButtonStatusCenter, // 居中对齐
-BABAButtonStatusRight, // 右对齐
-BABAButtonStatusTop, // 图标在上，文本在下(居中)
-BABAButtonStatusBottom, // 图标在下，文本在上(居中)
+typedef NS_ENUM(NSUInteger, BAButtonStatus) {
+    BAButtonStatusNormal, // 默认
+    BAButtonStatusLeft, // 左对齐
+    BAButtonStatusCenter, // 居中对齐
+    BAButtonStatusRight, // 右对齐
+    BAButtonStatusTop, // 图标在上，文本在下(居中)
+    BAButtonStatusBottom, // 图标在下，文本在上(居中)
 };
 
 
@@ -56,7 +57,7 @@ BAButton *btn1 = [[BAButton alloc] init];
 [btn1 setImage:[UIImage imageNamed:@"播放次数"] forState:UIControlStateNormal];
 [btn1 setTitle:@"左对齐[文字左图片右]" forState:UIControlStateNormal];
 [btn1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-btn1.buttonStatus = BABAButtonStatusLeft;
+btn1.buttonStatus = BAButtonStatusLeft;
 btn1.buttonCornerRadius = 5.0;
 btn1.titleLabel.font = [UIFont systemFontOfSize:15];
 btn1.frame = CGRectMake(CGRectGetMinX(btn.frame), CGRectGetMaxY(btn.frame) + 10, 200, 50);
@@ -64,7 +65,7 @@ btn1.frame = CGRectMake(CGRectGetMinX(btn.frame), CGRectGetMaxY(btn.frame) + 10,
 
 // 示例2：
 BAButton *btn5 = [[BAButton alloc] init];
-btn5.buttonStatus = BABAButtonStatusTop;
+btn5.buttonStatus = BAButtonStatusTop;
 [btn5 setBackgroundColor:[UIColor greenColor]];
 [btn5 setImage:[UIImage imageNamed:@"播放次数"] forState:UIControlStateNormal];
 [btn5 setTitle:@"图片在上，文字在下" forState:UIControlStateNormal];
