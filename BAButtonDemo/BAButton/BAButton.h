@@ -75,17 +75,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BAButton : UIButton
 /*! 过期属性或方法名提醒 */
 #define BANetManagerDeprecated(instead) __deprecated_msg(instead)
 
+
 /*!
- *  button 样式 
+ *  button 样式
  *  注意：【xib 、storyboard、纯代码均适配】xib 、storyboard 只需在 - (void)awakeFromNib{} 内部设置 buttonStatus 即可，其他代码均可通过 xib、storyboard  设置，
  例如：
  - (void)awakeFromNib
  {
-    button.buttonStatus = BAButtonStatusLeft;
+ button.buttonStatus = BAButtonStatusLeft;
  }
  */
 typedef NS_ENUM(NSUInteger, BAButtonStatus) {
@@ -114,6 +114,9 @@ typedef NS_ENUM(NSUInteger, BAButtonStatus) {
      */
     BAButtonStatusBottom
 };
+
+@interface BAButton : UIButton
+
 
 /*!
  *  设置 button 样式

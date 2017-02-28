@@ -124,29 +124,6 @@
 {
     [super layoutSubviews];
     
-//    if (_buttonStatus == BAButtonStatusNormal)
-//    {
-//    }
-//    else if (_buttonStatus == BAButtonStatusLeft)
-//    {
-//        [self alignmentLeft];
-//    }
-//    else if (_buttonStatus == BAButtonStatusCenter)
-//    {
-//        [self alignmentCenter];
-//    }
-//    else if (_buttonStatus == BAButtonStatusRight)
-//    {
-//        [self alignmentRight];
-//    }
-//    else if (_buttonStatus == BAButtonStatusTop)
-//    {
-//        [self alignmentTop];
-//    }
-//    else if (_buttonStatus == BAButtonStatusBottom)
-//    {
-//        [self alignmentBottom];
-//    }
     switch (_buttonStatus) {
         case BAButtonStatusNormal:
         {
