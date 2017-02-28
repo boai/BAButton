@@ -79,18 +79,50 @@
 /*! 过期属性或方法名提醒 */
 #define BANetManagerDeprecated(instead) __deprecated_msg(instead)
 
+/*!
+ *  button 样式 
+ *  注意：【xib 、storyboard、纯代码均适配】xib 、storyboard 只需在 - (void)awakeFromNib{} 内部设置 buttonStatus 即可，其他代码均可通过 xib、storyboard  设置，
+ 例如：
+ - (void)awakeFromNib
+ {
+    button.buttonStatus = BAButtonStatusLeft;
+ }
+ */
 typedef NS_ENUM(NSUInteger, BAButtonStatus) {
-    BAButtonStatusNormal, // 默认
-    BAButtonStatusLeft, // 左对齐
-    BAButtonStatusCenter, // 居中对齐
-    BAButtonStatusRight, // 右对齐
-    BAButtonStatusTop, // 图标在上，文本在下(居中)
-    BAButtonStatusBottom, // 图标在下，文本在上(居中)
+    /*!
+     *  系统默认
+     */
+    BAButtonStatusNormal,
+    /*!
+     *  左对齐
+     */
+    BAButtonStatusLeft,
+    /*!
+     *  居中对齐
+     */
+    BAButtonStatusCenter,
+    /*!
+     *  右对齐
+     */
+    BAButtonStatusRight,
+    /*!
+     *  图标在上，文本在下(居中)
+     */
+    BAButtonStatusTop,
+    /*!
+     *  图标在下，文本在上(居中)
+     */
+    BAButtonStatusBottom
 };
 
-/*! 设置样式 */
+/*!
+ *  设置 button 样式
+ */
 @property (nonatomic, assign) BAButtonStatus buttonStatus;
-/*! 设置圆角 */
+
+/*!
+ *  设置 button 圆角
+ */
 @property (nonatomic, assign) CGFloat buttonCornerRadius;
 
 

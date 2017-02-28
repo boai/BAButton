@@ -124,28 +124,63 @@
 {
     [super layoutSubviews];
     
-    if (_buttonStatus == BAButtonStatusNormal)
-    {
-    }
-    else if (_buttonStatus == BAButtonStatusLeft)
-    {
-        [self alignmentLeft];
-    }
-    else if (_buttonStatus == BAButtonStatusCenter)
-    {
-        [self alignmentCenter];
-    }
-    else if (_buttonStatus == BAButtonStatusRight)
-    {
-        [self alignmentRight];
-    }
-    else if (_buttonStatus == BAButtonStatusTop)
-    {
-        [self alignmentTop];
-    }
-    else if (_buttonStatus == BAButtonStatusBottom)
-    {
-        [self alignmentBottom];
+//    if (_buttonStatus == BAButtonStatusNormal)
+//    {
+//    }
+//    else if (_buttonStatus == BAButtonStatusLeft)
+//    {
+//        [self alignmentLeft];
+//    }
+//    else if (_buttonStatus == BAButtonStatusCenter)
+//    {
+//        [self alignmentCenter];
+//    }
+//    else if (_buttonStatus == BAButtonStatusRight)
+//    {
+//        [self alignmentRight];
+//    }
+//    else if (_buttonStatus == BAButtonStatusTop)
+//    {
+//        [self alignmentTop];
+//    }
+//    else if (_buttonStatus == BAButtonStatusBottom)
+//    {
+//        [self alignmentBottom];
+//    }
+    switch (_buttonStatus) {
+        case BAButtonStatusNormal:
+        {
+        
+        }
+            break;
+        case BAButtonStatusLeft:
+        {
+            [self alignmentLeft];
+        }
+            break;
+        case BAButtonStatusCenter:
+        {
+            [self alignmentCenter];
+        }
+            break;
+        case BAButtonStatusRight:
+        {
+            [self alignmentRight];
+        }
+            break;
+        case BAButtonStatusTop:
+        {
+            [self alignmentTop];
+        }
+            break;
+        case BAButtonStatusBottom:
+        {
+            [self alignmentBottom];
+        }
+            break;
+            
+        default:
+            break;
     }
 }
 
