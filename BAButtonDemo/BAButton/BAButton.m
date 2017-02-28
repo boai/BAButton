@@ -1,7 +1,7 @@
 
 
 #import "BAButton.h"
-#import <QuartzCore/QuartzCore.h>
+//#import <QuartzCore/QuartzCore.h>
 
 /*! 定义宏：按钮中文本和图片的间隔 */
 #define BA_padding        7
@@ -54,9 +54,14 @@
 
 - (void)setupSubViews
 {
-//    [self setupButtonCorner];
+    [self setupButtonCornerStyle];
 }
 
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    [self setupSubViews];
+}
 
 #pragma mark - 左对齐
 - (void)alignmentLeft
@@ -228,57 +233,57 @@
     }
     switch (self.buttonRectCornerStyle)
     {
-        case 0:
+        case BAButtonRectCornerStyleBottomLeft:
         {
             corners = UIRectCornerBottomLeft;
         }
             break;
-        case 1:
+        case BAButtonRectCornerStyleBottomRight:
         {
             corners = UIRectCornerBottomRight;
         }
             break;
-        case 2:
+        case BAButtonRectCornerStyleTopLeft:
         {
             corners = UIRectCornerTopLeft;
         }
             break;
-        case 3:
+        case BAButtonRectCornerStyleTopRight:
         {
             corners = UIRectCornerTopRight;
         }
             break;
-        case 4:
+        case BAButtonRectCornerStyleBottomLeftAndBottomRight:
         {
             corners = UIRectCornerBottomLeft | UIRectCornerBottomRight;
         }
             break;
-        case 5:
+        case BAButtonRectCornerStyleTopLeftAndTopRight:
         {
             corners = UIRectCornerTopLeft | UIRectCornerTopRight;
         }
             break;
-        case 6:
+        case BAButtonRectCornerStyleBottomLeftAndTopLeft:
         {
             corners = UIRectCornerBottomLeft | UIRectCornerTopLeft;
         }
             break;
-        case 7:
+        case BAButtonRectCornerStyleBottomRightAndTopRight:
         {
             corners = UIRectCornerBottomRight | UIRectCornerTopRight;
         }
             break;
-        case 8:
+        case BAButtonRectCornerStyleBottomRightAndTopRightAndTopLeft:
         {
             corners = UIRectCornerBottomRight | UIRectCornerTopRight | UIRectCornerTopLeft;
         }
             break;
-        case 9:
+        case BAButtonRectCornerStyleBottomRightAndTopRightAndBottomLeft:
         {
             corners = UIRectCornerBottomRight | UIRectCornerTopRight | UIRectCornerBottomLeft;
         }
             break;
-        case 10:
+        case BAButtonRectCornerStyleAllCorners:
         {
             corners = UIRectCornerAllCorners;
         }

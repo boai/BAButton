@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C44060A71E6550600030E35C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C44060A61E6550600030E35C /* QuartzCore.framework */; };
 		C4FD44DA1CB26F9000D1B0DB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FD44D91CB26F9000D1B0DB /* main.m */; };
 		C4FD44DD1CB26F9000D1B0DB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FD44DC1CB26F9000D1B0DB /* AppDelegate.m */; };
 		C4FD44E01CB26F9000D1B0DB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4FD44DF1CB26F9000D1B0DB /* ViewController.m */; };
@@ -37,7 +36,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C44060A61E6550600030E35C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C4FD44D51CB26F9000D1B0DB /* BAButtonDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BAButtonDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4FD44D91CB26F9000D1B0DB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C4FD44DB1CB26F9000D1B0DB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -63,7 +61,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C44060A71E6550600030E35C /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,7 +84,6 @@
 		C4FD44CC1CB26F9000D1B0DB = {
 			isa = PBXGroup;
 			children = (
-				C44060A61E6550600030E35C /* QuartzCore.framework */,
 				C4FD450F1CB2A50700D1B0DB /* BAButton */,
 				C4FD44D71CB26F9000D1B0DB /* BAButtonDemo */,
 				C4FD44F11CB26F9000D1B0DB /* BAButtonDemoTests */,
@@ -434,6 +430,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5MLEPWQRVD;
 				INFOPLIST_FILE = BAButtonDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = boai.BAButtonDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -446,6 +443,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 5MLEPWQRVD;
 				INFOPLIST_FILE = BAButtonDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = boai.BAButtonDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
