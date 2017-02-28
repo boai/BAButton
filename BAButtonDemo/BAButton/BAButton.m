@@ -1,6 +1,7 @@
 
 
 #import "BAButton.h"
+#import <QuartzCore/QuartzCore.h>
 
 /*! 定义宏：按钮中文本和图片的间隔 */
 #define BA_padding        7
@@ -24,10 +25,38 @@
 
 @implementation BAButton
 
-- (void)setButtonStatus:(BAButtonPositionStyle)buttonStatus
+- (instancetype)init
 {
-    _buttonStatus = buttonStatus;
+    if (self = [super init])
+    {
+        [self setupSubViews];
+    }
+    return self;
 }
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame])
+    {
+        [self setupSubViews];
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super initWithCoder:aDecoder])
+    {
+        [self setupSubViews];
+    }
+    return self;
+}
+
+- (void)setupSubViews
+{
+//    [self setupButtonCorner];
+}
+
 
 #pragma mark - 左对齐
 - (void)alignmentLeft
@@ -113,55 +142,160 @@
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
 }
 
-- (void)setButtonCornerRadius:(CGFloat)buttonCornerRadius
+#pragma mark - setter / getter
+- (void)setButtonRectCornerStyle:(BAButtonRectCornerStyle)buttonRectCornerStyle
 {
-    self.layer.masksToBounds = YES;
-    self.layer.cornerRadius = buttonCornerRadius;
+    _buttonRectCornerStyle = buttonRectCornerStyle;
+    [self setupButtonCornerStyle];
 }
 
-/*! 布局子控件 */
+- (void)setButtonPositionStyle:(BAButtonPositionStyle)buttonPositionStyle
+{
+    _buttonPositionStyle = buttonPositionStyle;
+    [self setupButtonPositionStyle];
+}
+
+- (void)setButtonCornerRadii:(CGSize)buttonCornerRadii
+{
+    _buttonCornerRadii = buttonCornerRadii;
+}
+
+- (void)setButtonCornerRadius:(CGFloat)buttonCornerRadius
+{
+    _buttonCornerRadius = buttonCornerRadius;
+//    self.layer.masksToBounds = YES;
+//    self.layer.cornerRadius = buttonCornerRadius;
+}
+
+#pragma mark - layoutSubviews
 - (void)layoutSubviews
 {
     [super layoutSubviews];
     
-    switch (_buttonPositionStyle) {
-        case BAButtonPositionStyleNormal:
+    [self setupButtonPositionStyle];
+}
+
+#pragma mark - 设置 buttonPosition 样式
+- (void)setupButtonPositionStyle
+{
+    if (self.buttonPositionStyle)
+    {
+        switch (self.buttonPositionStyle) {
+            case BAButtonPositionStyleNormal:
+            {
+                
+            }
+                break;
+            case BAButtonPositionStyleLeft:
+            {
+                [self alignmentLeft];
+            }
+                break;
+            case BAButtonPositionStyleCenter:
+            {
+                [self alignmentCenter];
+            }
+                break;
+            case BAButtonPositionStyleRight:
+            {
+                [self alignmentRight];
+            }
+                break;
+            case BAButtonPositionStyleTop:
+            {
+                [self alignmentTop];
+            }
+                break;
+            case BAButtonPositionStyleBottom:
+            {
+                [self alignmentBottom];
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }
+}
+
+#pragma mark - button 的 角半径，默认 CGSizeMake(20, 20)
+- (void)setupButtonCornerStyle
+{
+    UIRectCorner corners;
+    if (CGSizeEqualToSize(self.buttonCornerRadii, CGSizeZero))
+    {
+        self.buttonCornerRadii = CGSizeMake(20, 20);
+    }
+    switch (self.buttonRectCornerStyle)
+    {
+        case 0:
         {
-        
+            corners = UIRectCornerBottomLeft;
         }
             break;
-        case BAButtonPositionStyleLeft:
+        case 1:
         {
-            [self alignmentLeft];
+            corners = UIRectCornerBottomRight;
         }
             break;
-        case BAButtonPositionStyleCenter:
+        case 2:
         {
-            [self alignmentCenter];
+            corners = UIRectCornerTopLeft;
         }
             break;
-        case BAButtonPositionStyleRight:
+        case 3:
         {
-            [self alignmentRight];
+            corners = UIRectCornerTopRight;
         }
             break;
-        case BAButtonPositionStyleTop:
+        case 4:
         {
-            [self alignmentTop];
+            corners = UIRectCornerBottomLeft | UIRectCornerBottomRight;
         }
             break;
-        case BAButtonPositionStyleBottom:
+        case 5:
         {
-            [self alignmentBottom];
+            corners = UIRectCornerTopLeft | UIRectCornerTopRight;
+        }
+            break;
+        case 6:
+        {
+            corners = UIRectCornerBottomLeft | UIRectCornerTopLeft;
+        }
+            break;
+        case 7:
+        {
+            corners = UIRectCornerBottomRight | UIRectCornerTopRight;
+        }
+            break;
+        case 8:
+        {
+            corners = UIRectCornerBottomRight | UIRectCornerTopRight | UIRectCornerTopLeft;
+        }
+            break;
+        case 9:
+        {
+            corners = UIRectCornerBottomRight | UIRectCornerTopRight | UIRectCornerBottomLeft;
+        }
+            break;
+        case 10:
+        {
+            corners = UIRectCornerAllCorners;
         }
             break;
             
         default:
             break;
     }
+    
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds
+                                                   byRoundingCorners:corners
+                                                         cornerRadii:CGSizeMake(20.0, 30.0)];
+    CAShapeLayer *maskLayer = [CAShapeLayer layer];
+    maskLayer.frame         = self.bounds;
+    maskLayer.path          = maskPath.CGPath;
+    self.layer.mask         = maskLayer;
 }
-
-
 
 @end
 

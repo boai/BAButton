@@ -27,6 +27,8 @@
     
     self.title = @"BAButton";
     [self buttonTestNewDemo];
+//    [self buttonTestOldDemo];
+
 }
 
 #pragma mark - for 循环创建 【xib 、storyboard、纯代码均适配】
@@ -42,7 +44,7 @@
     for (NSInteger i = 0; i < buttonNumber; i++)
     {
         BAButton *button = [[BAButton alloc] init];
-        button.backgroundColor = [UIColor yellowColor];
+        button.backgroundColor = [UIColor redColor];
         [button setImage:[UIImage imageNamed:@"tabbar_mainframeHL"] forState:UIControlStateNormal];
 
         NSInteger rowNum = 0;
@@ -63,8 +65,8 @@
             {
                 button_h = 50;
                 button_title = @"系统默认";
-                button.buttonPositionStyle = BAButtonPositionStyleNormal;
-
+//                button.buttonPositionStyle = BAButtonPositionStyleNormal;
+                button.buttonRectCornerStyle = 2;
             }
                 break;
             case 1:
@@ -72,6 +74,7 @@
                 button_h = 50;
                 button_title = @"左对齐[字左图右]";
                 button.buttonPositionStyle = BAButtonPositionStyleLeft;
+//                button.buttonRectCornerStyle = 3;
 
             }
                 break;
@@ -124,7 +127,7 @@
 - (void)buttonTestOldDemo
 {
     BAButton *btn = [[BAButton alloc] init];
-    btn.backgroundColor = [UIColor yellowColor];;
+    btn.backgroundColor = [UIColor yellowColor];
     [btn setImage:[UIImage imageNamed:@"tabbar_mainframeHL"] forState:UIControlStateNormal];
     [btn setTitle:@"系统默认样式" forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];

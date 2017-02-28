@@ -80,19 +80,19 @@
 
 
 /*!
- *  button 样式
- *  注意：【xib 、storyboard、纯代码均适配】xib 、storyboard 只需在 - (void)awakeFromNib{} 内部设置 buttonStatus 即可，其他代码均可通过 xib、storyboard  设置，
+ *  设置 buttonPosition 样式
+ *  注意：【xib 、storyboard、纯代码均适配】xib 、storyboard 只需在 - (void)awakeFromNib{} 内部设置 buttonPositionStyle 即可，其他代码均可通过 xib、storyboard  设置，
  例如：
  - (void)awakeFromNib
  {
- button.buttonStatus = BAButtonStatusLeft;
+    button.buttonPositionStyle = BAButtonPositionStyleLeft;
  }
  */
 typedef NS_ENUM(NSUInteger, BAButtonPositionStyle) {
     /*!
      *  系统默认
      */
-    BAButtonPositionStyleNormal,
+    BAButtonPositionStyleNormal = 0,
     /*!
      *  左对齐
      */
@@ -115,14 +115,40 @@ typedef NS_ENUM(NSUInteger, BAButtonPositionStyle) {
     BAButtonPositionStyleBottom
 };
 
+/*!
+ *  设置 buttonRectCorner 样式，，默认为：BAButtonRectCornerStyleAllCorners
+ */
+typedef NS_ENUM(NSUInteger, BAButtonRectCornerStyle) {
+    BAButtonRectCornerStyleBottomLeft = 0,
+    BAButtonRectCornerStyleBottomRight,
+    BAButtonRectCornerStyleTopLeft,
+    BAButtonRectCornerStyleTopRight,
+    BAButtonRectCornerStyleBottomLeftAndBottomRight,
+    BAButtonRectCornerStyleTopLeftAndTopRight,
+    BAButtonRectCornerStyleBottomLeftAndTopLeft,
+    BAButtonRectCornerStyleBottomRightAndTopRight,
+    BAButtonRectCornerStyleBottomRightAndTopRightAndTopLeft,
+    BAButtonRectCornerStyleBottomRightAndTopRightAndBottomLeft,
+    BAButtonRectCornerStyleAllCorners
+};
+
 @interface BAButton : UIButton
 
 
 /*!
- *  设置 button 样式
+ *  设置 buttonPosition 样式
  */
 @property (nonatomic, assign) BAButtonPositionStyle buttonPositionStyle;
 
+/*!
+ *  设置 buttonRectCorner 样式，必须同时设置 buttonCornerRadii
+ */
+@property (nonatomic, assign) BAButtonRectCornerStyle buttonRectCornerStyle;
+
+/*!
+ *  button 的 角半径，默认 CGSizeMake(20, 20)
+ */
+@property (nonatomic, assign) CGSize buttonCornerRadii;
 
 /*!
  *  设置 button 圆角
