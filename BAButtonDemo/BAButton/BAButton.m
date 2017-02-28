@@ -24,7 +24,7 @@
 
 @implementation BAButton
 
-- (void)setButtonStatus:(BAButtonStatus)buttonStatus
+- (void)setButtonStatus:(BAButtonPositionStyle)buttonStatus
 {
     _buttonStatus = buttonStatus;
 }
@@ -124,33 +124,33 @@
 {
     [super layoutSubviews];
     
-    switch (_buttonStatus) {
-        case BAButtonStatusNormal:
+    switch (_buttonPositionStyle) {
+        case BAButtonPositionStyleNormal:
         {
         
         }
             break;
-        case BAButtonStatusLeft:
+        case BAButtonPositionStyleLeft:
         {
             [self alignmentLeft];
         }
             break;
-        case BAButtonStatusCenter:
+        case BAButtonPositionStyleCenter:
         {
             [self alignmentCenter];
         }
             break;
-        case BAButtonStatusRight:
+        case BAButtonPositionStyleRight:
         {
             [self alignmentRight];
         }
             break;
-        case BAButtonStatusTop:
+        case BAButtonPositionStyleTop:
         {
             [self alignmentTop];
         }
             break;
-        case BAButtonStatusBottom:
+        case BAButtonPositionStyleBottom:
         {
             [self alignmentBottom];
         }

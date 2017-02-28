@@ -88,31 +88,31 @@
  button.buttonStatus = BAButtonStatusLeft;
  }
  */
-typedef NS_ENUM(NSUInteger, BAButtonStatus) {
+typedef NS_ENUM(NSUInteger, BAButtonPositionStyle) {
     /*!
      *  系统默认
      */
-    BAButtonStatusNormal,
+    BAButtonPositionStyleNormal,
     /*!
      *  左对齐
      */
-    BAButtonStatusLeft,
+    BAButtonPositionStyleLeft,
     /*!
      *  居中对齐
      */
-    BAButtonStatusCenter,
+    BAButtonPositionStyleCenter,
     /*!
      *  右对齐
      */
-    BAButtonStatusRight,
+    BAButtonPositionStyleRight,
     /*!
      *  图标在上，文本在下(居中)
      */
-    BAButtonStatusTop,
+    BAButtonPositionStyleTop,
     /*!
      *  图标在下，文本在上(居中)
      */
-    BAButtonStatusBottom
+    BAButtonPositionStyleBottom
 };
 
 @interface BAButton : UIButton
@@ -121,7 +121,8 @@ typedef NS_ENUM(NSUInteger, BAButtonStatus) {
 /*!
  *  设置 button 样式
  */
-@property (nonatomic, assign) BAButtonStatus buttonStatus;
+@property (nonatomic, assign) BAButtonPositionStyle buttonPositionStyle;
+
 
 /*!
  *  设置 button 圆角
@@ -131,8 +132,9 @@ typedef NS_ENUM(NSUInteger, BAButtonStatus) {
 
 
 #pragma mark - 过期方法
+@property (nonatomic, assign) BAButtonPositionStyle buttonStatus BANetManagerDeprecated("方法已过期，请使用最新属性名：buttonPositionStyle");
 + (instancetype _Nonnull)BA_ShareButton BANetManagerDeprecated("方法已过期，请使用最新方法名：BAButton *btn1 = [[BAButton alloc] init]");
-- (instancetype _Nonnull)initWitButtonStatus:(BAButtonStatus)status BANetManagerDeprecated("方法已过期，请使用最新方法名：BAButton *btn1 = [[BAButton alloc] init]");
+- (instancetype _Nonnull)initWitButtonStatus:(BAButtonPositionStyle)status BANetManagerDeprecated("方法已过期，请使用最新方法名：BAButton *btn1 = [[BAButton alloc] init]");
 
 @end
 
