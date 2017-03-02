@@ -186,6 +186,10 @@ typedef NS_ENUM(NSInteger, BAButtonRectCornerStyle) {
  */
 @property (nonatomic, assign) CGFloat buttonCornerRadius;
 
+/*!
+ *  文字与图片之间的间距，默认为：0
+ */
+@property (nonatomic, assign) CGFloat padding;
 
 #pragma mark - set 方法
 - (void)setButtonPositionStyle:(BAButtonPositionStyle)buttonPositionStyle;

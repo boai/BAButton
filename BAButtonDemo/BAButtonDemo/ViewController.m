@@ -88,6 +88,7 @@ BAKit_LabelSizeWithTextAndFont(NSString *text, UIFont *font){
             {
                 button_h = 50;
                 button_title = @"系统默认";
+                button.padding = 10;
                 button.buttonPositionStyle = BAButtonPositionStyleNormal;
                 [button setButtonCornerRadii:CGSizeMake(20, 20) buttonRectCornerStyle:BAButtonRectCornerStyleTopRight];
             }
@@ -96,6 +97,7 @@ BAKit_LabelSizeWithTextAndFont(NSString *text, UIFont *font){
             {
                 button_h = 50;
                 button_title = @"左对齐[字左图右]";
+                button.padding = 5;
                 button.buttonPositionStyle = BAButtonPositionStyleLeft;
                 [button setButtonCornerRadii:CGSizeMake(10, 10) buttonRectCornerStyle:BAButtonRectCornerStyleBottomRightAndTopRightAndBottomLeft];
             }
@@ -104,6 +106,7 @@ BAKit_LabelSizeWithTextAndFont(NSString *text, UIFont *font){
             {
                 button_h = 50;
                 button_title = @"中心对齐[字左图右]";
+                button.padding = 5;
                 button.buttonPositionStyle = BAButtonPositionStyleCenter;
                 [button setButtonCornerRadii:CGSizeMake(20, 20) buttonRectCornerStyle:BAButtonRectCornerStyleTopRight];
             }
@@ -112,6 +115,7 @@ BAKit_LabelSizeWithTextAndFont(NSString *text, UIFont *font){
             {
                 button_h = 50;
                 button_title = @"右对齐[字左图右]";
+                button.padding = 5;
                 button.buttonPositionStyle = BAButtonPositionStyleRight;
                 [button setButtonCornerRadii:CGSizeMake(20, 20) buttonRectCornerStyle:BAButtonRectCornerStyleTopLeft];
             }
@@ -120,6 +124,7 @@ BAKit_LabelSizeWithTextAndFont(NSString *text, UIFont *font){
             {
                 button_h = 50;
                 button_title = @"字下图上";
+                button.padding = 5;
                 button.buttonPositionStyle = BAButtonPositionStyleTop;
                 [button setButtonCornerRadii:CGSizeMake(20, 20) buttonRectCornerStyle:BAButtonRectCornerStyleTopRight];
             }
@@ -128,6 +133,7 @@ BAKit_LabelSizeWithTextAndFont(NSString *text, UIFont *font){
             {
                 button_h = 80;
                 button_title = @"字上图下";
+                button.padding = 5;
                 button.buttonPositionStyle = BAButtonPositionStyleBottom;
                 /*! 直接设置四个圆角 */
                 button.buttonCornerRadius = 80 / 2;

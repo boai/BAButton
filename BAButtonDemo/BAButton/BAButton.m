@@ -4,7 +4,6 @@
 //#import <QuartzCore/QuartzCore.h>
 
 /*! 定义宏：按钮中文本和图片的间隔 */
-#define BA_padding        7
 #define BA_btnRadio       0.6
 /*! 获得按钮的大小 */
 #define BA_btnWidth       self.bounds.size.width
@@ -22,6 +21,13 @@
 /*! 图标在下，文本在上按钮的图文间隔比例（0-1），默认0.5 */
 #define BA_ButtonBottomRadio 0.5
 
+#pragma mark - 根据文字内容和大小返回 size
+CG_INLINE CGSize
+BAKit_LabelSizeWithTextAndFont(NSString *text, UIFont *font){
+    CGSize size = [text sizeWithAttributes:@{NSFontAttributeName:font}];
+    CGSize newSize = CGSizeMake(size.width, size.height);
+    return newSize;
+}
 
 @implementation BAButton
 
@@ -54,6 +60,7 @@
 
 - (void)setupSubViews
 {
+    self.padding = 0;
     
 }
 
@@ -130,6 +137,20 @@
     return button;
 }
 
+#pragma mark - 系统默认
+- (void)alignmentNormal
+{
+    /*! 获得按钮的文本的frame */
+    CGRect titleFrame = self.titleLabel.frame;
+    /*! 获得按钮的图片的frame */
+    CGRect imageFrame = self.imageView.frame;
+    /*! 设置按钮的文本的x坐标为0-－－左对齐 */
+    titleFrame.origin.x = imageFrame.origin.x + imageFrame.size.width + self.padding;
+    
+    self.imageView.frame = imageFrame;
+    self.titleLabel.frame = titleFrame;
+}
+
 #pragma mark - 左对齐
 - (void)alignmentLeft
 {
@@ -140,7 +161,7 @@
     /*! 获得按钮的图片的frame */
     CGRect imageFrame = self.imageView.frame;
     /*! 设置按钮的图片的x坐标紧跟文本的后面 */
-    imageFrame.origin.x = CGRectGetWidth(titleFrame);
+    imageFrame.origin.x = CGRectGetWidth(titleFrame) + self.padding;
     
     self.titleLabel.frame = titleFrame;
     self.imageView.frame = imageFrame;
@@ -151,9 +172,9 @@
 {
     CGRect frame = [self getTitleLabelWith];
     CGRect imageFrame = self.imageView.frame;
-    imageFrame.origin.x = BA_btnWidth - BA_imageWidth;
+    imageFrame.origin.x = BA_btnWidth - BA_imageWidth - self.padding;
     CGRect titleFrame = self.titleLabel.frame;
-    titleFrame.origin.x = imageFrame.origin.x - frame.size.width;
+    titleFrame.origin.x = imageFrame.origin.x - frame.size.width - self.padding;
     
     /*! 重写赋值frame */
     self.titleLabel.frame = titleFrame;
@@ -163,10 +184,8 @@
 #pragma mark - 计算文本的的宽度
 - (CGRect)getTitleLabelWith
 {
-    NSMutableDictionary *dictM = [NSMutableDictionary dictionary];
-    dictM[NSFontAttributeName] = self.titleLabel.font;
-    CGRect frame = [self.titleLabel.text boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:dictM context:nil];
-    
+    CGSize size = BAKit_LabelSizeWithTextAndFont(self.titleLabel.text, self.titleLabel.font);
+    CGRect frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, size.width, size.height);
     return frame;
 }
 
@@ -174,13 +193,13 @@
 - (void)alignmentCenter
 {
     /*! 设置文本的坐标 */
-    CGFloat labelX = (BA_btnWidth - BA_labelWidth - BA_imageWidth - BA_padding) * 0.5;
+    CGFloat labelX = (BA_btnWidth - BA_labelWidth - BA_imageWidth - self.padding) * 0.5;
     CGFloat labelY = (BA_btnHeight - BA_labelHeight) * 0.5;
     /*! 设置label的frame */
     self.titleLabel.frame = CGRectMake(labelX, labelY, BA_labelWidth, BA_labelHeight);
     
     /*! 设置图片的坐标 */
-    CGFloat imageX = CGRectGetMaxX(self.titleLabel.frame) + BA_padding;
+    CGFloat imageX = CGRectGetMaxX(self.titleLabel.frame) + self.padding;
     CGFloat imageY = (BA_btnHeight - BA_imageHeight) * 0.5;
     /*! 设置图片的frame */
     self.imageView.frame = CGRectMake(imageX, imageY, BA_imageWidth, BA_imageHeight);
@@ -256,6 +275,11 @@
     self.buttonRectCornerStyle = BAButtonRectCornerStyleAllCorners;
 }
 
+- (void)setPadding:(CGFloat)padding
+{
+    _padding = padding;
+}
+
 #pragma mark - layoutSubviews
 - (void)layoutSubviews
 {
@@ -272,7 +296,7 @@
         switch (self.buttonPositionStyle) {
             case BAButtonPositionStyleNormal:
             {
-                
+                [self alignmentNormal];
             }
                 break;
             case BAButtonPositionStyleLeft:
