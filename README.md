@@ -11,9 +11,15 @@
 
 ###### http://www.cnblogs.com/boai/p/4977976.html
 
-# 更新记录：
+# 更新记录：【倒叙】
 
- ## 2017-02-28 【倒叙】<br>
+* 2017-03-02 <br>
+ 最新Version：【Version：2.2.0】<br>
+ 更新内容：<br>
+ 2.2.1、修复 buttonCornerRadii 只能在添加frame 后设置才能有效的问题，现在可以随意设置<br>
+ 2.2.2、新增设置文字或和图片间距，举个🌰：self.padding = 10;
+
+* 2017-02-28 【倒叙】<br>
  最新Version：【Version：2.1.0】<br>
  更新内容：<br>
  2.1.1、继承自 UIButton 可以像 UIButton 一样随便添加系统属性<br>
@@ -21,7 +27,7 @@
  2.1.3、还可以设置文字或者图片间距<br>
  2.1.4、可以设置按钮的任意一个角的圆角度数<br>
  2.1.4、全面适配纯代码、xib、storyboard
-## 2016.12.4 - 
+* 2016.12.04 <br>
 pod 最新上架，修复部分已知bug，代码更精简！
 
 ###示例展示：
@@ -163,6 +169,7 @@ typedef NS_ENUM(NSInteger, BAButtonRectCornerStyle) {
      [btn setButtonCornerRadii:CGSizeMake(10, 10) buttonRectCornerStyle:BAButtonRectCornerStyleTopLeft];
      */
     [btn setButtonCornerRadii:CGSizeMake(10, 10) buttonRectCornerStyle:BAButtonRectCornerStyleBottomRightAndTopRightAndBottomLeft];
+    btn.padding = 10;
     [self.view addSubview:btn];
 
     

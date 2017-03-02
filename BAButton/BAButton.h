@@ -59,8 +59,11 @@
 
 #import <UIKit/UIKit.h>
 
+
+
+
 /*! 过期属性或方法名提醒 */
-#define BANetManagerDeprecated(instead) __deprecated_msg(instead)
+#define BAButtonDeprecated(instead) __deprecated_msg(instead)
 
 /*!
  *  设置 buttonPosition 样式
@@ -99,8 +102,13 @@ typedef NS_ENUM(NSInteger, BAButtonPositionStyle) {
 };
 
 /*!
- *  设置 buttonRectCorner 样式，，默认为：BAButtonRectCornerStyleAllCorners 
- *  注意：buttonRectCornerStyle 必须要在设置 frame 之后才能有效，否则 button 不显示
+ *  设置 buttonRectCorner 样式，
+ *  注意：buttonRectCornerStyle 必须要先设置 buttonCornerRadii，才能有效，否则 button 不显示，
+ *  举个🌰：
+ btn.buttonCornerRadii = CGSizeMake(10, 10);
+ btn.buttonRectCornerStyle = BAButtonRectCornerStyleBottomRightAndTopRightAndBottomLeft;
+ 或者直接使用：
+ [btn setButtonCornerRadii:CGSizeMake(10, 10) buttonRectCornerStyle:BAButtonRectCornerStyleTopLeft];
  */
 typedef NS_ENUM(NSInteger, BAButtonRectCornerStyle) {
     /*!
@@ -158,8 +166,13 @@ typedef NS_ENUM(NSInteger, BAButtonRectCornerStyle) {
 @property (nonatomic, assign) BAButtonPositionStyle buttonPositionStyle;
 
 /*!
- *  设置 buttonRectCorner 样式，须同时设置 buttonCornerRadii，
- *  注意：buttonRectCornerStyle 必须要在设置 frame 之后才能有效，否则 button 不显示
+ *  设置 buttonRectCorner 样式，
+ *  注意：buttonRectCornerStyle 必须要先设置 buttonCornerRadii，才能有效，否则 button 不显示，
+ *  举个🌰：
+     btn.buttonCornerRadii = CGSizeMake(10, 10);
+     btn.buttonRectCornerStyle = BAButtonRectCornerStyleBottomRightAndTopRightAndBottomLeft;
+    或者直接使用：
+ [btn setButtonCornerRadii:CGSizeMake(10, 10) buttonRectCornerStyle:BAButtonRectCornerStyleTopLeft];
  */
 @property (nonatomic, assign) BAButtonRectCornerStyle buttonRectCornerStyle;
 
@@ -169,18 +182,63 @@ typedef NS_ENUM(NSInteger, BAButtonRectCornerStyle) {
 @property (nonatomic, assign) CGSize buttonCornerRadii;
 
 /*!
- *  设置 button 圆角
+ *  设置 button 圆角，如果要全部设置四个角的圆角，可以直接用这个方法，必须要在设置 frame 之后
  */
 @property (nonatomic, assign) CGFloat buttonCornerRadius;
 
+/*!
+ *  文字与图片之间的间距，默认为：0
+ */
+@property (nonatomic, assign) CGFloat padding;
+
+#pragma mark - set 方法
+- (void)setButtonPositionStyle:(BAButtonPositionStyle)buttonPositionStyle;
+- (void)setButtonCornerRadii:(CGSize)buttonCornerRadii buttonRectCornerStyle:(BAButtonRectCornerStyle)buttonRectCornerStyle;
+- (void)setButtonCornerRadius:(CGFloat)buttonCornerRadius;
+
+#pragma mark - 初始化方法
+NS_ASSUME_NONNULL_BEGIN
+- (instancetype __nonnull)init;
+- (instancetype __nonnull)initWithFrame:(CGRect)frame;
+- (instancetype __nonnull)initWithCoder:(NSCoder * __nonnull)aDecoder;
+NS_ASSUME_NONNULL_END
+
+#pragma mark - 快速创建 button
+/*!
+ *  创建 button
+ *
+ *  @param frame               frame
+ *  @param title               title
+ *  @param selTitle            selTitle
+ *  @param titleColor          标题颜色，默认：黑色
+ *  @param titleFont           标题字体，默认：16
+ *  @param image               image
+ *  @param selImage            selImage
+ *  @param buttonPositionStyle buttonPositionStyle
+ *  @param target              target
+ *  @param sel                 sel
+ *
+ *  @return button
+ */
+- (instancetype __nonnull)creatButtonWithFrame:(CGRect)frame
+                               title:(NSString * __nullable)title
+                            selTitle:(NSString * __nullable)selTitle
+                          titleColor:(UIColor * __nullable)titleColor
+                           titleFont:(UIFont * __nullable)titleFont
+                               image:(UIImage * __nullable)image
+                            selImage:(UIImage * __nullable)selImage
+                 buttonPositionStyle:(BAButtonPositionStyle)buttonPositionStyle
+                              target:(id __nullable)target
+                            selector:(SEL __nullable)sel;
 
 
 #pragma mark - 过期方法
-@property (nonatomic, assign) BAButtonPositionStyle buttonStatus BANetManagerDeprecated("方法已过期，请使用最新属性名：buttonPositionStyle");
-+ (instancetype _Nonnull)BA_ShareButton BANetManagerDeprecated("方法已过期，请使用最新方法名：BAButton *btn1 = [[BAButton alloc] init]");
-- (instancetype _Nonnull)initWitButtonStatus:(BAButtonPositionStyle)status BANetManagerDeprecated("方法已过期，请使用最新方法名：BAButton *btn1 = [[BAButton alloc] init]");
+@property (nonatomic, assign) BAButtonPositionStyle buttonStatus BAButtonDeprecated("方法已过期，请使用最新属性名：buttonPositionStyle");
++ (instancetype _Nonnull)BA_ShareButton BAButtonDeprecated("方法已过期，请使用最新方法名：BAButton *btn1 = [[BAButton alloc] init]");
+- (instancetype _Nonnull)initWitButtonStatus:(BAButtonPositionStyle)status BAButtonDeprecated("方法已过期，请使用最新方法名：BAButton *btn1 = [[BAButton alloc] init]");
 
 @end
+
 
 /*!
  *********************************************************************************
@@ -188,6 +246,13 @@ typedef NS_ENUM(NSInteger, BAButtonRectCornerStyle) {
  *********************************************************************************
  
  欢迎使用 BAButton ！BAButton特点如下：
+ 
+ 最新更新时间：2017-03-02 【倒叙】
+ 最新Version：【Version：2.2.0】
+ 更新内容：
+ 2.2.1、修复 buttonCornerRadii 只能在添加frame 后设置才能有效的问题，现在可以随意设置
+ 2.2.2、新增设置文字或和图片间距，举个🌰：self.padding = 10;
+
  
  最新更新时间：2017-02-28 【倒叙】
  最新Version：【Version：2.1.0】

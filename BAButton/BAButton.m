@@ -4,7 +4,6 @@
 //#import <QuartzCore/QuartzCore.h>
 
 /*! 定义宏：按钮中文本和图片的间隔 */
-#define BA_padding        7
 #define BA_btnRadio       0.6
 /*! 获得按钮的大小 */
 #define BA_btnWidth       self.bounds.size.width
@@ -22,10 +21,17 @@
 /*! 图标在下，文本在上按钮的图文间隔比例（0-1），默认0.5 */
 #define BA_ButtonBottomRadio 0.5
 
+#pragma mark - 根据文字内容和大小返回 size
+CG_INLINE CGSize
+BAKit_LabelSizeWithTextAndFont(NSString *text, UIFont *font){
+    CGSize size = [text sizeWithAttributes:@{NSFontAttributeName:font}];
+    CGSize newSize = CGSizeMake(size.width, size.height);
+    return newSize;
+}
 
 @implementation BAButton
 
-- (instancetype)init
+- (instancetype __nonnull)init
 {
     if (self = [super init])
     {
@@ -34,7 +40,7 @@
     return self;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame
+- (instancetype __nonnull)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame])
     {
@@ -43,7 +49,7 @@
     return self;
 }
 
-- (instancetype)initWithCoder:(NSCoder *)aDecoder
+- (instancetype __nonnull)initWithCoder:(NSCoder * __nonnull)aDecoder
 {
     if (self = [super initWithCoder:aDecoder])
     {
@@ -54,13 +60,95 @@
 
 - (void)setupSubViews
 {
-    [self setupButtonCornerStyle];
+    self.padding = 0;
+    
 }
 
 - (void)awakeFromNib
 {
     [super awakeFromNib];
     [self setupSubViews];
+}
+
+/*!
+ *  创建 button
+ *
+ *  @param frame               frame
+ *  @param title               title
+ *  @param selTitle            selTitle
+ *  @param titleColor          标题颜色，默认：黑色
+ *  @param titleFont           标题字体，默认：16
+ *  @param image               image
+ *  @param selImage            selImage
+ *  @param buttonPositionStyle buttonPositionStyle
+ *  @param target              target
+ *  @param sel                 sel
+ *
+ *  @return button
+ */
+- (instancetype __nonnull)creatButtonWithFrame:(CGRect)frame
+                                         title:(NSString * __nullable)title
+                                      selTitle:(NSString * __nullable)selTitle
+                                    titleColor:(UIColor * __nullable)titleColor
+                                     titleFont:(UIFont * __nullable)titleFont
+                                         image:(UIImage * __nullable)image
+                                      selImage:(UIImage * __nullable)selImage
+                           buttonPositionStyle:(BAButtonPositionStyle)buttonPositionStyle
+                                        target:(id __nullable)target
+                                      selector:(SEL __nullable)sel
+{
+    BAButton *button = [[BAButton alloc] init];
+    button.frame = frame;
+    if (title)
+    {
+        [button setTitle:title forState:UIControlStateNormal];
+    }
+    if (selTitle)
+    {
+        [button setTitle:selTitle forState:UIControlStateSelected];
+    }
+    if (titleColor)
+    {
+        [button setTitleColor:titleColor forState:UIControlStateNormal];
+    }
+    else
+    {
+        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    }
+    if (titleFont)
+    {
+        button.titleLabel.font             = titleFont;
+    }
+    else
+    {
+        button.titleLabel.font             = [UIFont systemFontOfSize:16.0f];
+    }
+    if (selImage)
+    {
+        [button setImage:selImage forState:UIControlStateSelected];
+    }
+    if (image)
+    {
+        [button setImage:image forState:UIControlStateNormal];
+    }
+    button.buttonPositionStyle = buttonPositionStyle;
+    [button addTarget:target action:sel forControlEvents:UIControlEventTouchUpInside];
+    
+    return button;
+}
+
+#pragma mark - 系统默认
+- (void)alignmentNormal
+{
+    /*! 获得按钮的文本的frame */
+    CGRect titleFrame = self.titleLabel.frame;
+    /*! 获得按钮的图片的frame */
+    CGRect imageFrame = self.imageView.frame;
+    /*! 设置按钮的文本的x坐标 */
+    titleFrame.origin.x += self.padding;
+    
+    self.imageView.frame = imageFrame;
+    self.titleLabel.frame = titleFrame;
 }
 
 #pragma mark - 左对齐
@@ -73,7 +161,7 @@
     /*! 获得按钮的图片的frame */
     CGRect imageFrame = self.imageView.frame;
     /*! 设置按钮的图片的x坐标紧跟文本的后面 */
-    imageFrame.origin.x = CGRectGetWidth(titleFrame);
+    imageFrame.origin.x = CGRectGetWidth(titleFrame) + self.padding;
     
     self.titleLabel.frame = titleFrame;
     self.imageView.frame = imageFrame;
@@ -84,9 +172,9 @@
 {
     CGRect frame = [self getTitleLabelWith];
     CGRect imageFrame = self.imageView.frame;
-    imageFrame.origin.x = BA_btnWidth - BA_imageWidth;
+    imageFrame.origin.x = BA_btnWidth - BA_imageWidth - self.padding;
     CGRect titleFrame = self.titleLabel.frame;
-    titleFrame.origin.x = imageFrame.origin.x - frame.size.width;
+    titleFrame.origin.x = imageFrame.origin.x - frame.size.width - self.padding;
     
     /*! 重写赋值frame */
     self.titleLabel.frame = titleFrame;
@@ -96,10 +184,8 @@
 #pragma mark - 计算文本的的宽度
 - (CGRect)getTitleLabelWith
 {
-    NSMutableDictionary *dictM = [NSMutableDictionary dictionary];
-    dictM[NSFontAttributeName] = self.titleLabel.font;
-    CGRect frame = [self.titleLabel.text boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:dictM context:nil];
-    
+    CGSize size = BAKit_LabelSizeWithTextAndFont(self.titleLabel.text, self.titleLabel.font);
+    CGRect frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, size.width, size.height);
     return frame;
 }
 
@@ -107,13 +193,13 @@
 - (void)alignmentCenter
 {
     /*! 设置文本的坐标 */
-    CGFloat labelX = (BA_btnWidth - BA_labelWidth - BA_imageWidth - BA_padding) * 0.5;
+    CGFloat labelX = (BA_btnWidth - BA_labelWidth - BA_imageWidth - self.padding) * 0.5;
     CGFloat labelY = (BA_btnHeight - BA_labelHeight) * 0.5;
     /*! 设置label的frame */
     self.titleLabel.frame = CGRectMake(labelX, labelY, BA_labelWidth, BA_labelHeight);
     
     /*! 设置图片的坐标 */
-    CGFloat imageX = CGRectGetMaxX(self.titleLabel.frame) + BA_padding;
+    CGFloat imageX = CGRectGetMaxX(self.titleLabel.frame) + self.padding;
     CGFloat imageY = (BA_btnHeight - BA_imageHeight) * 0.5;
     /*! 设置图片的frame */
     self.imageView.frame = CGRectMake(imageX, imageY, BA_imageWidth, BA_imageHeight);
@@ -148,6 +234,21 @@
 }
 
 #pragma mark - setter / getter
+- (void)setFrame:(CGRect)frame
+{
+    [super setFrame:frame];
+    if (!self.buttonRectCornerStyle)
+    {
+        self.buttonRectCornerStyle = BAButtonRectCornerStyleAllCorners;
+    }
+    if (!self.buttonPositionStyle)
+    {
+        self.buttonPositionStyle = BAButtonPositionStyleNormal;
+    }
+    [self setupButtonCornerStyle];
+    [self setupButtonPositionStyle];
+}
+
 - (void)setButtonRectCornerStyle:(BAButtonRectCornerStyle)buttonRectCornerStyle
 {
     _buttonRectCornerStyle = buttonRectCornerStyle;
@@ -165,11 +266,23 @@
     _buttonCornerRadii = buttonCornerRadii;
 }
 
+- (void)setButtonCornerRadii:(CGSize)buttonCornerRadii buttonRectCornerStyle:(BAButtonRectCornerStyle)buttonRectCornerStyle
+{
+    self.buttonCornerRadii = buttonCornerRadii;
+    self.buttonRectCornerStyle = buttonRectCornerStyle;
+}
+
 - (void)setButtonCornerRadius:(CGFloat)buttonCornerRadius
 {
     _buttonCornerRadius = buttonCornerRadius;
-//    self.layer.masksToBounds = YES;
-//    self.layer.cornerRadius = buttonCornerRadius;
+    
+    self.buttonCornerRadii = CGSizeMake(buttonCornerRadius, buttonCornerRadius);
+    self.buttonRectCornerStyle = BAButtonRectCornerStyleAllCorners;
+}
+
+- (void)setPadding:(CGFloat)padding
+{
+    _padding = padding;
 }
 
 #pragma mark - layoutSubviews
@@ -183,43 +296,40 @@
 #pragma mark - 设置 buttonPosition 样式
 - (void)setupButtonPositionStyle
 {
-    if (self.buttonPositionStyle)
-    {
-        switch (self.buttonPositionStyle) {
-            case BAButtonPositionStyleNormal:
-            {
-                
-            }
-                break;
-            case BAButtonPositionStyleLeft:
-            {
-                [self alignmentLeft];
-            }
-                break;
-            case BAButtonPositionStyleCenter:
-            {
-                [self alignmentCenter];
-            }
-                break;
-            case BAButtonPositionStyleRight:
-            {
-                [self alignmentRight];
-            }
-                break;
-            case BAButtonPositionStyleTop:
-            {
-                [self alignmentTop];
-            }
-                break;
-            case BAButtonPositionStyleBottom:
-            {
-                [self alignmentBottom];
-            }
-                break;
-                
-            default:
-                break;
+    switch (self.buttonPositionStyle) {
+        case BAButtonPositionStyleNormal:
+        {
+            [self alignmentNormal];
         }
+            break;
+        case BAButtonPositionStyleLeft:
+        {
+            [self alignmentLeft];
+        }
+            break;
+        case BAButtonPositionStyleCenter:
+        {
+            [self alignmentCenter];
+        }
+            break;
+        case BAButtonPositionStyleRight:
+        {
+            [self alignmentRight];
+        }
+            break;
+        case BAButtonPositionStyleTop:
+        {
+            [self alignmentTop];
+        }
+            break;
+        case BAButtonPositionStyleBottom:
+        {
+            [self alignmentBottom];
+        }
+            break;
+            
+        default:
+            break;
     }
 }
 
@@ -227,9 +337,10 @@
 - (void)setupButtonCornerStyle
 {
     UIRectCorner corners;
+    
     if (CGSizeEqualToSize(self.buttonCornerRadii, CGSizeZero))
     {
-        self.buttonCornerRadii = CGSizeMake(20, 20);
+        self.buttonCornerRadii = CGSizeMake(0, 0);
     }
     switch (self.buttonRectCornerStyle)
     {
@@ -295,7 +406,7 @@
     
     UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds
                                                    byRoundingCorners:corners
-                                                         cornerRadii:CGSizeMake(20.0, 30.0)];
+                                                         cornerRadii:self.buttonCornerRadii];
     CAShapeLayer *maskLayer = [CAShapeLayer layer];
     maskLayer.frame         = self.bounds;
     maskLayer.path          = maskPath.CGPath;
