@@ -88,7 +88,7 @@ BAKit_LabelSizeWithTextAndFont(NSString *text, UIFont *font){
             {
                 button_h = 50;
                 button_title = @"系统默认";
-                button.padding = 10;
+                button.padding = 20;
                 button.buttonPositionStyle = BAButtonPositionStyleNormal;
                 [button setButtonCornerRadii:CGSizeMake(20, 20) buttonRectCornerStyle:BAButtonRectCornerStyleTopRight];
             }
@@ -160,9 +160,11 @@ BAKit_LabelSizeWithTextAndFont(NSString *text, UIFont *font){
     [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     btn.frame = CGRectMake(50, 70, 200, 50);
     /*! 文字和图片的间距用这两行代码更改就行了 */
-    btn.imageEdgeInsets = UIEdgeInsetsMake(0, 5, 0, btn.titleLabel.frame.size.width+5);
-    btn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
+//    btn.imageEdgeInsets = UIEdgeInsetsMake(0, 5, 0, btn.titleLabel.frame.size.width+5);
+//    btn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
     btn.titleLabel.textAlignment = NSTextAlignmentRight;
+    btn.buttonPositionStyle = BAButtonPositionStyleNormal;
+    btn.padding = 10;
     /*!
      *  设置 buttonRectCorner 样式，
      *  注意：buttonRectCornerStyle 必须要先设置 buttonCornerRadii，才能有效，否则 button 不显示，
@@ -172,15 +174,15 @@ BAKit_LabelSizeWithTextAndFont(NSString *text, UIFont *font){
      或者直接使用：
      [btn setButtonCornerRadii:CGSizeMake(10, 10) buttonRectCornerStyle:BAButtonRectCornerStyleTopLeft];
      */
-    [btn setButtonCornerRadii:CGSizeMake(10, 10) buttonRectCornerStyle:BAButtonRectCornerStyleBottomRightAndTopRightAndBottomLeft];
+//    [btn setButtonCornerRadii:CGSizeMake(10, 10) buttonRectCornerStyle:BAButtonRectCornerStyleBottomRightAndTopRightAndBottomLeft];
     [self.view addSubview:btn];
 
     
     UIFont *font = [UIFont systemFontOfSize:15];
     CGRect frame = CGRectMake(CGRectGetMinX(btn.frame), CGRectGetMaxY(btn.frame) + 10, 200, 50);
-
     BAButton *btn1 = [[BAButton alloc] creatButtonWithFrame:frame title:@"左对齐[文字左图片右]" selTitle:nil titleColor:nil titleFont:font image:[UIImage imageNamed:@"tabbar_mainframeHL"] selImage:nil buttonPositionStyle:BAButtonPositionStyleLeft target:self selector:@selector(handleButtonAction)];
     [btn1 setBackgroundColor:BAKit_ColorRandom()];
+    btn1.padding = 10;
     [btn1 setButtonCornerRadii:CGSizeMake(50, 50) buttonRectCornerStyle:BAButtonRectCornerStyleTopRight];
     [self.view addSubview:btn1];
 

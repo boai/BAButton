@@ -144,8 +144,8 @@ BAKit_LabelSizeWithTextAndFont(NSString *text, UIFont *font){
     CGRect titleFrame = self.titleLabel.frame;
     /*! 获得按钮的图片的frame */
     CGRect imageFrame = self.imageView.frame;
-    /*! 设置按钮的文本的x坐标为0-－－左对齐 */
-    titleFrame.origin.x = imageFrame.origin.x + imageFrame.size.width + self.padding;
+    /*! 设置按钮的文本的x坐标 */
+    titleFrame.origin.x += self.padding;
     
     self.imageView.frame = imageFrame;
     self.titleLabel.frame = titleFrame;
@@ -241,7 +241,12 @@ BAKit_LabelSizeWithTextAndFont(NSString *text, UIFont *font){
     {
         self.buttonRectCornerStyle = BAButtonRectCornerStyleAllCorners;
     }
+    if (!self.buttonPositionStyle)
+    {
+        self.buttonPositionStyle = BAButtonPositionStyleNormal;
+    }
     [self setupButtonCornerStyle];
+    [self setupButtonPositionStyle];
 }
 
 - (void)setButtonRectCornerStyle:(BAButtonRectCornerStyle)buttonRectCornerStyle
@@ -291,43 +296,40 @@ BAKit_LabelSizeWithTextAndFont(NSString *text, UIFont *font){
 #pragma mark - 设置 buttonPosition 样式
 - (void)setupButtonPositionStyle
 {
-    if (self.buttonPositionStyle)
-    {
-        switch (self.buttonPositionStyle) {
-            case BAButtonPositionStyleNormal:
-            {
-                [self alignmentNormal];
-            }
-                break;
-            case BAButtonPositionStyleLeft:
-            {
-                [self alignmentLeft];
-            }
-                break;
-            case BAButtonPositionStyleCenter:
-            {
-                [self alignmentCenter];
-            }
-                break;
-            case BAButtonPositionStyleRight:
-            {
-                [self alignmentRight];
-            }
-                break;
-            case BAButtonPositionStyleTop:
-            {
-                [self alignmentTop];
-            }
-                break;
-            case BAButtonPositionStyleBottom:
-            {
-                [self alignmentBottom];
-            }
-                break;
-                
-            default:
-                break;
+    switch (self.buttonPositionStyle) {
+        case BAButtonPositionStyleNormal:
+        {
+            [self alignmentNormal];
         }
+            break;
+        case BAButtonPositionStyleLeft:
+        {
+            [self alignmentLeft];
+        }
+            break;
+        case BAButtonPositionStyleCenter:
+        {
+            [self alignmentCenter];
+        }
+            break;
+        case BAButtonPositionStyleRight:
+        {
+            [self alignmentRight];
+        }
+            break;
+        case BAButtonPositionStyleTop:
+        {
+            [self alignmentTop];
+        }
+            break;
+        case BAButtonPositionStyleBottom:
+        {
+            [self alignmentBottom];
+        }
+            break;
+            
+        default:
+            break;
     }
 }
 

@@ -247,6 +247,13 @@ NS_ASSUME_NONNULL_END
  
  欢迎使用 BAButton ！BAButton特点如下：
  
+ 最新更新时间：2017-03-02 【倒叙】
+ 最新Version：【Version：2.2.0】
+ 更新内容：
+ 2.2.1、修复 buttonCornerRadii 只能在添加frame 后设置才能有效的问题，现在可以随意设置
+ 2.2.2、新增设置文字或和图片间距，举个🌰：self.padding = 10;
+
+ 
  最新更新时间：2017-02-28 【倒叙】
  最新Version：【Version：2.1.0】
  更新内容：
