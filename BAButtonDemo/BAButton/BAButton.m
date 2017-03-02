@@ -54,6 +54,10 @@
 
 - (void)setupSubViews
 {
+    if (!self.buttonRectCornerStyle)
+    {
+        self.buttonRectCornerStyle = BAButtonRectCornerStyleAllCorners;
+    }
     [self setupButtonCornerStyle];
 }
 
@@ -227,9 +231,10 @@
 - (void)setupButtonCornerStyle
 {
     UIRectCorner corners;
+    
     if (CGSizeEqualToSize(self.buttonCornerRadii, CGSizeZero))
     {
-        self.buttonCornerRadii = CGSizeMake(20, 20);
+        self.buttonCornerRadii = CGSizeMake(0, 0);
     }
     switch (self.buttonRectCornerStyle)
     {
@@ -295,7 +300,7 @@
     
     UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds
                                                    byRoundingCorners:corners
-                                                         cornerRadii:CGSizeMake(20.0, 30.0)];
+                                                         cornerRadii:self.buttonCornerRadii];
     CAShapeLayer *maskLayer = [CAShapeLayer layer];
     maskLayer.frame         = self.bounds;
     maskLayer.path          = maskPath.CGPath;

@@ -51,17 +51,152 @@
  * 微博    : 博爱1616
  * Email  : 137361770@qq.com
  * GitHub : https://github.com/boai
- * 博客园  : http://www.cnblogs.com/boai/
- * 博客    : http://boai.github.io
+ * 博客    : http://boaihome.com
  
  *********************************************************************************
  
+ */     // UIButton 类封装
+
+#import <UIKit/UIKit.h>
+
+/*! 过期属性或方法名提醒 */
+#define BANetManagerDeprecated(instead) __deprecated_msg(instead)
+
+/*!
+ *  设置 buttonPosition 样式
+ *  注意：【xib 、storyboard、纯代码均适配】xib 、storyboard 只需在 - (void)awakeFromNib{} 内部设置 buttonPositionStyle 即可，其他代码均可通过 xib、storyboard 设置，
+ 例如：
+ - (void)awakeFromNib
+ {
+    button.buttonPositionStyle = BAButtonPositionStyleLeft;
+ }
  */
+typedef NS_ENUM(NSInteger, BAButtonPositionStyle) {
+    /*!
+     *  系统默认
+     */
+    BAButtonPositionStyleNormal = 0,
+    /*!
+     *  左对齐
+     */
+    BAButtonPositionStyleLeft,
+    /*!
+     *  居中对齐
+     */
+    BAButtonPositionStyleCenter,
+    /*!
+     *  右对齐
+     */
+    BAButtonPositionStyleRight,
+    /*!
+     *  图标在上，文本在下(居中)
+     */
+    BAButtonPositionStyleTop,
+    /*!
+     *  图标在下，文本在上(居中)
+     */
+    BAButtonPositionStyleBottom
+};
+
+/*!
+ *  设置 buttonRectCorner 样式，，默认为：BAButtonRectCornerStyleAllCorners 
+ *  注意：buttonRectCornerStyle 必须要在设置 frame 之后才能有效，否则 button 不显示
+ */
+typedef NS_ENUM(NSInteger, BAButtonRectCornerStyle) {
+    /*!
+     *  设置下左角 圆角半径
+     */
+    BAButtonRectCornerStyleBottomLeft = 0,
+    /*!
+     *  设置下右角 圆角半径
+     */
+    BAButtonRectCornerStyleBottomRight,
+    /*!
+     *  设置上左角 圆角半径
+     */
+    BAButtonRectCornerStyleTopLeft,
+    /*!
+     *  设置下右角 圆角半径
+     */
+    BAButtonRectCornerStyleTopRight,
+    /*!
+     *  设置下左、下右角 圆角半径
+     */
+    BAButtonRectCornerStyleBottomLeftAndBottomRight,
+    /*!
+     *  设置上左、上右角 圆角半径
+     */
+    BAButtonRectCornerStyleTopLeftAndTopRight,
+    /*!
+     *  设置下左、上左角 圆角半径
+     */
+    BAButtonRectCornerStyleBottomLeftAndTopLeft,
+    /*!
+     *  设置下右、上右角 圆角半径
+     */
+    BAButtonRectCornerStyleBottomRightAndTopRight,
+    /*!
+     *  设置上左、上右、下右角 圆角半径
+     */
+    BAButtonRectCornerStyleBottomRightAndTopRightAndTopLeft,
+    /*!
+     *  设置下右、上右、下左角 圆角半径
+     */
+    BAButtonRectCornerStyleBottomRightAndTopRightAndBottomLeft,
+    /*!
+     *  设置全部四个角 圆角半径
+     */
+    BAButtonRectCornerStyleAllCorners
+};
+
+@interface BAButton : UIButton
+
+
+/*!
+ *  设置 buttonPosition 样式
+ */
+@property (nonatomic, assign) BAButtonPositionStyle buttonPositionStyle;
+
+/*!
+ *  设置 buttonRectCorner 样式，须同时设置 buttonCornerRadii，
+ *  注意：buttonRectCornerStyle 必须要在设置 frame 之后才能有效，否则 button 不显示
+ */
+@property (nonatomic, assign) BAButtonRectCornerStyle buttonRectCornerStyle;
+
+/*!
+ *  button 的 角半径，默认 CGSizeMake(20, 20)
+ */
+@property (nonatomic, assign) CGSize buttonCornerRadii;
+
+/*!
+ *  设置 button 圆角
+ */
+@property (nonatomic, assign) CGFloat buttonCornerRadius;
+
+
+
+#pragma mark - 过期方法
+@property (nonatomic, assign) BAButtonPositionStyle buttonStatus BANetManagerDeprecated("方法已过期，请使用最新属性名：buttonPositionStyle");
++ (instancetype _Nonnull)BA_ShareButton BANetManagerDeprecated("方法已过期，请使用最新方法名：BAButton *btn1 = [[BAButton alloc] init]");
+- (instancetype _Nonnull)initWitButtonStatus:(BAButtonPositionStyle)status BANetManagerDeprecated("方法已过期，请使用最新方法名：BAButton *btn1 = [[BAButton alloc] init]");
+
+@end
 
 /*!
  *********************************************************************************
  ************************************ 更新说明 ************************************
  *********************************************************************************
+ 
+ 欢迎使用 BAButton ！BAButton特点如下：
+ 
+ 最新更新时间：2017-02-28 【倒叙】
+ 最新Version：【Version：2.1.0】
+ 更新内容：
+ 2.1.1、继承自 UIButton 可以像 UIButton 一样随便添加系统属性
+ 2.1.2、可以单独设置文字和图片的位置
+ 2.1.3、还可以设置文字或者图片间距
+ 2.1.4、可以设置按钮的任意一个角的圆角度数
+ 2.1.4、全面适配纯代码、xib、storyboard
  
  最新更新时间：2016-11-24 【倒叙】
  最新Version：【Version：2.0.1】
@@ -72,32 +207,3 @@
  2.0.4、优化各种注释
  
  */
-
-#import <UIKit/UIKit.h>
-
-@interface BAButton : UIButton
-/*! 过期属性或方法名提醒 */
-#define BANetManagerDeprecated(instead) __deprecated_msg(instead)
-
-typedef NS_ENUM(NSUInteger, BAButtonStatus) {
-    BAButtonStatusNormal, // 默认
-    BAButtonStatusLeft, // 左对齐
-    BAButtonStatusCenter, // 居中对齐
-    BAButtonStatusRight, // 右对齐
-    BAButtonStatusTop, // 图标在上，文本在下(居中)
-    BAButtonStatusBottom, // 图标在下，文本在上(居中)
-};
-
-/*! 设置样式 */
-@property (nonatomic, assign) BAButtonStatus buttonStatus;
-/*! 设置圆角 */
-@property (nonatomic, assign) CGFloat buttonCornerRadius;
-
-
-
-#pragma mark - 过期方法
-+ (instancetype _Nonnull)BA_ShareButton BANetManagerDeprecated("方法已过期，请使用最新方法名：BAButton *btn1 = [[BAButton alloc] init]");
-- (instancetype _Nonnull)initWitButtonStatus:(BAButtonStatus)status BANetManagerDeprecated("方法已过期，请使用最新方法名：BAButton *btn1 = [[BAButton alloc] init]");
-
-@end
-

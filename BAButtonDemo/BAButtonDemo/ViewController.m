@@ -42,7 +42,11 @@ BAKit_LabelSizeWithTextAndFont(NSString *text, UIFont *font){
     
     self.title = @"BAButton";
     self.descLabel.hidden = NO;
+    
+    /*! for 循环创建 【xib 、storyboard、纯代码均适配】 */
     [self buttonTestNewDemo];
+    
+    /*! 单独创建 【xib 、storyboard、纯代码均适配】 */
 //    [self buttonTestOldDemo];
 
 }
@@ -86,8 +90,7 @@ BAKit_LabelSizeWithTextAndFont(NSString *text, UIFont *font){
                 button_h = 50;
                 button_title = @"系统默认";
                 button.buttonPositionStyle = BAButtonPositionStyleNormal;
-                button.buttonRectCornerStyle = BAButtonRectCornerStyleTopRight;
-                button.buttonCornerRadii = CGSizeMake(50, 50);
+                
             }
                 break;
             case 1:
@@ -95,7 +98,6 @@ BAKit_LabelSizeWithTextAndFont(NSString *text, UIFont *font){
                 button_h = 50;
                 button_title = @"左对齐[字左图右]";
                 button.buttonPositionStyle = BAButtonPositionStyleLeft;
-
             }
                 break;
             case 2:
@@ -136,12 +138,55 @@ BAKit_LabelSizeWithTextAndFont(NSString *text, UIFont *font){
         button.frame = CGRectMake(button_margin + (button_w + button_margin) * columnIndex, button_y + (50 + button_margin) * rowIndex , button_w, button_h);
         [button setTitle:button_title forState:UIControlStateNormal];
 
-        /*! 注意：buttonRectCornerStyle 必须要在设置 frame 之后才能有效，否则 button 不显示 */
-        button.buttonRectCornerStyle = BAButtonRectCornerStyleBottomRightAndTopRightAndBottomLeft;
+        /*!
+         *  设置 buttonRectCorner 样式，
+         *  注意：buttonRectCornerStyle 必须要在设置 frame 之后，再设置 buttonCornerRadii ，才能有效，否则 button 不显示，
+         *  举个🌰：
+             [self.view addSubview:btn];
+             btn.buttonCornerRadii = CGSizeMake(10, 10);
+             btn.buttonRectCornerStyle = BAButtonRectCornerStyleBottomRightAndTopRightAndBottomLeft;
+         */
+        switch (i) {
+            case 0:
+            {
+                button.buttonRectCornerStyle = BAButtonRectCornerStyleBottomRightAndTopRightAndBottomLeft;
+            }
+                break;
+            case 1:
+            {
+                button.buttonCornerRadii = CGSizeMake(20, 20);
+                button.buttonRectCornerStyle = BAButtonRectCornerStyleBottomLeft;
+            }
+                break;
+            case 2:
+            {
+                button.buttonCornerRadii = CGSizeMake(50, 50);
+                button.buttonRectCornerStyle = BAButtonRectCornerStyleBottomRightAndTopRightAndBottomLeft;
+            }
+                break;
+            case 3:
+            {
+                button.buttonCornerRadii = CGSizeMake(30, 30);
+                button.buttonRectCornerStyle = BAButtonRectCornerStyleTopLeft;
+            }
+                break;
+            case 4:
+            {
+                button.buttonCornerRadii = CGSizeMake(10, 10);
+                button.buttonRectCornerStyle = BAButtonRectCornerStyleBottomLeftAndTopLeft;
+            }
+                break;
+            case 5:
+            {
+                button.buttonCornerRadii = CGSizeMake(50, 50);
+                button.buttonRectCornerStyle = 1;
+            }
+                break;
+                
+            default:
+                break;
+        }
     }
-    
-
-    
 }
 
 #pragma mark - 单独创建 【xib 、storyboard、纯代码均适配】
@@ -161,8 +206,9 @@ BAKit_LabelSizeWithTextAndFont(NSString *text, UIFont *font){
     btn.titleLabel.textAlignment = NSTextAlignmentRight;
     /*! 注意：buttonRectCornerStyle 必须要在设置 frame 之后才能有效，否则 button 不显示 */
     [self.view addSubview:btn];
+    btn.buttonCornerRadii = CGSizeMake(10, 10);
     btn.buttonRectCornerStyle = BAButtonRectCornerStyleBottomRightAndTopRightAndBottomLeft;
-
+    
     BAButton *btn1 = [[BAButton alloc] init];
     [btn1 setBackgroundColor:BAKit_ColorRandom()];
     [btn1 setImage:[UIImage imageNamed:@"tabbar_mainframeHL"] forState:UIControlStateNormal];

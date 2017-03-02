@@ -99,8 +99,12 @@ typedef NS_ENUM(NSInteger, BAButtonPositionStyle) {
 };
 
 /*!
- *  设置 buttonRectCorner 样式，，默认为：BAButtonRectCornerStyleAllCorners 
- *  注意：buttonRectCornerStyle 必须要在设置 frame 之后才能有效，否则 button 不显示
+ *  设置 buttonRectCorner 样式，
+ *  注意：buttonRectCornerStyle 必须要在设置 frame 之后，再设置 buttonCornerRadii ，才能有效，否则 button 不显示，
+ *  举个🌰：
+     [self.view addSubview:btn];
+     btn.buttonCornerRadii = CGSizeMake(10, 10);
+     btn.buttonRectCornerStyle = BAButtonRectCornerStyleBottomRightAndTopRightAndBottomLeft;
  */
 typedef NS_ENUM(NSInteger, BAButtonRectCornerStyle) {
     /*!
@@ -158,8 +162,12 @@ typedef NS_ENUM(NSInteger, BAButtonRectCornerStyle) {
 @property (nonatomic, assign) BAButtonPositionStyle buttonPositionStyle;
 
 /*!
- *  设置 buttonRectCorner 样式，须同时设置 buttonCornerRadii，
- *  注意：buttonRectCornerStyle 必须要在设置 frame 之后才能有效，否则 button 不显示
+ *  设置 buttonRectCorner 样式，
+ *  注意：buttonRectCornerStyle 必须要在设置 frame 之后，再设置 buttonCornerRadii ，才能有效，否则 button 不显示，
+ *  举个🌰：
+     [self.view addSubview:btn];
+     btn.buttonCornerRadii = CGSizeMake(10, 10);
+     btn.buttonRectCornerStyle = BAButtonRectCornerStyleBottomRightAndTopRightAndBottomLeft;
  */
 @property (nonatomic, assign) BAButtonRectCornerStyle buttonRectCornerStyle;
 

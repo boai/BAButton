@@ -1,6 +1,7 @@
 
 
 #import "BAButton.h"
+//#import <QuartzCore/QuartzCore.h>
 
 /*! 定义宏：按钮中文本和图片的间隔 */
 #define BA_padding        7
@@ -24,9 +25,42 @@
 
 @implementation BAButton
 
-- (void)setButtonStatus:(BAButtonStatus)buttonStatus
+- (instancetype)init
 {
-    _buttonStatus = buttonStatus;
+    if (self = [super init])
+    {
+        [self setupSubViews];
+    }
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame])
+    {
+        [self setupSubViews];
+    }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super initWithCoder:aDecoder])
+    {
+        [self setupSubViews];
+    }
+    return self;
+}
+
+- (void)setupSubViews
+{
+    [self setupButtonCornerStyle];
+}
+
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    [self setupSubViews];
 }
 
 #pragma mark - 左对齐
@@ -113,41 +147,161 @@
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
 }
 
-- (void)setButtonCornerRadius:(CGFloat)buttonCornerRadius
+#pragma mark - setter / getter
+- (void)setButtonRectCornerStyle:(BAButtonRectCornerStyle)buttonRectCornerStyle
 {
-    self.layer.masksToBounds = YES;
-    self.layer.cornerRadius = buttonCornerRadius;
+    _buttonRectCornerStyle = buttonRectCornerStyle;
+    [self setupButtonCornerStyle];
 }
 
-/*! 布局子控件 */
+- (void)setButtonPositionStyle:(BAButtonPositionStyle)buttonPositionStyle
+{
+    _buttonPositionStyle = buttonPositionStyle;
+    [self setupButtonPositionStyle];
+}
+
+- (void)setButtonCornerRadii:(CGSize)buttonCornerRadii
+{
+    _buttonCornerRadii = buttonCornerRadii;
+}
+
+- (void)setButtonCornerRadius:(CGFloat)buttonCornerRadius
+{
+    _buttonCornerRadius = buttonCornerRadius;
+//    self.layer.masksToBounds = YES;
+//    self.layer.cornerRadius = buttonCornerRadius;
+}
+
+#pragma mark - layoutSubviews
 - (void)layoutSubviews
 {
     [super layoutSubviews];
     
-    if (_buttonStatus == BAButtonStatusNormal)
+    [self setupButtonPositionStyle];
+}
+
+#pragma mark - 设置 buttonPosition 样式
+- (void)setupButtonPositionStyle
+{
+    if (self.buttonPositionStyle)
     {
-    }
-    else if (_buttonStatus == BAButtonStatusLeft)
-    {
-        [self alignmentLeft];
-    }
-    else if (_buttonStatus == BAButtonStatusCenter)
-    {
-        [self alignmentCenter];
-    }
-    else if (_buttonStatus == BAButtonStatusRight)
-    {
-        [self alignmentRight];
-    }
-    else if (_buttonStatus == BAButtonStatusTop)
-    {
-        [self alignmentTop];
-    }
-    else if (_buttonStatus == BAButtonStatusBottom)
-    {
-        [self alignmentBottom];
+        switch (self.buttonPositionStyle) {
+            case BAButtonPositionStyleNormal:
+            {
+                
+            }
+                break;
+            case BAButtonPositionStyleLeft:
+            {
+                [self alignmentLeft];
+            }
+                break;
+            case BAButtonPositionStyleCenter:
+            {
+                [self alignmentCenter];
+            }
+                break;
+            case BAButtonPositionStyleRight:
+            {
+                [self alignmentRight];
+            }
+                break;
+            case BAButtonPositionStyleTop:
+            {
+                [self alignmentTop];
+            }
+                break;
+            case BAButtonPositionStyleBottom:
+            {
+                [self alignmentBottom];
+            }
+                break;
+                
+            default:
+                break;
+        }
     }
 }
+
+#pragma mark - button 的 角半径，默认 CGSizeMake(20, 20)
+- (void)setupButtonCornerStyle
+{
+    UIRectCorner corners;
+    if (CGSizeEqualToSize(self.buttonCornerRadii, CGSizeZero))
+    {
+        self.buttonCornerRadii = CGSizeMake(20, 20);
+    }
+    switch (self.buttonRectCornerStyle)
+    {
+        case BAButtonRectCornerStyleBottomLeft:
+        {
+            corners = UIRectCornerBottomLeft;
+        }
+            break;
+        case BAButtonRectCornerStyleBottomRight:
+        {
+            corners = UIRectCornerBottomRight;
+        }
+            break;
+        case BAButtonRectCornerStyleTopLeft:
+        {
+            corners = UIRectCornerTopLeft;
+        }
+            break;
+        case BAButtonRectCornerStyleTopRight:
+        {
+            corners = UIRectCornerTopRight;
+        }
+            break;
+        case BAButtonRectCornerStyleBottomLeftAndBottomRight:
+        {
+            corners = UIRectCornerBottomLeft | UIRectCornerBottomRight;
+        }
+            break;
+        case BAButtonRectCornerStyleTopLeftAndTopRight:
+        {
+            corners = UIRectCornerTopLeft | UIRectCornerTopRight;
+        }
+            break;
+        case BAButtonRectCornerStyleBottomLeftAndTopLeft:
+        {
+            corners = UIRectCornerBottomLeft | UIRectCornerTopLeft;
+        }
+            break;
+        case BAButtonRectCornerStyleBottomRightAndTopRight:
+        {
+            corners = UIRectCornerBottomRight | UIRectCornerTopRight;
+        }
+            break;
+        case BAButtonRectCornerStyleBottomRightAndTopRightAndTopLeft:
+        {
+            corners = UIRectCornerBottomRight | UIRectCornerTopRight | UIRectCornerTopLeft;
+        }
+            break;
+        case BAButtonRectCornerStyleBottomRightAndTopRightAndBottomLeft:
+        {
+            corners = UIRectCornerBottomRight | UIRectCornerTopRight | UIRectCornerBottomLeft;
+        }
+            break;
+        case BAButtonRectCornerStyleAllCorners:
+        {
+            corners = UIRectCornerAllCorners;
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds
+                                                   byRoundingCorners:corners
+                                                         cornerRadii:CGSizeMake(20.0, 30.0)];
+    CAShapeLayer *maskLayer = [CAShapeLayer layer];
+    maskLayer.frame         = self.bounds;
+    maskLayer.path          = maskPath.CGPath;
+    self.layer.mask         = maskLayer;
+}
+
 @end
 
 
