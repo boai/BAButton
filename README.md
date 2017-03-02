@@ -83,8 +83,13 @@ typedef NS_ENUM(NSInteger, BAButtonPositionStyle) {
 };
 
 /*!
- *  设置 buttonRectCorner 样式，，默认为：BAButtonRectCornerStyleAllCorners 
- *  注意：buttonRectCornerStyle 必须要在设置 frame 之后才能有效，否则 button 不显示
+ *  设置 buttonRectCorner 样式，
+ *  注意：buttonRectCornerStyle 必须要先设置 buttonCornerRadii，才能有效，否则 button 不显示，
+ *  举个🌰：
+ btn.buttonCornerRadii = CGSizeMake(10, 10);
+ btn.buttonRectCornerStyle = BAButtonRectCornerStyleBottomRightAndTopRightAndBottomLeft;
+ 或者直接使用：
+ [btn setButtonCornerRadii:CGSizeMake(10, 10) buttonRectCornerStyle:BAButtonRectCornerStyleTopLeft];
  */
 typedef NS_ENUM(NSInteger, BAButtonRectCornerStyle) {
     /*!
@@ -138,34 +143,36 @@ typedef NS_ENUM(NSInteger, BAButtonRectCornerStyle) {
 // 此外，此button的titleLAbel只支持一行显示，不支持多行！敬请注意！
 
 // 示例1：
-    BAButton *btn = [[BAButton alloc] init];
+        BAButton *btn = [[BAButton alloc] init];
     btn.backgroundColor = BAKit_ColorRandom();
     [btn setImage:[UIImage imageNamed:@"tabbar_mainframeHL"] forState:UIControlStateNormal];
     [btn setTitle:@"系统默认样式" forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//    btn.buttonPositionStyle = BAButtonPositionStyleNormal;
-//    btn.buttonCornerRadius = 5.0;
     btn.frame = CGRectMake(50, 70, 200, 50);
     /*! 文字和图片的间距用这两行代码更改就行了 */
     btn.imageEdgeInsets = UIEdgeInsetsMake(0, 5, 0, btn.titleLabel.frame.size.width+5);
     btn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
     btn.titleLabel.textAlignment = NSTextAlignmentRight;
-    /*! 注意：buttonRectCornerStyle 必须要在设置 frame 之后才能有效，否则 button 不显示 */
+    /*!
+     *  设置 buttonRectCorner 样式，
+     *  注意：buttonRectCornerStyle 必须要先设置 buttonCornerRadii，才能有效，否则 button 不显示，
+     *  举个🌰：
+     btn.buttonCornerRadii = CGSizeMake(10, 10);
+     btn.buttonRectCornerStyle = BAButtonRectCornerStyleBottomRightAndTopRightAndBottomLeft;
+     或者直接使用：
+     [btn setButtonCornerRadii:CGSizeMake(10, 10) buttonRectCornerStyle:BAButtonRectCornerStyleTopLeft];
+     */
+    [btn setButtonCornerRadii:CGSizeMake(10, 10) buttonRectCornerStyle:BAButtonRectCornerStyleBottomRightAndTopRightAndBottomLeft];
     [self.view addSubview:btn];
-    btn.buttonRectCornerStyle = BAButtonRectCornerStyleBottomRightAndTopRightAndBottomLeft;
+
+    
+    UIFont *font = [UIFont systemFontOfSize:15];
+    CGRect frame = CGRectMake(CGRectGetMinX(btn.frame), CGRectGetMaxY(btn.frame) + 10, 200, 50);
 
 // 示例2：
-BAButton *btn1 = [[BAButton alloc] init];
+    BAButton *btn1 = [[BAButton alloc] creatButtonWithFrame:frame title:@"左对齐[文字左图片右]" selTitle:nil titleColor:nil titleFont:font image:[UIImage imageNamed:@"tabbar_mainframeHL"] selImage:nil buttonPositionStyle:BAButtonPositionStyleLeft target:self selector:@selector(handleButtonAction)];
     [btn1 setBackgroundColor:BAKit_ColorRandom()];
-    [btn1 setImage:[UIImage imageNamed:@"tabbar_mainframeHL"] forState:UIControlStateNormal];
-    [btn1 setTitle:@"左对齐[文字左图片右]" forState:UIControlStateNormal];
-    [btn1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    btn1.buttonPositionStyle = BAButtonPositionStyleLeft;
-    btn1.buttonCornerRadius = 5.0;
-    btn1.titleLabel.font = [UIFont systemFontOfSize:15];
-    btn1.frame = CGRectMake(CGRectGetMinX(btn.frame), CGRectGetMaxY(btn.frame) + 10, 200, 50);
+    [btn1 setButtonCornerRadii:CGSizeMake(50, 50) buttonRectCornerStyle:BAButtonRectCornerStyleTopRight];
     [self.view addSubview:btn1];
-    btn1.buttonRectCornerStyle = 2;
-    btn1.buttonCornerRadii = CGSizeMake(50, 50);
 
 其他示例可下载demo查看源码！

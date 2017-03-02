@@ -59,8 +59,11 @@
 
 #import <UIKit/UIKit.h>
 
+
+
+
 /*! 过期属性或方法名提醒 */
-#define BANetManagerDeprecated(instead) __deprecated_msg(instead)
+#define BAButtonDeprecated(instead) __deprecated_msg(instead)
 
 /*!
  *  设置 buttonPosition 样式
@@ -100,11 +103,12 @@ typedef NS_ENUM(NSInteger, BAButtonPositionStyle) {
 
 /*!
  *  设置 buttonRectCorner 样式，
- *  注意：buttonRectCornerStyle 必须要在设置 frame 之后，再设置 buttonCornerRadii ，才能有效，否则 button 不显示，
+ *  注意：buttonRectCornerStyle 必须要先设置 buttonCornerRadii，才能有效，否则 button 不显示，
  *  举个🌰：
-     btn.frame = CGRectMake(50, 70, 200, 50);
-     btn.buttonCornerRadii = CGSizeMake(10, 10);
-     btn.buttonRectCornerStyle = BAButtonRectCornerStyleBottomRightAndTopRightAndBottomLeft;
+ btn.buttonCornerRadii = CGSizeMake(10, 10);
+ btn.buttonRectCornerStyle = BAButtonRectCornerStyleBottomRightAndTopRightAndBottomLeft;
+ 或者直接使用：
+ [btn setButtonCornerRadii:CGSizeMake(10, 10) buttonRectCornerStyle:BAButtonRectCornerStyleTopLeft];
  */
 typedef NS_ENUM(NSInteger, BAButtonRectCornerStyle) {
     /*!
@@ -163,11 +167,12 @@ typedef NS_ENUM(NSInteger, BAButtonRectCornerStyle) {
 
 /*!
  *  设置 buttonRectCorner 样式，
- *  注意：buttonRectCornerStyle 必须要在设置 frame 之后，再设置 buttonCornerRadii ，才能有效，否则 button 不显示，
+ *  注意：buttonRectCornerStyle 必须要先设置 buttonCornerRadii，才能有效，否则 button 不显示，
  *  举个🌰：
-     btn.frame = CGRectMake(50, 70, 200, 50);
      btn.buttonCornerRadii = CGSizeMake(10, 10);
      btn.buttonRectCornerStyle = BAButtonRectCornerStyleBottomRightAndTopRightAndBottomLeft;
+    或者直接使用：
+ [btn setButtonCornerRadii:CGSizeMake(10, 10) buttonRectCornerStyle:BAButtonRectCornerStyleTopLeft];
  */
 @property (nonatomic, assign) BAButtonRectCornerStyle buttonRectCornerStyle;
 
@@ -182,13 +187,53 @@ typedef NS_ENUM(NSInteger, BAButtonRectCornerStyle) {
 @property (nonatomic, assign) CGFloat buttonCornerRadius;
 
 
+#pragma mark - set 方法
+- (void)setButtonPositionStyle:(BAButtonPositionStyle)buttonPositionStyle;
+- (void)setButtonCornerRadii:(CGSize)buttonCornerRadii buttonRectCornerStyle:(BAButtonRectCornerStyle)buttonRectCornerStyle;
+- (void)setButtonCornerRadius:(CGFloat)buttonCornerRadius;
+
+#pragma mark - 初始化方法
+NS_ASSUME_NONNULL_BEGIN
+- (instancetype __nonnull)init;
+- (instancetype __nonnull)initWithFrame:(CGRect)frame;
+- (instancetype __nonnull)initWithCoder:(NSCoder * __nonnull)aDecoder;
+NS_ASSUME_NONNULL_END
+
+/*!
+ *  创建 button
+ *
+ *  @param frame               frame
+ *  @param title               title
+ *  @param selTitle            selTitle
+ *  @param titleColor          标题颜色，默认：黑色
+ *  @param titleFont           标题字体，默认：16
+ *  @param image               image
+ *  @param selImage            selImage
+ *  @param buttonPositionStyle buttonPositionStyle
+ *  @param target              target
+ *  @param sel                 sel
+ *
+ *  @return button
+ */
+- (instancetype __nonnull)creatButtonWithFrame:(CGRect)frame
+                               title:(NSString * __nullable)title
+                            selTitle:(NSString * __nullable)selTitle
+                          titleColor:(UIColor * __nullable)titleColor
+                           titleFont:(UIFont * __nullable)titleFont
+                               image:(UIImage * __nullable)image
+                            selImage:(UIImage * __nullable)selImage
+                 buttonPositionStyle:(BAButtonPositionStyle)buttonPositionStyle
+                              target:(id __nullable)target
+                            selector:(SEL __nullable)sel;
+
 
 #pragma mark - 过期方法
-@property (nonatomic, assign) BAButtonPositionStyle buttonStatus BANetManagerDeprecated("方法已过期，请使用最新属性名：buttonPositionStyle");
-+ (instancetype _Nonnull)BA_ShareButton BANetManagerDeprecated("方法已过期，请使用最新方法名：BAButton *btn1 = [[BAButton alloc] init]");
-- (instancetype _Nonnull)initWitButtonStatus:(BAButtonPositionStyle)status BANetManagerDeprecated("方法已过期，请使用最新方法名：BAButton *btn1 = [[BAButton alloc] init]");
+@property (nonatomic, assign) BAButtonPositionStyle buttonStatus BAButtonDeprecated("方法已过期，请使用最新属性名：buttonPositionStyle");
++ (instancetype _Nonnull)BA_ShareButton BAButtonDeprecated("方法已过期，请使用最新方法名：BAButton *btn1 = [[BAButton alloc] init]");
+- (instancetype _Nonnull)initWitButtonStatus:(BAButtonPositionStyle)status BAButtonDeprecated("方法已过期，请使用最新方法名：BAButton *btn1 = [[BAButton alloc] init]");
 
 @end
+
 
 /*!
  *********************************************************************************

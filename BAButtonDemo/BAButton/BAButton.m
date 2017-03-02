@@ -25,7 +25,7 @@
 
 @implementation BAButton
 
-- (instancetype)init
+- (instancetype __nonnull)init
 {
     if (self = [super init])
     {
@@ -34,7 +34,7 @@
     return self;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame
+- (instancetype __nonnull)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame])
     {
@@ -43,7 +43,7 @@
     return self;
 }
 
-- (instancetype)initWithCoder:(NSCoder *)aDecoder
+- (instancetype __nonnull)initWithCoder:(NSCoder * __nonnull)aDecoder
 {
     if (self = [super initWithCoder:aDecoder])
     {
@@ -54,17 +54,80 @@
 
 - (void)setupSubViews
 {
-    if (!self.buttonRectCornerStyle)
-    {
-        self.buttonRectCornerStyle = BAButtonRectCornerStyleAllCorners;
-    }
-    [self setupButtonCornerStyle];
+    
 }
 
 - (void)awakeFromNib
 {
     [super awakeFromNib];
     [self setupSubViews];
+}
+
+/*!
+ *  创建 button
+ *
+ *  @param frame               frame
+ *  @param title               title
+ *  @param selTitle            selTitle
+ *  @param titleColor          标题颜色，默认：黑色
+ *  @param titleFont           标题字体，默认：16
+ *  @param image               image
+ *  @param selImage            selImage
+ *  @param buttonPositionStyle buttonPositionStyle
+ *  @param target              target
+ *  @param sel                 sel
+ *
+ *  @return button
+ */
+- (instancetype __nonnull)creatButtonWithFrame:(CGRect)frame
+                                         title:(NSString * __nullable)title
+                                      selTitle:(NSString * __nullable)selTitle
+                                    titleColor:(UIColor * __nullable)titleColor
+                                     titleFont:(UIFont * __nullable)titleFont
+                                         image:(UIImage * __nullable)image
+                                      selImage:(UIImage * __nullable)selImage
+                           buttonPositionStyle:(BAButtonPositionStyle)buttonPositionStyle
+                                        target:(id __nullable)target
+                                      selector:(SEL __nullable)sel
+{
+    BAButton *button = [[BAButton alloc] init];
+    button.frame = frame;
+    if (title)
+    {
+        [button setTitle:title forState:UIControlStateNormal];
+    }
+    if (selTitle)
+    {
+        [button setTitle:selTitle forState:UIControlStateSelected];
+    }
+    if (titleColor)
+    {
+        [button setTitleColor:titleColor forState:UIControlStateNormal];
+    }
+    else
+    {
+        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    }
+    if (titleFont)
+    {
+        button.titleLabel.font             = titleFont;
+    }
+    else
+    {
+        button.titleLabel.font             = [UIFont systemFontOfSize:16.0f];
+    }
+    if (selImage)
+    {
+        [button setImage:selImage forState:UIControlStateSelected];
+    }
+    if (image)
+    {
+        [button setImage:image forState:UIControlStateNormal];
+    }
+    button.buttonPositionStyle = buttonPositionStyle;
+    [button addTarget:target action:sel forControlEvents:UIControlEventTouchUpInside];
+    
+    return button;
 }
 
 #pragma mark - 左对齐
@@ -152,6 +215,16 @@
 }
 
 #pragma mark - setter / getter
+- (void)setFrame:(CGRect)frame
+{
+    [super setFrame:frame];
+    if (!self.buttonRectCornerStyle)
+    {
+        self.buttonRectCornerStyle = BAButtonRectCornerStyleAllCorners;
+    }
+    [self setupButtonCornerStyle];
+}
+
 - (void)setButtonRectCornerStyle:(BAButtonRectCornerStyle)buttonRectCornerStyle
 {
     _buttonRectCornerStyle = buttonRectCornerStyle;
@@ -167,6 +240,12 @@
 - (void)setButtonCornerRadii:(CGSize)buttonCornerRadii
 {
     _buttonCornerRadii = buttonCornerRadii;
+}
+
+- (void)setButtonCornerRadii:(CGSize)buttonCornerRadii buttonRectCornerStyle:(BAButtonRectCornerStyle)buttonRectCornerStyle
+{
+    self.buttonCornerRadii = buttonCornerRadii;
+    self.buttonRectCornerStyle = buttonRectCornerStyle;
 }
 
 - (void)setButtonCornerRadius:(CGFloat)buttonCornerRadius
