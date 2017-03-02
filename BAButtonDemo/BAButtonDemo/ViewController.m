@@ -69,7 +69,6 @@ BAKit_LabelSizeWithTextAndFont(NSString *text, UIFont *font){
         [button setImage:[UIImage imageNamed:@"tabbar_mainframeHL"] forState:UIControlStateNormal];
         [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         button.titleLabel.font = [UIFont systemFontOfSize:10];
-        [self.view addSubview:button];
         
         NSInteger rowNum = 0;
         if (buttonNumber < 2)
@@ -142,7 +141,7 @@ BAKit_LabelSizeWithTextAndFont(NSString *text, UIFont *font){
          *  设置 buttonRectCorner 样式，
          *  注意：buttonRectCornerStyle 必须要在设置 frame 之后，再设置 buttonCornerRadii ，才能有效，否则 button 不显示，
          *  举个🌰：
-             [self.view addSubview:btn];
+             btn.frame = CGRectMake(50, 70, 200, 50);
              btn.buttonCornerRadii = CGSizeMake(10, 10);
              btn.buttonRectCornerStyle = BAButtonRectCornerStyleBottomRightAndTopRightAndBottomLeft;
          */
@@ -172,8 +171,8 @@ BAKit_LabelSizeWithTextAndFont(NSString *text, UIFont *font){
                 break;
             case 4:
             {
-                button.buttonCornerRadii = CGSizeMake(10, 10);
-                button.buttonRectCornerStyle = BAButtonRectCornerStyleBottomLeftAndTopLeft;
+                /*! 直接设置四个圆角 */
+                button.buttonCornerRadius = 30;
             }
                 break;
             case 5:
@@ -186,6 +185,7 @@ BAKit_LabelSizeWithTextAndFont(NSString *text, UIFont *font){
             default:
                 break;
         }
+        [self.view addSubview:button];
     }
 }
 

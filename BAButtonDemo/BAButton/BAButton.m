@@ -172,8 +172,9 @@
 - (void)setButtonCornerRadius:(CGFloat)buttonCornerRadius
 {
     _buttonCornerRadius = buttonCornerRadius;
-//    self.layer.masksToBounds = YES;
-//    self.layer.cornerRadius = buttonCornerRadius;
+    
+    self.buttonCornerRadii = CGSizeMake(buttonCornerRadius, buttonCornerRadius);
+    self.buttonRectCornerStyle = BAButtonRectCornerStyleAllCorners;
 }
 
 #pragma mark - layoutSubviews

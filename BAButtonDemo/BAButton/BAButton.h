@@ -102,7 +102,7 @@ typedef NS_ENUM(NSInteger, BAButtonPositionStyle) {
  *  设置 buttonRectCorner 样式，
  *  注意：buttonRectCornerStyle 必须要在设置 frame 之后，再设置 buttonCornerRadii ，才能有效，否则 button 不显示，
  *  举个🌰：
-     [self.view addSubview:btn];
+     btn.frame = CGRectMake(50, 70, 200, 50);
      btn.buttonCornerRadii = CGSizeMake(10, 10);
      btn.buttonRectCornerStyle = BAButtonRectCornerStyleBottomRightAndTopRightAndBottomLeft;
  */
@@ -165,7 +165,7 @@ typedef NS_ENUM(NSInteger, BAButtonRectCornerStyle) {
  *  设置 buttonRectCorner 样式，
  *  注意：buttonRectCornerStyle 必须要在设置 frame 之后，再设置 buttonCornerRadii ，才能有效，否则 button 不显示，
  *  举个🌰：
-     [self.view addSubview:btn];
+     btn.frame = CGRectMake(50, 70, 200, 50);
      btn.buttonCornerRadii = CGSizeMake(10, 10);
      btn.buttonRectCornerStyle = BAButtonRectCornerStyleBottomRightAndTopRightAndBottomLeft;
  */
@@ -177,7 +177,7 @@ typedef NS_ENUM(NSInteger, BAButtonRectCornerStyle) {
 @property (nonatomic, assign) CGSize buttonCornerRadii;
 
 /*!
- *  设置 button 圆角
+ *  设置 button 圆角，如果要全部设置四个角的圆角，可以直接用这个方法，必须要在设置 frame 之后
  */
 @property (nonatomic, assign) CGFloat buttonCornerRadius;
 
