@@ -177,7 +177,7 @@ typedef NS_ENUM(NSInteger, BAButtonRectCornerStyle) {
 @property (nonatomic, assign) BAButtonRectCornerStyle buttonRectCornerStyle;
 
 /*!
- *  button 的 角半径，默认 CGSizeMake(20, 20)
+ *  button 的 角半径，默认 CGSizeMake(0, 0)
  */
 @property (nonatomic, assign) CGSize buttonCornerRadii;
 
@@ -221,15 +221,15 @@ NS_ASSUME_NONNULL_END
  *  @return button
  */
 - (instancetype __nonnull)creatButtonWithFrame:(CGRect)frame
-                               title:(NSString * __nullable)title
-                            selTitle:(NSString * __nullable)selTitle
-                          titleColor:(UIColor * __nullable)titleColor
-                           titleFont:(UIFont * __nullable)titleFont
-                               image:(UIImage * __nullable)image
-                            selImage:(UIImage * __nullable)selImage
-                 buttonPositionStyle:(BAButtonPositionStyle)buttonPositionStyle
-                              target:(id __nullable)target
-                            selector:(SEL __nullable)sel;
+                                         title:(NSString * __nullable)title
+                                      selTitle:(NSString * __nullable)selTitle
+                                    titleColor:(UIColor * __nullable)titleColor
+                                     titleFont:(UIFont * __nullable)titleFont
+                                         image:(UIImage * __nullable)image
+                                      selImage:(UIImage * __nullable)selImage
+                           buttonPositionStyle:(BAButtonPositionStyle)buttonPositionStyle
+                                        target:(id __nullable)target
+                                      selector:(SEL __nullable)sel;
 
 
 #pragma mark - 过期方法
@@ -248,10 +248,16 @@ NS_ASSUME_NONNULL_END
  欢迎使用 BAButton ！BAButton特点如下：
  
  最新更新时间：2017-03-02 【倒叙】
+ 最新Version：【Version：2.2.1】
+ 更新内容：
+ 2.2.1.1、button 的 角半径 buttonCornerRadii，默认 CGSizeMake(0, 0)
+
+ 
+ 最新更新时间：2017-03-02 【倒叙】
  最新Version：【Version：2.2.0】
  更新内容：
- 2.2.1、修复 buttonCornerRadii 只能在添加frame 后设置才能有效的问题，现在可以随意设置
- 2.2.2、新增设置文字或和图片间距，举个🌰：self.padding = 10;
+ 2.2.0.1、修复 buttonCornerRadii 只能在添加frame 后设置才能有效的问题，现在可以随意设置
+ 2.2.0.2、新增设置文字或和图片间距，举个🌰：self.padding = 10;
 
  
  最新更新时间：2017-02-28 【倒叙】

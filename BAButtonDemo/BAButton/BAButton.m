@@ -333,7 +333,7 @@ BAKit_LabelSizeWithTextAndFont(NSString *text, UIFont *font){
     }
 }
 
-#pragma mark - button 的 角半径，默认 CGSizeMake(20, 20)
+#pragma mark - button 的 角半径，默认 CGSizeMake(0, 0)
 - (void)setupButtonCornerStyle
 {
     UIRectCorner corners;

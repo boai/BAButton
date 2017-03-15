@@ -12,12 +12,16 @@
 ###### http://www.cnblogs.com/boai/p/4977976.html
 
 # 更新记录：【倒叙】
+* 2017-03-15 <br>
+ 最新Version：【Version：2.2.1】<br>
+ 更新内容：<br>
+ 2.2.1.1、button 的 角半径 buttonCornerRadii，默认 CGSizeMake(0, 0)
 
 * 2017-03-02 <br>
  最新Version：【Version：2.2.0】<br>
  更新内容：<br>
- 2.2.1、修复 buttonCornerRadii 只能在添加frame 后设置才能有效的问题，现在可以随意设置<br>
- 2.2.2、新增设置文字或和图片间距，举个🌰：self.padding = 10;
+ 2.2.0.1、修复 buttonCornerRadii 只能在添加frame 后设置才能有效的问题，现在可以随意设置<br>
+ 2.2.0.2、新增设置文字或和图片间距，举个🌰：self.padding = 10;
 
 * 2017-02-28 【倒叙】<br>
  最新Version：【Version：2.1.0】<br>
@@ -36,7 +40,7 @@ pod 最新上架，修复部分已知bug，代码更精简！
 ![image](https://raw.githubusercontent.com/boai/BAButton/master/BAButtonDemo/images/image2.png)
 
 
->##完全实现button的自定义，
+##完全实现 button 的自定义，
 
 ###pod 导入：   pod 'BAButton', '~> 2.1.0'
 如果发现pod search BAButton 搜索出来的不是最新版本，需要在终端执行cd转换文件路径命令退回到desktop，然后执行pod setup命令更新本地spec缓存（可能需要几分钟），然后再搜索就可以了
