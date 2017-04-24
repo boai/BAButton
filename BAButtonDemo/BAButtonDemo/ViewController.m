@@ -49,9 +49,19 @@ BAKit_LabelSizeWithTextAndFont(NSString *text, UIFont *font){
     /*! 单独创建 【xib 、storyboard、纯代码均适配】 */
 //    [self buttonTestOldDemo];
 
+    /*! 快速创建 BAButton 【xib 、storyboard、纯代码均适配】 */
+//    [self creatButton];
 }
 
-
+#pragma mark - 快速创建 BAButton 【xib 、storyboard、纯代码均适配】
+- (void)creatButton
+{
+    CGRect frame = CGRectMake(50, 70, 200, 50);
+    BAButton *button = [[BAButton alloc] creatButtonWithFrame:frame title:@"测试" selTitle:nil titleColor:nil titleFont:[UIFont systemFontOfSize:15] image:[UIImage imageNamed:@"tabbar_mainframeHL"] selImage:nil buttonPositionStyle:BAButtonPositionStyleNormal target:self selector:nil];
+    button.backgroundColor = BAKit_ColorRandom();
+    button.padding = 10;
+    [self.view addSubview:button];
+}
 
 #pragma mark - for 循环创建 【xib 、storyboard、纯代码均适配】
 - (void)buttonTestNewDemo
