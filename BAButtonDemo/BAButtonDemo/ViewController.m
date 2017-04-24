@@ -43,6 +43,7 @@ BAKit_LabelSizeWithTextAndFont(NSString *text, UIFont *font){
     self.title = @"BAButton";
     self.descLabel.hidden = NO;
     
+    [self creatButton_navi];
     /*! for 循环创建 【xib 、storyboard、纯代码均适配】 */
     [self buttonTestNewDemo];
     
@@ -61,6 +62,15 @@ BAKit_LabelSizeWithTextAndFont(NSString *text, UIFont *font){
     button.backgroundColor = BAKit_ColorRandom();
     button.padding = 10;
     [self.view addSubview:button];
+}
+
+- (void)creatButton_navi
+{
+    CGRect frame2 = CGRectMake(0, 0, 80, 40);
+    BAButton *navibutton = [[BAButton alloc] creatButtonWithFrame:frame2 title:@"测试" selTitle:nil titleColor:nil titleFont:[UIFont systemFontOfSize:15] image:[UIImage imageNamed:@"tabbar_mainframeHL"] selImage:nil buttonPositionStyle:BAButtonPositionStyleRight target:self selector:nil];
+    navibutton.backgroundColor = BAKit_ColorRandom();
+    navibutton.padding = 10;
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:navibutton];
 }
 
 #pragma mark - for 循环创建 【xib 、storyboard、纯代码均适配】
