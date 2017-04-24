@@ -12,6 +12,13 @@
 ###### http://www.cnblogs.com/boai/p/4977976.html
 
 # 更新记录：【倒叙】
+* 2017-04-24 <br>
+最新Version：【Version：2.2.1】<br>
+更新内容：<br>
+2.2.1.1、新增快速创建button 的demo，和 自定义 naviButton demo
+
+
+# 更新记录：【倒叙】
 * 2017-03-15 <br>
  最新Version：【Version：2.2.1】<br>
  更新内容：<br>
@@ -36,8 +43,9 @@ pod 最新上架，修复部分已知bug，代码更精简！
 
 ### 示例展示：
 
-![image](https://raw.githubusercontent.com/boai/BAButton/master/BAButtonDemo/images/image1.png)
-![image](https://raw.githubusercontent.com/boai/BAButton/master/BAButtonDemo/images/image2.png)
+![image1](https://raw.githubusercontent.com/boai/BAButton/master/BAButtonDemo/images/image1.png)
+![image2](https://raw.githubusercontent.com/boai/BAButton/master/BAButtonDemo/images/image2.png)
+![image3](https://raw.githubusercontent.com/boai/BAButton/master/BAButtonDemo/images/image3.png)
 
 
 ## 完全实现 button 的自定义，
