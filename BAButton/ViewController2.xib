@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController2">
+            <connections>
+                <outlet property="centerImageBottomButton" destination="qRf-ib-npG" id="NBf-V2-FWM"/>
+                <outlet property="centerImageRightButton" destination="rXG-2i-qP9" id="2cO-Zn-TG3"/>
+                <outlet property="centerImageTopButton" destination="e9R-FK-GnO" id="QcN-xI-FhI"/>
+                <outlet property="leftImageLeftButton" destination="JMi-bD-p8k" id="hWg-Cb-dx6"/>
+                <outlet property="leftImageRightButton" destination="cnc-CS-LrJ" id="MlY-7Y-jPg"/>
+                <outlet property="normalButton" destination="Fvv-q8-bh0" id="VVi-uu-qKl"/>
+                <outlet property="rightImageLeftButton" destination="dGA-ua-a1Y" id="KlY-aF-bFa"/>
+                <outlet property="rightImageRightButton" destination="2gm-L2-Wuq" id="kEN-bc-veS"/>
+                <outlet property="view" destination="eTL-Up-c5k" id="LMC-QF-Kj6"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="eTL-Up-c5k">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fvv-q8-bh0">
+                    <rect key="frame" x="18" y="80" width="299" height="40"/>
+                    <color key="backgroundColor" red="0.88265058289999998" green="0.31079761" blue="0.13338752670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="Da6-sY-eaf"/>
+                    </constraints>
+                    <state key="normal" title="内容居中-图左文右" image="tabbar_mainframeHL">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rXG-2i-qP9">
+                    <rect key="frame" x="18" y="130" width="299" height="40"/>
+                    <color key="backgroundColor" red="0.88265058289999998" green="0.31079761" blue="0.13338752670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" title="内容居中-图右文左" image="tabbar_mainframeHL">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e9R-FK-GnO">
+                    <rect key="frame" x="18" y="180" width="299" height="80"/>
+                    <color key="backgroundColor" red="0.88265058289999998" green="0.31079761" blue="0.13338752670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="bUr-sK-dmU"/>
+                    </constraints>
+                    <state key="normal" title="内容居中-图上文下" image="tabbar_mainframeHL">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qRf-ib-npG">
+                    <rect key="frame" x="18" y="270" width="299" height="80"/>
+                    <color key="backgroundColor" red="0.88265058289999998" green="0.31079761" blue="0.13338752670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" title="内容居中-图下文上" image="tabbar_mainframeHL">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JMi-bD-p8k">
+                    <rect key="frame" x="18" y="360" width="299" height="30"/>
+                    <color key="backgroundColor" red="0.88265058289999998" green="0.31079761" blue="0.13338752670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="6ge-rF-GNd"/>
+                    </constraints>
+                    <state key="normal" title="内容居左-图左文右" image="tabbar_mainframeHL">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cnc-CS-LrJ">
+                    <rect key="frame" x="18" y="400" width="299" height="30"/>
+                    <color key="backgroundColor" red="0.88265058289999998" green="0.31079761" blue="0.13338752670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" title="内容居左-图右文左" image="tabbar_mainframeHL">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dGA-ua-a1Y">
+                    <rect key="frame" x="18" y="440" width="299" height="30"/>
+                    <color key="backgroundColor" red="0.88265058289999998" green="0.31079761" blue="0.13338752670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" title="内容居右-图左文右" image="tabbar_mainframeHL">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2gm-L2-Wuq">
+                    <rect key="frame" x="18" y="480" width="299" height="30"/>
+                    <color key="backgroundColor" red="0.88265058289999998" green="0.31079761" blue="0.13338752670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" title="内容居右-图右文左" image="tabbar_mainframeHL">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="rXG-2i-qP9" firstAttribute="width" secondItem="Fvv-q8-bh0" secondAttribute="width" id="1YF-BC-azT"/>
+                <constraint firstItem="rXG-2i-qP9" firstAttribute="height" secondItem="Fvv-q8-bh0" secondAttribute="height" id="7fc-TV-rsW"/>
+                <constraint firstItem="cnc-CS-LrJ" firstAttribute="width" secondItem="JMi-bD-p8k" secondAttribute="width" id="8Ig-1T-veE"/>
+                <constraint firstItem="rXG-2i-qP9" firstAttribute="centerX" secondItem="Fvv-q8-bh0" secondAttribute="centerX" id="AWO-km-I31"/>
+                <constraint firstItem="Fvv-q8-bh0" firstAttribute="top" secondItem="eTL-Up-c5k" secondAttribute="top" constant="80" id="Avh-jT-Ed3"/>
+                <constraint firstItem="2gm-L2-Wuq" firstAttribute="centerX" secondItem="dGA-ua-a1Y" secondAttribute="centerX" id="Bfn-7r-syo"/>
+                <constraint firstItem="JMi-bD-p8k" firstAttribute="width" secondItem="qRf-ib-npG" secondAttribute="width" id="D02-PL-4nG"/>
+                <constraint firstItem="cnc-CS-LrJ" firstAttribute="top" secondItem="JMi-bD-p8k" secondAttribute="bottom" constant="10" id="M8L-Gu-WIC"/>
+                <constraint firstAttribute="trailingMargin" secondItem="Fvv-q8-bh0" secondAttribute="trailing" constant="50" id="MmX-nP-0dE"/>
+                <constraint firstItem="cnc-CS-LrJ" firstAttribute="height" secondItem="JMi-bD-p8k" secondAttribute="height" id="O61-id-c7q"/>
+                <constraint firstItem="Fvv-q8-bh0" firstAttribute="leading" secondItem="eTL-Up-c5k" secondAttribute="leadingMargin" constant="10" id="Odi-gE-k8S"/>
+                <constraint firstItem="e9R-FK-GnO" firstAttribute="width" secondItem="rXG-2i-qP9" secondAttribute="width" id="PhE-ZV-90D"/>
+                <constraint firstItem="2gm-L2-Wuq" firstAttribute="width" secondItem="dGA-ua-a1Y" secondAttribute="width" id="U5y-X1-VjE"/>
+                <constraint firstItem="dGA-ua-a1Y" firstAttribute="top" secondItem="cnc-CS-LrJ" secondAttribute="bottom" constant="10" id="UFC-V6-SiA"/>
+                <constraint firstItem="JMi-bD-p8k" firstAttribute="top" secondItem="qRf-ib-npG" secondAttribute="bottom" constant="10" id="UqQ-Iv-XLg"/>
+                <constraint firstItem="qRf-ib-npG" firstAttribute="height" secondItem="e9R-FK-GnO" secondAttribute="height" id="WQg-np-PTC"/>
+                <constraint firstItem="2gm-L2-Wuq" firstAttribute="height" secondItem="dGA-ua-a1Y" secondAttribute="height" id="WyL-gN-u8P"/>
+                <constraint firstItem="e9R-FK-GnO" firstAttribute="leading" secondItem="rXG-2i-qP9" secondAttribute="leading" id="aKh-H0-mnc"/>
+                <constraint firstItem="dGA-ua-a1Y" firstAttribute="centerX" secondItem="cnc-CS-LrJ" secondAttribute="centerX" id="cmD-zp-nFS"/>
+                <constraint firstItem="2gm-L2-Wuq" firstAttribute="top" secondItem="dGA-ua-a1Y" secondAttribute="bottom" constant="10" id="e5S-MP-JLj"/>
+                <constraint firstItem="cnc-CS-LrJ" firstAttribute="centerX" secondItem="JMi-bD-p8k" secondAttribute="centerX" id="f33-Eh-8Nc"/>
+                <constraint firstItem="dGA-ua-a1Y" firstAttribute="width" secondItem="cnc-CS-LrJ" secondAttribute="width" id="fSW-Ea-sw4"/>
+                <constraint firstItem="rXG-2i-qP9" firstAttribute="top" secondItem="Fvv-q8-bh0" secondAttribute="bottom" constant="10" id="fkA-F9-5ue"/>
+                <constraint firstItem="qRf-ib-npG" firstAttribute="top" secondItem="e9R-FK-GnO" secondAttribute="bottom" constant="10" id="fvW-uQ-wRB"/>
+                <constraint firstItem="e9R-FK-GnO" firstAttribute="top" secondItem="rXG-2i-qP9" secondAttribute="bottom" constant="10" id="hCF-Ns-4Tg"/>
+                <constraint firstItem="qRf-ib-npG" firstAttribute="width" secondItem="e9R-FK-GnO" secondAttribute="width" id="hjB-KY-s4l"/>
+                <constraint firstItem="qRf-ib-npG" firstAttribute="leading" secondItem="eTL-Up-c5k" secondAttribute="leadingMargin" constant="10" id="iRX-uK-gM2"/>
+                <constraint firstItem="JMi-bD-p8k" firstAttribute="leading" secondItem="eTL-Up-c5k" secondAttribute="leadingMargin" constant="10" id="nb5-Ze-QJ7"/>
+                <constraint firstItem="dGA-ua-a1Y" firstAttribute="height" secondItem="cnc-CS-LrJ" secondAttribute="height" id="qj2-Bi-wW8"/>
+            </constraints>
+            <point key="canvasLocation" x="35.5" y="53.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="tabbar_mainframeHL" width="25" height="23"/>
+    </resources>
+</document>
