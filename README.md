@@ -21,7 +21,7 @@
   - pod setup : 初始化
   - pod repo update : 更新仓库
   - pod search BAButton
-* 2、文件夹拖入：下载demo，把 BAAlert 文件夹拖入项目即可，<br>
+* 2、文件夹拖入：下载demo，把 BAButton 文件夹拖入项目即可，<br>
 * 3、导入头文件：<br>
 `  #import "BAButton.h" `<br>
 * 4、项目源码地址：<br>
