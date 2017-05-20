@@ -54,9 +54,8 @@ pod 最新上架，修复部分已知bug，代码更精简！
 
 ### 示例展示：
 
-![image1](https://raw.githubusercontent.com/boai/BAButton/master/BAButtonDemo/images/image1.png)
-![image2](https://raw.githubusercontent.com/boai/BAButton/master/BAButtonDemo/images/image2.png)
-![image3](https://raw.githubusercontent.com/boai/BAButton/master/BAButtonDemo/images/image3.png)
+![BAButton1](https://github.com/BAHome/BAButton/blob/master/images/BAButton1.png)
+![BAButton2](https://github.com/BAHome/BAButton/blob/master/images/BAButton2.png)
 
 
 ## 完全实现 button 的自定义，
