@@ -1,77 +1,37 @@
 # BAButton
-自定义button
+![](https://img.shields.io/badge/platform-iOS-red.svg) ![](https://img.shields.io/badge/language-Objective--C-orange.svg) 
+![](https://img.shields.io/badge/license-MIT%20License-brightgreen.svg) 
+![](https://img.shields.io/cocoapods/v/BAButton.svg?style=flat) ![](https://img.shields.io/cocoapods/dt/BAButton.svg
+)  [![](https://img.shields.io/badge/微博-博爱1616-red.svg)](http://weibo.com/538298123)
 
->**开发中如有问题，可以联系本人**
-
-**新浪微博：@博爱1616**
-
-**QQ：     137361770**
-
-#### 对pod还是不熟的同学，可以看下我的博客，是最新的pod安装和使用方法，
-
-###### http://www.cnblogs.com/boai/p/4977976.html
+## 1、简介及功能介绍
+iOS  UIButton  图片、文字自定义布局，自定义切圆角，看 博爱的 BAButton 就够了！一个分类搞定所有需求！
 
 
-# 更新记录：【倒叙】
-
- 欢迎使用 BAHome 系列开源代码 ！
- 如有更多需求，请前往：https://github.com/BAHome
- 
- 最新更新时间：2017-05-20 【倒叙】
- 最新Version：【Version：2.3.0】<br>
- 更新内容：<br>
- 2.3.0.1、用分类全新重构 BAButton，代码配置更灵活<br>
- 2.3.0.2、可以自由设置 button 的文字和图片的布局、间距、每个角的切圆角<br>
- 2.3.0.3、全面适配 纯代码、xib、storyboard<br>
- 2.3.0.4、版本改动较大，希望大家谅解，如果用老版本的 BAButton，可以参考demo 更换新版本，后期改动不大<br>
-
-* 2017-04-24 <br>
-最新Version：【Version：2.2.1】<br>
-更新内容：<br>
-2.2.1.1、新增快速创建button 的demo，和 自定义 naviButton demo
-
-* 2017-03-15 <br>
- 最新Version：【Version：2.2.1】<br>
- 更新内容：<br>
- 2.2.1.1、button 的 角半径 buttonCornerRadii，默认 CGSizeMake(0, 0)
-
-* 2017-03-02 <br>
- 最新Version：【Version：2.2.0】<br>
- 更新内容：<br>
- 2.2.0.1、修复 buttonCornerRadii 只能在添加frame 后设置才能有效的问题，现在可以随意设置<br>
- 2.2.0.2、新增设置文字或和图片间距，举个🌰：self.padding = 10;
-
-* 2017-02-28 【倒叙】<br>
- 最新Version：【Version：2.1.0】<br>
- 更新内容：<br>
- 2.1.1、继承自 UIButton 可以像 UIButton 一样随便添加系统属性<br>
- 2.1.2、可以单独设置文字和图片的位置<br>
- 2.1.3、还可以设置文字或者图片间距<br>
- 2.1.4、可以设置按钮的任意一个角的圆角度数<br>
- 2.1.4、全面适配纯代码、xib、storyboard
-* 2016.12.04 <br>
-pod 最新上架，修复部分已知bug，代码更精简！
-
-### 示例展示：
+## 2、示例展示
 
 ![BAButton1](https://github.com/BAHome/BAButton/blob/master/images/BAButton1.png)
 ![BAButton2](https://github.com/BAHome/BAButton/blob/master/images/BAButton2.png)
 
 
-## 完全实现 button 的自定义，
+## 3、安装、导入示例和源码地址
 
-### pod 导入：   pod 'BAButton', '~> 2.3.0'
+* 1、pod 导入： `pod 'BAButton'`<br>
 如果发现pod search BAButton 搜索出来的不是最新版本，需要在终端执行cd转换文件路径命令退回到desktop，然后执行pod setup命令更新本地spec缓存（可能需要几分钟），然后再搜索就可以了
 具体步骤：
-- pod setup : 初始化
-- pod repo update : 更新仓库
-- pod search BAButton
+  - pod setup : 初始化
+  - pod repo update : 更新仓库
+  - pod search BAButton
+* 2、文件夹拖入：下载demo，把 BAAlert 文件夹拖入项目即可，<br>
+* 3、导入头文件：<br>
+`  #import "BAButton.h" `<br>
+* 4、项目源码地址：<br>
+ OC 版 ：[https://github.com/BAHome/BAButton](https://github.com/BAHome/BAButton)<br>
 
 
-### 项目中导入头文件：
-```
-#import <BAButton.h> 即可
-```
+
+## 4、代码示例
+
 
 ``` 用枚举展示button的类型：
 
@@ -165,3 +125,61 @@ typedef NS_ENUM(NSInteger, BAViewRectCornerType) {
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:navi_rightButton];
 
 其他示例可下载demo查看源码！
+```
+
+## 5、更新记录：【倒叙】
+
+ 欢迎使用 BAHome 系列开源代码 ！
+ 如有更多需求，请前往：https://github.com/BAHome
+ 
+ 最新更新时间：2017-05-20 【倒叙】
+ 最新Version：【Version：2.3.0】<br>
+ 更新内容：<br>
+ 2.3.0.1、用分类全新重构 BAButton，代码配置更灵活<br>
+ 2.3.0.2、可以自由设置 button 的文字和图片的布局、间距、每个角的切圆角<br>
+ 2.3.0.3、全面适配 纯代码、xib、storyboard<br>
+ 2.3.0.4、版本改动较大，希望大家谅解，如果用老版本的 BAButton，可以参考demo 更换新版本，后期改动不大<br>
+
+* 2017-04-24 <br>
+最新Version：【Version：2.2.1】<br>
+更新内容：<br>
+2.2.1.1、新增快速创建button 的demo，和 自定义 naviButton demo
+
+* 2017-03-15 <br>
+ 最新Version：【Version：2.2.1】<br>
+ 更新内容：<br>
+ 2.2.1.1、button 的 角半径 buttonCornerRadii，默认 CGSizeMake(0, 0)
+
+* 2017-03-02 <br>
+ 最新Version：【Version：2.2.0】<br>
+ 更新内容：<br>
+ 2.2.0.1、修复 buttonCornerRadii 只能在添加frame 后设置才能有效的问题，现在可以随意设置<br>
+ 2.2.0.2、新增设置文字或和图片间距，举个🌰：self.padding = 10;
+
+* 2017-02-28 【倒叙】<br>
+ 最新Version：【Version：2.1.0】<br>
+ 更新内容：<br>
+ 2.1.1、继承自 UIButton 可以像 UIButton 一样随便添加系统属性<br>
+ 2.1.2、可以单独设置文字和图片的位置<br>
+ 2.1.3、还可以设置文字或者图片间距<br>
+ 2.1.4、可以设置按钮的任意一个角的圆角度数<br>
+ 2.1.4、全面适配纯代码、xib、storyboard
+* 2016.12.04 <br>
+pod 最新上架，修复部分已知bug，代码更精简！
+
+## 6、bug 反馈 和 联系方式
+> 1、开发中遇到 bug，希望小伙伴儿们能够及时反馈与我们 BAHome 团队，我们必定会认证对待每一个问题！ <br>
+
+> 2、联系方式 <br> 
+QQ群：479663605  【注意：此群为 2 元 付费群，介意的小伙伴儿勿扰！】<br> 
+博爱QQ：137361770 <br> 
+博爱微博：[![](https://img.shields.io/badge/微博-博爱1616-red.svg)](http://weibo.com/538298123) <br> 
+
+## 7、开发环境 和 支持版本
+> 开发使用 Xcode Version 8.3.2 (8E2002) 最新版，理论上支持所有 iOS 版本，如有版本适配问题，请及时反馈！多谢合作！
+
+## 8、感谢
+> 感谢 BAHome 团队成员倾力合作，后期会推出一系列 常用 UI 控件的封装，大家有需求得也可以在 issue 提出，如果合理，我们会尽快推出新版本！<br>
+
+> BAHome 的发展离不开小伙伴儿的信任与推广，再次感谢各位小伙伴儿的支持！
+
