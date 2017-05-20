@@ -16,7 +16,7 @@
 ## 3、安装、导入示例和源码地址
 * 1、pod 导入【最新版本：version 2.3.0】： <br>
  `pod 'BAButton'` <br>
-如果发现pod search BAButton 搜索出来的不是最新版本，需要在终端执行cd转换文件路径命令退回到desktop，然后执行pod setup命令更新本地spec缓存（可能需要几分钟），然后再搜索就可以了
+如果发现 `pod search BAButton` 搜索出来的不是最新版本，需要在终端执行 cd 转换文件路径命令退回到 desktop，然后执行 `pod setup` 命令更新本地spec缓存（可能需要几分钟），然后再搜索就可以了。<br>
 具体步骤：
   - pod setup : 初始化
   - pod repo update : 更新仓库
