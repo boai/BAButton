@@ -1,4 +1,5 @@
 # BAButton
+[![BAHome Team Name](https://img.shields.io/badge/Team-BAHome-brightgreen.svg?style=flat)](https://github.com/BAHome "BAHome Team")
 ![](https://img.shields.io/badge/platform-iOS-red.svg) ![](https://img.shields.io/badge/language-Objective--C-orange.svg) 
 ![](https://img.shields.io/badge/license-MIT%20License-brightgreen.svg) 
 ![](https://img.shields.io/cocoapods/v/BAButton.svg?style=flat) ![](https://img.shields.io/cocoapods/dt/BAButton.svg
@@ -27,8 +28,43 @@
 * 4、项目源码地址：<br>
  OC 版 ：[https://github.com/BAHome/BAButton](https://github.com/BAHome/BAButton)<br>
 
-## 4、代码示例
-``` 
+## 4、BAButton 的类结构及 demo 示例
+![BAButton3](https://github.com/BAHome/BAButton/blob/master/images/BAButton3.png)
+
+### BAButton.h
+```
+#ifndef BAButton_h
+#define BAButton_h
+
+#import "UIButton+BAKit.h"
+
+/*!
+ *********************************************************************************
+ ************************************ 更新说明 ************************************
+ *********************************************************************************
+ 
+ 欢迎使用 BAHome 系列开源代码 ！
+ 如有更多需求，请前往：https://github.com/BAHome
+ 
+ 最新更新时间：2017-05-20 【倒叙】
+ 最新Version：【Version：2.3.0】
+ 更新内容：
+ 2.3.0.1、用分类全新重构 BAButton，代码配置更灵活
+ 2.3.0.2、可以自由设置 button 的文字和图片的布局、间距、每个角的切圆角
+ 2.3.0.3、全面适配 纯代码、xib、storyboard
+ 2.3.0.4、版本改动较大，希望大家谅解，如果用老版本的 BAButton，可以参考demo 更换新版本，后期改动不大
+
+*/
+
+
+#endif /* BAButton_h */
+```
+
+### UIButton+BAKit.h
+```
+#import "UIView+BARectCorner.h"
+
+NS_ASSUME_NONNULL_BEGIN
 /**
  button 的样式，以图片为基准
 
@@ -51,6 +87,155 @@ typedef NS_ENUM(NSInteger, BAButtonLayoutType) {
     BAButtonLayoutTypeRightImageLeft,
     BAButtonLayoutTypeRightImageRight,
 };
+
+@interface UIButton (BAKit)
+
+/**
+ button 的布局样式，默认为：BAButtonLayoutTypeNormal，注意：此设置只能在 [self.view addSubview:button] 之后添加样式
+ */
+@property(nonatomic, assign) BAButtonLayoutType buttonLayoutType;
+
+/*!
+ *  文字与图片之间的间距，默认为：0
+ */
+@property (nonatomic, assign) CGFloat padding;
+
+
+/**
+ 快速设置 button 的布局样式 和 间距
+
+ @param type button 的布局样式
+ @param padding 文字与图片之间的间距
+ */
+- (void)ba_button_setBAButtonLayoutType:(BAButtonLayoutType)type padding:(CGFloat)padding;
+
+/**
+ 快速切圆角
+
+ @param type 圆角样式
+ @param viewCornerRadius 圆角角度
+ */
+- (void)ba_button_setBAViewRectCornerType:(BAViewRectCornerType)type viewCornerRadius:(CGFloat)viewCornerRadius;
+
+/**
+ *  给定框架创建一个UIButton对象
+ */
++ (id)initWithFrame:(CGRect)frame;
+
+/**
+ *  给定框架和字符串(字符串字体颜色默认是白色)创建一个UIButton对象
+ */
++ (id)initWithFrame:(CGRect)frame
+              title:(NSString *)title;
+
+/**
+ *  给定框架、字符串和背景图片创建一个UIButton对象
+ */
++ (id)initWithFrame:(CGRect)frame
+              title:(NSString *)title
+    backgroundImage:(UIImage *)backgroundImage;
+
+/**
+ *  给定框架、字符串、背景图片和高亮背景图片创建一个UIButton对象
+ */
++ (id)initWithFrame:(CGRect)frame
+              title:(NSString *)title
+    backgroundImage:(UIImage *)backgroundImage
+highlightedBackgroundImage:(UIImage *)highlightedBackgroundImage;
+
+/**
+ *  给定框架、字符串、颜色创建一个UIButton对象
+ */
++ (id)initWithFrame:(CGRect)frame
+              title:(NSString *)title
+              color:(UIColor *)color;
+
+/**
+ *  给定框架、字符串、背景颜色和高亮背景颜色创建一个UIButton对象
+ */
++ (id)initWithFrame:(CGRect)frame
+              title:(NSString *)title
+              color:(UIColor *)color
+   highlightedColor:(UIColor *)highlightedColor;
+
+/**
+ *  给定框架、颜色创建一个UIButton对象
+ */
++ (id)initWithFrame:(CGRect)frame
+              color:(UIColor *)color;
+
+/**
+ *  给定框架、背景颜色和高亮背景颜色创建一个UIButton对象
+ */
++ (id)initWithFrame:(CGRect)frame
+              color:(UIColor *)color
+   highlightedColor:(UIColor *)highlightedColor;
+
+/**
+ *  给定框架和图片创建一个UIButton对象
+ */
++ (id)initWithFrame:(CGRect)frame
+              image:(UIImage *)image;
+
+/**
+ *  给定框架、背景图片和高亮背景图片创建一个UIButton对象 */
++ (id)initWithFrame:(CGRect)frame
+              image:(UIImage *)image
+   highlightedImage:(UIImage *)highlightedImage;
+
+/**
+ *  设置字符字体和大小
+ */
+- (void)setTitleFont:(NSString *)fontName
+                size:(CGFloat)size;
+
+/**
+ *  设置字符颜色和高亮颜色
+ */
+- (void)setTitleColor:(UIColor *)color
+     highlightedColor:(UIColor *)highlightedColor;
+
+#pragma mark - 快速创建 button
+/**
+ 创建 button
+ 
+ @param frame frame
+ @param title title
+ @param selTitle selTitle
+ @param titleColor titleColor，默认：黑色
+ @param titleFont titleFont默认：15
+ @param image image description
+ @param selImage selImage
+ @param padding padding 文字图片间距
+ @param buttonLayoutType buttonLayoutType 文字图片布局样式
+ @param viewRectCornerType viewRectCornerType 圆角样式
+ @param viewCornerRadius viewCornerRadius 圆角角度
+ @param target target
+ @param sel sel
+ @return button
+ */
+- (instancetype __nonnull)creatButtonWithFrame:(CGRect)frame
+                                         title:(NSString * __nullable)title
+                                      selTitle:(NSString * __nullable)selTitle
+                                    titleColor:(UIColor * __nullable)titleColor
+                                     titleFont:(UIFont * __nullable)titleFont
+                                         image:(UIImage * __nullable)image
+                                      selImage:(UIImage * __nullable)selImage
+                                       padding:(CGFloat)padding
+                           buttonPositionStyle:(BAButtonLayoutType)buttonLayoutType
+                            viewRectCornerType:(BAViewRectCornerType)viewRectCornerType
+                              viewCornerRadius:(CGFloat)viewCornerRadius
+                                        target:(id __nullable)target
+                                      selector:(SEL __nullable)sel;
+```
+
+### UIView+BARectCorner.h
+```
+/*! 随机色 */
+CG_INLINE UIColor *
+BAKit_ColorRandom(){
+    return [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1];
+}
 
 /*!
  *  设置 viewRectCornerType 样式，
@@ -103,10 +288,29 @@ typedef NS_ENUM(NSInteger, BAViewRectCornerType) {
     BAViewRectCornerTypeAllCorners
 };
 
+@interface UIView (BARectCorner)
 
-// 大家下载demo后可能出现图片不显示，只需更换图片即可，注意button的frame哦！
-// 此外，此button的titleLAbel只支持一行显示，不支持多行！敬请注意！
+/*!
+ *  设置 viewRectCornerType 样式，
+ *  注意：BAViewRectCornerType 必须要先设置 viewCornerRadius，才能有效，否则设置无效，
+ */
+@property (nonatomic, assign) BAViewRectCornerType viewRectCornerType;
 
+/*!
+ *  设置 button 圆角，如果要全部设置四个角的圆角，可以直接用这个方法，必须要在设置 frame 之后
+ */
+@property (nonatomic, assign) CGFloat viewCornerRadius;
+
+/**
+ 快速切圆角
+ 
+ @param type 圆角样式
+ @param viewCornerRadius 圆角角度
+ */
+- (void)ba_view_setBAViewRectCornerType:(BAViewRectCornerType)type viewCornerRadius:(CGFloat)viewCornerRadius;
+```
+### demo 示例
+```
 // 示例1：
     [self.normalButton ba_button_setBAButtonLayoutType:BAButtonLayoutTypeNormal padding:padding];
     [self.normalButton ba_button_setBAViewRectCornerType:BAViewRectCornerTypeBottomLeft viewCornerRadius:viewCornerRadius];
