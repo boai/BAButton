@@ -4,19 +4,18 @@
 ![](https://img.shields.io/cocoapods/v/BAButton.svg?style=flat) ![](https://img.shields.io/cocoapods/dt/BAButton.svg
 )  [![](https://img.shields.io/badge/微博-博爱1616-red.svg)](http://weibo.com/538298123)
 
-## 1、简介及功能介绍
-iOS  UIButton  图片、文字自定义布局，自定义切圆角，看 博爱的 BAButton 就够了！一个分类搞定所有需求！
-
+## 1、功能及简介
+* 1、UIButton 图片、文字自定义布局 <br>
+* 2、UIButton 自定义切圆角，可以设置任意一个角的角半径
+* 3、用 UIButton 的分类处理，处理更简单，一行代码轻松搞定所有 UIButton 自定义
 
 ## 2、示例展示
-
 ![BAButton1](https://github.com/BAHome/BAButton/blob/master/images/BAButton1.png)
 ![BAButton2](https://github.com/BAHome/BAButton/blob/master/images/BAButton2.png)
 
-
 ## 3、安装、导入示例和源码地址
-
-* 1、pod 导入： `pod 'BAButton'`<br>
+* 1、pod 导入【最新版本：version 2.3.0】： <br>
+ `pod 'BAButton'` <br>
 如果发现pod search BAButton 搜索出来的不是最新版本，需要在终端执行cd转换文件路径命令退回到desktop，然后执行pod setup命令更新本地spec缓存（可能需要几分钟），然后再搜索就可以了
 具体步骤：
   - pod setup : 初始化
@@ -28,13 +27,8 @@ iOS  UIButton  图片、文字自定义布局，自定义切圆角，看 博爱�
 * 4、项目源码地址：<br>
  OC 版 ：[https://github.com/BAHome/BAButton](https://github.com/BAHome/BAButton)<br>
 
-
-
 ## 4、代码示例
-
-
-``` 用枚举展示button的类型：
-
+``` 
 /**
  button 的样式，以图片为基准
 
@@ -128,9 +122,8 @@ typedef NS_ENUM(NSInteger, BAViewRectCornerType) {
 ```
 
 ## 5、更新记录：【倒叙】
-
- 欢迎使用 BAHome 系列开源代码 ！
- 如有更多需求，请前往：https://github.com/BAHome
+ 欢迎使用 [【BAHome】](https://github.com/BAHome) 系列开源代码 ！
+ 如有更多需求，请前往：[【https://github.com/BAHome】](https://github.com/BAHome) 
  
  最新更新时间：2017-05-20 【倒叙】
  最新Version：【Version：2.3.0】<br>
@@ -164,7 +157,7 @@ typedef NS_ENUM(NSInteger, BAViewRectCornerType) {
  2.1.3、还可以设置文字或者图片间距<br>
  2.1.4、可以设置按钮的任意一个角的圆角度数<br>
  2.1.4、全面适配纯代码、xib、storyboard
-* 2016.12.04 <br>
+* 2016.03.04 <br>
 pod 最新上架，修复部分已知bug，代码更精简！
 
 ## 6、bug 反馈 和 联系方式
