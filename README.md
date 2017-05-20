@@ -10,7 +10,7 @@
 * 2、UIButton 自定义切圆角，可以设置任意一个角的角半径
 * 3、用 UIButton 的分类处理，处理更简单，一行代码轻松搞定所有 UIButton 自定义
 
-## 2、示例展示
+## 2、图片示例
 ![BAButton1](https://github.com/BAHome/BAButton/blob/master/images/BAButton1.png)
 ![BAButton2](https://github.com/BAHome/BAButton/blob/master/images/BAButton2.png)
 
@@ -315,7 +315,6 @@ typedef NS_ENUM(NSInteger, BAViewRectCornerType) {
     [self.normalButton ba_button_setBAButtonLayoutType:BAButtonLayoutTypeNormal padding:padding];
     [self.normalButton ba_button_setBAViewRectCornerType:BAViewRectCornerTypeBottomLeft viewCornerRadius:viewCornerRadius];
     
-
 // 示例2：
     CGRect frame = CGRectMake(0, 0, 80, 40);
     UIButton *navi_rightButton = [[UIButton alloc] creatButtonWithFrame:frame title:@"xib" selTitle:nil titleColor:nil titleFont:nil image:[UIImage imageNamed:@"tabbar_mainframeHL"] selImage:nil padding:2 buttonPositionStyle:BAButtonLayoutTypeCenterImageRight viewRectCornerType:BAViewRectCornerTypeAllCorners viewCornerRadius:20 target:self selector:@selector(handleRightNaviButtonAction)];
