@@ -11,8 +11,8 @@
 * 3、用 UIButton 的分类处理，处理更简单，一行代码轻松搞定所有 UIButton 自定义
 
 ## 2、图片示例
-![BAButton1](https://github.com/BAHome/BAButton/blob/master/images/BAButton1.png)
-![BAButton2](https://github.com/BAHome/BAButton/blob/master/images/BAButton2.png)
+![BAButton1](https://github.com/BAHome/BAButton/blob/master/Images/BAButton1.png)
+![BAButton2](https://github.com/BAHome/BAButton/blob/master/Images/BAButton2.png)
 
 ## 3、安装、导入示例和源码地址
 * 1、pod 导入【最新版本：version 2.3.0】： <br>
@@ -29,7 +29,7 @@
  OC 版 ：[https://github.com/BAHome/BAButton](https://github.com/BAHome/BAButton)<br>
 
 ## 4、BAButton 的类结构及 demo 示例
-![BAButton3](https://github.com/BAHome/BAButton/blob/master/images/BAButton3.png)
+![BAButton3](https://github.com/BAHome/BAButton/blob/master/Images/BAButton3.png)
 
 ### BAButton.h
 ```
