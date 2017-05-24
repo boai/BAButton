@@ -97,6 +97,10 @@ typedef NS_ENUM(NSInteger, BAButtonLayoutType) {
  */
 @property (nonatomic, assign) CGFloat padding;
 
+/*!
+ *  文字或图片距离 button 左右边界的最小距离，默认为：5
+ */
+@property (nonatomic, assign) CGFloat padding_inset;
 
 /**
  快速设置 button 的布局样式 和 间距

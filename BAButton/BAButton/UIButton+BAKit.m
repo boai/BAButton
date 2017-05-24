@@ -40,6 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 static void *buttonLayoutTypeKey = @"buttonLayoutTypeKey";
 static void *paddingKey = @"paddingKey";
+static void *padding_insetKey = @"padding_insetKey";
 
 @implementation UIButton (BAKit)
 
@@ -60,12 +61,28 @@ static void *paddingKey = @"paddingKey";
     
     UIEdgeInsets imageEdge = UIEdgeInsetsZero;
     UIEdgeInsets titleEdge = UIEdgeInsetsZero;
+//    if (self.buttonLayoutType != BAButtonLayoutTypeCenterImageTop || self.buttonLayoutType != BAButtonLayoutTypeCenterImageBottom) {
+//        CGFloat content_w = title_w + title_h + self.padding;
+//        
+//        CGFloat width = (self.bounds.size.width - content_w)/2.0;
+//        if (width < self.minPadding) {
+//            
+//        }
+//    }
+    
+    if (self.padding_inset == 0)
+    {
+        self.padding_inset = 5;
+    }
     
     switch (self.buttonLayoutType) {
         case BAButtonLayoutTypeNormal:
         {
+            
             titleEdge = UIEdgeInsetsMake(0, self.padding, 0, 0);
+            
             imageEdge = UIEdgeInsetsMake(0, 0, 0, self.padding);
+            
         }
             break;
         case BAButtonLayoutTypeCenterImageRight:
@@ -88,27 +105,32 @@ static void *paddingKey = @"paddingKey";
             break;
         case BAButtonLayoutTypeLeftImageLeft:
         {
-            titleEdge = UIEdgeInsetsMake(0, self.padding, 0, 0);
+            titleEdge = UIEdgeInsetsMake(0, self.padding + self.padding_inset, 0, 0);
+            
+            imageEdge = UIEdgeInsetsMake(0, self.padding_inset, 0, 0);
+
             self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         }
             break;
         case BAButtonLayoutTypeLeftImageRight:
         {
-            titleEdge = UIEdgeInsetsMake(0, -image_w, 0, 0);
-            imageEdge = UIEdgeInsetsMake(0, title_w + self.padding, 0, 0);
+            titleEdge = UIEdgeInsetsMake(0, -image_w + self.padding_inset, 0, 0);
+            imageEdge = UIEdgeInsetsMake(0, title_w + self.padding + self.padding_inset, 0, 0);
             self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         }
             break;
         case BAButtonLayoutTypeRightImageLeft:
         {
-            imageEdge = UIEdgeInsetsMake(0, 0, 0, self.padding);
+            imageEdge = UIEdgeInsetsMake(0, 0, 0, self.padding + self.padding_inset);
+            titleEdge = UIEdgeInsetsMake(0, 0, 0, self.padding_inset);
+
             self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
         }
             break;
         case BAButtonLayoutTypeRightImageRight:
         {
-            titleEdge = UIEdgeInsetsMake(0, 0, 0, image_w + self.padding);
-            imageEdge = UIEdgeInsetsMake(0, 0, 0, -title_w);
+            titleEdge = UIEdgeInsetsMake(0, 0, 0, image_w + self.padding + self.padding_inset);
+            imageEdge = UIEdgeInsetsMake(0, 0, 0, -title_w + self.padding_inset);
             self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
         }
             break;
@@ -116,6 +138,9 @@ static void *paddingKey = @"paddingKey";
         default:
             break;
     }
+    
+    
+    
     self.imageEdgeInsets = imageEdge;
     self.titleEdgeInsets = titleEdge;
 }
@@ -131,6 +156,7 @@ static void *paddingKey = @"paddingKey";
     self.buttonLayoutType = type;
     self.padding = padding;
 }
+
 
 /**
  快速切圆角
@@ -364,6 +390,17 @@ highlightedBackgroundImage:(UIImage *)highlightedBackgroundImage
 - (CGFloat)padding
 {
     return [objc_getAssociatedObject(self, paddingKey) floatValue];
+}
+
+- (void)setPadding_inset:(CGFloat)padding_inset
+{
+    objc_setAssociatedObject(self, padding_insetKey, @(padding_inset), OBJC_ASSOCIATION_ASSIGN);
+    [self setupButtonLayout];
+}
+
+- (CGFloat)padding_inset
+{
+    return [objc_getAssociatedObject(self, padding_insetKey) floatValue];
 }
 
 @end

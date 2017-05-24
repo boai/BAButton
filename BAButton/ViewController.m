@@ -103,7 +103,8 @@
             {
                 [button setTitle:@"内容居左-图左文右" forState:UIControlStateNormal];
                 type = BAButtonLayoutTypeLeftImageLeft;
-                [button ba_button_setBAViewRectCornerType:BAViewRectCornerTypeBottomLeftAndBottomRight viewCornerRadius:viewCornerRadius];
+                [button ba_button_setBAViewRectCornerType:BAViewRectCornerTypeBottomRight viewCornerRadius:viewCornerRadius];
+                button.padding_inset = 20;
             }
                 break;
             case 5:
