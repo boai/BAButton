@@ -61,14 +61,6 @@ static void *padding_insetKey = @"padding_insetKey";
     
     UIEdgeInsets imageEdge = UIEdgeInsetsZero;
     UIEdgeInsets titleEdge = UIEdgeInsetsZero;
-//    if (self.buttonLayoutType != BAButtonLayoutTypeCenterImageTop || self.buttonLayoutType != BAButtonLayoutTypeCenterImageBottom) {
-//        CGFloat content_w = title_w + title_h + self.padding;
-//        
-//        CGFloat width = (self.bounds.size.width - content_w)/2.0;
-//        if (width < self.minPadding) {
-//            
-//        }
-//    }
     
     if (self.padding_inset == 0)
     {
@@ -138,9 +130,6 @@ static void *padding_insetKey = @"padding_insetKey";
         default:
             break;
     }
-    
-    
-    
     self.imageEdgeInsets = imageEdge;
     self.titleEdgeInsets = titleEdge;
 }
@@ -156,7 +145,6 @@ static void *padding_insetKey = @"padding_insetKey";
     self.buttonLayoutType = type;
     self.padding = padding;
 }
-
 
 /**
  快速切圆角
