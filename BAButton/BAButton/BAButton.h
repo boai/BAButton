@@ -71,6 +71,11 @@
  欢迎使用 BAHome 系列开源代码 ！
  如有更多需求，请前往：https://github.com/BAHome
  
+ 最新更新时间：2017-05-24 【倒叙】
+ 最新Version：【Version：2.3.1】
+ 更新内容：
+ 2.3.1.1、新增：padding_inset，文字或图片距离 button 左右边界的最小距离，默认为：5
+ 
  最新更新时间：2017-05-20 【倒叙】
  最新Version：【Version：2.3.0】
  更新内容：
