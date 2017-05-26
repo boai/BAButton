@@ -15,7 +15,7 @@
 ![BAButton2](https://github.com/BAHome/BAButton/blob/master/Images/BAButton2.png)
 
 ## 3、安装、导入示例和源码地址
-* 1、pod 导入【最新版本：version 2.3.1】： <br>
+* 1、pod 导入【最新版本：version 2.3.2】： <br>
  `pod 'BAButton'` <br>
 如果发现 `pod search BAButton` 搜索出来的不是最新版本，需要在终端执行 cd 转换文件路径命令退回到 desktop，然后执行 `pod setup` 命令更新本地spec缓存（可能需要几分钟），然后再搜索就可以了。<br>
 具体步骤：
@@ -45,6 +45,11 @@
  
  欢迎使用 BAHome 系列开源代码 ！
  如有更多需求，请前往：https://github.com/BAHome
+ 
+ 最新更新时间：2017-05-26 【倒叙】
+ 最新Version：【Version：2.3.2】
+ 更新内容：
+ 2.3.2.1、优化代码结构，修复 frame 改变后 padding 无法更改的问题！
  
  最新更新时间：2017-05-24 【倒叙】
  最新Version：【Version：2.3.1】
@@ -338,7 +343,12 @@ typedef NS_ENUM(NSInteger, BAViewRectCornerType) {
  欢迎使用 [【BAHome】](https://github.com/BAHome) 系列开源代码 ！
  如有更多需求，请前往：[【https://github.com/BAHome】](https://github.com/BAHome) 
  
-  最新更新时间：2017-05-24 【倒叙】
+ 最新更新时间：2017-05-26 【倒叙】
+ 最新Version：【Version：2.3.2】
+ 更新内容：
+ 2.3.2.1、优化代码结构，修复 frame 改变后 padding 无法更改的问题！
+ 
+ 最新更新时间：2017-05-24 【倒叙】
  最新Version：【Version：2.3.1】
  更新内容：
  2.3.1.1、新增：padding_inset，文字或图片距离 button 左右边界的最小距离，默认为：5

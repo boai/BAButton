@@ -71,6 +71,11 @@
  欢迎使用 BAHome 系列开源代码 ！
  如有更多需求，请前往：https://github.com/BAHome
  
+ 最新更新时间：2017-05-26 【倒叙】
+ 最新Version：【Version：2.3.2】
+ 更新内容：
+ 2.3.2.1、优化代码结构，修复 frame 改变后 padding 无法更改的问题！
+ 
  最新更新时间：2017-05-24 【倒叙】
  最新Version：【Version：2.3.1】
  更新内容：
