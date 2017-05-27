@@ -63,7 +63,7 @@
 
 #pragma mark - public
 
-- (void)countDownWithTimeInterval:(NSTimeInterval)duration countDownFormat:(NSString *)format{
+- (void)ba_countDownWithTimeInterval:(NSTimeInterval)duration countDownFormat:(NSString *)format{
     if (!format){
         self.countDownFormat = @"%zd秒";
     } else {
@@ -77,7 +77,7 @@
     dispatch_source_set_timer(self.timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
     dispatch_source_set_event_handler(self.timer, ^{
         if (timeOut <= 0) { // 倒计时结束，关闭
-            [weakSelf cancelTimer];
+            [weakSelf ba_cancelTimer];
         } else {
             NSString *title = [NSString stringWithFormat:weakSelf.countDownFormat,timeOut];
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -87,10 +87,9 @@
         }
     });
     dispatch_resume(self.timer);
-
 }
 
-- (void)cancelTimer {
+- (void)ba_cancelTimer {
     dispatch_source_cancel(self.timer);
     self.timer = nil;
     dispatch_async(dispatch_get_main_queue(), ^{

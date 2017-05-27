@@ -27,7 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"Btn State";
+    self.title = @"UIButton State";
     
     [self.btn1 ba_setBackgroundColor:BAKit_ColorRandom() forState:UIControlStateNormal animated:YES];
     [self.btn1 ba_setBackgroundColor:BAKit_ColorRandom() forState:UIControlStateSelected animated:YES];
@@ -55,11 +55,6 @@
     
     [self.btn8 ba_configTitleLabelFont:@{@(UIControlStateNormal):[UIFont systemFontOfSize:10],
                                          @(UIControlStateSelected):[UIFont systemFontOfSize:12]}];
-    
-}
-
-- (void)dealloc {
-    NSLog(@"释放了");
 }
 
 - (IBAction)btnClick:(UIButton *)sender {
@@ -69,34 +64,22 @@
 - (IBAction)countDownClick:(UIButton *)sender {
     sender.userInteractionEnabled = NO;
     __block UIButton *btn = sender;
-    [sender countDownWithTimeInterval:60 countDownFormat:@"剩余 %zd"];
+    [sender ba_countDownWithTimeInterval:60 countDownFormat:@"剩余 %zd"];
     [sender setTimeStoppedCallback:^{
         [btn setTitle:@"倒计时" forState:UIControlStateNormal];
     }];
-
 }
 
 - (IBAction)skipClick:(UIButton *)sender {
     __block UIButton *btn = sender;
-    [sender countDownWithTimeInterval:5 countDownFormat:@"跳过 %zd"];
+    [sender ba_countDownWithTimeInterval:5 countDownFormat:@"跳过 %zd"];
     [sender setTimeStoppedCallback:^{
         [btn setTitle:@"跳过" forState:UIControlStateNormal];
     }];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)dealloc {
+    NSLog(@"释放了");
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

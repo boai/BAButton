@@ -72,6 +72,8 @@
 #import "UIButton+BAKit.h"
 #import "UIButton+BAState.h"
 #import "UIButton+BACountDown.h"
+#import "UIView+BARectCorner.h"
+
 /*!
  *********************************************************************************
  ************************************ 更新说明 ************************************
@@ -79,6 +81,16 @@
  
  欢迎使用 BAHome 系列开源代码 ！
  如有更多需求，请前往：https://github.com/BAHome
+ 
+ 项目源码地址：
+ OC 版 ：https://github.com/BAHome/BAButton
+ 
+ 最新更新时间：2017-05-27 【倒叙】
+ 最新Version：【Version：2.4.0】
+ 更新内容：
+ 2.4.0.1、此版本由 [子丰大神](https://github.com/renzifeng) 亲自改版，再次感谢 [子丰大神](https://github.com/renzifeng)
+ 2.4.0.2、新增 UIButton 各种状态下背景颜色、字体、border、font、动画等的监测及改变
+ 2.4.0.3、新增 UIButton 倒计时的封装，两行代码搞定倒计时！
  
  最新更新时间：2017-05-26 【倒叙】
  最新Version：【Version：2.3.2】
@@ -99,6 +111,5 @@
  2.3.0.4、版本改动较大，希望大家谅解，如果用老版本的 BAButton，可以参考demo 更换新版本，后期改动不大
 
 */
-
 
 #endif /* BAButton_h */

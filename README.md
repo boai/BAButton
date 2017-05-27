@@ -9,13 +9,16 @@
 * 1、UIButton 图片、文字自定义布局 <br>
 * 2、UIButton 自定义切圆角，可以设置任意一个角的角半径
 * 3、用 UIButton 的分类处理，处理更简单，一行代码轻松搞定所有 UIButton 自定义
+* 4、新增 UIButton 各种状态下背景颜色、字体、border、font、动画等的监测及改变
+* 5、新增 UIButton 倒计时的封装，两行代码搞定倒计时！
 
 ## 2、图片示例
 ![BAButton1](https://github.com/BAHome/BAButton/blob/master/Images/BAButton1.png)
 ![BAButton2](https://github.com/BAHome/BAButton/blob/master/Images/BAButton2.png)
+![BAButton4](https://github.com/BAHome/BAButton/blob/master/Images/BAButton4.png)
 
 ## 3、安装、导入示例和源码地址
-* 1、pod 导入【最新版本：version 2.3.2】： <br>
+* 1、pod 导入【最新版本：version 2.4.0】： <br>
  `pod 'BAButton'` <br>
 如果发现 `pod search BAButton` 搜索出来的不是最新版本，需要在终端执行 cd 转换文件路径命令退回到 desktop，然后执行 `pod setup` 命令更新本地spec缓存（可能需要几分钟），然后再搜索就可以了。<br>
 具体步骤：
@@ -36,7 +39,18 @@
 #ifndef BAButton_h
 #define BAButton_h
 
+#define BAObjc_setObj(key, value) objc_setAssociatedObject(self, key, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+
+#define BAObjc_setObjCOPY(key, value) objc_setAssociatedObject(self, key, value, OBJC_ASSOCIATION_COPY)
+
+#define BAObjc_getObj objc_getAssociatedObject(self, _cmd)
+
+#define BAObjc_exchangeMethodAToB(methodA,methodB) method_exchangeImplementations(class_getInstanceMethod([self class], methodA),class_getInstanceMethod([self class], methodB));
+
 #import "UIButton+BAKit.h"
+#import "UIButton+BAState.h"
+#import "UIButton+BACountDown.h"
+#import "UIView+BARectCorner.h"
 
 /*!
  *********************************************************************************
@@ -45,6 +59,16 @@
  
  欢迎使用 BAHome 系列开源代码 ！
  如有更多需求，请前往：https://github.com/BAHome
+ 
+ 项目源码地址：
+ OC 版 ：https://github.com/BAHome/BAButton
+ 
+ 最新更新时间：2017-05-27 【倒叙】
+ 最新Version：【Version：2.4.0】
+ 更新内容：
+ 2.4.0.1、此版本由 [子丰大神](https://github.com/renzifeng) 亲自改版，再次感谢 [子丰大神](https://github.com/renzifeng)
+ 2.4.0.2、新增 UIButton 各种状态下背景颜色、字体、border、font、动画等的监测及改变
+ 2.4.0.3、新增 UIButton 倒计时的封装，两行代码搞定倒计时！
  
  最新更新时间：2017-05-26 【倒叙】
  最新Version：【Version：2.3.2】
@@ -66,12 +90,12 @@
 
 */
 
-
 #endif /* BAButton_h */
 ```
 
 ### UIButton+BAKit.h
 ```
+#import <UIKit/UIKit.h>
 #import "UIView+BARectCorner.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -114,7 +138,6 @@ typedef NS_ENUM(NSInteger, BAButtonLayoutType) {
  *  文字或图片距离 button 左右边界的最小距离，默认为：5
  */
 @property (nonatomic, assign) CGFloat padding_inset;
-
 
 /**
  快速设置 button 的布局样式 和 间距
@@ -242,6 +265,9 @@ highlightedBackgroundImage:(UIImage *)highlightedBackgroundImage;
                               viewCornerRadius:(CGFloat)viewCornerRadius
                                         target:(id __nullable)target
                                       selector:(SEL __nullable)sel;
+
+@end
+NS_ASSUME_NONNULL_END
 ```
 
 ### UIView+BARectCorner.h
@@ -324,6 +350,111 @@ typedef NS_ENUM(NSInteger, BAViewRectCornerType) {
  */
 - (void)ba_view_setBAViewRectCornerType:(BAViewRectCornerType)type viewCornerRadius:(CGFloat)viewCornerRadius;
 ```
+### UIButton+BAState.h
+```
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+NS_ASSUME_NONNULL_BEGIN
+
+@interface UIButton (BAState)
+/** 
+ * 获取当前borderColor 
+ */
+@property(nonatomic, readonly, strong) UIColor *ba_currentBorderColor;
+
+/** 
+ * 获取当前backgroundColor 
+ */
+@property(nonatomic, readonly, strong) UIColor *ba_currentBackgroundColor;
+
+/** 
+ * 获取当前titleLabelFont 
+ */
+@property(nonatomic, readonly, strong) UIFont *ba_currentTitleLabelFont;
+
+/** 
+ * 切换按钮状态时,执行动画的时间,默认0.25s(只有动画执行完毕后,才能会执行下一个点击事件) 
+ */
+@property (nonatomic, assign) NSTimeInterval ba_animatedDuration;
+
+/** 
+ * 设置不同状态下的borderColor(支持动画效果) 
+ */
+- (void)ba_setborderColor:(UIColor *)borderColor forState:(UIControlState)state animated:(BOOL)animated;
+
+/** 
+ * 设置不同状态下的backgroundColor(支持动画效果)
+ */
+- (void)ba_setBackgroundColor:(UIColor *)backgroundColor forState:(UIControlState)state animated:(BOOL)animated;
+
+/** 
+ * 设置不同状态下的titleLabelFont 
+ */
+- (void)ba_setTitleLabelFont:(UIFont *)titleLabelFont forState:(UIControlState)state;
+
+/** 
+ * 获取某个状态的borderColor 
+ */
+- (UIColor *)ba_borderColorForState:(UIControlState)state;
+
+/** 
+ * 获取某个状态的backgroundColor 
+ */
+- (UIColor *)ba_backgroundColorForState:(UIControlState)state;
+
+/** 
+ * 获取某个状态的titleLabelFont 
+ */
+- (UIFont *)ba_titleLabelFontForState:(UIControlState)state;
+
+#pragma mark - 使用key-value方式设置
+
+/** 
+ * key:@(UIControlState枚举)
+ * 注：此方式无动画
+ */
+- (void)ba_configBorderColors:(NSDictionary <NSNumber *,UIColor *>*)borderColors;
+
+/** 
+ * key:@(UIControlState枚举)
+ * 注：此方式无动画
+ */
+- (void)ba_configBackgroundColors:(NSDictionary <NSNumber *,UIColor *>*)backgroundColors;
+
+/** 
+ * key:@(UIControlState枚举)
+ */
+- (void)ba_configTitleLabelFont:(NSDictionary <NSNumber *,UIFont *>*)titleLabelFonts;
+
+@end
+
+NS_ASSUME_NONNULL_END
+```
+
+### UIButton+BACountDown.h
+```
+#import <UIKit/UIKit.h>
+
+@interface UIButton (BACountDown)
+
+@property (nonatomic, copy) void(^timeStoppedCallback)();
+
+/**
+ 设置倒计时的间隔和倒计时文案
+
+ @param duration 倒计时时间
+ @param format 可选，传nil默认为 @"%zd秒"
+ */
+- (void)ba_countDownWithTimeInterval:(NSTimeInterval)duration countDownFormat:(NSString *)format;
+
+/** 
+ * invalidate timer
+ */
+- (void)ba_cancelTimer;
+
+@end
+```
+
 ### demo 示例
 ```
 // 示例1：
@@ -336,12 +467,37 @@ typedef NS_ENUM(NSInteger, BAViewRectCornerType) {
     navi_rightButton.backgroundColor = BAKit_ColorRandom();
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:navi_rightButton];
 
+// 示例3：倒计时
+- (IBAction)countDownClick:(UIButton *)sender {
+    sender.userInteractionEnabled = NO;
+    __block UIButton *btn = sender;
+    [sender ba_countDownWithTimeInterval:60 countDownFormat:@"剩余 %zd"];
+    [sender setTimeStoppedCallback:^{
+        [btn setTitle:@"倒计时" forState:UIControlStateNormal];
+    }];
+}
+
+- (IBAction)skipClick:(UIButton *)sender {
+    __block UIButton *btn = sender;
+    [sender ba_countDownWithTimeInterval:5 countDownFormat:@"跳过 %zd"];
+    [sender setTimeStoppedCallback:^{
+        [btn setTitle:@"跳过" forState:UIControlStateNormal];
+    }];
+}
+
 其他示例可下载demo查看源码！
 ```
 
 ## 5、更新记录：【倒叙】
  欢迎使用 [【BAHome】](https://github.com/BAHome) 系列开源代码 ！
  如有更多需求，请前往：[【https://github.com/BAHome】](https://github.com/BAHome) 
+ 
+ 最新更新时间：2017-05-27 【倒叙】
+ 最新Version：【Version：2.4.0】
+ 更新内容：
+ 2.4.0.1、此版本由 [子丰大神](https://github.com/renzifeng) 亲自改版，再次感谢 [子丰大神](https://github.com/renzifeng)
+ 2.4.0.2、新增 UIButton 各种状态下背景颜色、字体、border、font、动画等的监测及改变
+ 2.4.0.3、新增 UIButton 倒计时的封装，两行代码搞定倒计时！
  
  最新更新时间：2017-05-26 【倒叙】
  最新Version：【Version：2.3.2】

@@ -18,11 +18,11 @@
  @param duration 倒计时时间
  @param format 可选，传nil默认为 @"%zd秒"
  */
-- (void)countDownWithTimeInterval:(NSTimeInterval)duration countDownFormat:(NSString *)format;
+- (void)ba_countDownWithTimeInterval:(NSTimeInterval)duration countDownFormat:(NSString *)format;
 
 /** 
  * invalidate timer
  */
-- (void)cancelTimer;
+- (void)ba_cancelTimer;
 
 @end
