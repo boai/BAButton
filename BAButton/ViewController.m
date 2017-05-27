@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import "ViewController2.h"
-
+#import "ViewController3.h"
 #import "BAButton.h"
 
 @interface ViewController ()
@@ -34,6 +34,15 @@
     UIButton *navi_rightButton = [[UIButton alloc] creatButtonWithFrame:frame title:@"xib" selTitle:nil titleColor:nil titleFont:nil image:[UIImage imageNamed:@"tabbar_mainframeHL"] selImage:nil padding:2 buttonPositionStyle:BAButtonLayoutTypeCenterImageRight viewRectCornerType:BAViewRectCornerTypeAllCorners viewCornerRadius:20 target:self selector:@selector(handleRightNaviButtonAction)];
     navi_rightButton.backgroundColor = BAKit_ColorRandom();
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:navi_rightButton];
+    
+    UIButton *navi_leftButton = [[UIButton alloc] creatButtonWithFrame:frame title:@"state" selTitle:nil titleColor:nil titleFont:nil image:[UIImage imageNamed:@"tabbar_mainframeHL"] selImage:nil padding:2 buttonPositionStyle:BAButtonLayoutTypeCenterImageRight viewRectCornerType:BAViewRectCornerTypeAllCorners viewCornerRadius:20 target:self selector:@selector(handleLeftNaviButtonAction)];
+    navi_rightButton.backgroundColor = BAKit_ColorRandom();
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:navi_leftButton];
+}
+
+- (void)handleLeftNaviButtonAction
+{
+    [self.navigationController pushViewController:[ViewController3 new] animated:YES];
 }
 
 - (void)handleRightNaviButtonAction

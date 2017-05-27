@@ -61,8 +61,17 @@
 #ifndef BAButton_h
 #define BAButton_h
 
-#import "UIButton+BAKit.h"
+#define BAObjc_setObj(key, value) objc_setAssociatedObject(self, key, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC)
 
+#define BAObjc_setObjCOPY(key, value) objc_setAssociatedObject(self, key, value, OBJC_ASSOCIATION_COPY)
+
+#define BAObjc_getObj objc_getAssociatedObject(self, _cmd)
+
+#define BAObjc_exchangeMethodAToB(methodA,methodB) method_exchangeImplementations(class_getInstanceMethod([self class], methodA),class_getInstanceMethod([self class], methodB));
+
+#import "UIButton+BAKit.h"
+#import "UIButton+BAState.h"
+#import "UIButton+BACountDown.h"
 /*!
  *********************************************************************************
  ************************************ 更新说明 ************************************
