@@ -61,18 +61,26 @@
 #ifndef BAButton_h
 #define BAButton_h
 
-#define BAObjc_setObj(key, value) objc_setAssociatedObject(self, key, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-
-#define BAObjc_setObjCOPY(key, value) objc_setAssociatedObject(self, key, value, OBJC_ASSOCIATION_COPY)
-
-#define BAObjc_getObj objc_getAssociatedObject(self, _cmd)
-
-#define BAObjc_exchangeMethodAToB(methodA,methodB) method_exchangeImplementations(class_getInstanceMethod([self class], methodA),class_getInstanceMethod([self class], methodB));
 
 #import "UIButton+BAKit.h"
 #import "UIButton+BAState.h"
 #import "UIButton+BACountDown.h"
 #import "UIView+BARectCorner.h"
+
+
+#define BAKit_Objc_setObj(key, value) objc_setAssociatedObject(self, key, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+
+#define BAKit_Objc_setObjCOPY(key, value) objc_setAssociatedObject(self, key, value, OBJC_ASSOCIATION_COPY)
+
+#define BAKit_Objc_getObj objc_getAssociatedObject(self, _cmd)
+
+#define BAKit_Objc_exchangeMethodAToB(methodA,methodB) method_exchangeImplementations(class_getInstanceMethod([self class], methodA),class_getInstanceMethod([self class], methodB));
+
+/*! 随机色 */
+CG_INLINE UIColor *
+BAKit_ColorRandom(){
+    return [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1];
+}
 
 /*!
  *********************************************************************************
@@ -91,6 +99,7 @@
  2.4.0.1、此版本由 [子丰大神](https://github.com/renzifeng) 亲自改版，再次感谢 [子丰大神](https://github.com/renzifeng)
  2.4.0.2、新增 UIButton 各种状态下背景颜色、字体、border、font、动画等的监测及改变
  2.4.0.3、新增 UIButton 倒计时的封装，两行代码搞定倒计时！
+ 2.4.0.4、优化整体代码结构，代码规范！
  
  最新更新时间：2017-05-26 【倒叙】
  最新Version：【Version：2.3.2】

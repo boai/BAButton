@@ -60,12 +60,6 @@
 
 #import <UIKit/UIKit.h>
 
-/*! 随机色 */
-CG_INLINE UIColor *
-BAKit_ColorRandom(){
-    return [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1];
-}
-
 /*!
  *  设置 viewRectCornerType 样式，
  *  注意：BAViewRectCornerType 必须要先设置 viewCornerRadius，才能有效，否则设置无效，

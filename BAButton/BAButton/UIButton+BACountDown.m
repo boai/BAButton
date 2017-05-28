@@ -22,43 +22,43 @@
 @implementation UIButton (BACountDown)
 
 - (void)setTimer:(dispatch_source_t)timer {
-    BAObjc_setObj(@selector(timer), timer);
+    BAKit_Objc_setObj(@selector(timer), timer);
 }
 
 - (dispatch_source_t)timer {
-    return BAObjc_getObj;
+    return BAKit_Objc_getObj;
 }
 
 - (void)setLeaveTime:(NSTimeInterval)leaveTime {
-    BAObjc_setObj(@selector(leaveTime), @(leaveTime));
+    BAKit_Objc_setObj(@selector(leaveTime), @(leaveTime));
 }
 
 - (NSTimeInterval)leaveTime {
-     return  [BAObjc_getObj doubleValue];
+     return  [BAKit_Objc_getObj doubleValue];
 }
 
 - (void)setCountDownFormat:(NSString *)countDownFormat {
-    BAObjc_setObjCOPY(@selector(countDownFormat), countDownFormat);
+    BAKit_Objc_setObjCOPY(@selector(countDownFormat), countDownFormat);
 }
 
 - (NSString *)countDownFormat {
-    return BAObjc_getObj;
+    return BAKit_Objc_getObj;
 }
 
 - (void)setTimeStoppedCallback:(void (^)())timeStoppedCallback {
-    BAObjc_setObjCOPY(@selector(timeStoppedCallback), timeStoppedCallback);
+    BAKit_Objc_setObjCOPY(@selector(timeStoppedCallback), timeStoppedCallback);
 }
 
 - (void (^)())timeStoppedCallback {
-    return BAObjc_getObj;
+    return BAKit_Objc_getObj;
 }
 
 - (void)setNormalTitle:(NSString *)normalTitle {
-    BAObjc_setObjCOPY(@selector(normalTitle), normalTitle);
+    BAKit_Objc_setObjCOPY(@selector(normalTitle), normalTitle);
 }
 
 - (NSString *)normalTitle {
-    return BAObjc_getObj;
+    return BAKit_Objc_getObj;
 }
 
 #pragma mark - public

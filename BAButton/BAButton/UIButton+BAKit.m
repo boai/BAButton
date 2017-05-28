@@ -6,9 +6,6 @@
 //  Copyright © 2017年 博爱之家. All rights reserved.
 //
 
-
-
-
 #import "UIButton+BAKit.h"
 #import <objc/runtime.h>
 
@@ -314,19 +311,19 @@ highlightedBackgroundImage:(UIImage *)highlightedBackgroundImage
  @param sel sel
  @return button
  */
-- (instancetype __nonnull)creatButtonWithFrame:(CGRect)frame
-                                         title:(NSString * __nullable)title
-                                      selTitle:(NSString * __nullable)selTitle
-                                    titleColor:(UIColor * __nullable)titleColor
-                                     titleFont:(UIFont * __nullable)titleFont
-                                         image:(UIImage * __nullable)image
-                                      selImage:(UIImage * __nullable)selImage
-                                       padding:(CGFloat)padding
-                           buttonPositionStyle:(BAButtonLayoutType)buttonLayoutType
-                            viewRectCornerType:(BAViewRectCornerType)viewRectCornerType
-                              viewCornerRadius:(CGFloat)viewCornerRadius
-                                        target:(id __nullable)target
-                                      selector:(SEL __nullable)sel
+- (instancetype __nonnull)ba_creatButtonWithFrame:(CGRect)frame
+                                            title:(NSString * __nullable)title
+                                         selTitle:(NSString * __nullable)selTitle
+                                       titleColor:(UIColor * __nullable)titleColor
+                                        titleFont:(UIFont * __nullable)titleFont
+                                            image:(UIImage * __nullable)image
+                                         selImage:(UIImage * __nullable)selImage
+                                          padding:(CGFloat)padding
+                              buttonPositionStyle:(BAButtonLayoutType)buttonLayoutType
+                               viewRectCornerType:(BAViewRectCornerType)viewRectCornerType
+                                 viewCornerRadius:(CGFloat)viewCornerRadius
+                                           target:(id __nullable)target
+                                         selector:(SEL __nullable)sel
 {
     UIButton *button = [[UIButton alloc] init];
     button.frame = frame;

@@ -13,7 +13,7 @@
 #import "BAButton.h"
 #import <objc/runtime.h>
 
-//Model
+// Model
 @interface BAPropertyModel : NSObject
 
 @property (nonatomic, assign) UIControlState state;
@@ -52,18 +52,18 @@
 #pragma mark - lefe cycle
 
 + (void)load {
-    BAObjc_exchangeMethodAToB(@selector(setHighlighted:),
+    BAKit_Objc_exchangeMethodAToB(@selector(setHighlighted:),
                             @selector(ba_setHighlighted:));
-    BAObjc_exchangeMethodAToB(@selector(setEnabled:),
+    BAKit_Objc_exchangeMethodAToB(@selector(setEnabled:),
                             @selector(ba_setEnabled:));
-    BAObjc_exchangeMethodAToB(@selector(setSelected:),
+    BAKit_Objc_exchangeMethodAToB(@selector(setSelected:),
                             @selector(ba_setSelected:));
 }
 
 #pragma mark - public method
 
 - (UIColor *)ba_currentBorderColor {
-    UIColor *color = [self ba_borderColorForState:self.state];
+    UIColor *color = [self ba_buttonBorderColorForState:self.state];
     if (!color) {
         color = [UIColor colorWithCGColor:self.layer.borderColor];
     }
@@ -71,7 +71,7 @@
 }
 
 - (UIColor *)ba_currentBackgroundColor {
-    UIColor *color = [self ba_backgroundColorForState:self.state];
+    UIColor *color = [self ba_buttonBackgroundColorForState:self.state];
     if (!color) {
         color = self.backgroundColor;
     }
@@ -79,14 +79,14 @@
 }
 
 - (UIFont *)ba_currentTitleLabelFont {
-    UIFont *font = [self ba_titleLabelFontForState:(self.state-1)];
+    UIFont *font = [self ba_buttonTitleLabelFontForState:(self.state-1)];
     if (!font) {
         font = self.titleLabel.font;
     }
     return font;
 }
 
-- (void)ba_setBackgroundColor:(UIColor *)backgroundColor forState:(UIControlState)state animated:(BOOL)animated {
+- (void)ba_buttonSetBackgroundColor:(UIColor *)backgroundColor forState:(UIControlState)state animated:(BOOL)animated {
     if (backgroundColor) {
         [self.backgroundColors setObject:backgroundColor forKey:@(state)];
         [self.animates setObject:@(animated) forKey:BABackgroundColorKEY(state)];
@@ -96,7 +96,7 @@
     }
 }
 
-- (void)ba_setborderColor:(UIColor *)borderColor forState:(UIControlState)state animated:(BOOL)animated {
+- (void)ba_buttonSetborderColor:(UIColor *)borderColor forState:(UIControlState)state animated:(BOOL)animated {
     if (borderColor) {
         [self.borderColors setObject:borderColor forKey:@(state)];
         [self.animates setObject:@(animated) forKey:BABorderColorKEY(state)];
@@ -106,7 +106,7 @@
     }
 }
 
-- (void)ba_setTitleLabelFont:(UIFont *)titleLabelFont forState:(UIControlState)state {
+- (void)ba_buttonSetTitleLabelFont:(UIFont *)titleLabelFont forState:(UIControlState)state {
     if (titleLabelFont) {
         [self.titleLabelFonts setObject:titleLabelFont forKey:@(state)];
     }
@@ -115,19 +115,19 @@
     }
 }
 
-- (UIColor *)ba_borderColorForState:(UIControlState)state {
+- (UIColor *)ba_buttonBorderColorForState:(UIControlState)state {
     return [self.borderColors objectForKey:@(state)];
 }
 
-- (UIColor *)ba_backgroundColorForState:(UIControlState)state {
+- (UIColor *)ba_buttonBackgroundColorForState:(UIControlState)state {
     return [self.backgroundColors objectForKey:@(state)];
 }
 
-- (UIFont *)ba_titleLabelFontForState:(UIControlState)state {
+- (UIFont *)ba_buttonTitleLabelFontForState:(UIControlState)state {
     return [self.titleLabelFonts objectForKey:@(state)];
 }
 
-- (void)ba_configBorderColors:(NSDictionary <NSNumber *,UIColor *>*)borderColors {
+- (void)ba_buttonConfigBorderColors:(NSDictionary <NSNumber *,UIColor *>*)borderColors {
     self.borderColors = [borderColors mutableCopy];
     [borderColors enumerateKeysAndObjectsUsingBlock:^(NSNumber * _Nonnull key, UIColor * _Nonnull obj, BOOL * _Nonnull stop) {
         [self.animates setObject:@(NO) forKey:BABorderColorKEY(key.integerValue)];
@@ -135,7 +135,7 @@
     [self updateButton];
 }
 
-- (void)ba_configBackgroundColors:(NSDictionary <NSNumber *,UIColor *>*)backgroundColors {
+- (void)ba_buttonConfigBackgroundColors:(NSDictionary <NSNumber *,UIColor *>*)backgroundColors {
     self.backgroundColors = [backgroundColors mutableCopy];
     [backgroundColors enumerateKeysAndObjectsUsingBlock:^(NSNumber * _Nonnull key, UIColor * _Nonnull obj, BOOL * _Nonnull stop) {
         [self.animates setObject:@(NO) forKey:BABackgroundColorKEY(key.integerValue)];
@@ -143,7 +143,7 @@
     [self updateButton];
 }
 
-- (void)ba_configTitleLabelFont:(NSDictionary<NSNumber *,UIFont *> *)titleLabelFonts {
+- (void)ba_buttonConfigTitleLabelFont:(NSDictionary<NSNumber *,UIFont *> *)titleLabelFonts {
     self.titleLabelFonts = [titleLabelFonts mutableCopy];
     [self updateButton];
 }
@@ -169,33 +169,33 @@
 
 - (void)updateButton {
     // updateBackgroundColor
-    UIColor *backgroundColor = [self ba_backgroundColorForState:self.state];
+    UIColor *backgroundColor = [self ba_buttonBackgroundColorForState:self.state];
     if (backgroundColor) {
         [self updateBackgroundColor:backgroundColor];
     } else {
-        UIColor *normalColor = [self ba_backgroundColorForState:UIControlStateNormal];
+        UIColor *normalColor = [self ba_buttonBackgroundColorForState:UIControlStateNormal];
         if (normalColor) {
             [self updateBackgroundColor:normalColor];
         }
     }
     
     // updateBorderColor
-    UIColor *borderColor = [self ba_borderColorForState:self.state];
+    UIColor *borderColor = [self ba_buttonBorderColorForState:self.state];
     if (borderColor) {
         [self updateBorderColor:borderColor];
     } else {
-        UIColor *normalColor = [self ba_borderColorForState:UIControlStateNormal];
+        UIColor *normalColor = [self ba_buttonBorderColorForState:UIControlStateNormal];
         if (normalColor) {
             [self updateBorderColor:normalColor];
         }
     }
     
     // updateTitleLabelFont
-    UIFont *titleLabelFont = [self ba_titleLabelFontForState:self.state];
+    UIFont *titleLabelFont = [self ba_buttonTitleLabelFontForState:self.state];
     if (titleLabelFont) {
         self.titleLabel.font = titleLabelFont;
     } else {
-        UIFont *normalFont = [self ba_titleLabelFontForState:UIControlStateNormal];
+        UIFont *normalFont = [self ba_buttonTitleLabelFontForState:UIControlStateNormal];
         if (normalFont) {
             self.titleLabel.font = normalFont;
         }
@@ -251,11 +251,11 @@
 #pragma mark - getters and setters
 
 - (void)setAnimates:(NSMutableDictionary *)animates {
-    BAObjc_setObj(@selector(animates),animates);
+    BAKit_Objc_setObj(@selector(animates),animates);
 }
 
 - (NSMutableDictionary *)animates {
-    NSMutableDictionary *animates = BAObjc_getObj;
+    NSMutableDictionary *animates = BAKit_Objc_getObj;
     if (!animates) {
         animates = [NSMutableDictionary new];
         self.animates = animates;
@@ -264,11 +264,11 @@
 }
 
 - (void)setBorderColors:(NSMutableDictionary *)borderColors {
-    BAObjc_setObj(@selector(borderColors),borderColors);
+    BAKit_Objc_setObj(@selector(borderColors),borderColors);
 }
 
 - (NSMutableDictionary *)borderColors {
-    NSMutableDictionary *borderColors = BAObjc_getObj;
+    NSMutableDictionary *borderColors = BAKit_Objc_getObj;
     if (!borderColors) {
         borderColors = [NSMutableDictionary new];
         self.borderColors = borderColors;
@@ -277,11 +277,11 @@
 }
 
 - (void)setBackgroundColors:(NSMutableDictionary *)backgroundColors {
-    BAObjc_setObj(@selector(backgroundColors),backgroundColors);
+    BAKit_Objc_setObj(@selector(backgroundColors),backgroundColors);
 }
 
 - (NSMutableDictionary *)backgroundColors {
-    NSMutableDictionary *backgroundColors = BAObjc_getObj;
+    NSMutableDictionary *backgroundColors = BAKit_Objc_getObj;
     if(!backgroundColors) {
         backgroundColors = [[NSMutableDictionary alloc] init];
         self.backgroundColors = backgroundColors;
@@ -290,11 +290,11 @@
 }
 
 - (void)setTitleLabelFonts:(NSMutableDictionary *)titleLabelFonts {
-    BAObjc_setObj(@selector(titleLabelFonts),titleLabelFonts);
+    BAKit_Objc_setObj(@selector(titleLabelFonts),titleLabelFonts);
 }
 
 - (NSMutableDictionary *)titleLabelFonts {
-    NSMutableDictionary *titleLabelFonts = BAObjc_getObj;
+    NSMutableDictionary *titleLabelFonts = BAKit_Objc_getObj;
     if(!titleLabelFonts) {
         titleLabelFonts = [[NSMutableDictionary alloc] init];
         self.titleLabelFonts = titleLabelFonts;
@@ -303,11 +303,11 @@
 }
 
 - (void)setBa_animatedDuration:(NSTimeInterval)ba_animatedDuration {
-    BAObjc_setObj(@selector(ba_animatedDuration),@(ba_animatedDuration));
+    BAKit_Objc_setObj(@selector(ba_animatedDuration),@(ba_animatedDuration));
 }
 
 - (NSTimeInterval)ba_animatedDuration {
-    NSTimeInterval duartion = [BAObjc_getObj doubleValue];
+    NSTimeInterval duartion = [BAKit_Objc_getObj doubleValue];
     if (duartion == 0) {
         duartion = 0.25;
     }
@@ -315,11 +315,11 @@
 }
 
 - (void)setSubViewPropertyArr:(NSMutableArray<BAPropertyModel *> *)subViewPropertyArr {
-    BAObjc_setObj(@selector(subViewPropertyArr),subViewPropertyArr);
+    BAKit_Objc_setObj(@selector(subViewPropertyArr),subViewPropertyArr);
 }
 
 - (NSMutableArray<BAPropertyModel *> *)subViewPropertyArr {
-    NSMutableArray *subViewPropertyArr = BAObjc_getObj;
+    NSMutableArray *subViewPropertyArr = BAKit_Objc_getObj;
     if(!subViewPropertyArr) {
         subViewPropertyArr = [[NSMutableArray alloc] init];
         self.subViewPropertyArr = subViewPropertyArr;
@@ -328,11 +328,11 @@
 }
 
 - (void)setSubViewTag:(NSInteger)subViewTag {
-    BAObjc_setObj(@selector(subViewTag),@(subViewTag));
+    BAKit_Objc_setObj(@selector(subViewTag),@(subViewTag));
 }
 
 - (NSInteger)subViewTag {
-    return [BAObjc_getObj integerValue];
+    return [BAKit_Objc_getObj integerValue];
 }
 
 @end

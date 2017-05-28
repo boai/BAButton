@@ -39,18 +39,26 @@
 #ifndef BAButton_h
 #define BAButton_h
 
-#define BAObjc_setObj(key, value) objc_setAssociatedObject(self, key, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-
-#define BAObjc_setObjCOPY(key, value) objc_setAssociatedObject(self, key, value, OBJC_ASSOCIATION_COPY)
-
-#define BAObjc_getObj objc_getAssociatedObject(self, _cmd)
-
-#define BAObjc_exchangeMethodAToB(methodA,methodB) method_exchangeImplementations(class_getInstanceMethod([self class], methodA),class_getInstanceMethod([self class], methodB));
 
 #import "UIButton+BAKit.h"
 #import "UIButton+BAState.h"
 #import "UIButton+BACountDown.h"
 #import "UIView+BARectCorner.h"
+
+
+#define BAKit_Objc_setObj(key, value) objc_setAssociatedObject(self, key, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+
+#define BAKit_Objc_setObjCOPY(key, value) objc_setAssociatedObject(self, key, value, OBJC_ASSOCIATION_COPY)
+
+#define BAKit_Objc_getObj objc_getAssociatedObject(self, _cmd)
+
+#define BAKit_Objc_exchangeMethodAToB(methodA,methodB) method_exchangeImplementations(class_getInstanceMethod([self class], methodA),class_getInstanceMethod([self class], methodB));
+
+/*! 随机色 */
+CG_INLINE UIColor *
+BAKit_ColorRandom(){
+    return [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1];
+}
 
 /*!
  *********************************************************************************
@@ -69,6 +77,7 @@
  2.4.0.1、此版本由 [子丰大神](https://github.com/renzifeng) 亲自改版，再次感谢 [子丰大神](https://github.com/renzifeng)
  2.4.0.2、新增 UIButton 各种状态下背景颜色、字体、border、font、动画等的监测及改变
  2.4.0.3、新增 UIButton 倒计时的封装，两行代码搞定倒计时！
+ 2.4.0.4、优化整体代码结构，代码规范！
  
  最新更新时间：2017-05-26 【倒叙】
  最新Version：【Version：2.3.2】
@@ -252,19 +261,19 @@ highlightedBackgroundImage:(UIImage *)highlightedBackgroundImage;
  @param sel sel
  @return button
  */
-- (instancetype __nonnull)creatButtonWithFrame:(CGRect)frame
-                                         title:(NSString * __nullable)title
-                                      selTitle:(NSString * __nullable)selTitle
-                                    titleColor:(UIColor * __nullable)titleColor
-                                     titleFont:(UIFont * __nullable)titleFont
-                                         image:(UIImage * __nullable)image
-                                      selImage:(UIImage * __nullable)selImage
-                                       padding:(CGFloat)padding
-                           buttonPositionStyle:(BAButtonLayoutType)buttonLayoutType
-                            viewRectCornerType:(BAViewRectCornerType)viewRectCornerType
-                              viewCornerRadius:(CGFloat)viewCornerRadius
-                                        target:(id __nullable)target
-                                      selector:(SEL __nullable)sel;
+- (instancetype __nonnull)ba_creatButtonWithFrame:(CGRect)frame
+                                            title:(NSString * __nullable)title
+                                         selTitle:(NSString * __nullable)selTitle
+                                       titleColor:(UIColor * __nullable)titleColor
+                                        titleFont:(UIFont * __nullable)titleFont
+                                            image:(UIImage * __nullable)image
+                                         selImage:(UIImage * __nullable)selImage
+                                          padding:(CGFloat)padding
+                              buttonPositionStyle:(BAButtonLayoutType)buttonLayoutType
+                               viewRectCornerType:(BAViewRectCornerType)viewRectCornerType
+                                 viewCornerRadius:(CGFloat)viewCornerRadius
+                                           target:(id __nullable)target
+                                         selector:(SEL __nullable)sel;
 
 @end
 NS_ASSUME_NONNULL_END
@@ -272,12 +281,6 @@ NS_ASSUME_NONNULL_END
 
 ### UIView+BARectCorner.h
 ```
-/*! 随机色 */
-CG_INLINE UIColor *
-BAKit_ColorRandom(){
-    return [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1];
-}
-
 /*!
  *  设置 viewRectCornerType 样式，
  *  注意：BAViewRectCornerType 必须要先设置 viewCornerRadius，才能有效，否则设置无效，
@@ -357,55 +360,55 @@ typedef NS_ENUM(NSInteger, BAViewRectCornerType) {
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UIButton (BAState)
-/** 
- * 获取当前borderColor 
+/**
+ * 获取当前borderColor
  */
 @property(nonatomic, readonly, strong) UIColor *ba_currentBorderColor;
 
-/** 
- * 获取当前backgroundColor 
+/**
+ * 获取当前backgroundColor
  */
 @property(nonatomic, readonly, strong) UIColor *ba_currentBackgroundColor;
 
-/** 
- * 获取当前titleLabelFont 
+/**
+ * 获取当前titleLabelFont
  */
 @property(nonatomic, readonly, strong) UIFont *ba_currentTitleLabelFont;
 
-/** 
- * 切换按钮状态时,执行动画的时间,默认0.25s(只有动画执行完毕后,才能会执行下一个点击事件) 
+/**
+ * 切换按钮状态时,执行动画的时间,默认0.25s(只有动画执行完毕后,才能会执行下一个点击事件)
  */
 @property (nonatomic, assign) NSTimeInterval ba_animatedDuration;
 
 /** 
  * 设置不同状态下的borderColor(支持动画效果) 
  */
-- (void)ba_setborderColor:(UIColor *)borderColor forState:(UIControlState)state animated:(BOOL)animated;
+- (void)ba_buttonSetborderColor:(UIColor *)borderColor forState:(UIControlState)state animated:(BOOL)animated;
 
 /** 
  * 设置不同状态下的backgroundColor(支持动画效果)
  */
-- (void)ba_setBackgroundColor:(UIColor *)backgroundColor forState:(UIControlState)state animated:(BOOL)animated;
+- (void)ba_buttonSetBackgroundColor:(UIColor *)backgroundColor forState:(UIControlState)state animated:(BOOL)animated;
 
 /** 
  * 设置不同状态下的titleLabelFont 
  */
-- (void)ba_setTitleLabelFont:(UIFont *)titleLabelFont forState:(UIControlState)state;
+- (void)ba_buttonSetTitleLabelFont:(UIFont *)titleLabelFont forState:(UIControlState)state;
 
 /** 
  * 获取某个状态的borderColor 
  */
-- (UIColor *)ba_borderColorForState:(UIControlState)state;
+- (UIColor *)ba_buttonBorderColorForState:(UIControlState)state;
 
 /** 
  * 获取某个状态的backgroundColor 
  */
-- (UIColor *)ba_backgroundColorForState:(UIControlState)state;
+- (UIColor *)ba_buttonBackgroundColorForState:(UIControlState)state;
 
 /** 
  * 获取某个状态的titleLabelFont 
  */
-- (UIFont *)ba_titleLabelFontForState:(UIControlState)state;
+- (UIFont *)ba_buttonTitleLabelFontForState:(UIControlState)state;
 
 #pragma mark - 使用key-value方式设置
 
@@ -413,18 +416,18 @@ NS_ASSUME_NONNULL_BEGIN
  * key:@(UIControlState枚举)
  * 注：此方式无动画
  */
-- (void)ba_configBorderColors:(NSDictionary <NSNumber *,UIColor *>*)borderColors;
+- (void)ba_buttonConfigBorderColors:(NSDictionary <NSNumber *,UIColor *>*)borderColors;
 
 /** 
  * key:@(UIControlState枚举)
  * 注：此方式无动画
  */
-- (void)ba_configBackgroundColors:(NSDictionary <NSNumber *,UIColor *>*)backgroundColors;
+- (void)ba_buttonConfigBackgroundColors:(NSDictionary <NSNumber *,UIColor *>*)backgroundColors;
 
 /** 
  * key:@(UIControlState枚举)
  */
-- (void)ba_configTitleLabelFont:(NSDictionary <NSNumber *,UIFont *>*)titleLabelFonts;
+- (void)ba_buttonConfigTitleLabelFont:(NSDictionary <NSNumber *,UIFont *>*)titleLabelFonts;
 
 @end
 
@@ -462,10 +465,17 @@ NS_ASSUME_NONNULL_END
     [self.normalButton ba_button_setBAViewRectCornerType:BAViewRectCornerTypeBottomLeft viewCornerRadius:viewCornerRadius];
     
 // 示例2：
+- (void)setupNavi
+{
     CGRect frame = CGRectMake(0, 0, 80, 40);
-    UIButton *navi_rightButton = [[UIButton alloc] creatButtonWithFrame:frame title:@"xib" selTitle:nil titleColor:nil titleFont:nil image:[UIImage imageNamed:@"tabbar_mainframeHL"] selImage:nil padding:2 buttonPositionStyle:BAButtonLayoutTypeCenterImageRight viewRectCornerType:BAViewRectCornerTypeAllCorners viewCornerRadius:20 target:self selector:@selector(handleRightNaviButtonAction)];
+    UIButton *navi_rightButton = [[UIButton alloc] ba_creatButtonWithFrame:frame title:@"xib" selTitle:nil titleColor:nil titleFont:nil image:[UIImage imageNamed:@"tabbar_mainframeHL"] selImage:nil padding:2 buttonPositionStyle:BAButtonLayoutTypeCenterImageRight viewRectCornerType:BAViewRectCornerTypeAllCorners viewCornerRadius:20 target:self selector:@selector(handleRightNaviButtonAction)];
     navi_rightButton.backgroundColor = BAKit_ColorRandom();
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:navi_rightButton];
+    
+    UIButton *navi_leftButton = [[UIButton alloc] ba_creatButtonWithFrame:frame title:@"state" selTitle:nil titleColor:nil titleFont:nil image:[UIImage imageNamed:@"tabbar_mainframeHL"] selImage:nil padding:2 buttonPositionStyle:BAButtonLayoutTypeCenterImageRight viewRectCornerType:BAViewRectCornerTypeAllCorners viewCornerRadius:20 target:self selector:@selector(handleLeftNaviButtonAction)];
+    navi_rightButton.backgroundColor = BAKit_ColorRandom();
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:navi_leftButton];
+}
 
 // 示例3：倒计时
 - (IBAction)countDownClick:(UIButton *)sender {
@@ -498,6 +508,7 @@ NS_ASSUME_NONNULL_END
  2.4.0.1、此版本由 [子丰大神](https://github.com/renzifeng) 亲自改版，再次感谢 [子丰大神](https://github.com/renzifeng)
  2.4.0.2、新增 UIButton 各种状态下背景颜色、字体、border、font、动画等的监测及改变
  2.4.0.3、新增 UIButton 倒计时的封装，两行代码搞定倒计时！
+ 2.4.0.4、优化整体代码结构，代码规范！
  
  最新更新时间：2017-05-26 【倒叙】
  最新Version：【Version：2.3.2】
