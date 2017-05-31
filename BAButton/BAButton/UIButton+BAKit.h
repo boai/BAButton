@@ -88,7 +88,7 @@ typedef NS_ENUM(NSInteger, BAButtonLayoutType) {
 @interface UIButton (BAKit)
 
 /**
- button 的布局样式，默认为：BAButtonLayoutTypeNormal，注意：此设置只能在 [self.view addSubview:button] 之后添加样式
+ button 的布局样式，默认为：BAButtonLayoutTypeNormal，注意：文字、字体大小、图片等设置一定要在设置 ba_button_setBAButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移
  */
 @property(nonatomic, assign) BAButtonLayoutType buttonLayoutType;
 
