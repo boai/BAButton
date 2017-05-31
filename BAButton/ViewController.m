@@ -142,7 +142,10 @@
                 type = BAButtonLayoutTypeNormal;
                 break;
         }
+        
+        // 注意：文字、字体大小、图片等设置一定要在设置 ba_button_setBAButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移
         [button ba_button_setBAButtonLayoutType:type padding:padding];
+        
         [self.view addSubview:button];
     }
 }
