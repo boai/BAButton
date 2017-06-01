@@ -93,6 +93,11 @@ BAKit_ColorRandom(){
  项目源码地址：
  OC 版 ：https://github.com/BAHome/BAButton
  
+ 最新更新时间：2017-06-01 【倒叙】
+ 最新Version：【Version：2.4.1】
+ 更新内容：
+ 2.4.1.1、优化注释，注意：文字、字体大小、图片等设置一定要在设置 ba_button_setBAButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移
+ 
  最新更新时间：2017-05-27 【倒叙】
  最新Version：【Version：2.4.0】
  更新内容：

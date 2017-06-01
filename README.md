@@ -11,6 +11,7 @@
 * 3、用 UIButton 的分类处理，处理更简单，一行代码轻松搞定所有 UIButton 自定义
 * 4、新增 UIButton 各种状态下背景颜色、字体、border、font、动画等的监测及改变
 * 5、新增 UIButton 倒计时的封装，两行代码搞定倒计时！
+* 6、注意：文字、字体大小、图片等设置一定要在设置 ba_button_setBAButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移
 
 ## 2、图片示例
 ![BAButton1](https://github.com/BAHome/BAButton/blob/master/Images/BAButton1.png)
@@ -18,7 +19,7 @@
 ![BAButton4](https://github.com/BAHome/BAButton/blob/master/Images/BAButton4.png)
 
 ## 3、安装、导入示例和源码地址
-* 1、pod 导入【最新版本：version 2.4.0】： <br>
+* 1、pod 导入【最新版本：![](https://img.shields.io/cocoapods/v/BAButton.svg?style=flat)】： <br>
  `pod 'BAButton'` <br>
 如果发现 `pod search BAButton` 搜索出来的不是最新版本，需要在终端执行 cd 转换文件路径命令退回到 desktop，然后执行 `pod setup` 命令更新本地spec缓存（可能需要几分钟），然后再搜索就可以了。<br>
 具体步骤：
@@ -70,6 +71,11 @@ BAKit_ColorRandom(){
  
  项目源码地址：
  OC 版 ：https://github.com/BAHome/BAButton
+ 
+ 最新更新时间：2017-06-01 【倒叙】
+ 最新Version：【Version：2.4.1】
+ 更新内容：
+ 2.4.1.1、优化注释，注意：文字、字体大小、图片等设置一定要在设置 ba_button_setBAButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移
  
  最新更新时间：2017-05-27 【倒叙】
  最新Version：【Version：2.4.0】
@@ -149,7 +155,7 @@ typedef NS_ENUM(NSInteger, BAButtonLayoutType) {
 @property (nonatomic, assign) CGFloat padding_inset;
 
 /**
- 快速设置 button 的布局样式 和 间距
+ 快速设置 button 的布局样式 和 间距，注意：文字、字体大小、图片等设置一定要在设置 ba_button_setBAButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移
 
  @param type button 的布局样式
  @param padding 文字与图片之间的间距
@@ -157,7 +163,7 @@ typedef NS_ENUM(NSInteger, BAButtonLayoutType) {
 - (void)ba_button_setBAButtonLayoutType:(BAButtonLayoutType)type padding:(CGFloat)padding;
 
 /**
- 快速切圆角
+ 快速切圆角，注意：文字、字体大小、图片等设置一定要在设置 ba_button_setBAButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移
 
  @param type 圆角样式
  @param viewCornerRadius 圆角角度
@@ -502,6 +508,11 @@ NS_ASSUME_NONNULL_END
 ## 5、更新记录：【倒叙】
  欢迎使用 [【BAHome】](https://github.com/BAHome) 系列开源代码 ！
  如有更多需求，请前往：[【https://github.com/BAHome】](https://github.com/BAHome) 
+ 
+ 最新更新时间：2017-06-01 【倒叙】
+ 最新Version：【Version：2.4.1】
+ 更新内容：
+ 2.4.1.1、优化注释，注意：文字、字体大小、图片等设置一定要在设置 ba_button_setBAButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移
  
  最新更新时间：2017-05-27 【倒叙】
  最新Version：【Version：2.4.0】
