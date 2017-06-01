@@ -103,7 +103,7 @@ typedef NS_ENUM(NSInteger, BAButtonLayoutType) {
 @property (nonatomic, assign) CGFloat padding_inset;
 
 /**
- 快速设置 button 的布局样式 和 间距
+ 快速设置 button 的布局样式 和 间距，注意：文字、字体大小、图片等设置一定要在设置 ba_button_setBAButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移
 
  @param type button 的布局样式
  @param padding 文字与图片之间的间距
@@ -111,7 +111,7 @@ typedef NS_ENUM(NSInteger, BAButtonLayoutType) {
 - (void)ba_button_setBAButtonLayoutType:(BAButtonLayoutType)type padding:(CGFloat)padding;
 
 /**
- 快速切圆角
+ 快速切圆角，注意：文字、字体大小、图片等设置一定要在设置 ba_button_setBAButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移
 
  @param type 圆角样式
  @param viewCornerRadius 圆角角度
