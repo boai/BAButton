@@ -10,9 +10,6 @@
 #import <objc/runtime.h>
 #import "BAButton.h"
 
-static void *viewRectCornerTypeKey = @"viewRectCornerTypeKey";
-static void *viewCornerRadiusKey = @"viewCornerRadiusKey";
-
 @implementation UIView (BARectCorner)
 
 - (void)ba_view_setBAViewRectCornerType:(BAViewRectCornerType)type viewCornerRadius:(CGFloat)viewCornerRadius
@@ -119,12 +116,12 @@ static void *viewCornerRadiusKey = @"viewCornerRadiusKey";
 
 - (void)setViewCornerRadius:(CGFloat)viewCornerRadius
 {
-    objc_setAssociatedObject(self, viewCornerRadiusKey, @(viewCornerRadius), OBJC_ASSOCIATION_ASSIGN);
+    BAKit_Objc_setObj(@selector(viewCornerRadius), @(viewCornerRadius));
 }
 
 - (CGFloat)viewCornerRadius
 {
-    return [objc_getAssociatedObject(self, viewCornerRadiusKey) floatValue];
+    return [BAKit_Objc_getObj floatValue];
 }
 
 @end
