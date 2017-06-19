@@ -7,15 +7,14 @@
 //
 
 #import "UIView+BARectCorner.h"
-#import <objc/runtime.h>
-#import "BAButton.h"
+#import "BAKit_ConfigurationDefine.h"
 
 @implementation UIView (BARectCorner)
 
-- (void)ba_view_setBAViewRectCornerType:(BAViewRectCornerType)type viewCornerRadius:(CGFloat)viewCornerRadius
+- (void)ba_view_setViewRectCornerType:(BAKit_ViewRectCornerType)type viewCornerRadius:(CGFloat)viewCornerRadius
 {
-    self.viewCornerRadius = viewCornerRadius;
-    self.viewRectCornerType = type;
+    self.ba_viewCornerRadius = viewCornerRadius;
+    self.ba_viewRectCornerType = type;
 }
 
 #pragma mark - view 的 角半径，默认 CGSizeMake(0, 0)
@@ -24,65 +23,65 @@
     UIRectCorner corners;
     CGSize cornerRadii;
     
-    cornerRadii = CGSizeMake(self.viewCornerRadius, self.viewCornerRadius);
-    if (self.viewCornerRadius == 0)
+    cornerRadii = CGSizeMake(self.ba_viewCornerRadius, self.ba_viewCornerRadius);
+    if (self.ba_viewCornerRadius == 0)
     {
         cornerRadii = CGSizeMake(0, 0);
     }
     
-    switch (self.viewRectCornerType)
+    switch (self.ba_viewRectCornerType)
     {
-        case BAViewRectCornerTypeBottomLeft:
+        case BAKit_ViewRectCornerTypeBottomLeft:
         {
             corners = UIRectCornerBottomLeft;
         }
             break;
-        case BAViewRectCornerTypeBottomRight:
+        case BAKit_ViewRectCornerTypeBottomRight:
         {
             corners = UIRectCornerBottomRight;
         }
             break;
-        case BAViewRectCornerTypeTopLeft:
+        case BAKit_ViewRectCornerTypeTopLeft:
         {
             corners = UIRectCornerTopLeft;
         }
             break;
-        case BAViewRectCornerTypeTopRight:
+        case BAKit_ViewRectCornerTypeTopRight:
         {
             corners = UIRectCornerTopRight;
         }
             break;
-        case BAViewRectCornerTypeBottomLeftAndBottomRight:
+        case BAKit_ViewRectCornerTypeBottomLeftAndBottomRight:
         {
             corners = UIRectCornerBottomLeft | UIRectCornerBottomRight;
         }
             break;
-        case BAViewRectCornerTypeTopLeftAndTopRight:
+        case BAKit_ViewRectCornerTypeTopLeftAndTopRight:
         {
             corners = UIRectCornerTopLeft | UIRectCornerTopRight;
         }
             break;
-        case BAViewRectCornerTypeBottomLeftAndTopLeft:
+        case BAKit_ViewRectCornerTypeBottomLeftAndTopLeft:
         {
             corners = UIRectCornerBottomLeft | UIRectCornerTopLeft;
         }
             break;
-        case BAViewRectCornerTypeBottomRightAndTopRight:
+        case BAKit_ViewRectCornerTypeBottomRightAndTopRight:
         {
             corners = UIRectCornerBottomRight | UIRectCornerTopRight;
         }
             break;
-        case BAViewRectCornerTypeBottomRightAndTopRightAndTopLeft:
+        case BAKit_ViewRectCornerTypeBottomRightAndTopRightAndTopLeft:
         {
             corners = UIRectCornerBottomRight | UIRectCornerTopRight | UIRectCornerTopLeft;
         }
             break;
-        case BAViewRectCornerTypeBottomRightAndTopRightAndBottomLeft:
+        case BAKit_ViewRectCornerTypeBottomRightAndTopRightAndBottomLeft:
         {
             corners = UIRectCornerBottomRight | UIRectCornerTopRight | UIRectCornerBottomLeft;
         }
             break;
-        case BAViewRectCornerTypeAllCorners:
+        case BAKit_ViewRectCornerTypeAllCorners:
         {
             corners = UIRectCornerAllCorners;
         }
@@ -102,26 +101,25 @@
 }
 
 #pragma mark - setter / getter
-
-- (void)setViewRectCornerType:(BAViewRectCornerType)viewRectCornerType
+- (void)setBa_viewRectCornerType:(BAKit_ViewRectCornerType)ba_viewRectCornerType
 {
-    BAKit_Objc_setObj(@selector(viewRectCornerType), @(viewRectCornerType));
+    BAKit_Objc_setObj(@selector(ba_viewRectCornerType), @(ba_viewRectCornerType));
     [self setupButtonCornerType];
 }
 
-- (BAViewRectCornerType)viewRectCornerType
+- (BAKit_ViewRectCornerType)ba_viewRectCornerType
 {
     return [BAKit_Objc_getObj integerValue];
 }
 
-- (void)setViewCornerRadius:(CGFloat)viewCornerRadius
+- (void)setBa_viewCornerRadius:(CGFloat)ba_viewCornerRadius
 {
-    BAKit_Objc_setObj(@selector(viewCornerRadius), @(viewCornerRadius));
+    BAKit_Objc_setObj(@selector(ba_viewCornerRadius), @(ba_viewCornerRadius));
 }
 
-- (CGFloat)viewCornerRadius
+- (CGFloat)ba_viewCornerRadius
 {
-    return [BAKit_Objc_getObj floatValue];
+    return [BAKit_Objc_getObj integerValue];
 }
 
 @end

@@ -12,6 +12,7 @@
 * 4、新增 UIButton 各种状态下背景颜色、字体、border、font、动画等的监测及改变
 * 5、新增 UIButton 倒计时的封装，两行代码搞定倒计时！
 * 6、注意：文字、字体大小、图片等设置一定要在设置 ba_button_setBAButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移
+* 7、优化命名规范，更换了全局统一属性命名和方法命名，如果更新有报错的地方，大家别急，看 .h 文件更换过来即可，后期推出的 BAKit 系列产品，命名都将统一规范，在此给大家带来的不便之处，向大家道歉！希望大家谅解！多谢体谅！
 
 ## 2、图片示例
 ![BAButton1](https://github.com/BAHome/BAButton/blob/master/Images/BAButton1.png)
@@ -45,21 +46,8 @@
 #import "UIButton+BAState.h"
 #import "UIButton+BACountDown.h"
 #import "UIView+BARectCorner.h"
+#import "BAKit_ConfigurationDefine.h"
 
-
-#define BAKit_Objc_setObj(key, value) objc_setAssociatedObject(self, key, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-
-#define BAKit_Objc_setObjCOPY(key, value) objc_setAssociatedObject(self, key, value, OBJC_ASSOCIATION_COPY)
-
-#define BAKit_Objc_getObj objc_getAssociatedObject(self, _cmd)
-
-#define BAKit_Objc_exchangeMethodAToB(methodA,methodB) method_exchangeImplementations(class_getInstanceMethod([self class], methodA),class_getInstanceMethod([self class], methodB));
-
-/*! 随机色 */
-CG_INLINE UIColor *
-BAKit_ColorRandom(){
-    return [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1];
-}
 
 /*!
  *********************************************************************************
@@ -71,6 +59,11 @@ BAKit_ColorRandom(){
  
  项目源码地址：
  OC 版 ：https://github.com/BAHome/BAButton
+ 
+ 最新更新时间：2017-06-01 【倒叙】
+ 最新Version：【Version：2.5.0】
+ 更新内容：
+ 2.5.0.1、优化命名规范，更换了全局统一属性命名和方法命名，如果更新有报错的地方，大家别急，看 .h 文件更换过来即可，后期推出的 BAKit 系列产品，命名都将统一规范，在此给大家带来的不便之处，向大家道歉！希望大家谅解！多谢体谅！
  
  最新更新时间：2017-06-01 【倒叙】
  最新Version：【Version：2.4.3】
@@ -127,58 +120,60 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  button 的样式，以图片为基准
 
- - BAButtonLayoutTypeNormal: button 默认样式：内容居中-图左文右
- - BAButtonLayoutTypeCenterImageRight: 内容居中-图右文左
- - BAButtonLayoutTypeCenterImageTop: 内容居中-图上文下
- - BAButtonLayoutTypeCenterImageBottom: 内容居中-图下文上
- - BAButtonLayoutTypeLeftImageLeft: 内容居左-图左文右
- - BAButtonLayoutTypeLeftImageRight: 内容居左-图右文左
- - BAButtonLayoutTypeRightImageLeft: 内容居右-图左文右
- - BAButtonLayoutTypeRightImageRight: 内容居右-图右文左
+ - BAKit_ButtonLayoutTypeNormal: button 默认样式：内容居中-图左文右
+ - BAKit_ButtonLayoutTypeCenterImageRight: 内容居中-图右文左
+ - BAKit_ButtonLayoutTypeCenterImageTop: 内容居中-图上文下
+ - BAKit_ButtonLayoutTypeCenterImageBottom: 内容居中-图下文上
+ - BAKit_ButtonLayoutTypeLeftImageLeft: 内容居左-图左文右
+ - BAKit_ButtonLayoutTypeLeftImageRight: 内容居左-图右文左
+ - BAKit_ButtonLayoutTypeRightImageLeft: 内容居右-图左文右
+ - BAKit_ButtonLayoutTypeRightImageRight: 内容居右-图右文左
  */
-typedef NS_ENUM(NSInteger, BAButtonLayoutType) {
-    BAButtonLayoutTypeNormal = 0,
-    BAButtonLayoutTypeCenterImageRight,
-    BAButtonLayoutTypeCenterImageTop,
-    BAButtonLayoutTypeCenterImageBottom,
-    BAButtonLayoutTypeLeftImageLeft,
-    BAButtonLayoutTypeLeftImageRight,
-    BAButtonLayoutTypeRightImageLeft,
-    BAButtonLayoutTypeRightImageRight,
+typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
+    BAKit_ButtonLayoutTypeNormal = 0,
+    BAKit_ButtonLayoutTypeCenterImageRight,
+    BAKit_ButtonLayoutTypeCenterImageTop,
+    BAKit_ButtonLayoutTypeCenterImageBottom,
+    BAKit_ButtonLayoutTypeLeftImageLeft,
+    BAKit_ButtonLayoutTypeLeftImageRight,
+    BAKit_ButtonLayoutTypeRightImageLeft,
+    BAKit_ButtonLayoutTypeRightImageRight,
 };
 
 @interface UIButton (BAKit)
 
 /**
- button 的布局样式，默认为：BAButtonLayoutTypeNormal，注意：文字、字体大小、图片等设置一定要在设置 ba_button_setBAButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移
+ button 的布局样式，默认为：BAKit_ButtonLayoutTypeNormal，注意：文字、字体大小、图片等设置一定要在设置 ba_button_setBAKit_ButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移
  */
-@property(nonatomic, assign) BAButtonLayoutType buttonLayoutType;
+@property(nonatomic, assign) BAKit_ButtonLayoutType ba_buttonLayoutType;
 
 /*!
  *  文字与图片之间的间距，默认为：0
  */
-@property (nonatomic, assign) CGFloat padding;
+@property (nonatomic, assign) CGFloat ba_padding;
 
 /*!
  *  文字或图片距离 button 左右边界的最小距离，默认为：5
  */
-@property (nonatomic, assign) CGFloat padding_inset;
+@property (nonatomic, assign) CGFloat ba_padding_inset;
 
 /**
- 快速设置 button 的布局样式 和 间距，注意：文字、字体大小、图片等设置一定要在设置 ba_button_setBAButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移
+ 快速设置 button 的布局样式 和 间距，注意：文字、字体大小、图片等设置一定要在设置 ba_button_setButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移
 
  @param type button 的布局样式
  @param padding 文字与图片之间的间距
  */
-- (void)ba_button_setBAButtonLayoutType:(BAButtonLayoutType)type padding:(CGFloat)padding;
+- (void)ba_button_setButtonLayoutType:(BAKit_ButtonLayoutType)type
+                              padding:(CGFloat)padding;
 
 /**
- 快速切圆角，注意：文字、字体大小、图片等设置一定要在设置 ba_button_setBAButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移
+ 快速切圆角，注意：文字、字体大小、图片等设置一定要在设置 ba_button_setButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移
 
  @param type 圆角样式
  @param viewCornerRadius 圆角角度
  */
-- (void)ba_button_setBAViewRectCornerType:(BAViewRectCornerType)type viewCornerRadius:(CGFloat)viewCornerRadius;
+- (void)ba_button_setViewRectCornerType:(BAKit_ViewRectCornerType)type
+                       viewCornerRadius:(CGFloat)viewCornerRadius;
 
 /**
  *  给定框架创建一个UIButton对象
@@ -285,8 +280,8 @@ highlightedBackgroundImage:(UIImage *)highlightedBackgroundImage;
                                             image:(UIImage * __nullable)image
                                          selImage:(UIImage * __nullable)selImage
                                           padding:(CGFloat)padding
-                              buttonPositionStyle:(BAButtonLayoutType)buttonLayoutType
-                               viewRectCornerType:(BAViewRectCornerType)viewRectCornerType
+                              buttonPositionStyle:(BAKit_ButtonLayoutType)buttonLayoutType
+                               viewRectCornerType:(BAKit_ViewRectCornerType)viewRectCornerType
                                  viewCornerRadius:(CGFloat)viewCornerRadius
                                            target:(id __nullable)target
                                          selector:(SEL __nullable)sel;
@@ -297,69 +292,71 @@ NS_ASSUME_NONNULL_END
 
 ### UIView+BARectCorner.h
 ```
+#import <UIKit/UIKit.h>
+
 /*!
  *  设置 viewRectCornerType 样式，
- *  注意：BAViewRectCornerType 必须要先设置 viewCornerRadius，才能有效，否则设置无效，
+ *  注意：BAKit_ViewRectCornerType 必须要先设置 viewCornerRadius，才能有效，否则设置无效，
  */
-typedef NS_ENUM(NSInteger, BAViewRectCornerType) {
+typedef NS_ENUM(NSInteger, BAKit_ViewRectCornerType) {
     /*!
      *  设置下左角 圆角半径
      */
-    BAViewRectCornerTypeBottomLeft = 0,
+    BAKit_ViewRectCornerTypeBottomLeft = 0,
     /*!
      *  设置下右角 圆角半径
      */
-    BAViewRectCornerTypeBottomRight,
+    BAKit_ViewRectCornerTypeBottomRight,
     /*!
      *  设置上左角 圆角半径
      */
-    BAViewRectCornerTypeTopLeft,
+    BAKit_ViewRectCornerTypeTopLeft,
     /*!
      *  设置下右角 圆角半径
      */
-    BAViewRectCornerTypeTopRight,
+    BAKit_ViewRectCornerTypeTopRight,
     /*!
      *  设置下左、下右角 圆角半径
      */
-    BAViewRectCornerTypeBottomLeftAndBottomRight,
+    BAKit_ViewRectCornerTypeBottomLeftAndBottomRight,
     /*!
      *  设置上左、上右角 圆角半径
      */
-    BAViewRectCornerTypeTopLeftAndTopRight,
+    BAKit_ViewRectCornerTypeTopLeftAndTopRight,
     /*!
      *  设置下左、上左角 圆角半径
      */
-    BAViewRectCornerTypeBottomLeftAndTopLeft,
+    BAKit_ViewRectCornerTypeBottomLeftAndTopLeft,
     /*!
      *  设置下右、上右角 圆角半径
      */
-    BAViewRectCornerTypeBottomRightAndTopRight,
+    BAKit_ViewRectCornerTypeBottomRightAndTopRight,
     /*!
      *  设置上左、上右、下右角 圆角半径
      */
-    BAViewRectCornerTypeBottomRightAndTopRightAndTopLeft,
+    BAKit_ViewRectCornerTypeBottomRightAndTopRightAndTopLeft,
     /*!
      *  设置下右、上右、下左角 圆角半径
      */
-    BAViewRectCornerTypeBottomRightAndTopRightAndBottomLeft,
+    BAKit_ViewRectCornerTypeBottomRightAndTopRightAndBottomLeft,
     /*!
      *  设置全部四个角 圆角半径
      */
-    BAViewRectCornerTypeAllCorners
+    BAKit_ViewRectCornerTypeAllCorners
 };
 
 @interface UIView (BARectCorner)
 
 /*!
  *  设置 viewRectCornerType 样式，
- *  注意：BAViewRectCornerType 必须要先设置 viewCornerRadius，才能有效，否则设置无效，
+ *  注意：BAKit_ViewRectCornerType 必须要先设置 viewCornerRadius，才能有效，否则设置无效，
  */
-@property (nonatomic, assign) BAViewRectCornerType viewRectCornerType;
+@property (nonatomic, assign) BAKit_ViewRectCornerType ba_viewRectCornerType;
 
 /*!
  *  设置 button 圆角，如果要全部设置四个角的圆角，可以直接用这个方法，必须要在设置 frame 之后
  */
-@property (nonatomic, assign) CGFloat viewCornerRadius;
+@property (nonatomic, assign) CGFloat ba_viewCornerRadius;
 
 /**
  快速切圆角
@@ -367,7 +364,10 @@ typedef NS_ENUM(NSInteger, BAViewRectCornerType) {
  @param type 圆角样式
  @param viewCornerRadius 圆角角度
  */
-- (void)ba_view_setBAViewRectCornerType:(BAViewRectCornerType)type viewCornerRadius:(CGFloat)viewCornerRadius;
+- (void)ba_view_setViewRectCornerType:(BAKit_ViewRectCornerType)type viewCornerRadius:(CGFloat)viewCornerRadius;
+
+@end
+
 ```
 ### UIButton+BAState.h
 ```
@@ -477,20 +477,20 @@ NS_ASSUME_NONNULL_END
 ### demo 示例
 ```
 // 示例1：
-	// 注意：文字、字体大小、图片等设置一定要在设置 ba_button_setBAButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移
-    [self.normalButton ba_button_setBAButtonLayoutType:BAButtonLayoutTypeNormal padding:padding];
-    [self.normalButton ba_button_setBAViewRectCornerType:BAViewRectCornerTypeBottomLeft viewCornerRadius:viewCornerRadius];
+	// 注意：文字、字体大小、图片等设置一定要在设置     [self.normalButton ba_button_setButtonLayoutType:BAKit_ButtonLayoutTypeNormal padding:padding];
+    
+    [self.normalButton ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomLeft viewCornerRadius:viewCornerRadius];
     
 // 示例2：
 - (void)setupNavi
 {
     CGRect frame = CGRectMake(0, 0, 80, 40);
-    UIButton *navi_rightButton = [UIButton ba_creatButtonWithFrame:frame title:@"xib" selTitle:nil titleColor:nil titleFont:nil image:[UIImage imageNamed:@"tabbar_mainframeHL"] selImage:nil padding:2 buttonPositionStyle:BAButtonLayoutTypeCenterImageRight viewRectCornerType:BAViewRectCornerTypeAllCorners viewCornerRadius:20 target:self selector:@selector(handleRightNaviButtonAction)];
-    navi_rightButton.backgroundColor = BAKit_ColorRandom();
+    UIButton *navi_rightButton = [UIButton ba_creatButtonWithFrame:frame title:@"xib" selTitle:nil titleColor:BAKit_Color_Red titleFont:nil image:[UIImage imageNamed:@"tabbar_mainframeHL"] selImage:nil padding:2 buttonPositionStyle:BAKit_ButtonLayoutTypeCenterImageRight viewRectCornerType:BAKit_ViewRectCornerTypeAllCorners viewCornerRadius:20 target:self selector:@selector(handleRightNaviButtonAction)];
+    navi_rightButton.backgroundColor = BAKit_Color_RandomRGB();
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:navi_rightButton];
     
-    UIButton *navi_leftButton = [UIButton ba_creatButtonWithFrame:frame title:@"state" selTitle:nil titleColor:nil titleFont:nil image:[UIImage imageNamed:@"tabbar_mainframeHL"] selImage:nil padding:2 buttonPositionStyle:BAButtonLayoutTypeCenterImageRight viewRectCornerType:BAViewRectCornerTypeAllCorners viewCornerRadius:20 target:self selector:@selector(handleLeftNaviButtonAction)];
-    navi_rightButton.backgroundColor = BAKit_ColorRandom();
+    UIButton *navi_leftButton = [UIButton ba_creatButtonWithFrame:frame title:@"state" selTitle:nil titleColor:BAKit_Color_Red titleFont:nil image:[UIImage imageNamed:@"tabbar_mainframeHL"] selImage:nil padding:2 buttonPositionStyle:BAKit_ButtonLayoutTypeCenterImageRight viewRectCornerType:BAKit_ViewRectCornerTypeAllCorners viewCornerRadius:20 target:self selector:@selector(handleLeftNaviButtonAction)];
+    navi_rightButton.backgroundColor = BAKit_Color_RandomRGBA();
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:navi_leftButton];
 }
 
@@ -518,6 +518,11 @@ NS_ASSUME_NONNULL_END
 ## 5、更新记录：【倒叙】
  欢迎使用 [【BAHome】](https://github.com/BAHome) 系列开源代码 ！
  如有更多需求，请前往：[【https://github.com/BAHome】](https://github.com/BAHome) 
+ 
+ 最新更新时间：2017-06-19 【倒叙】
+ 最新Version：【Version：2.5.0】
+ 更新内容：
+ 2.5.0.1、优化命名规范，更换了全局统一属性命名和方法命名，如果更新有报错的地方，大家别急，看 .h 文件更换过来即可，后期推出的 BAKit 系列产品，命名都将统一规范，在此给大家带来的不便之处，向大家道歉！希望大家谅解！多谢体谅！
  
  最新更新时间：2017-06-01 【倒叙】
  最新Version：【Version：2.4.3】

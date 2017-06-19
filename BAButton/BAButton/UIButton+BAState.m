@@ -10,7 +10,7 @@
 #define BABorderColorKEY(state) [NSString stringWithFormat:@"borderColor%zd",state]
 
 #import "UIButton+BAState.h"
-#import "BAButton.h"
+#import "BAKit_ConfigurationDefine.h"
 #import <objc/runtime.h>
 
 // Model
