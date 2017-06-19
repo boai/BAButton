@@ -7,7 +7,7 @@
 //
 
 #import "UIButton+BACountDown.h"
-#import "BAButton.h"
+#import "BAKit_ConfigurationDefine.h"
 #import <objc/runtime.h>
 
 @interface UIButton ()

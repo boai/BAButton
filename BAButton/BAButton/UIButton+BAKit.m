@@ -8,6 +8,7 @@
 
 #import "UIButton+BAKit.h"
 #import <objc/runtime.h>
+#import "BAKit_ConfigurationDefine.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -35,10 +36,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-static void *buttonLayoutTypeKey = @"buttonLayoutTypeKey";
-static void *paddingKey = @"paddingKey";
-static void *padding_insetKey = @"padding_insetKey";
-
 @implementation UIButton (BAKit)
 
 - (void)setupButtonLayout
@@ -59,67 +56,67 @@ static void *padding_insetKey = @"padding_insetKey";
     UIEdgeInsets imageEdge = UIEdgeInsetsZero;
     UIEdgeInsets titleEdge = UIEdgeInsetsZero;
     
-    if (self.padding_inset == 0)
+    if (self.ba_padding_inset == 0)
     {
-        self.padding_inset = 5;
+        self.ba_padding_inset = 5;
     }
     
-    switch (self.buttonLayoutType) {
-        case BAButtonLayoutTypeNormal:
+    switch (self.ba_buttonLayoutType) {
+        case BAKit_ButtonLayoutTypeNormal:
         {
             
-            titleEdge = UIEdgeInsetsMake(0, self.padding, 0, 0);
+            titleEdge = UIEdgeInsetsMake(0, self.ba_padding, 0, 0);
             
-            imageEdge = UIEdgeInsetsMake(0, 0, 0, self.padding);
+            imageEdge = UIEdgeInsetsMake(0, 0, 0, self.ba_padding);
             
         }
             break;
-        case BAButtonLayoutTypeCenterImageRight:
+        case BAKit_ButtonLayoutTypeCenterImageRight:
         {
-            titleEdge = UIEdgeInsetsMake(0, -image_w - self.padding, 0, image_w);
-            imageEdge = UIEdgeInsetsMake(0, title_w + self.padding, 0, -title_w);
+            titleEdge = UIEdgeInsetsMake(0, -image_w - self.ba_padding, 0, image_w);
+            imageEdge = UIEdgeInsetsMake(0, title_w + self.ba_padding, 0, -title_w);
         }
             break;
-        case BAButtonLayoutTypeCenterImageTop:
+        case BAKit_ButtonLayoutTypeCenterImageTop:
         {
-            titleEdge = UIEdgeInsetsMake(0, -image_w, -image_h - self.padding, 0);
-            imageEdge = UIEdgeInsetsMake(-title_h - self.padding, 0, 0, -title_w);
+            titleEdge = UIEdgeInsetsMake(0, -image_w, -image_h - self.ba_padding, 0);
+            imageEdge = UIEdgeInsetsMake(-title_h - self.ba_padding, 0, 0, -title_w);
         }
             break;
-        case BAButtonLayoutTypeCenterImageBottom:
+        case BAKit_ButtonLayoutTypeCenterImageBottom:
         {
-            titleEdge = UIEdgeInsetsMake(-image_h - self.padding, -image_w, 0, 0);
-            imageEdge = UIEdgeInsetsMake(0, 0, -title_h - self.padding, -title_w);
+            titleEdge = UIEdgeInsetsMake(-image_h - self.ba_padding, -image_w, 0, 0);
+            imageEdge = UIEdgeInsetsMake(0, 0, -title_h - self.ba_padding, -title_w);
         }
             break;
-        case BAButtonLayoutTypeLeftImageLeft:
+        case BAKit_ButtonLayoutTypeLeftImageLeft:
         {
-            titleEdge = UIEdgeInsetsMake(0, self.padding + self.padding_inset, 0, 0);
+            titleEdge = UIEdgeInsetsMake(0, self.ba_padding + self.ba_padding_inset, 0, 0);
             
-            imageEdge = UIEdgeInsetsMake(0, self.padding_inset, 0, 0);
+            imageEdge = UIEdgeInsetsMake(0, self.ba_padding_inset, 0, 0);
 
             self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         }
             break;
-        case BAButtonLayoutTypeLeftImageRight:
+        case BAKit_ButtonLayoutTypeLeftImageRight:
         {
-            titleEdge = UIEdgeInsetsMake(0, -image_w + self.padding_inset, 0, 0);
-            imageEdge = UIEdgeInsetsMake(0, title_w + self.padding + self.padding_inset, 0, 0);
+            titleEdge = UIEdgeInsetsMake(0, -image_w + self.ba_padding_inset, 0, 0);
+            imageEdge = UIEdgeInsetsMake(0, title_w + self.ba_padding + self.ba_padding_inset, 0, 0);
             self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         }
             break;
-        case BAButtonLayoutTypeRightImageLeft:
+        case BAKit_ButtonLayoutTypeRightImageLeft:
         {
-            imageEdge = UIEdgeInsetsMake(0, 0, 0, self.padding + self.padding_inset);
-            titleEdge = UIEdgeInsetsMake(0, 0, 0, self.padding_inset);
+            imageEdge = UIEdgeInsetsMake(0, 0, 0, self.ba_padding + self.ba_padding_inset);
+            titleEdge = UIEdgeInsetsMake(0, 0, 0, self.ba_padding_inset);
 
             self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
         }
             break;
-        case BAButtonLayoutTypeRightImageRight:
+        case BAKit_ButtonLayoutTypeRightImageRight:
         {
-            titleEdge = UIEdgeInsetsMake(0, 0, 0, image_w + self.padding + self.padding_inset);
-            imageEdge = UIEdgeInsetsMake(0, 0, 0, -title_w + self.padding_inset);
+            titleEdge = UIEdgeInsetsMake(0, 0, 0, image_w + self.ba_padding + self.ba_padding_inset);
+            imageEdge = UIEdgeInsetsMake(0, 0, 0, -title_w + self.ba_padding_inset);
             self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
         }
             break;
@@ -137,10 +134,10 @@ static void *padding_insetKey = @"padding_insetKey";
  @param type button 的布局样式
  @param padding 文字与图片之间的间距
  */
-- (void)ba_button_setBAButtonLayoutType:(BAButtonLayoutType)type padding:(CGFloat)padding
+- (void)ba_button_setButtonLayoutType:(BAKit_ButtonLayoutType)type padding:(CGFloat)padding
 {
-    self.buttonLayoutType = type;
-    self.padding = padding;
+    self.ba_buttonLayoutType = type;
+    self.ba_padding = padding;
 }
 
 /**
@@ -149,9 +146,9 @@ static void *padding_insetKey = @"padding_insetKey";
  @param type 圆角样式
  @param viewCornerRadius 圆角角度
  */
-- (void)ba_button_setBAViewRectCornerType:(BAViewRectCornerType)type viewCornerRadius:(CGFloat)viewCornerRadius
+- (void)ba_button_setViewRectCornerType:(BAKit_ViewRectCornerType)type viewCornerRadius:(CGFloat)viewCornerRadius
 {
-    [self ba_view_setBAViewRectCornerType:type viewCornerRadius:viewCornerRadius];
+    [self ba_view_setViewRectCornerType:type viewCornerRadius:viewCornerRadius];
 }
 
 /* 给定框架创建一个UIButton对象 */
@@ -319,8 +316,8 @@ highlightedBackgroundImage:(UIImage *)highlightedBackgroundImage
                                             image:(UIImage * __nullable)image
                                          selImage:(UIImage * __nullable)selImage
                                           padding:(CGFloat)padding
-                              buttonPositionStyle:(BAButtonLayoutType)buttonLayoutType
-                               viewRectCornerType:(BAViewRectCornerType)viewRectCornerType
+                              buttonPositionStyle:(BAKit_ButtonLayoutType)buttonLayoutType
+                               viewRectCornerType:(BAKit_ViewRectCornerType)viewRectCornerType
                                  viewCornerRadius:(CGFloat)viewCornerRadius
                                            target:(id __nullable)target
                                          selector:(SEL __nullable)sel
@@ -347,45 +344,45 @@ highlightedBackgroundImage:(UIImage *)highlightedBackgroundImage
     {
         [button setImage:image forState:UIControlStateNormal];
     }
-    [button ba_button_setBAButtonLayoutType:buttonLayoutType padding:padding];
-    [button ba_button_setBAViewRectCornerType:viewRectCornerType viewCornerRadius:viewCornerRadius];
+    [button ba_button_setButtonLayoutType:buttonLayoutType padding:padding];
+    [button ba_button_setViewRectCornerType:viewRectCornerType viewCornerRadius:viewCornerRadius];
     [button addTarget:target action:sel forControlEvents:UIControlEventTouchUpInside];
     
     return button;
 }
 
 #pragma mark - setter / getter
-- (void)setButtonLayoutType:(BAButtonLayoutType)buttonLayoutType
+- (void)setBa_buttonLayoutType:(BAKit_ButtonLayoutType)ba_buttonLayoutType
 {
-    objc_setAssociatedObject(self, buttonLayoutTypeKey, @(buttonLayoutType), OBJC_ASSOCIATION_ASSIGN);
+    BAKit_Objc_setObj(@selector(ba_buttonLayoutType), @(ba_buttonLayoutType));
     [self setupButtonLayout];
 }
 
-- (BAButtonLayoutType)buttonLayoutType
+- (BAKit_ButtonLayoutType)ba_buttonLayoutType
 {
-    return [objc_getAssociatedObject(self, buttonLayoutTypeKey) integerValue];
+    return [BAKit_Objc_getObj integerValue];
 }
 
-- (void)setPadding:(CGFloat)padding
+- (void)setBa_padding:(CGFloat)ba_padding
 {
-    objc_setAssociatedObject(self, paddingKey, @(padding), OBJC_ASSOCIATION_ASSIGN);
+    BAKit_Objc_setObj(@selector(ba_padding), @(ba_padding));
     [self setupButtonLayout];
 }
 
-- (CGFloat)padding
+- (CGFloat)ba_padding
 {
-    return [objc_getAssociatedObject(self, paddingKey) floatValue];
+    return [BAKit_Objc_getObj floatValue];
 }
 
-- (void)setPadding_inset:(CGFloat)padding_inset
+- (void)setBa_padding_inset:(CGFloat)ba_padding_inset
 {
-    objc_setAssociatedObject(self, padding_insetKey, @(padding_inset), OBJC_ASSOCIATION_ASSIGN);
+    BAKit_Objc_setObj(@selector(ba_padding_inset), @(ba_padding_inset));
     [self setupButtonLayout];
 }
 
-- (CGFloat)padding_inset
+- (CGFloat)ba_padding_inset
 {
-    return [objc_getAssociatedObject(self, padding_insetKey) floatValue];
+    return [BAKit_Objc_getObj floatValue];
 }
 
 - (void)setFrame:(CGRect)frame

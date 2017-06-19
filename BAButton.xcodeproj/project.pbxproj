@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C43D260E1EF7631B00CD078C /* UIView+BARectCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = C43D260D1EF7631B00CD078C /* UIView+BARectCorner.m */; };
+		C43D26141EF7634900CD078C /* UIButton+BAKit.m in Sources */ = {isa = PBXBuildFile; fileRef = C43D26131EF7634900CD078C /* UIButton+BAKit.m */; };
 		C47869A21ECE8249006A55B5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C47869A11ECE8249006A55B5 /* main.m */; };
 		C47869A51ECE8249006A55B5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C47869A41ECE8249006A55B5 /* AppDelegate.m */; };
 		C47869A81ECE8249006A55B5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C47869A71ECE8249006A55B5 /* ViewController.m */; };
 		C47869AB1ECE8249006A55B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C47869A91ECE8249006A55B5 /* Main.storyboard */; };
 		C47869AD1ECE8249006A55B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C47869AC1ECE8249006A55B5 /* Assets.xcassets */; };
 		C47869B01ECE8249006A55B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C47869AE1ECE8249006A55B5 /* LaunchScreen.storyboard */; };
-		C47869BF1ECE82A9006A55B5 /* UIButton+BAKit.m in Sources */ = {isa = PBXBuildFile; fileRef = C47869BB1ECE82A9006A55B5 /* UIButton+BAKit.m */; };
-		C49231201ECEC32500B61C37 /* UIView+BARectCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = C492311F1ECEC32500B61C37 /* UIView+BARectCorner.m */; };
 		C49231231ECFDD4A00B61C37 /* ViewController2.xib in Resources */ = {isa = PBXBuildFile; fileRef = C49231221ECFDD4A00B61C37 /* ViewController2.xib */; };
 		C49231261ECFDD6300B61C37 /* ViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = C49231251ECFDD6300B61C37 /* ViewController2.m */; };
 		CC5C65971ED97BFB00AE184B /* UIButton+BAState.m in Sources */ = {isa = PBXBuildFile; fileRef = CC5C65941ED97BFB00AE184B /* UIButton+BAState.m */; };
@@ -24,6 +24,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C43D260C1EF7631B00CD078C /* UIView+BARectCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BARectCorner.h"; sourceTree = "<group>"; };
+		C43D260D1EF7631B00CD078C /* UIView+BARectCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BARectCorner.m"; sourceTree = "<group>"; };
+		C43D26121EF7634900CD078C /* UIButton+BAKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+BAKit.h"; sourceTree = "<group>"; };
+		C43D26131EF7634900CD078C /* UIButton+BAKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+BAKit.m"; sourceTree = "<group>"; };
+		C43D26151EF7636F00CD078C /* BAKit_ConfigurationDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAKit_ConfigurationDefine.h; sourceTree = "<group>"; };
 		C478699D1ECE8249006A55B5 /* BAButton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BAButton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C47869A11ECE8249006A55B5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C47869A31ECE8249006A55B5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -34,10 +39,6 @@
 		C47869AC1ECE8249006A55B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C47869AF1ECE8249006A55B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C47869B11ECE8249006A55B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C47869BA1ECE82A9006A55B5 /* UIButton+BAKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+BAKit.h"; sourceTree = "<group>"; };
-		C47869BB1ECE82A9006A55B5 /* UIButton+BAKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+BAKit.m"; sourceTree = "<group>"; };
-		C492311E1ECEC32500B61C37 /* UIView+BARectCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BARectCorner.h"; sourceTree = "<group>"; };
-		C492311F1ECEC32500B61C37 /* UIView+BARectCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BARectCorner.m"; sourceTree = "<group>"; };
 		C49231211ECFD23900B61C37 /* BAButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAButton.h; sourceTree = "<group>"; };
 		C49231221ECFDD4A00B61C37 /* ViewController2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController2.xib; sourceTree = "<group>"; };
 		C49231241ECFDD6300B61C37 /* ViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController2.h; sourceTree = "<group>"; };
@@ -113,14 +114,15 @@
 			isa = PBXGroup;
 			children = (
 				C49231211ECFD23900B61C37 /* BAButton.h */,
-				C47869BA1ECE82A9006A55B5 /* UIButton+BAKit.h */,
-				C47869BB1ECE82A9006A55B5 /* UIButton+BAKit.m */,
-				C492311E1ECEC32500B61C37 /* UIView+BARectCorner.h */,
-				C492311F1ECEC32500B61C37 /* UIView+BARectCorner.m */,
+				C43D26151EF7636F00CD078C /* BAKit_ConfigurationDefine.h */,
 				CC5C65931ED97BFA00AE184B /* UIButton+BAState.h */,
 				CC5C65941ED97BFB00AE184B /* UIButton+BAState.m */,
 				CC5C65951ED97BFB00AE184B /* UIButton+BACountDown.h */,
 				CC5C65961ED97BFB00AE184B /* UIButton+BACountDown.m */,
+				C43D260C1EF7631B00CD078C /* UIView+BARectCorner.h */,
+				C43D260D1EF7631B00CD078C /* UIView+BARectCorner.m */,
+				C43D26121EF7634900CD078C /* UIButton+BAKit.h */,
+				C43D26131EF7634900CD078C /* UIButton+BAKit.m */,
 			);
 			path = BAButton;
 			sourceTree = "<group>";
@@ -200,12 +202,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C47869A81ECE8249006A55B5 /* ViewController.m in Sources */,
-				C49231201ECEC32500B61C37 /* UIView+BARectCorner.m in Sources */,
 				CC5C659C1ED97C6A00AE184B /* ViewController3.m in Sources */,
 				CC5C65981ED97BFC00AE184B /* UIButton+BACountDown.m in Sources */,
+				C43D26141EF7634900CD078C /* UIButton+BAKit.m in Sources */,
+				C43D260E1EF7631B00CD078C /* UIView+BARectCorner.m in Sources */,
 				C47869A51ECE8249006A55B5 /* AppDelegate.m in Sources */,
 				C47869A21ECE8249006A55B5 /* main.m in Sources */,
-				C47869BF1ECE82A9006A55B5 /* UIButton+BAKit.m in Sources */,
 				C49231261ECFDD6300B61C37 /* ViewController2.m in Sources */,
 				CC5C65971ED97BFB00AE184B /* UIButton+BAState.m in Sources */,
 			);

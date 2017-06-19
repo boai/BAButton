@@ -66,21 +66,8 @@
 #import "UIButton+BAState.h"
 #import "UIButton+BACountDown.h"
 #import "UIView+BARectCorner.h"
+#import "BAKit_ConfigurationDefine.h"
 
-
-#define BAKit_Objc_setObj(key, value) objc_setAssociatedObject(self, key, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-
-#define BAKit_Objc_setObjCOPY(key, value) objc_setAssociatedObject(self, key, value, OBJC_ASSOCIATION_COPY)
-
-#define BAKit_Objc_getObj objc_getAssociatedObject(self, _cmd)
-
-#define BAKit_Objc_exchangeMethodAToB(methodA,methodB) method_exchangeImplementations(class_getInstanceMethod([self class], methodA),class_getInstanceMethod([self class], methodB));
-
-/*! 随机色 */
-CG_INLINE UIColor *
-BAKit_ColorRandom(){
-    return [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1];
-}
 
 /*!
  *********************************************************************************
@@ -92,6 +79,11 @@ BAKit_ColorRandom(){
  
  项目源码地址：
  OC 版 ：https://github.com/BAHome/BAButton
+ 
+ 最新更新时间：2017-06-19 【倒叙】
+ 最新Version：【Version：2.5.0】
+ 更新内容：
+ 2.5.0.1、优化命名规范，更换了全局统一属性命名和方法命名，如果更新有报错的地方，大家别急，看 .h 文件更换过来即可，后期推出的 BAKit 系列产品，命名都将统一规范，在此给大家带来的不便之处，向大家道歉！希望大家谅解！多谢体谅！
  
  最新更新时间：2017-06-01 【倒叙】
  最新Version：【Version：2.4.3】
