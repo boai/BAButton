@@ -14,7 +14,7 @@
 * 6、注意：文字、字体大小、图片等设置一定要在设置 ba_button_setBAButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移
 * 7、优化命名规范，更换了全局统一属性命名和方法命名，如果更新有报错的地方，大家别急，看 .h 文件更换过来即可，后期推出的 BAKit 系列产品，命名都将统一规范，在此给大家带来的不便之处，向大家道歉！希望大家谅解！多谢体谅！
 * 8、新增 view 的 border 的创建，可以自定义圆角、边框、边框颜色等(感谢群里 @北京-大腿 同学提出的 需求！)
-* 9、修复 xib 下圆角右边无效的bug，注意：如果是 xib，需要要有固定 宽高，要不要 iOS 10 设置无效(感谢群里 @北京-小黑 同学提出的 bug！)
+* 9、修复 xib 下圆角右边无效的bug，注意：如果是 xib，需要要有固定 宽高，要不然 iOS 10 设置无效(感谢群里 @北京-小黑 同学提出的 bug！)
 
 ## 2、图片示例
 ![BAButton1](https://github.com/BAHome/BAButton/blob/master/Images/BAButton1.png)
@@ -66,7 +66,7 @@
  最新Version：【Version：2.5.1】
  更新内容：
  2.5.1.1、新增 view 的 border 的创建，可以自定义圆角、边框、边框颜色等(感谢群里 @北京-大腿 同学提出的 需求！)
- 2.5.1.2、修复 xib 下圆角右边无效的bug，注意：如果是 xib，需要要有固定 宽高，要不要 iOS 10 设置无效(感谢群里 @北京-小黑 同学提出的 bug！)
+ 2.5.1.2、修复 xib 下圆角右边无效的bug，注意：如果是 xib，需要要有固定 宽高，要不然 iOS 10 设置无效(感谢群里 @北京-小黑 同学提出的 bug！)
  
  最新更新时间：2017-06-19 【倒叙】
  最新Version：【Version：2.5.0】
@@ -175,7 +175,7 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
                               padding:(CGFloat)padding;
 
 /**
- 快速切圆角，注意：文字、字体大小、图片等设置一定要在设置 ba_button_setButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移，如果是 xib，需要要有固定 宽高，要不要 iOS 10 设置无效
+ 快速切圆角，注意：文字、字体大小、图片等设置一定要在设置 ba_button_setButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移，如果是 xib，需要要有固定 宽高，要不然 iOS 10 设置无效
 
  @param type 圆角样式
  @param viewCornerRadius 圆角角度
@@ -184,7 +184,7 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
                        viewCornerRadius:(CGFloat)viewCornerRadius;
 
 /**
- 快速切圆角，带边框、边框颜色，如果是 xib，需要要有固定 宽高，要不要 iOS 10 设置无效
+ 快速切圆角，带边框、边框颜色，如果是 xib，需要要有固定 宽高，要不然 iOS 10 设置无效
  
  @param type 圆角样式
  @param viewCornerRadius 圆角角度
@@ -370,12 +370,12 @@ typedef NS_ENUM(NSInteger, BAKit_ViewRectCornerType) {
 @interface UIView (BARectCorner)
 
 /**
- 设置 viewRectCornerType 样式，注意：BAKit_ViewRectCornerType 必须要先设置 viewCornerRadius，才能有效，否则设置无效，如果是 xib，需要要有固定 宽高，要不要 iOS 10 设置无效
+ 设置 viewRectCornerType 样式，注意：BAKit_ViewRectCornerType 必须要先设置 viewCornerRadius，才能有效，否则设置无效，如果是 xib，需要要有固定 宽高，要不然 iOS 10 设置无效
  */
 @property (nonatomic, assign) BAKit_ViewRectCornerType ba_viewRectCornerType;
 
 /**
- 设置 view ：圆角，如果要全部设置四个角的圆角，可以直接用这个方法，必须要在设置 frame 之后，注意：如果是 xib，需要要有固定 宽高，要不要 iOS 10 设置无效
+ 设置 view ：圆角，如果要全部设置四个角的圆角，可以直接用这个方法，必须要在设置 frame 之后，注意：如果是 xib，需要要有固定 宽高，要不然 iOS 10 设置无效
  */
 @property (nonatomic, assign) CGFloat ba_viewCornerRadius;
 
@@ -575,7 +575,7 @@ NS_ASSUME_NONNULL_END
  最新Version：【Version：2.5.1】
  更新内容：
  2.5.1.1、新增 view 的 border 的创建，可以自定义圆角、边框、边框颜色等(感谢群里 @北京-大腿 同学提出的 需求！)
- 2.5.1.2、修复 xib 下圆角右边无效的bug，注意：如果是 xib，需要要有固定 宽高，要不要 iOS 10 设置无效(感谢群里 @北京-小黑 同学提出的 bug！)
+ 2.5.1.2、修复 xib 下圆角右边无效的bug，注意：如果是 xib，需要要有固定 宽高，要不然 iOS 10 设置无效(感谢群里 @北京-小黑 同学提出的 bug！)
  
  最新更新时间：2017-06-19 【倒叙】
  最新Version：【Version：2.5.0】
