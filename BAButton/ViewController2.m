@@ -41,25 +41,25 @@
     
     [self.normalButton ba_button_setButtonLayoutType:BAKit_ButtonLayoutTypeNormal padding:padding];
     
-    [self.normalButton ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomLeft viewCornerRadius:viewCornerRadius];
+    [self.normalButton ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomRightAndTopRightAndBottomLeft viewCornerRadius:viewCornerRadius borderWidth:2.0f borderColor:BAKit_Color_RandomRGB()];
     
     [self.centerImageRightButton ba_button_setButtonLayoutType:BAKit_ButtonLayoutTypeCenterImageRight padding:padding];
-    [self.centerImageRightButton ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomRight viewCornerRadius:viewCornerRadius];
+    [self.centerImageRightButton ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomRight viewCornerRadius:viewCornerRadius borderWidth:2.0f borderColor:BAKit_Color_RandomRGB()];
     
     [self.centerImageTopButton ba_button_setButtonLayoutType:BAKit_ButtonLayoutTypeCenterImageTop padding:padding];
     [self.centerImageTopButton ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeTopLeftAndTopRight viewCornerRadius:viewCornerRadius * 2];
     
     [self.centerImageBottomButton ba_button_setButtonLayoutType:BAKit_ButtonLayoutTypeCenterImageBottom padding:padding];
-    [self.centerImageBottomButton ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomRightAndTopRightAndTopLeft viewCornerRadius:viewCornerRadius * 2];
+    [self.centerImageBottomButton ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomRightAndTopRightAndTopLeft viewCornerRadius:viewCornerRadius * 2 borderWidth:2.0f borderColor:BAKit_Color_RandomRGB()];
     
     [self.leftImageLeftButton ba_button_setButtonLayoutType:BAKit_ButtonLayoutTypeLeftImageLeft padding:padding];
     self.leftImageLeftButton.ba_padding_inset = 20;
-    [self.leftImageLeftButton ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomLeftAndBottomRight viewCornerRadius:viewCornerRadius];
+    [self.leftImageLeftButton ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomLeftAndBottomRight viewCornerRadius:viewCornerRadius borderWidth:2.0f borderColor:BAKit_Color_RandomRGB()];
     
     [self.leftImageRightButton ba_button_setButtonLayoutType:BAKit_ButtonLayoutTypeLeftImageRight padding:padding];
     self.leftImageRightButton.ba_padding_inset = 20;
     
-    [self.leftImageRightButton ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomLeftAndTopLeft viewCornerRadius:viewCornerRadius];
+    [self.leftImageRightButton ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomLeftAndTopLeft viewCornerRadius:viewCornerRadius borderWidth:2.0f borderColor:BAKit_Color_RandomRGB()];
     
     [self.rightImageLeftButton ba_button_setButtonLayoutType:BAKit_ButtonLayoutTypeRightImageLeft padding:padding];
     [self.rightImageLeftButton ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomRightAndTopRightAndBottomLeft viewCornerRadius:viewCornerRadius];

@@ -36,6 +36,7 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:navi_rightButton];
     
     UIButton *navi_leftButton = [UIButton ba_creatButtonWithFrame:frame title:@"state" selTitle:nil titleColor:BAKit_Color_Red titleFont:nil image:[UIImage imageNamed:@"tabbar_mainframeHL"] selImage:nil padding:2 buttonPositionStyle:BAKit_ButtonLayoutTypeCenterImageRight viewRectCornerType:BAKit_ViewRectCornerTypeAllCorners viewCornerRadius:20 target:self selector:@selector(handleLeftNaviButtonAction)];
+    [navi_rightButton ba_view_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomLeftAndTopLeft viewCornerRadius:20 borderWidth:2.0f borderColor:BAKit_Color_RandomRGB()];
     navi_rightButton.backgroundColor = BAKit_Color_RandomRGBA();
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:navi_leftButton];
 }
@@ -84,7 +85,7 @@
             {
                 [button setTitle:@"默认样式：内容居中-图左文右" forState:UIControlStateNormal];
                 type = BAKit_ButtonLayoutTypeNormal;
-                [button ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomLeft viewCornerRadius:viewCornerRadius];
+                [button ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomRightAndTopRight viewCornerRadius:viewCornerRadius borderWidth:2.0f borderColor:BAKit_Color_RandomRGB()];
             }
                 break;
             case 1:
@@ -98,7 +99,7 @@
             {
                 [button setTitle:@"内容居中-图上文下" forState:UIControlStateNormal];
                 type = BAKit_ButtonLayoutTypeCenterImageTop;
-                [button ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeTopLeftAndTopRight viewCornerRadius:viewCornerRadius * 2];
+                [button ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeTopLeftAndTopRight viewCornerRadius:viewCornerRadius * 2 borderWidth:2.0f borderColor:BAKit_Color_RandomRGB()];
             }
                 break;
             case 3:
@@ -112,7 +113,7 @@
             {
                 [button setTitle:@"内容居左-图左文右" forState:UIControlStateNormal];
                 type = BAKit_ButtonLayoutTypeLeftImageLeft;
-                [button ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomRight viewCornerRadius:viewCornerRadius];
+                [button ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomRight viewCornerRadius:viewCornerRadius borderWidth:2.0f borderColor:BAKit_Color_RandomRGB()];
                 button.ba_padding_inset = 20;
             }
                 break;

@@ -151,6 +151,22 @@ NS_ASSUME_NONNULL_BEGIN
     [self ba_view_setViewRectCornerType:type viewCornerRadius:viewCornerRadius];
 }
 
+/**
+ 快速切圆角，带边框、边框颜色
+ 
+ @param type 圆角样式
+ @param viewCornerRadius 圆角角度
+ @param borderWidth 边线宽度
+ @param borderColor 边线颜色
+ */
+- (void)ba_button_setViewRectCornerType:(BAKit_ViewRectCornerType)type
+                       viewCornerRadius:(CGFloat)viewCornerRadius
+                            borderWidth:(CGFloat)borderWidth
+                            borderColor:(UIColor *)borderColor
+{
+    [self ba_view_setViewRectCornerType:type viewCornerRadius:viewCornerRadius borderWidth:borderWidth borderColor:borderColor];
+}
+
 /* 给定框架创建一个UIButton对象 */
 + (id)initWithFrame:(CGRect)frame
 {

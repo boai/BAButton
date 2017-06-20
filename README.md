@@ -13,11 +13,13 @@
 * 5、新增 UIButton 倒计时的封装，两行代码搞定倒计时！
 * 6、注意：文字、字体大小、图片等设置一定要在设置 ba_button_setBAButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移
 * 7、优化命名规范，更换了全局统一属性命名和方法命名，如果更新有报错的地方，大家别急，看 .h 文件更换过来即可，后期推出的 BAKit 系列产品，命名都将统一规范，在此给大家带来的不便之处，向大家道歉！希望大家谅解！多谢体谅！
+* 8、新增 view 的 border 的创建，可以自定义圆角、边框、边框颜色等(感谢群里 @北京-大腿 同学提出的 需求！)
+* 9、修复 xib 下圆角右边无效的bug，注意：如果是 xib，需要要有固定 宽高，要不要 iOS 10 设置无效(感谢群里 @北京-小黑 同学提出的 bug！)
 
 ## 2、图片示例
 ![BAButton1](https://github.com/BAHome/BAButton/blob/master/Images/BAButton1.png)
 ![BAButton2](https://github.com/BAHome/BAButton/blob/master/Images/BAButton2.png)
-![BAButton4](https://github.com/BAHome/BAButton/blob/master/Images/BAButton4.png)
+![BAButton3](https://github.com/BAHome/BAButton/blob/master/Images/BAButton3.png)
 
 ## 3、安装、导入示例和源码地址
 * 1、pod 导入【最新版本：![](https://img.shields.io/cocoapods/v/BAButton.svg?style=flat)】： <br>
@@ -34,7 +36,7 @@
  OC 版 ：[https://github.com/BAHome/BAButton](https://github.com/BAHome/BAButton)<br>
 
 ## 4、BAButton 的类结构及 demo 示例
-![BAButton3](https://github.com/BAHome/BAButton/blob/master/Images/BAButton3.png)
+![BAButton](https://github.com/BAHome/BAButton/blob/master/Images/BAButton.png)
 
 ### BAButton.h
 ```
@@ -60,7 +62,13 @@
  项目源码地址：
  OC 版 ：https://github.com/BAHome/BAButton
  
- 最新更新时间：2017-06-01 【倒叙】
+ 最新更新时间：2017-06-20 【倒叙】
+ 最新Version：【Version：2.5.1】
+ 更新内容：
+ 2.5.1.1、新增 view 的 border 的创建，可以自定义圆角、边框、边框颜色等(感谢群里 @北京-大腿 同学提出的 需求！)
+ 2.5.1.2、修复 xib 下圆角右边无效的bug，注意：如果是 xib，需要要有固定 宽高，要不要 iOS 10 设置无效(感谢群里 @北京-小黑 同学提出的 bug！)
+ 
+ 最新更新时间：2017-06-19 【倒叙】
  最新Version：【Version：2.5.0】
  更新内容：
  2.5.0.1、优化命名规范，更换了全局统一属性命名和方法命名，如果更新有报错的地方，大家别急，看 .h 文件更换过来即可，后期推出的 BAKit 系列产品，命名都将统一规范，在此给大家带来的不便之处，向大家道歉！希望大家谅解！多谢体谅！
@@ -167,13 +175,27 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
                               padding:(CGFloat)padding;
 
 /**
- 快速切圆角，注意：文字、字体大小、图片等设置一定要在设置 ba_button_setButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移
+ 快速切圆角，注意：文字、字体大小、图片等设置一定要在设置 ba_button_setButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移，如果是 xib，需要要有固定 宽高，要不要 iOS 10 设置无效
 
  @param type 圆角样式
  @param viewCornerRadius 圆角角度
  */
 - (void)ba_button_setViewRectCornerType:(BAKit_ViewRectCornerType)type
                        viewCornerRadius:(CGFloat)viewCornerRadius;
+
+/**
+ 快速切圆角，带边框、边框颜色，如果是 xib，需要要有固定 宽高，要不要 iOS 10 设置无效
+ 
+ @param type 圆角样式
+ @param viewCornerRadius 圆角角度
+ @param borderWidth 边线宽度
+ @param borderColor 边线颜色
+ */
+- (void)ba_button_setViewRectCornerType:(BAKit_ViewRectCornerType)type
+                       viewCornerRadius:(CGFloat)viewCornerRadius
+                            borderWidth:(CGFloat)borderWidth
+                            borderColor:(UIColor *)borderColor;
+
 
 /**
  *  给定框架创建一个UIButton对象
@@ -347,16 +369,26 @@ typedef NS_ENUM(NSInteger, BAKit_ViewRectCornerType) {
 
 @interface UIView (BARectCorner)
 
-/*!
- *  设置 viewRectCornerType 样式，
- *  注意：BAKit_ViewRectCornerType 必须要先设置 viewCornerRadius，才能有效，否则设置无效，
+/**
+ 设置 viewRectCornerType 样式，注意：BAKit_ViewRectCornerType 必须要先设置 viewCornerRadius，才能有效，否则设置无效，如果是 xib，需要要有固定 宽高，要不要 iOS 10 设置无效
  */
 @property (nonatomic, assign) BAKit_ViewRectCornerType ba_viewRectCornerType;
 
-/*!
- *  设置 button 圆角，如果要全部设置四个角的圆角，可以直接用这个方法，必须要在设置 frame 之后
+/**
+ 设置 view ：圆角，如果要全部设置四个角的圆角，可以直接用这个方法，必须要在设置 frame 之后，注意：如果是 xib，需要要有固定 宽高，要不要 iOS 10 设置无效
  */
 @property (nonatomic, assign) CGFloat ba_viewCornerRadius;
+
+/**
+  设置 view ：边框边线宽度
+ */
+@property(nonatomic, assign) CGFloat ba_viewBorderWidth;
+
+/**
+ 设置 view ：边框边线颜色
+ */
+@property(nonatomic, strong) UIColor *ba_viewBorderColor;
+
 
 /**
  快速切圆角
@@ -364,7 +396,22 @@ typedef NS_ENUM(NSInteger, BAKit_ViewRectCornerType) {
  @param type 圆角样式
  @param viewCornerRadius 圆角角度
  */
-- (void)ba_view_setViewRectCornerType:(BAKit_ViewRectCornerType)type viewCornerRadius:(CGFloat)viewCornerRadius;
+- (void)ba_view_setViewRectCornerType:(BAKit_ViewRectCornerType)type
+                     viewCornerRadius:(CGFloat)viewCornerRadius;
+
+/**
+ 快速切圆角，带边框、边框颜色
+
+ @param type 圆角样式
+ @param viewCornerRadius 圆角角度
+ @param borderWidth 边线宽度
+ @param borderColor 边线颜色
+ */
+- (void)ba_view_setViewRectCornerType:(BAKit_ViewRectCornerType)type
+                     viewCornerRadius:(CGFloat)viewCornerRadius
+                          borderWidth:(CGFloat)borderWidth
+                          borderColor:(UIColor *)borderColor;
+
 
 @end
 
@@ -477,9 +524,13 @@ NS_ASSUME_NONNULL_END
 ### demo 示例
 ```
 // 示例1：
-	// 注意：文字、字体大小、图片等设置一定要在设置     [self.normalButton ba_button_setButtonLayoutType:BAKit_ButtonLayoutTypeNormal padding:padding];
+	// 注意：文字、字体大小、图片等设置一定要在设置         CGFloat padding = 10;
+    CGFloat viewCornerRadius = 15;
     
-    [self.normalButton ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomLeft viewCornerRadius:viewCornerRadius];
+    [self.normalButton ba_button_setButtonLayoutType:BAKit_ButtonLayoutTypeNormal padding:padding];
+    
+    [self.normalButton ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomRightAndTopRightAndBottomLeft viewCornerRadius:viewCornerRadius borderWidth:2.0f borderColor:BAKit_Color_RandomRGB()];
+    
     
 // 示例2：
 - (void)setupNavi
@@ -490,6 +541,7 @@ NS_ASSUME_NONNULL_END
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:navi_rightButton];
     
     UIButton *navi_leftButton = [UIButton ba_creatButtonWithFrame:frame title:@"state" selTitle:nil titleColor:BAKit_Color_Red titleFont:nil image:[UIImage imageNamed:@"tabbar_mainframeHL"] selImage:nil padding:2 buttonPositionStyle:BAKit_ButtonLayoutTypeCenterImageRight viewRectCornerType:BAKit_ViewRectCornerTypeAllCorners viewCornerRadius:20 target:self selector:@selector(handleLeftNaviButtonAction)];
+    [navi_rightButton ba_view_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomLeftAndTopLeft viewCornerRadius:20 borderWidth:2.0f borderColor:BAKit_Color_RandomRGB()];
     navi_rightButton.backgroundColor = BAKit_Color_RandomRGBA();
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:navi_leftButton];
 }
@@ -518,6 +570,12 @@ NS_ASSUME_NONNULL_END
 ## 5、更新记录：【倒叙】
  欢迎使用 [【BAHome】](https://github.com/BAHome) 系列开源代码 ！
  如有更多需求，请前往：[【https://github.com/BAHome】](https://github.com/BAHome) 
+ 
+ 最新更新时间：2017-06-20 【倒叙】
+ 最新Version：【Version：2.5.1】
+ 更新内容：
+ 2.5.1.1、新增 view 的 border 的创建，可以自定义圆角、边框、边框颜色等(感谢群里 @北京-大腿 同学提出的 需求！)
+ 2.5.1.2、修复 xib 下圆角右边无效的bug，注意：如果是 xib，需要要有固定 宽高，要不要 iOS 10 设置无效(感谢群里 @北京-小黑 同学提出的 bug！)
  
  最新更新时间：2017-06-19 【倒叙】
  最新Version：【Version：2.5.0】
