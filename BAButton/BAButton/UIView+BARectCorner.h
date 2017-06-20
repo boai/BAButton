@@ -114,12 +114,12 @@ typedef NS_ENUM(NSInteger, BAKit_ViewRectCornerType) {
 @interface UIView (BARectCorner)
 
 /**
- 设置 viewRectCornerType 样式，注意：BAKit_ViewRectCornerType 必须要先设置 viewCornerRadius，才能有效，否则设置无效，如果是 xib，需要要有固定 宽高，要不要 iOS 10 设置无效
+ 设置 viewRectCornerType 样式，注意：BAKit_ViewRectCornerType 必须要先设置 viewCornerRadius，才能有效，否则设置无效，如果是 xib，需要要有固定 宽高，要不然 iOS 10 设置无效
  */
 @property (nonatomic, assign) BAKit_ViewRectCornerType ba_viewRectCornerType;
 
 /**
- 设置 view ：圆角，如果要全部设置四个角的圆角，可以直接用这个方法，必须要在设置 frame 之后，注意：如果是 xib，需要要有固定 宽高，要不要 iOS 10 设置无效
+ 设置 view ：圆角，如果要全部设置四个角的圆角，可以直接用这个方法，必须要在设置 frame 之后，注意：如果是 xib，需要要有固定 宽高，要不然 iOS 10 设置无效
  */
 @property (nonatomic, assign) CGFloat ba_viewCornerRadius;
 
