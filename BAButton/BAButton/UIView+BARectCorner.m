@@ -11,14 +11,34 @@
 
 @implementation UIView (BARectCorner)
 
-- (void)ba_view_setViewRectCornerType:(BAKit_ViewRectCornerType)type viewCornerRadius:(CGFloat)viewCornerRadius
+- (void)ba_view_setViewRectCornerType:(BAKit_ViewRectCornerType)type
+                     viewCornerRadius:(CGFloat)viewCornerRadius
 {
     self.ba_viewCornerRadius = viewCornerRadius;
     self.ba_viewRectCornerType = type;
 }
 
+/**
+ 快速切圆角，带边框、边框颜色
+ 
+ @param type 圆角样式
+ @param viewCornerRadius 圆角角度
+ @param borderWidth 边线宽度
+ @param borderColor 边线颜色
+ */
+- (void)ba_view_setViewRectCornerType:(BAKit_ViewRectCornerType)type
+                     viewCornerRadius:(CGFloat)viewCornerRadius
+                          borderWidth:(CGFloat)borderWidth
+                          borderColor:(UIColor *)borderColor
+{
+    self.ba_viewCornerRadius = viewCornerRadius;
+    self.ba_viewRectCornerType = type;
+    self.ba_viewBorderWidth = borderWidth;
+    self.ba_viewBorderColor = borderColor;
+}
+
 #pragma mark - view 的 角半径，默认 CGSizeMake(0, 0)
-- (void)setupButtonCornerType
+- (void)setupViewCornerType
 {
     UIRectCorner corners;
     CGSize cornerRadii;
@@ -91,20 +111,31 @@
             break;
     }
     
-    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds
-                                                   byRoundingCorners:corners
-                                                         cornerRadii:cornerRadii];
-    CAShapeLayer *maskLayer = [CAShapeLayer layer];
-    maskLayer.frame         = self.bounds;
-    maskLayer.path          = maskPath.CGPath;
-    self.layer.mask         = maskLayer;
+    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds
+                                                     byRoundingCorners:corners
+                                                           cornerRadii:cornerRadii];
+
+    CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+    shapeLayer.path = bezierPath.CGPath;
+    shapeLayer.frame = self.bounds;
+    
+    CAShapeLayer *borderLayer = [CAShapeLayer layer];
+    borderLayer.path = bezierPath.CGPath;
+    borderLayer.fillColor = [UIColor clearColor].CGColor;
+    borderLayer.strokeColor = self.ba_viewBorderColor.CGColor;
+    borderLayer.lineWidth = self.ba_viewBorderWidth;
+    borderLayer.frame = self.bounds;
+    
+    self.layer.mask = shapeLayer;
+    [self.layer addSublayer:borderLayer];
+//    self.clipsToBounds = YES;
 }
 
 #pragma mark - setter / getter
 - (void)setBa_viewRectCornerType:(BAKit_ViewRectCornerType)ba_viewRectCornerType
 {
     BAKit_Objc_setObj(@selector(ba_viewRectCornerType), @(ba_viewRectCornerType));
-    [self setupButtonCornerType];
+    [self setupViewCornerType];
 }
 
 - (BAKit_ViewRectCornerType)ba_viewRectCornerType
@@ -120,6 +151,28 @@
 - (CGFloat)ba_viewCornerRadius
 {
     return [BAKit_Objc_getObj integerValue];
+}
+
+- (void)setBa_viewBorderWidth:(CGFloat)ba_viewBorderWidth
+{
+    BAKit_Objc_setObj(@selector(ba_viewBorderWidth), @(ba_viewBorderWidth));
+    [self setupViewCornerType];
+}
+
+- (CGFloat)ba_viewBorderWidth
+{
+    return [BAKit_Objc_getObj floatValue];
+}
+
+- (void)setBa_viewBorderColor:(UIColor *)ba_viewBorderColor
+{
+    BAKit_Objc_setObj(@selector(ba_viewBorderColor), ba_viewBorderColor);
+    [self setupViewCornerType];
+}
+
+- (UIColor *)ba_viewBorderColor
+{
+    return BAKit_Objc_getObj;
 }
 
 @end

@@ -112,13 +112,27 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
                               padding:(CGFloat)padding;
 
 /**
- 快速切圆角，注意：文字、字体大小、图片等设置一定要在设置 ba_button_setButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移
+ 快速切圆角，注意：文字、字体大小、图片等设置一定要在设置 ba_button_setButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移，如果是 xib，需要要有固定 宽高，要不要 iOS 10 设置无效
 
  @param type 圆角样式
  @param viewCornerRadius 圆角角度
  */
 - (void)ba_button_setViewRectCornerType:(BAKit_ViewRectCornerType)type
                        viewCornerRadius:(CGFloat)viewCornerRadius;
+
+/**
+ 快速切圆角，带边框、边框颜色，如果是 xib，需要要有固定 宽高，要不要 iOS 10 设置无效
+ 
+ @param type 圆角样式
+ @param viewCornerRadius 圆角角度
+ @param borderWidth 边线宽度
+ @param borderColor 边线颜色
+ */
+- (void)ba_button_setViewRectCornerType:(BAKit_ViewRectCornerType)type
+                       viewCornerRadius:(CGFloat)viewCornerRadius
+                            borderWidth:(CGFloat)borderWidth
+                            borderColor:(UIColor *)borderColor;
+
 
 /**
  *  给定框架创建一个UIButton对象
