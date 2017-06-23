@@ -34,28 +34,28 @@
 
 - (void)test
 {
-    [self.btn1 ba_buttonSetBackgroundColor:BAKit_Color_RandomRGB() forState:UIControlStateNormal animated:YES];
-    [self.btn1 ba_buttonSetBackgroundColor:BAKit_Color_RandomRGB() forState:UIControlStateSelected animated:YES];
+    [self.btn1 ba_buttonSetBackgroundColor:BAKit_Color_RandomRGB_pod() forState:UIControlStateNormal animated:YES];
+    [self.btn1 ba_buttonSetBackgroundColor:BAKit_Color_RandomRGB_pod() forState:UIControlStateSelected animated:YES];
     
-    [self.btn2 ba_buttonSetBackgroundColor:BAKit_Color_RandomRGB() forState:UIControlStateNormal animated:NO];
-    [self.btn2 ba_buttonSetBackgroundColor:BAKit_Color_RandomRGB() forState:UIControlStateSelected animated:NO];
+    [self.btn2 ba_buttonSetBackgroundColor:BAKit_Color_RandomRGB_pod() forState:UIControlStateNormal animated:NO];
+    [self.btn2 ba_buttonSetBackgroundColor:BAKit_Color_RandomRGB_pod() forState:UIControlStateSelected animated:NO];
     
-    [self.btn3 ba_buttonSetborderColor:BAKit_Color_RandomRGB() forState:UIControlStateNormal animated:YES];
-    [self.btn3 ba_buttonSetborderColor:BAKit_Color_RandomRGB() forState:UIControlStateSelected animated:YES];
+    [self.btn3 ba_buttonSetborderColor:BAKit_Color_RandomRGB_pod() forState:UIControlStateNormal animated:YES];
+    [self.btn3 ba_buttonSetborderColor:BAKit_Color_RandomRGB_pod() forState:UIControlStateSelected animated:YES];
     self.btn3.layer.borderWidth = 5;
     
-    [self.btn4 ba_buttonSetborderColor:BAKit_Color_RandomRGB() forState:UIControlStateNormal animated:YES];
-    [self.btn4 ba_buttonSetborderColor:BAKit_Color_RandomRGB() forState:UIControlStateSelected animated:YES];
+    [self.btn4 ba_buttonSetborderColor:BAKit_Color_RandomRGB_pod() forState:UIControlStateNormal animated:YES];
+    [self.btn4 ba_buttonSetborderColor:BAKit_Color_RandomRGB_pod() forState:UIControlStateSelected animated:YES];
     self.btn4.layer.borderWidth = 5;
     
     [self.btn5 ba_buttonSetTitleLabelFont:[UIFont systemFontOfSize:10] forState:UIControlStateNormal];
     [self.btn5 ba_buttonSetTitleLabelFont:[UIFont systemFontOfSize:12] forState:UIControlStateSelected];
     
-    [self.btn6 ba_buttonConfigBackgroundColors:@{@(UIControlStateNormal):BAKit_Color_RandomRGB(),
-                                                 @(UIControlStateSelected):BAKit_Color_RandomRGB()}];
+    [self.btn6 ba_buttonConfigBackgroundColors:@{@(UIControlStateNormal):BAKit_Color_RandomRGB_pod(),
+                                                 @(UIControlStateSelected):BAKit_Color_RandomRGB_pod()}];
     
-    [self.btn7 ba_buttonConfigBorderColors:@{@(UIControlStateNormal):BAKit_Color_RandomRGB(),
-                                             @(UIControlStateSelected):BAKit_Color_RandomRGB()}];
+    [self.btn7 ba_buttonConfigBorderColors:@{@(UIControlStateNormal):BAKit_Color_RandomRGB_pod(),
+                                             @(UIControlStateSelected):BAKit_Color_RandomRGB_pod()}];
     self.btn7.layer.borderWidth = 5;
     
     [self.btn8 ba_buttonConfigTitleLabelFont:@{@(UIControlStateNormal):[UIFont systemFontOfSize:10],

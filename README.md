@@ -62,6 +62,11 @@
  项目源码地址：
  OC 版 ：https://github.com/BAHome/BAButton
  
+ 最新更新时间：2017-06-23 【倒叙】
+ 最新Version：【Version：2.5.2】
+ 更新内容：
+ 2.5.2.1、优化部分宏定义
+ 
  最新更新时间：2017-06-20 【倒叙】
  最新Version：【Version：2.5.1】
  更新内容：
@@ -571,6 +576,11 @@ NS_ASSUME_NONNULL_END
  欢迎使用 [【BAHome】](https://github.com/BAHome) 系列开源代码 ！
  如有更多需求，请前往：[【https://github.com/BAHome】](https://github.com/BAHome) 
  
+ 最新更新时间：2017-06-23 【倒叙】
+ 最新Version：【Version：2.5.2】
+ 更新内容：
+ 2.5.2.1、优化部分宏定义
+ 
  最新更新时间：2017-06-20 【倒叙】<br>
  最新Version：【Version：2.5.1】<br>
  更新内容：<br>
@@ -652,7 +662,9 @@ pod 最新上架，修复部分已知bug，代码更精简！
 
 ## 6、bug 反馈 和 联系方式
 > 1、开发中遇到 bug，希望小伙伴儿们能够及时反馈与我们 BAHome 团队，我们必定会认真对待每一个问题！ <br>
+
 > 2、以后提需求和 bug 的同学，记得把 git 或者博客链接给我们，我直接超链到你们那里！希望大家积极参与测试！<br> 
+
 > 3、联系方式 <br> 
 QQ群：479663605  【注意：此群为 2 元 付费群，介意的小伙伴儿勿扰！】<br> 
 博爱QQ：137361770 <br> 
