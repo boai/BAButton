@@ -81,6 +81,11 @@
  OC 版 ：https://github.com/BAHome/BAButton
  
  最新更新时间：2017-06-23 【倒叙】
+ 最新Version：【Version：2.5.3】
+ 更新内容：
+ 2.5.3.1、优化部分宏定义
+ 
+ 最新更新时间：2017-06-23 【倒叙】
  最新Version：【Version：2.5.2】
  更新内容：
  2.5.2.1、优化部分宏定义
