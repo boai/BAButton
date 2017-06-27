@@ -24,8 +24,53 @@
     
     self.title = @"BAButton";
     
-    [self test];
+//    [self test];
     [self setupNavi];
+    // 测试大图片 button 的 layout 布局，如果你的图片宽高大于 自身的宽高，怎需要压缩后再配置布局
+    [self test2];
+}
+
+- (void)test2
+{
+    self.button.hidden = NO;
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    CGFloat min_x = 0;
+    CGFloat min_y = 0;
+    CGFloat min_w = 0;
+    CGFloat min_h = 0;
+    
+    min_x = 100;
+    min_y = 100;
+    min_w = BAKit_SCREEN_WIDTH - min_x * 2;
+    min_h = min_w;
+    self.button.frame = CGRectMake(min_x, min_y, min_w, min_h);
+    
+    // 根据宽比例去缩放图片，注意：如果button 的图片 太宽，需要调用此方法去等比压缩图片，压缩完的图片，记得要在frame 之后设置图片
+    UIImage *stretchableButtonImage = [[UIImage imageNamed:@"条形码.jpg"] ba_imageScaleToWidth:_button.frame.size.width];
+    [_button setImage:stretchableButtonImage forState:UIControlStateNormal];
+    
+    // button 图文布局也要在图片设置之后设置才能有效
+    _button.ba_buttonLayoutType = BAKit_ButtonLayoutTypeCenterImageTop;
+}
+
+#pragma mark - 测试大图片 button 的 layout 布局，如果你的图片宽高大于 自身的宽高，怎需要压缩后再配置布局
+- (UIButton *)button
+{
+    if (!_button)
+    {
+        // 测试大图片 button 的 layout 布局，如果你的图片宽高大于 自身的宽高，怎需要压缩后再配置布局
+        _button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_button setTitle:@"123456" forState:UIControlStateNormal];
+        [_button setTitleColor:BAKit_Color_Red_pod forState:UIControlStateNormal];
+        _button.backgroundColor = BAKit_Color_Gray_10_pod;
+        
+        [self.view addSubview:_button];
+    }
+    return _button;
 }
 
 - (void)setupNavi

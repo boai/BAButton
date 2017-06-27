@@ -246,6 +246,21 @@ highlightedBackgroundImage:(UIImage *)highlightedBackgroundImage;
                                          selector:(SEL __nullable)sel;
 
 @end
+
+@interface UIImage (BAKit)
+
++ (UIImage *)imageWithColor:(UIColor *)color;
+
+/*!
+ *  根据宽比例去缩放图片，注意：如果button 的图片 太宽，需要调用此方法去等比压缩图片，具体看示例demo
+ *
+ *  @param width width description
+ *
+ *  @return return value description
+ */
+- (UIImage *)ba_imageScaleToWidth:(CGFloat)width;
+
+@end
 NS_ASSUME_NONNULL_END
 
 
