@@ -15,6 +15,7 @@
 * 7、优化命名规范，更换了全局统一属性命名和方法命名，如果更新有报错的地方，大家别急，看 .h 文件更换过来即可，后期推出的 BAKit 系列产品，命名都将统一规范，在此给大家带来的不便之处，向大家道歉！希望大家谅解！多谢体谅！
 * 8、新增 view 的 border 的创建，可以自定义圆角、边框、边框颜色等(感谢群里 @北京-大腿 同学提出的 需求！)
 * 9、修复 xib 下圆角右边无效的bug，注意：如果是 xib，需要要有固定 宽高，要不然 iOS 10 设置无效(感谢群里 @北京-小黑 同学提出的 bug！)
+* 10、新增 大图片 button 的 layout 布局，如果你的图片宽高大于 自身的宽高，怎需要压缩后再配置布局，具体看 demo test2
 
 ## 2、图片示例
 ![BAButton1](https://github.com/BAHome/BAButton/blob/master/Images/BAButton1.png)
@@ -61,6 +62,11 @@
  
  项目源码地址：
  OC 版 ：https://github.com/BAHome/BAButton
+ 
+ 最新更新时间：2017-06-27 【倒叙】<br>
+ 最新Version：【Version：2.5.4】<br>
+ 更新内容：<br>
+ 2.5.4.1、新增 大图片 button 的 layout 布局，如果你的图片宽高大于 自身的宽高，怎需要压缩后再配置布局，具体看 demo test2<br>
  
  最新更新时间：2017-06-23 【倒叙】
  最新Version：【Version：2.5.3】
@@ -319,6 +325,21 @@ highlightedBackgroundImage:(UIImage *)highlightedBackgroundImage;
                                          selector:(SEL __nullable)sel;
 
 @end
+
+@interface UIImage (BAKit)
+
++ (UIImage *)imageWithColor:(UIColor *)color;
+
+/*!
+ *  根据宽比例去缩放图片，注意：如果button 的图片 太宽，需要调用此方法去等比压缩图片，具体看示例demo
+ *
+ *  @param width width description
+ *
+ *  @return return value description
+ */
+- (UIImage *)ba_imageScaleToWidth:(CGFloat)width;
+
+@end
 NS_ASSUME_NONNULL_END
 ```
 
@@ -574,6 +595,50 @@ NS_ASSUME_NONNULL_END
     }];
 }
 
+// 示例4：测试大图片 button 的 layout 布局，如果你的图片宽高大于 自身的宽高，怎需要压缩后再配置布局
+- (void)test2
+{
+    self.button.hidden = NO;
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    CGFloat min_x = 0;
+    CGFloat min_y = 0;
+    CGFloat min_w = 0;
+    CGFloat min_h = 0;
+    
+    min_x = 100;
+    min_y = 100;
+    min_w = BAKit_SCREEN_WIDTH - min_x * 2;
+    min_h = min_w;
+    self.button.frame = CGRectMake(min_x, min_y, min_w, min_h);
+    
+    // 根据宽比例去缩放图片，注意：如果button 的图片 太宽，需要调用此方法去等比压缩图片，压缩完的图片，记得要在frame 之后设置图片
+    UIImage *stretchableButtonImage = [[UIImage imageNamed:@"条形码.jpg"] ba_imageScaleToWidth:_button.frame.size.width];
+    [_button setImage:stretchableButtonImage forState:UIControlStateNormal];
+    
+    // button 图文布局也要在图片设置之后设置才能有效
+    _button.ba_buttonLayoutType = BAKit_ButtonLayoutTypeCenterImageTop;
+}
+
+#pragma mark - 测试大图片 button 的 layout 布局，如果你的图片宽高大于 自身的宽高，怎需要压缩后再配置布局
+- (UIButton *)button
+{
+    if (!_button)
+    {
+        // 测试大图片 button 的 layout 布局，如果你的图片宽高大于 自身的宽高，怎需要压缩后再配置布局
+        _button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_button setTitle:@"123456" forState:UIControlStateNormal];
+        [_button setTitleColor:BAKit_Color_Red_pod forState:UIControlStateNormal];
+        _button.backgroundColor = BAKit_Color_Gray_10_pod;
+        
+        [self.view addSubview:_button];
+    }
+    return _button;
+}
+
 其他示例可下载demo查看源码！
 ```
 
@@ -581,14 +646,20 @@ NS_ASSUME_NONNULL_END
  欢迎使用 [【BAHome】](https://github.com/BAHome) 系列开源代码 ！
  如有更多需求，请前往：[【https://github.com/BAHome】](https://github.com/BAHome) 
  
- 最新更新时间：2017-06-23 【倒叙】
- 最新Version：【Version：2.5.3】
- 更新内容：
- 2.5.3.1、优化部分宏定义
+  
+ 最新更新时间：2017-06-27 【倒叙】<br>
+ 最新Version：【Version：2.5.4】<br>
+ 更新内容：<br>
+ 2.5.4.1、新增 大图片 button 的 layout 布局，如果你的图片宽高大于 自身的宽高，怎需要压缩后再配置布局，具体看 demo test2<br>
  
- 最新更新时间：2017-06-23 【倒叙】
- 最新Version：【Version：2.5.2】
- 更新内容：
+ 最新更新时间：2017-06-23 【倒叙】<br>
+ 最新Version：【Version：2.5.3】<br>
+ 更新内容：<br>
+ 2.5.3.1、优化部分宏定义<br>
+ 
+ 最新更新时间：2017-06-23 【倒叙】<br>
+ 最新Version：【Version：2.5.2】<br>
+ 更新内容：<br>
  2.5.2.1、优化部分宏定义
  
  最新更新时间：2017-06-20 【倒叙】<br>

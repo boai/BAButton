@@ -12,12 +12,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIImage (BAKit)
-
-+ (UIImage *)imageWithColor:(UIColor *)color;
-
-@end
-
 @implementation UIImage (BAKit)
 
 + (UIImage *)imageWithColor:(UIColor *)color
@@ -34,17 +28,78 @@ NS_ASSUME_NONNULL_BEGIN
     return image;
 }
 
+/*!
+ *  根据宽比例去缩放图片
+ *
+ *  @param width width description
+ *
+ *  @return return value description
+ */
+- (UIImage *)ba_imageScaleToWidth:(CGFloat)width
+{
+    UIImage *newImage = nil;
+    CGSize imageSize = self.size;
+    CGFloat old_width = imageSize.width;
+    CGFloat old_height = imageSize.height;
+    CGFloat targetWidth = width;
+    CGFloat targetHeight = old_height / (old_width / targetWidth);
+    CGSize size = CGSizeMake(targetWidth, targetHeight);
+    CGFloat scaleFactor = 0.0;
+    CGFloat scaledWidth = targetWidth;
+    CGFloat scaledHeight = targetHeight;
+    CGPoint thumbnailPoint = CGPointMake(0.0, 0.0);
+    
+    if (CGSizeEqualToSize(imageSize, size) == NO)
+    {
+        CGFloat widthFactor = targetWidth / old_width;
+        CGFloat heightFactor = targetHeight / old_height;
+        if(widthFactor > heightFactor)
+        {
+            scaleFactor = widthFactor;
+        }
+        else
+        {
+            scaleFactor = heightFactor;
+        }
+        scaledWidth = old_width * scaleFactor;
+        scaledHeight = old_height * scaleFactor;
+        if(widthFactor > heightFactor)
+        {
+            thumbnailPoint.y = (targetHeight - scaledHeight) * 0.5;
+        }
+        else if (widthFactor < heightFactor)
+        {
+            thumbnailPoint.x = (targetWidth - scaledWidth) * 0.5;
+        }
+    }
+    
+    UIGraphicsBeginImageContext(size);
+    
+    CGRect thumbnailRect = CGRectZero;
+    thumbnailRect.origin = thumbnailPoint;
+    thumbnailRect.size.width = scaledWidth;
+    thumbnailRect.size.height = scaledHeight;
+    [self drawInRect:thumbnailRect];
+    newImage = UIGraphicsGetImageFromCurrentImageContext();
+    if(newImage == nil){
+        NSLog(@"scale image fail");
+    }
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
+
 @end
 
 @implementation UIButton (BAKit)
 
 - (void)setupButtonLayout
 {
-    CGFloat image_w = self.imageView.frame.size.width;
-    CGFloat image_h = self.imageView.frame.size.height;
+    CGFloat image_w = self.imageView.bounds.size.width;
+    CGFloat image_h = self.imageView.bounds.size.height;
     
-    CGFloat title_w = self.titleLabel.frame.size.width;
-    CGFloat title_h = self.titleLabel.frame.size.height;
+    CGFloat title_w = self.titleLabel.bounds.size.width;
+    CGFloat title_h = self.titleLabel.bounds.size.height;
     
     if ([UIDevice currentDevice].systemVersion.floatValue >= 8.0)
     {
@@ -52,7 +107,7 @@ NS_ASSUME_NONNULL_BEGIN
         title_w = self.titleLabel.intrinsicContentSize.width;
         title_h = self.titleLabel.intrinsicContentSize.height;
     }
-    
+
     UIEdgeInsets imageEdge = UIEdgeInsetsZero;
     UIEdgeInsets titleEdge = UIEdgeInsetsZero;
     
