@@ -15,7 +15,8 @@
 * 7、优化命名规范，更换了全局统一属性命名和方法命名，如果更新有报错的地方，大家别急，看 .h 文件更换过来即可，后期推出的 BAKit 系列产品，命名都将统一规范，在此给大家带来的不便之处，向大家道歉！希望大家谅解！多谢体谅！
 * 8、新增 view 的 border 的创建，可以自定义圆角、边框、边框颜色等(感谢群里 @北京-大腿 同学提出的 需求！)
 * 9、修复 xib 下圆角右边无效的bug，注意：如果是 xib，需要要有固定 宽高，要不然 iOS 10 设置无效(感谢群里 @北京-小黑 同学提出的 bug！)
-* 10、新增 大图片 button 的 layout 布局，如果你的图片宽高大于 自身的宽高，怎需要压缩后再配置布局，具体看 demo test2
+* 10、新增 大图片 button 的 layout 布局，如果你的图片宽高大于 自身的宽高，怎需要压缩后再配置布局，具体看 demo
+* 11、重构 <UIButton+BAKit.h>类，新增多种快速创建 button 的方法
 
 ## 2、图片示例
 ![BAButton1](https://github.com/BAHome/BAButton/blob/master/Images/BAButton1.png)
@@ -62,6 +63,12 @@
  
  项目源码地址：
  OC 版 ：https://github.com/BAHome/BAButton
+ 
+ 最新更新时间：2017-07-07 【倒叙】<br>
+ 最新Version：【Version：2.5.5】<br>
+ 更新内容：<br>
+ 2.5.5.1、重构 <UIButton+BAKit.h>类，新增多种快速创建 button 的方法 <br>
+ 2.5.5.2、新增多种快速创建 自定义 button 的方法 <br>
  
  最新更新时间：2017-06-27 【倒叙】<br>
  最新Version：【Version：2.5.4】<br>
@@ -181,119 +188,101 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
  */
 @property (nonatomic, assign) CGFloat ba_padding_inset;
 
-/**
- 快速设置 button 的布局样式 和 间距，注意：文字、字体大小、图片等设置一定要在设置 ba_button_setButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移
-
- @param type button 的布局样式
- @param padding 文字与图片之间的间距
- */
-- (void)ba_button_setButtonLayoutType:(BAKit_ButtonLayoutType)type
-                              padding:(CGFloat)padding;
-
-/**
- 快速切圆角，注意：文字、字体大小、图片等设置一定要在设置 ba_button_setButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移，如果是 xib，需要要有固定 宽高，要不然 iOS 10 设置无效
-
- @param type 圆角样式
- @param viewCornerRadius 圆角角度
- */
-- (void)ba_button_setViewRectCornerType:(BAKit_ViewRectCornerType)type
-                       viewCornerRadius:(CGFloat)viewCornerRadius;
-
-/**
- 快速切圆角，带边框、边框颜色，如果是 xib，需要要有固定 宽高，要不然 iOS 10 设置无效
- 
- @param type 圆角样式
- @param viewCornerRadius 圆角角度
- @param borderWidth 边线宽度
- @param borderColor 边线颜色
- */
-- (void)ba_button_setViewRectCornerType:(BAKit_ViewRectCornerType)type
-                       viewCornerRadius:(CGFloat)viewCornerRadius
-                            borderWidth:(CGFloat)borderWidth
-                            borderColor:(UIColor *)borderColor;
-
-
-/**
- *  给定框架创建一个UIButton对象
- */
-+ (id)initWithFrame:(CGRect)frame;
-
-/**
- *  给定框架和字符串(字符串字体颜色默认是白色)创建一个UIButton对象
- */
-+ (id)initWithFrame:(CGRect)frame
-              title:(NSString *)title;
-
-/**
- *  给定框架、字符串和背景图片创建一个UIButton对象
- */
-+ (id)initWithFrame:(CGRect)frame
-              title:(NSString *)title
-    backgroundImage:(UIImage *)backgroundImage;
-
-/**
- *  给定框架、字符串、背景图片和高亮背景图片创建一个UIButton对象
- */
-+ (id)initWithFrame:(CGRect)frame
-              title:(NSString *)title
-    backgroundImage:(UIImage *)backgroundImage
-highlightedBackgroundImage:(UIImage *)highlightedBackgroundImage;
-
-/**
- *  给定框架、字符串、颜色创建一个UIButton对象
- */
-+ (id)initWithFrame:(CGRect)frame
-              title:(NSString *)title
-              color:(UIColor *)color;
-
-/**
- *  给定框架、字符串、背景颜色和高亮背景颜色创建一个UIButton对象
- */
-+ (id)initWithFrame:(CGRect)frame
-              title:(NSString *)title
-              color:(UIColor *)color
-   highlightedColor:(UIColor *)highlightedColor;
-
-/**
- *  给定框架、颜色创建一个UIButton对象
- */
-+ (id)initWithFrame:(CGRect)frame
-              color:(UIColor *)color;
-
-/**
- *  给定框架、背景颜色和高亮背景颜色创建一个UIButton对象
- */
-+ (id)initWithFrame:(CGRect)frame
-              color:(UIColor *)color
-   highlightedColor:(UIColor *)highlightedColor;
-
-/**
- *  给定框架和图片创建一个UIButton对象
- */
-+ (id)initWithFrame:(CGRect)frame
-              image:(UIImage *)image;
-
-/**
- *  给定框架、背景图片和高亮背景图片创建一个UIButton对象 */
-+ (id)initWithFrame:(CGRect)frame
-              image:(UIImage *)image
-   highlightedImage:(UIImage *)highlightedImage;
-
-/**
- *  设置字符字体和大小
- */
-- (void)setTitleFont:(NSString *)fontName
-                size:(CGFloat)size;
-
-/**
- *  设置字符颜色和高亮颜色
- */
-- (void)setTitleColor:(UIColor *)color
-     highlightedColor:(UIColor *)highlightedColor;
 
 #pragma mark - 快速创建 button
+
 /**
- 创建 button
+ 快速创建 button1：frame、title、titleColor、titleFont
+ 
+ @param frame frame
+ @param title title
+ @param titleColor titleColor
+ @param titleFont titleFont
+ @return button
+ */
++ (id)ba_buttonWithFrame:(CGRect)frame
+                   title:(NSString * __nullable)title
+              titleColor:(UIColor * __nullable)titleColor
+               titleFont:(UIFont * __nullable)titleFont;
+
+/**
+ 快速创建 button2：frame、title、backgroundColor
+ 
+ @param frame frame
+ @param title title
+ @param backgroundColor backgroundColor
+ @return button
+ */
++ (id)ba_buttonWithFrame:(CGRect)frame
+                   title:(NSString * __nullable)title
+         backgroundColor:(UIColor * __nullable)backgroundColor;
+
+/**
+ 快速创建 button3：frame、title、titleColor、titleFont、backgroundColor
+ 
+ @param frame frame
+ @param title title
+ @param titleColor titleColor
+ @param titleFont titleFont
+ @param backgroundColor backgroundColor
+ @return button
+ */
++ (id)ba_buttonWithFrame:(CGRect)frame
+                   title:(NSString * __nullable)title
+              titleColor:(UIColor * __nullable)titleColor
+               titleFont:(UIFont * __nullable)titleFont
+         backgroundColor:(UIColor * __nullable)backgroundColor;
+
+/**
+ 快速创建 button4：frame、title、backgroundImage
+ 
+ @param frame frame
+ @param title title
+ @param backgroundImage backgroundImage
+ @return button
+ */
++ (id)ba_buttonWithFrame:(CGRect)frame
+                   title:(NSString * __nullable)title
+         backgroundImage:(UIImage * __nullable)backgroundImage;
+
+/**
+ 快速创建 button5：frame、title、titleColor、titleFont、image、backgroundColor
+ 
+ @param frame frame description
+ @param title title description
+ @param titleColor titleColor description
+ @param titleFont titleFont description
+ @param image image description
+ @param backgroundColor backgroundColor description
+ @return button
+ */
++ (instancetype)ba_buttonWithFrame:(CGRect)frame
+                             title:(NSString * __nullable)title
+                        titleColor:(UIColor * __nullable)titleColor
+                         titleFont:(UIFont * __nullable)titleFont
+                             image:(UIImage * __nullable)image
+                   backgroundColor:(UIColor * __nullable)backgroundColor;
+
+/**
+ 快速创建 button6：frame、title、titleColor、titleFont、image、backgroundImage
+ 
+ @param frame frame description
+ @param title title description
+ @param titleColor titleColor description
+ @param titleFont titleFont description
+ @param image image description
+ @param backgroundImage backgroundImage description
+ @return button
+ */
++ (instancetype)ba_buttonWithFrame:(CGRect)frame
+                             title:(NSString * __nullable)title
+                        titleColor:(UIColor * __nullable)titleColor
+                         titleFont:(UIFont * __nullable)titleFont
+                             image:(UIImage * __nullable)image
+                   backgroundImage:(UIImage * __nullable)backgroundImage;
+
+/**
+ 快速创建 button7：大汇总-点击事件、圆角
  
  @param frame frame
  @param title title
@@ -324,11 +313,164 @@ highlightedBackgroundImage:(UIImage *)highlightedBackgroundImage;
                                            target:(id __nullable)target
                                          selector:(SEL __nullable)sel;
 
+/**
+ 快速创建 button8：大汇总-所有 normal、selected、highlighted 样式都有
+ 
+ @param frame frame
+ @param title title description
+ @param selectedTitle selectedTitle description
+ @param highlightedTitle highlightedTitle description
+ @param titleColor titleColor description
+ @param selectedTitleColor selectedTitleColor description
+ @param highlightedTitleColor highlightedTitleColor description
+ @param titleFont titleFont description
+ @param image image description
+ @param selectedImage selectedImage description
+ @param highlightedImage highlightedImage description
+ @param backgroundImage backgroundImage description
+ @param selectedBackgroundImage selectedBackgroundImage description
+ @param highlightedBackgroundImage highlightedBackgroundImage description
+ @param backgroundColor backgroundColor description
+ @param selectedBackgroundColor selectedBackgroundColor description
+ @param highlightedBackgroundColor highlightedBackgroundColor description
+ @return button
+ */
++ (instancetype)ba_buttonWithFrame:(CGRect)frame
+                             title:(NSString * __nullable)title
+                     selectedTitle:(NSString * __nullable)selectedTitle
+                  highlightedTitle:(NSString * __nullable)highlightedTitle
+                        titleColor:(UIColor * __nullable)titleColor
+                selectedTitleColor:(UIColor * __nullable)selectedTitleColor
+             highlightedTitleColor:(UIColor * __nullable)highlightedTitleColor
+                         titleFont:(UIFont * __nullable)titleFont
+                             image:(UIImage * __nullable)image
+                     selectedImage:(UIImage * __nullable)selectedImage
+                  highlightedImage:(UIImage * __nullable)highlightedImage
+                   backgroundImage:(UIImage * __nullable)backgroundImage
+           selectedBackgroundImage:(UIImage * __nullable)selectedBackgroundImage
+        highlightedBackgroundImage:(UIImage * __nullable)highlightedBackgroundImage
+                   backgroundColor:(UIColor * __nullable)backgroundColor
+           selectedBackgroundColor:(UIColor * __nullable)selectedBackgroundColor
+        highlightedBackgroundColor:(UIColor * __nullable)highlightedBackgroundColor;
+
+#pragma mark - 自定义：button
+/**
+ 自定义：button backgroundColor、selectedBackgroundColor、highlightedBackgroundColor
+ 
+ @param backgroundColor backgroundColor
+ @param selectedBackgroundColor selectedBackgroundColor
+ @param highlightedBackgroundColor highlightedBackgroundColor
+ */
+- (void)ba_buttonSetBackgroundColor:(UIColor * __nullable)backgroundColor
+            selectedBackgroundColor:(UIColor * __nullable)selectedBackgroundColor
+         highlightedBackgroundColor:(UIColor * __nullable)highlightedBackgroundColor;
+
+/**
+ 自定义：button backgroundImage、selectedBackgroundImage、highlightedBackgroundImage
+ 
+ @param backgroundImage backgroundImage
+ @param selectedBackgroundImage selectedBackgroundImage
+ @param highlightedBackgroundImage highlightedBackgroundImage
+ */
+- (void)ba_buttonSetBackgroundImage:(UIImage * __nullable)backgroundImage
+            selectedBackgroundImage:(UIImage * __nullable)selectedBackgroundImage
+         highlightedBackgroundImage:(UIImage * __nullable)highlightedBackgroundImage;
+
+/**
+ 自定义：button image、selectedImage、highlightedImage
+ 
+ @param image image
+ @param selectedImage selectedImage
+ @param highlightedImage highlightedImage
+ */
+- (void)ba_buttonSetImage:(UIImage * __nullable)image
+            selectedImage:(UIImage * __nullable)selectedImage
+         highlightedImage:(UIImage * __nullable)highlightedImage;
+
+/**
+ 自定义：button title、selectedTitle、highlightedTitle
+ 
+ @param title title
+ @param selectedTitle selectedTitle
+ @param highlightedTitle highlightedTitle
+ */
+- (void)ba_buttonSetTitle:(NSString * __nullable)title
+            selectedTitle:(NSString * __nullable)selectedTitle
+         highlightedTitle:(NSString * __nullable)highlightedTitle;
+
+/**
+ 自定义：button titleColor、selectedTitleColor、highlightedTitleColor
+ 
+ @param titleColor titleColor
+ @param selectedTitleColor selectedTitleColor
+ @param highlightedTitleColor highlightedTitleColor
+ */
+- (void)ba_buttonSetTitleColor:(UIColor * __nullable)titleColor
+            selectedTitleColor:(UIColor * __nullable)selectedTitleColor
+         highlightedTitleColor:(UIColor * __nullable)highlightedTitleColor;
+
+/**
+ 自定义：button 字体、大小
+ 
+ @param fontName fontName
+ @param size size
+ */
+- (void)ba_buttonSetTitleFontName:(NSString *)fontName
+                             size:(CGFloat)size;
+
+/**
+ 自定义：button 点击事件，默认：UIControlEventTouchUpInside
+ 
+ @param target target
+ @param tag tag
+ @param action action
+ */
+- (void)ba_buttonAddTarget:(nullable id)target
+                       tag:(NSInteger)tag
+                    action:(SEL)action;
+
+/**
+ 快速设置 button 的布局样式 和 间距，注意：文字、字体大小、图片等设置一定要在设置 ba_button_setButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移
+ 
+ @param type button 的布局样式
+ @param padding 文字与图片之间的间距
+ */
+- (void)ba_button_setButtonLayoutType:(BAKit_ButtonLayoutType)type
+                              padding:(CGFloat)padding;
+
+/**
+ 快速切圆角，注意：文字、字体大小、图片等设置一定要在设置 ba_button_setButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移，如果是 xib，需要要有固定 宽高，要不然 iOS 10 设置无效
+ 
+ @param type 圆角样式
+ @param viewCornerRadius 圆角角度
+ */
+- (void)ba_button_setViewRectCornerType:(BAKit_ViewRectCornerType)type
+                       viewCornerRadius:(CGFloat)viewCornerRadius;
+
+/**
+ 快速切圆角，带边框、边框颜色，如果是 xib，需要要有固定 宽高，要不然 iOS 10 设置无效
+ 
+ @param type 圆角样式
+ @param viewCornerRadius 圆角角度
+ @param borderWidth 边线宽度
+ @param borderColor 边线颜色
+ */
+- (void)ba_button_setViewRectCornerType:(BAKit_ViewRectCornerType)type
+                       viewCornerRadius:(CGFloat)viewCornerRadius
+                            borderWidth:(CGFloat)borderWidth
+                            borderColor:(UIColor *)borderColor;
+
 @end
 
 @interface UIImage (BAKit)
 
-+ (UIImage *)imageWithColor:(UIColor *)color;
+/**
+ 创建一个 纯颜色 图片【全部铺满】
+ 
+ @param color color
+ @return 纯颜色 图片
+ */
++ (UIImage *)ba_image_Color:(UIColor *)color;
 
 /*!
  *  根据宽比例去缩放图片，注意：如果button 的图片 太宽，需要调用此方法去等比压缩图片，具体看示例demo
@@ -341,6 +483,7 @@ highlightedBackgroundImage:(UIImage *)highlightedBackgroundImage;
 
 @end
 NS_ASSUME_NONNULL_END
+
 ```
 
 ### UIView+BARectCorner.h
@@ -629,10 +772,14 @@ NS_ASSUME_NONNULL_END
     if (!_button)
     {
         // 测试大图片 button 的 layout 布局，如果你的图片宽高大于 自身的宽高，怎需要压缩后再配置布局
-        _button = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_button setTitle:@"123456" forState:UIControlStateNormal];
-        [_button setTitleColor:BAKit_Color_Red_pod forState:UIControlStateNormal];
-        _button.backgroundColor = BAKit_Color_Gray_10_pod;
+        // 原生写法
+        //        _button = [UIButton buttonWithType:UIButtonTypeCustom];
+        //        [_button setTitle:@"123456" forState:UIControlStateNormal];
+        //        [_button setTitleColor:BAKit_Color_Red_pod forState:UIControlStateNormal];
+        //        _button.backgroundColor = BAKit_Color_Gray_10_pod;
+        
+        // BAButton 简单写法
+        _button = [UIButton ba_buttonWithFrame:CGRectZero title:@"123456" titleColor:BAKit_Color_Red_pod titleFont:[UIFont systemFontOfSize:15] backgroundColor:BAKit_Color_Gray_10_pod];
         
         [self.view addSubview:_button];
     }
@@ -646,6 +793,11 @@ NS_ASSUME_NONNULL_END
  欢迎使用 [【BAHome】](https://github.com/BAHome) 系列开源代码 ！
  如有更多需求，请前往：[【https://github.com/BAHome】](https://github.com/BAHome) 
  
+ 最新更新时间：2017-07-07 【倒叙】<br>
+ 最新Version：【Version：2.5.5】<br>
+ 更新内容：<br>
+ 2.5.5.1、重构 <UIButton+BAKit.h>类，新增多种快速创建 button 的方法 <br>
+ 2.5.5.2、新增多种快速创建 自定义 button 的方法 <br>
   
  最新更新时间：2017-06-27 【倒叙】<br>
  最新Version：【Version：2.5.4】<br>

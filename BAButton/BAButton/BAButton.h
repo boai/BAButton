@@ -80,6 +80,12 @@
  项目源码地址：
  OC 版 ：https://github.com/BAHome/BAButton
  
+ 最新更新时间：2017-07-07 【倒叙】<br>
+ 最新Version：【Version：2.5.5】<br>
+ 更新内容：<br>
+ 2.5.5.1、重构 <UIButton+BAKit.h>类，新增多种快速创建 button 的方法 <br>
+ 2.5.5.2、新增多种快速创建 自定义 button 的方法 <br>
+ 
  最新更新时间：2017-06-27 【倒叙】<br>
  最新Version：【Version：2.5.4】<br>
  更新内容：<br>

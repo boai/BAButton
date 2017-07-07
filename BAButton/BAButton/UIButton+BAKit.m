@@ -14,15 +14,34 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation UIImage (BAKit)
 
-+ (UIImage *)imageWithColor:(UIColor *)color
+/**
+ 创建一个 纯颜色 图片【全部铺满】
+ 
+ @param color color
+ @return 纯颜色 图片
+ */
++ (UIImage *)ba_image_Color:(UIColor *)color
 {
-    CGRect rect = CGRectMake(0, 0, 1, 1);
+    UIImage *image = [self ba_image_Color:color size:CGSizeMake(1.0f, 1.0f)];
+    return image;
+}
+
+/**
+ 创建一个 纯颜色 图片【可以设置 size】
+ 
+ @param color color
+ @param size size
+ @return 纯颜色 图片
+ */
++ (UIImage *)ba_image_Color:(UIColor *)color size:(CGSize)size
+{
+    CGRect rect          = CGRectMake(0.0f, 0.0f, size.width, size.height);
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetFillColorWithColor(context, [color CGColor]);
     
     CGContextFillRect(context, rect);
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIImage *image       = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
     return image;
@@ -183,6 +202,335 @@ NS_ASSUME_NONNULL_BEGIN
     self.titleEdgeInsets = titleEdge;
 }
 
+#pragma mark - 快速创建 button
+
+/**
+ 快速创建 button1：frame、title、titleColor、titleFont
+ 
+ @param frame frame
+ @param title title
+ @param titleColor titleColor
+ @param titleFont titleFont
+ @return button
+ */
++ (id)ba_buttonWithFrame:(CGRect)frame
+                   title:(NSString * __nullable)title
+              titleColor:(UIColor * __nullable)titleColor
+               titleFont:(UIFont * __nullable)titleFont
+{
+    UIButton *button = [UIButton ba_buttonWithFrame:frame title:title titleColor:titleColor titleFont:titleFont backgroundColor:nil];
+    
+    return button;
+}
+
+/**
+ 快速创建 button2：frame、title、backgroundColor
+ 
+ @param frame frame
+ @param title title
+ @param backgroundColor backgroundColor
+ @return button
+ */
++ (id)ba_buttonWithFrame:(CGRect)frame
+                   title:(NSString * __nullable)title
+         backgroundColor:(UIColor * __nullable)backgroundColor
+{
+    UIButton *button = [UIButton ba_buttonWithFrame:frame title:title titleColor:nil titleFont:nil backgroundColor:backgroundColor];
+    
+    return button;
+}
+
+/**
+ 快速创建 button3：frame、title、titleColor、titleFont、backgroundColor
+
+ @param frame frame
+ @param title title
+ @param titleColor titleColor
+ @param titleFont titleFont
+ @param backgroundColor backgroundColor
+ @return button
+ */
++ (id)ba_buttonWithFrame:(CGRect)frame
+                   title:(NSString * __nullable)title
+              titleColor:(UIColor * __nullable)titleColor
+               titleFont:(UIFont * __nullable)titleFont
+         backgroundColor:(UIColor * __nullable)backgroundColor
+{
+    UIButton *button = [UIButton ba_buttonWithFrame:frame title:title titleColor:titleColor titleFont:titleFont image:nil backgroundColor:backgroundColor];
+
+    return button;
+}
+
+/**
+ 快速创建 button4：frame、title、backgroundImage
+ 
+ @param frame frame
+ @param title title
+ @param backgroundImage backgroundImage
+ @return button
+ */
++ (id)ba_buttonWithFrame:(CGRect)frame
+                   title:(NSString * __nullable)title
+         backgroundImage:(UIImage * __nullable)backgroundImage
+{
+    UIButton *button = [UIButton ba_buttonWithFrame:frame title:title backgroundImage:backgroundImage];
+    return button;
+}
+
+/**
+ 快速创建 button5：frame、title、titleColor、titleFont、image、backgroundColor
+
+ @param frame frame description
+ @param title title description
+ @param titleColor titleColor description
+ @param titleFont titleFont description
+ @param image image description
+ @param backgroundColor backgroundColor description
+ @return button
+ */
++ (instancetype)ba_buttonWithFrame:(CGRect)frame
+                             title:(NSString * __nullable)title
+                        titleColor:(UIColor * __nullable)titleColor
+                         titleFont:(UIFont * __nullable)titleFont
+                             image:(UIImage * __nullable)image
+                   backgroundColor:(UIColor * __nullable)backgroundColor
+{
+    UIButton *button = [UIButton ba_buttonWithFrame:frame title:title selectedTitle:nil highlightedTitle:nil titleColor:titleColor selectedTitleColor:nil highlightedTitleColor:nil titleFont:titleFont image:image selectedImage:nil highlightedImage:nil backgroundImage:nil selectedBackgroundImage:nil highlightedBackgroundImage:nil backgroundColor:backgroundColor selectedBackgroundColor:nil highlightedBackgroundColor:nil];
+    
+    return button;
+}
+
+/**
+ 快速创建 button6：frame、title、titleColor、titleFont、image、backgroundImage
+
+ @param frame frame description
+ @param title title description
+ @param titleColor titleColor description
+ @param titleFont titleFont description
+ @param image image description
+ @param backgroundImage backgroundImage description
+ @return button
+ */
++ (instancetype)ba_buttonWithFrame:(CGRect)frame
+                             title:(NSString * __nullable)title
+                        titleColor:(UIColor * __nullable)titleColor
+                         titleFont:(UIFont * __nullable)titleFont
+                             image:(UIImage * __nullable)image
+                   backgroundImage:(UIImage * __nullable)backgroundImage
+{
+    UIButton *button = [UIButton ba_buttonWithFrame:frame title:title selectedTitle:nil highlightedTitle:nil titleColor:titleColor selectedTitleColor:nil highlightedTitleColor:nil titleFont:titleFont image:image selectedImage:nil highlightedImage:nil backgroundImage:backgroundImage selectedBackgroundImage:nil highlightedBackgroundImage:nil backgroundColor:nil selectedBackgroundColor:nil highlightedBackgroundColor:nil];
+    
+    return button;
+}
+
+
+/**
+ 快速创建 button7：大汇总-点击事件、圆角
+ 
+ @param frame frame
+ @param title title
+ @param selTitle selTitle
+ @param titleColor titleColor，默认：黑色
+ @param titleFont titleFont默认：15
+ @param image image description
+ @param selImage selImage
+ @param padding padding 文字图片间距
+ @param buttonLayoutType buttonLayoutType 文字图片布局样式
+ @param viewRectCornerType viewRectCornerType 圆角样式
+ @param viewCornerRadius viewCornerRadius 圆角角度
+ @param target target
+ @param sel sel
+ @return button
+ */
++ (instancetype __nonnull)ba_creatButtonWithFrame:(CGRect)frame
+                                            title:(NSString * __nullable)title
+                                         selTitle:(NSString * __nullable)selTitle
+                                       titleColor:(UIColor * __nullable)titleColor
+                                        titleFont:(UIFont * __nullable)titleFont
+                                            image:(UIImage * __nullable)image
+                                         selImage:(UIImage * __nullable)selImage
+                                          padding:(CGFloat)padding
+                              buttonPositionStyle:(BAKit_ButtonLayoutType)buttonLayoutType
+                               viewRectCornerType:(BAKit_ViewRectCornerType)viewRectCornerType
+                                 viewCornerRadius:(CGFloat)viewCornerRadius
+                                           target:(id __nullable)target
+                                         selector:(SEL __nullable)sel
+{
+    UIButton *button = [UIButton ba_buttonWithFrame:frame title:title selectedTitle:selTitle highlightedTitle:nil titleColor:titleColor selectedTitleColor:nil highlightedTitleColor:nil titleFont:titleFont image:image selectedImage:selImage highlightedImage:nil backgroundImage:nil selectedBackgroundImage:nil highlightedBackgroundImage:nil backgroundColor:nil selectedBackgroundColor:nil highlightedBackgroundColor:nil];
+    [button ba_button_setButtonLayoutType:buttonLayoutType padding:padding];
+    [button ba_button_setViewRectCornerType:viewRectCornerType viewCornerRadius:viewCornerRadius];
+    [button addTarget:target action:sel forControlEvents:UIControlEventTouchUpInside];
+    
+    return button;
+}
+
+/**
+ 快速创建 button8：大汇总-所有 normal、selected、highlighted 样式都有
+
+ @param frame frame
+ @param title title description
+ @param selectedTitle selectedTitle description
+ @param highlightedTitle highlightedTitle description
+ @param titleColor titleColor description
+ @param selectedTitleColor selectedTitleColor description
+ @param highlightedTitleColor highlightedTitleColor description
+ @param titleFont titleFont description
+ @param image image description
+ @param selectedImage selectedImage description
+ @param highlightedImage highlightedImage description
+ @param backgroundImage backgroundImage description
+ @param selectedBackgroundImage selectedBackgroundImage description
+ @param highlightedBackgroundImage highlightedBackgroundImage description
+ @param backgroundColor backgroundColor description
+ @param selectedBackgroundColor selectedBackgroundColor description
+ @param highlightedBackgroundColor highlightedBackgroundColor description
+ @return button
+ */
++ (instancetype)ba_buttonWithFrame:(CGRect)frame
+                             title:(NSString * __nullable)title
+                     selectedTitle:(NSString * __nullable)selectedTitle
+                  highlightedTitle:(NSString * __nullable)highlightedTitle
+                        titleColor:(UIColor * __nullable)titleColor
+                selectedTitleColor:(UIColor * __nullable)selectedTitleColor
+             highlightedTitleColor:(UIColor * __nullable)highlightedTitleColor
+                         titleFont:(UIFont * __nullable)titleFont
+                             image:(UIImage * __nullable)image
+                     selectedImage:(UIImage * __nullable)selectedImage
+                  highlightedImage:(UIImage * __nullable)highlightedImage
+                   backgroundImage:(UIImage * __nullable)backgroundImage
+           selectedBackgroundImage:(UIImage * __nullable)selectedBackgroundImage
+        highlightedBackgroundImage:(UIImage * __nullable)highlightedBackgroundImage
+                   backgroundColor:(UIColor * __nullable)backgroundColor
+           selectedBackgroundColor:(UIColor * __nullable)selectedBackgroundColor
+        highlightedBackgroundColor:(UIColor * __nullable)highlightedBackgroundColor
+{
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = frame;
+    
+    [button ba_buttonSetTitle:title selectedTitle:selectedTitle highlightedTitle:highlightedTitle];
+    if (!titleColor)
+    {
+        titleColor = [UIColor blackColor];
+    }
+    [button ba_buttonSetTitleColor:titleColor selectedTitleColor:selectedTitleColor highlightedTitleColor:highlightedTitleColor];
+    button.titleLabel.font = titleFont ? titleFont : [UIFont systemFontOfSize:15.0f];
+    
+    [button ba_buttonSetImage:image selectedImage:selectedImage highlightedImage:highlightedImage];
+    [button ba_buttonSetBackgroundImage:backgroundImage selectedBackgroundImage:selectedBackgroundImage highlightedBackgroundImage:highlightedBackgroundImage];
+    [button ba_buttonSetBackgroundColor:backgroundColor selectedBackgroundColor:selectedBackgroundColor highlightedBackgroundColor:highlightedBackgroundColor];
+    
+    return button;
+}
+
+#pragma mark - 自定义：button
+/**
+ 自定义：button backgroundColor、selectedBackgroundColor、highlightedBackgroundColor
+
+ @param backgroundColor backgroundColor
+ @param selectedBackgroundColor selectedBackgroundColor
+ @param highlightedBackgroundColor highlightedBackgroundColor
+ */
+- (void)ba_buttonSetBackgroundColor:(UIColor * __nullable)backgroundColor
+            selectedBackgroundColor:(UIColor * __nullable)selectedBackgroundColor
+         highlightedBackgroundColor:(UIColor * __nullable)highlightedBackgroundColor
+{
+
+    [self ba_buttonSetBackgroundImage:[UIImage ba_image_Color:backgroundColor]
+              selectedBackgroundImage:[UIImage ba_image_Color:selectedBackgroundColor]
+           highlightedBackgroundImage:[UIImage ba_image_Color:highlightedBackgroundColor]];
+}
+
+/**
+ 自定义：button backgroundImage、selectedBackgroundImage、highlightedBackgroundImage
+
+ @param backgroundImage backgroundImage
+ @param selectedBackgroundImage selectedBackgroundImage
+ @param highlightedBackgroundImage highlightedBackgroundImage
+ */
+- (void)ba_buttonSetBackgroundImage:(UIImage * __nullable)backgroundImage
+            selectedBackgroundImage:(UIImage * __nullable)selectedBackgroundImage
+         highlightedBackgroundImage:(UIImage * __nullable)highlightedBackgroundImage
+{
+    [self setBackgroundImage:backgroundImage forState:UIControlStateNormal];
+    [self setBackgroundImage:selectedBackgroundImage forState:UIControlStateSelected];
+    [self setBackgroundImage:highlightedBackgroundImage forState:UIControlStateHighlighted];
+}
+
+/**
+ 自定义：button image、selectedImage、highlightedImage
+
+ @param image image
+ @param selectedImage selectedImage
+ @param highlightedImage highlightedImage
+ */
+- (void)ba_buttonSetImage:(UIImage * __nullable)image
+            selectedImage:(UIImage * __nullable)selectedImage
+         highlightedImage:(UIImage * __nullable)highlightedImage
+{
+    [self setImage:image forState:UIControlStateNormal];
+    [self setImage:selectedImage forState:UIControlStateSelected];
+    [self setImage:highlightedImage forState:UIControlStateHighlighted];
+}
+
+/**
+ 自定义：button title、selectedTitle、highlightedTitle
+
+ @param title title
+ @param selectedTitle selectedTitle
+ @param highlightedTitle highlightedTitle
+ */
+- (void)ba_buttonSetTitle:(NSString * __nullable)title
+            selectedTitle:(NSString * __nullable)selectedTitle
+         highlightedTitle:(NSString * __nullable)highlightedTitle
+{
+    [self setTitle:title forState:UIControlStateNormal];
+    [self setTitle:selectedTitle forState:UIControlStateSelected];
+    [self setTitle:highlightedTitle forState:UIControlStateHighlighted];
+}
+
+/**
+ 自定义：button titleColor、selectedTitleColor、highlightedTitleColor
+
+ @param titleColor titleColor
+ @param selectedTitleColor selectedTitleColor
+ @param highlightedTitleColor highlightedTitleColor
+ */
+- (void)ba_buttonSetTitleColor:(UIColor * __nullable)titleColor
+            selectedTitleColor:(UIColor * __nullable)selectedTitleColor
+         highlightedTitleColor:(UIColor * __nullable)highlightedTitleColor
+{
+    [self setTitleColor:titleColor forState:UIControlStateNormal];
+    [self setTitleColor:selectedTitleColor forState:UIControlStateSelected];
+    [self setTitleColor:highlightedTitleColor forState:UIControlStateHighlighted];
+}
+
+/**
+ 自定义：button 字体、大小
+
+ @param fontName fontName
+ @param size size
+ */
+- (void)ba_buttonSetTitleFontName:(NSString *)fontName
+                             size:(CGFloat)size
+{
+    [self.titleLabel setFont:[UIFont fontWithName:fontName size:size]];
+}
+
+/**
+ 自定义：button 点击事件，默认：UIControlEventTouchUpInside
+
+ @param target target
+ @param tag tag
+ @param action action
+ */
+- (void)ba_buttonAddTarget:(nullable id)target
+                       tag:(NSInteger)tag
+                    action:(SEL)action
+{
+    self.tag = tag;
+    [self addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+}
+
 /**
  快速设置 button 的布局样式 和 间距
  
@@ -220,206 +568,6 @@ NS_ASSUME_NONNULL_BEGIN
                             borderColor:(UIColor *)borderColor
 {
     [self ba_view_setViewRectCornerType:type viewCornerRadius:viewCornerRadius borderWidth:borderWidth borderColor:borderColor];
-}
-
-/* 给定框架创建一个UIButton对象 */
-+ (id)initWithFrame:(CGRect)frame
-{
-    return [UIButton initWithFrame:frame
-                             title:nil];
-}
-
-/* 给定框架和字符串(字符串字体颜色默认是白色)创建一个UIButton对象 */
-+ (id)initWithFrame:(CGRect)frame
-              title:(NSString *)title
-{
-    return [UIButton initWithFrame:frame
-                             title:title
-                   backgroundImage:nil];
-}
-
-/* 给定框架、字符串和背景图片创建一个UIButton对象 */
-+ (id)initWithFrame:(CGRect)frame
-              title:(NSString *)title
-    backgroundImage:(UIImage *)backgroundImage
-{
-    return [UIButton initWithFrame:frame
-                             title:title
-                   backgroundImage:backgroundImage
-        highlightedBackgroundImage:nil];
-}
-
-/* 给定框架、字符串、背景图片和高亮背景图片创建一个UIButton对象 */
-+ (id)initWithFrame:(CGRect)frame
-              title:(NSString *)title
-    backgroundImage:(UIImage *)backgroundImage
-highlightedBackgroundImage:(UIImage *)highlightedBackgroundImage
-{
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setFrame:frame];
-    [button setTitle:title
-            forState:UIControlStateNormal];
-    [button setBackgroundImage:backgroundImage
-                      forState:UIControlStateNormal];
-    [button setBackgroundImage:highlightedBackgroundImage
-                      forState:UIControlStateHighlighted];
-    return button;
-}
-
-/* 给定框架、字符串、颜色创建一个UIButton对象 */
-+ (id)initWithFrame:(CGRect)frame
-              title:(NSString *)title
-              color:(UIColor *)color
-{
-    // 返回与'色'关联的颜色组件（包括透明度)
-    const CGFloat *components = CGColorGetComponents(color.CGColor);
-    return [UIButton initWithFrame:frame
-                             title:title
-                   backgroundImage:[UIImage imageWithColor:color]
-        highlightedBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed:components[0]-0.1
-                                                                           green:components[1]-0.1
-                                                                            blue:components[2]-0.1
-                                                                           alpha:1]]];
-}
-
-/* 给定框架、字符串、背景颜色和高亮背景颜色创建一个UIButton对象 */
-+ (id)initWithFrame:(CGRect)frame
-              title:(NSString *)title
-              color:(UIColor *)color
-   highlightedColor:(UIColor *)highlightedColor
-{
-    return [UIButton initWithFrame:frame
-                             title:title
-                   backgroundImage:[UIImage imageWithColor:color]
-        highlightedBackgroundImage:[UIImage imageWithColor:highlightedColor]];
-}
-
-/* 给定框架、颜色创建一个UIButton对象 */
-+ (id)initWithFrame:(CGRect)frame
-              color:(UIColor *)color
-{
-    // 返回与'色'关联的颜色组件（包括透明度)
-    const CGFloat *components = CGColorGetComponents(color.CGColor);
-    return [UIButton initWithFrame:frame
-                             title:nil
-                   backgroundImage:[UIImage imageWithColor:color]
-        highlightedBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRed:components[0]-0.1
-                                                                           green:components[1]-0.1
-                                                                            blue:components[2]-0.1
-                                                                           alpha:1]]];
-}
-
-/* 给定框架、背景颜色和高亮背景颜色创建一个UIButton对象 */
-+ (id)initWithFrame:(CGRect)frame
-              color:(UIColor *)color
-   highlightedColor:(UIColor *)highlightedColor
-{
-    return [UIButton initWithFrame:frame
-                             title:nil
-                   backgroundImage:[UIImage imageWithColor:color]
-        highlightedBackgroundImage:[UIImage imageWithColor:highlightedColor]];
-}
-
-/* 给定框架和图片创建一个UIButton对象 */
-+ (id)initWithFrame:(CGRect)frame
-              image:(UIImage *)image
-{
-    return [UIButton initWithFrame:frame
-                             image:image
-                  highlightedImage:nil];
-}
-
-/* 给定框架、背景图片和高亮背景图片创建一个UIButton对象 */
-+ (id)initWithFrame:(CGRect)frame
-              image:(UIImage *)image
-   highlightedImage:(UIImage *)highlightedImage
-{
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setFrame:frame];
-    [button setImage:image
-            forState:UIControlStateNormal];
-    [button setImage:highlightedImage
-            forState:UIControlStateHighlighted];
-    return button;
-}
-
-/* 设置字符字体和大小 */
-- (void)setTitleFont:(NSString *)fontName
-                size:(CGFloat)size
-{
-    [self.titleLabel setFont:[UIFont fontWithName:fontName size:size]];
-}
-
-/* 设置字符颜色和高亮颜色 */
-- (void)setTitleColor:(UIColor *)color
-     highlightedColor:(UIColor *)highlightedColor
-{
-    [self setTitleColor:color
-               forState:UIControlStateNormal];
-    [self setTitleColor:highlightedColor
-               forState:UIControlStateHighlighted];
-}
-
-#pragma mark - 快速创建 button
-/**
- 创建 button
-
- @param frame frame
- @param title title
- @param selTitle selTitle
- @param titleColor titleColor，默认：黑色
- @param titleFont titleFont默认：15
- @param image image description
- @param selImage selImage
- @param padding padding 文字图片间距
- @param buttonLayoutType buttonLayoutType 文字图片布局样式
- @param viewRectCornerType viewRectCornerType 圆角样式
- @param viewCornerRadius viewCornerRadius 圆角角度
- @param target target
- @param sel sel
- @return button
- */
-+ (instancetype __nonnull)ba_creatButtonWithFrame:(CGRect)frame
-                                            title:(NSString * __nullable)title
-                                         selTitle:(NSString * __nullable)selTitle
-                                       titleColor:(UIColor * __nullable)titleColor
-                                        titleFont:(UIFont * __nullable)titleFont
-                                            image:(UIImage * __nullable)image
-                                         selImage:(UIImage * __nullable)selImage
-                                          padding:(CGFloat)padding
-                              buttonPositionStyle:(BAKit_ButtonLayoutType)buttonLayoutType
-                               viewRectCornerType:(BAKit_ViewRectCornerType)viewRectCornerType
-                                 viewCornerRadius:(CGFloat)viewCornerRadius
-                                           target:(id __nullable)target
-                                         selector:(SEL __nullable)sel
-{
-    UIButton *button = [[UIButton alloc] init];
-    button.frame = frame;
-    if (title)
-    {
-        [button setTitle:title forState:UIControlStateNormal];
-    }
-    if (selTitle)
-    {
-        [button setTitle:selTitle forState:UIControlStateSelected];
-    }
-    [button setTitleColor:titleColor ? titleColor : [UIColor blackColor] forState:UIControlStateNormal];
-   
-    button.titleLabel.font = titleFont ? titleFont : [UIFont systemFontOfSize:15.0f];
-   
-    if (selImage)
-    {
-        [button setImage:selImage forState:UIControlStateSelected];
-    }
-    if (image)
-    {
-        [button setImage:image forState:UIControlStateNormal];
-    }
-    [button ba_button_setButtonLayoutType:buttonLayoutType padding:padding];
-    [button ba_button_setViewRectCornerType:viewRectCornerType viewCornerRadius:viewCornerRadius];
-    [button addTarget:target action:sel forControlEvents:UIControlEventTouchUpInside];
-    
-    return button;
 }
 
 #pragma mark - setter / getter
