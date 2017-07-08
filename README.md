@@ -64,6 +64,11 @@
  项目源码地址：
  OC 版 ：https://github.com/BAHome/BAButton
  
+ 最新更新时间：2017-07-08 【倒叙】<br>
+ 最新Version：【Version：2.5.6】<br>
+ 更新内容：<br>
+ 2.5.6.1、删除 高亮、选中 背景颜色，以免默认情况下回自动加高亮颜色 <br>
+ 
  最新更新时间：2017-07-07 【倒叙】<br>
  最新Version：【Version：2.5.5】<br>
  更新内容：<br>
@@ -792,6 +797,12 @@ NS_ASSUME_NONNULL_END
 ## 5、更新记录：【倒叙】
  欢迎使用 [【BAHome】](https://github.com/BAHome) 系列开源代码 ！
  如有更多需求，请前往：[【https://github.com/BAHome】](https://github.com/BAHome) 
+ 
+  
+ 最新更新时间：2017-07-08 【倒叙】<br>
+ 最新Version：【Version：2.5.6】<br>
+ 更新内容：<br>
+ 2.5.6.1、删除 高亮、选中 背景颜色，以免默认情况下回自动加高亮颜色 <br>
  
  最新更新时间：2017-07-07 【倒叙】<br>
  最新Version：【Version：2.5.5】<br>
