@@ -10,7 +10,6 @@
 #import <objc/runtime.h>
 #import "BAKit_ConfigurationDefine.h"
 
-NS_ASSUME_NONNULL_BEGIN
 
 @implementation UIImage (BAKit)
 
@@ -126,7 +125,7 @@ NS_ASSUME_NONNULL_BEGIN
         title_w = self.titleLabel.intrinsicContentSize.width;
         title_h = self.titleLabel.intrinsicContentSize.height;
     }
-
+    
     UIEdgeInsets imageEdge = UIEdgeInsetsZero;
     UIEdgeInsets titleEdge = UIEdgeInsetsZero;
     
@@ -168,7 +167,7 @@ NS_ASSUME_NONNULL_BEGIN
             titleEdge = UIEdgeInsetsMake(0, self.ba_padding + self.ba_padding_inset, 0, 0);
             
             imageEdge = UIEdgeInsetsMake(0, self.ba_padding_inset, 0, 0);
-
+            
             self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         }
             break;
@@ -183,7 +182,7 @@ NS_ASSUME_NONNULL_BEGIN
         {
             imageEdge = UIEdgeInsetsMake(0, 0, 0, self.ba_padding + self.ba_padding_inset);
             titleEdge = UIEdgeInsetsMake(0, 0, 0, self.ba_padding_inset);
-
+            
             self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
         }
             break;
@@ -242,7 +241,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  快速创建 button3：frame、title、titleColor、titleFont、backgroundColor
-
+ 
  @param frame frame
  @param title title
  @param titleColor titleColor
@@ -257,7 +256,7 @@ NS_ASSUME_NONNULL_BEGIN
          backgroundColor:(UIColor * __nullable)backgroundColor
 {
     UIButton *button = [UIButton ba_buttonWithFrame:frame title:title titleColor:titleColor titleFont:titleFont image:nil backgroundColor:backgroundColor];
-
+    
     return button;
 }
 
@@ -279,7 +278,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  快速创建 button5：frame、title、titleColor、titleFont、image、backgroundColor
-
+ 
  @param frame frame description
  @param title title description
  @param titleColor titleColor description
@@ -295,14 +294,14 @@ NS_ASSUME_NONNULL_BEGIN
                              image:(UIImage * __nullable)image
                    backgroundColor:(UIColor * __nullable)backgroundColor
 {
-    UIButton *button = [UIButton ba_buttonWithFrame:frame title:title selectedTitle:nil highlightedTitle:nil titleColor:titleColor selectedTitleColor:nil highlightedTitleColor:nil titleFont:titleFont image:image selectedImage:nil highlightedImage:nil backgroundImage:nil selectedBackgroundImage:nil highlightedBackgroundImage:nil backgroundColor:backgroundColor selectedBackgroundColor:nil highlightedBackgroundColor:nil];
+    UIButton *button = [UIButton ba_buttonWithFrame:frame title:title selectedTitle:nil highlightedTitle:nil titleColor:titleColor selectedTitleColor:nil highlightedTitleColor:nil titleFont:titleFont image:image selectedImage:nil highlightedImage:nil backgroundImage:nil selectedBackgroundImage:nil highlightedBackgroundImage:nil backgroundColor:backgroundColor];
     
     return button;
 }
 
 /**
  快速创建 button6：frame、title、titleColor、titleFont、image、backgroundImage
-
+ 
  @param frame frame description
  @param title title description
  @param titleColor titleColor description
@@ -318,7 +317,7 @@ NS_ASSUME_NONNULL_BEGIN
                              image:(UIImage * __nullable)image
                    backgroundImage:(UIImage * __nullable)backgroundImage
 {
-    UIButton *button = [UIButton ba_buttonWithFrame:frame title:title selectedTitle:nil highlightedTitle:nil titleColor:titleColor selectedTitleColor:nil highlightedTitleColor:nil titleFont:titleFont image:image selectedImage:nil highlightedImage:nil backgroundImage:backgroundImage selectedBackgroundImage:nil highlightedBackgroundImage:nil backgroundColor:nil selectedBackgroundColor:nil highlightedBackgroundColor:nil];
+    UIButton *button = [UIButton ba_buttonWithFrame:frame title:title selectedTitle:nil highlightedTitle:nil titleColor:titleColor selectedTitleColor:nil highlightedTitleColor:nil titleFont:titleFont image:image selectedImage:nil highlightedImage:nil backgroundImage:backgroundImage selectedBackgroundImage:nil highlightedBackgroundImage:nil backgroundColor:nil];
     
     return button;
 }
@@ -356,7 +355,7 @@ NS_ASSUME_NONNULL_BEGIN
                                            target:(id __nullable)target
                                          selector:(SEL __nullable)sel
 {
-    UIButton *button = [UIButton ba_buttonWithFrame:frame title:title selectedTitle:selTitle highlightedTitle:nil titleColor:titleColor selectedTitleColor:nil highlightedTitleColor:nil titleFont:titleFont image:image selectedImage:selImage highlightedImage:nil backgroundImage:nil selectedBackgroundImage:nil highlightedBackgroundImage:nil backgroundColor:nil selectedBackgroundColor:nil highlightedBackgroundColor:nil];
+    UIButton *button = [UIButton ba_buttonWithFrame:frame title:title selectedTitle:selTitle highlightedTitle:nil titleColor:titleColor selectedTitleColor:nil highlightedTitleColor:nil titleFont:titleFont image:image selectedImage:selImage highlightedImage:nil backgroundImage:nil selectedBackgroundImage:nil highlightedBackgroundImage:nil backgroundColor:nil];
     [button ba_button_setButtonLayoutType:buttonLayoutType padding:padding];
     [button ba_button_setViewRectCornerType:viewRectCornerType viewCornerRadius:viewCornerRadius];
     [button addTarget:target action:sel forControlEvents:UIControlEventTouchUpInside];
@@ -366,7 +365,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  快速创建 button8：大汇总-所有 normal、selected、highlighted 样式都有
-
+ 
  @param frame frame
  @param title title description
  @param selectedTitle selectedTitle description
@@ -382,8 +381,6 @@ NS_ASSUME_NONNULL_BEGIN
  @param selectedBackgroundImage selectedBackgroundImage description
  @param highlightedBackgroundImage highlightedBackgroundImage description
  @param backgroundColor backgroundColor description
- @param selectedBackgroundColor selectedBackgroundColor description
- @param highlightedBackgroundColor highlightedBackgroundColor description
  @return button
  */
 + (instancetype)ba_buttonWithFrame:(CGRect)frame
@@ -401,8 +398,6 @@ NS_ASSUME_NONNULL_BEGIN
            selectedBackgroundImage:(UIImage * __nullable)selectedBackgroundImage
         highlightedBackgroundImage:(UIImage * __nullable)highlightedBackgroundImage
                    backgroundColor:(UIColor * __nullable)backgroundColor
-           selectedBackgroundColor:(UIColor * __nullable)selectedBackgroundColor
-        highlightedBackgroundColor:(UIColor * __nullable)highlightedBackgroundColor
 {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = frame;
@@ -416,33 +411,31 @@ NS_ASSUME_NONNULL_BEGIN
     button.titleLabel.font = titleFont ? titleFont : [UIFont systemFontOfSize:15.0f];
     
     [button ba_buttonSetImage:image selectedImage:selectedImage highlightedImage:highlightedImage];
+    
     [button ba_buttonSetBackgroundImage:backgroundImage selectedBackgroundImage:selectedBackgroundImage highlightedBackgroundImage:highlightedBackgroundImage];
-    [button ba_buttonSetBackgroundColor:backgroundColor selectedBackgroundColor:selectedBackgroundColor highlightedBackgroundColor:highlightedBackgroundColor];
+    
+    [button ba_buttonSetBackgroundColor:backgroundColor];
     
     return button;
 }
 
 #pragma mark - 自定义：button
 /**
- 自定义：button backgroundColor、selectedBackgroundColor、highlightedBackgroundColor
-
+ 自定义：button backgroundColor
+ 
  @param backgroundColor backgroundColor
- @param selectedBackgroundColor selectedBackgroundColor
- @param highlightedBackgroundColor highlightedBackgroundColor
  */
 - (void)ba_buttonSetBackgroundColor:(UIColor * __nullable)backgroundColor
-            selectedBackgroundColor:(UIColor * __nullable)selectedBackgroundColor
-         highlightedBackgroundColor:(UIColor * __nullable)highlightedBackgroundColor
 {
-
-    [self ba_buttonSetBackgroundImage:[UIImage ba_image_Color:backgroundColor]
-              selectedBackgroundImage:[UIImage ba_image_Color:selectedBackgroundColor]
-           highlightedBackgroundImage:[UIImage ba_image_Color:highlightedBackgroundColor]];
+    if (backgroundColor)
+    {
+        self.backgroundColor = backgroundColor;
+    }
 }
 
 /**
  自定义：button backgroundImage、selectedBackgroundImage、highlightedBackgroundImage
-
+ 
  @param backgroundImage backgroundImage
  @param selectedBackgroundImage selectedBackgroundImage
  @param highlightedBackgroundImage highlightedBackgroundImage
@@ -451,14 +444,25 @@ NS_ASSUME_NONNULL_BEGIN
             selectedBackgroundImage:(UIImage * __nullable)selectedBackgroundImage
          highlightedBackgroundImage:(UIImage * __nullable)highlightedBackgroundImage
 {
-    [self setBackgroundImage:backgroundImage forState:UIControlStateNormal];
-    [self setBackgroundImage:selectedBackgroundImage forState:UIControlStateSelected];
-    [self setBackgroundImage:highlightedBackgroundImage forState:UIControlStateHighlighted];
+    if (backgroundImage)
+    {
+        [self setBackgroundImage:backgroundImage forState:UIControlStateNormal];
+    }
+    
+    if (selectedBackgroundImage)
+    {
+        [self setBackgroundImage:selectedBackgroundImage forState:UIControlStateSelected];
+    }
+    if (highlightedBackgroundImage)
+    {
+        [self setBackgroundImage:highlightedBackgroundImage forState:UIControlStateHighlighted];
+    }
+    
 }
 
 /**
  自定义：button image、selectedImage、highlightedImage
-
+ 
  @param image image
  @param selectedImage selectedImage
  @param highlightedImage highlightedImage
@@ -468,13 +472,19 @@ NS_ASSUME_NONNULL_BEGIN
          highlightedImage:(UIImage * __nullable)highlightedImage
 {
     [self setImage:image forState:UIControlStateNormal];
-    [self setImage:selectedImage forState:UIControlStateSelected];
-    [self setImage:highlightedImage forState:UIControlStateHighlighted];
+    if (selectedImage)
+    {
+        [self setImage:selectedImage forState:UIControlStateSelected];
+    }
+    if (highlightedImage)
+    {
+        [self setImage:highlightedImage forState:UIControlStateHighlighted];
+    }
 }
 
 /**
  自定义：button title、selectedTitle、highlightedTitle
-
+ 
  @param title title
  @param selectedTitle selectedTitle
  @param highlightedTitle highlightedTitle
@@ -484,13 +494,19 @@ NS_ASSUME_NONNULL_BEGIN
          highlightedTitle:(NSString * __nullable)highlightedTitle
 {
     [self setTitle:title forState:UIControlStateNormal];
-    [self setTitle:selectedTitle forState:UIControlStateSelected];
-    [self setTitle:highlightedTitle forState:UIControlStateHighlighted];
+    if (selectedTitle)
+    {
+        [self setTitle:selectedTitle forState:UIControlStateSelected];
+    }
+    else
+    {
+        [self setTitle:highlightedTitle forState:UIControlStateHighlighted];
+    }
 }
 
 /**
  自定义：button titleColor、selectedTitleColor、highlightedTitleColor
-
+ 
  @param titleColor titleColor
  @param selectedTitleColor selectedTitleColor
  @param highlightedTitleColor highlightedTitleColor
@@ -500,13 +516,19 @@ NS_ASSUME_NONNULL_BEGIN
          highlightedTitleColor:(UIColor * __nullable)highlightedTitleColor
 {
     [self setTitleColor:titleColor forState:UIControlStateNormal];
-    [self setTitleColor:selectedTitleColor forState:UIControlStateSelected];
-    [self setTitleColor:highlightedTitleColor forState:UIControlStateHighlighted];
+    if (selectedTitleColor)
+    {
+        [self setTitleColor:selectedTitleColor forState:UIControlStateSelected];
+    }
+    if (highlightedTitleColor)
+    {
+        [self setTitleColor:highlightedTitleColor forState:UIControlStateHighlighted];
+    }
 }
 
 /**
  自定义：button 字体、大小
-
+ 
  @param fontName fontName
  @param size size
  */
@@ -518,7 +540,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  自定义：button 点击事件，默认：UIControlEventTouchUpInside
-
+ 
  @param target target
  @param tag tag
  @param action action
@@ -611,5 +633,4 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 @end
-NS_ASSUME_NONNULL_END
 

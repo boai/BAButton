@@ -64,7 +64,7 @@
 NS_ASSUME_NONNULL_BEGIN
 /**
  button 的样式，以图片为基准
-
+ 
  - BAKit_ButtonLayoutTypeNormal: button 默认样式：内容居中-图左文右
  - BAKit_ButtonLayoutTypeCenterImageRight: 内容居中-图右文左
  - BAKit_ButtonLayoutTypeCenterImageTop: 内容居中-图上文下
@@ -245,8 +245,6 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
  @param selectedBackgroundImage selectedBackgroundImage description
  @param highlightedBackgroundImage highlightedBackgroundImage description
  @param backgroundColor backgroundColor description
- @param selectedBackgroundColor selectedBackgroundColor description
- @param highlightedBackgroundColor highlightedBackgroundColor description
  @return button
  */
 + (instancetype)ba_buttonWithFrame:(CGRect)frame
@@ -263,21 +261,15 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
                    backgroundImage:(UIImage * __nullable)backgroundImage
            selectedBackgroundImage:(UIImage * __nullable)selectedBackgroundImage
         highlightedBackgroundImage:(UIImage * __nullable)highlightedBackgroundImage
-                   backgroundColor:(UIColor * __nullable)backgroundColor
-           selectedBackgroundColor:(UIColor * __nullable)selectedBackgroundColor
-        highlightedBackgroundColor:(UIColor * __nullable)highlightedBackgroundColor;
+                   backgroundColor:(UIColor * __nullable)backgroundColor;
 
 #pragma mark - 自定义：button
 /**
- 自定义：button backgroundColor、selectedBackgroundColor、highlightedBackgroundColor
+ 自定义：button backgroundColor
  
  @param backgroundColor backgroundColor
- @param selectedBackgroundColor selectedBackgroundColor
- @param highlightedBackgroundColor highlightedBackgroundColor
  */
-- (void)ba_buttonSetBackgroundColor:(UIColor * __nullable)backgroundColor
-            selectedBackgroundColor:(UIColor * __nullable)selectedBackgroundColor
-         highlightedBackgroundColor:(UIColor * __nullable)highlightedBackgroundColor;
+- (void)ba_buttonSetBackgroundColor:(UIColor * __nullable)backgroundColor;
 
 /**
  自定义：button backgroundImage、selectedBackgroundImage、highlightedBackgroundImage
