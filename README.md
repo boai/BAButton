@@ -15,7 +15,7 @@
 * 7、优化命名规范，更换了全局统一属性命名和方法命名，如果更新有报错的地方，大家别急，看 .h 文件更换过来即可，后期推出的 BAKit 系列产品，命名都将统一规范，在此给大家带来的不便之处，向大家道歉！希望大家谅解！多谢体谅！
 * 8、新增 view 的 border 的创建，可以自定义圆角、边框、边框颜色等(感谢群里 @北京-大腿 同学提出的 需求！)
 * 9、修复 xib 下圆角右边无效的bug，注意：如果是 xib，需要要有固定 宽高，要不然 iOS 10 设置无效(感谢群里 @北京-小黑 同学提出的 bug！)
-* 10、新增 大图片 button 的 layout 布局，如果你的图片宽高大于 自身的宽高，怎需要压缩后再配置布局，具体看 demo
+* 10、新增 大图片 button 的 layout 布局，如果你的图片宽高大于 自身的宽高，则需要压缩后再配置布局，具体看 demo
 * 11、重构 <UIButton+BAKit.h>类，新增多种快速创建 button 的方法
 * 12、新增 两种快速创建 button 的方法：1、快速创建纯文字 button，2、快速创建纯图片 button <br>
 * 13、新增 单独配置文字位置的封装 <br>
@@ -88,7 +88,7 @@
  最新更新时间：2017-06-27 【倒叙】<br>
  最新Version：【Version：2.5.4】<br>
  更新内容：<br>
- 2.5.4.1、新增 大图片 button 的 layout 布局，如果你的图片宽高大于 自身的宽高，怎需要压缩后再配置布局，具体看 demo test2<br>
+ 2.5.4.1、新增 大图片 button 的 layout 布局，如果你的图片宽高大于 自身的宽高，则需要压缩后再配置布局，具体看 demo test2<br>
  
  最新更新时间：2017-06-23 【倒叙】
  最新Version：【Version：2.5.3】
@@ -829,7 +829,7 @@ NS_ASSUME_NONNULL_END
     }];
 }
 
-// 示例4：测试大图片 button 的 layout 布局，如果你的图片宽高大于 自身的宽高，怎需要压缩后再配置布局
+// 示例4：测试大图片 button 的 layout 布局，如果你的图片宽高大于 自身的宽高，则需要压缩后再配置布局
 - (void)test2
 {
     self.button.hidden = NO;
@@ -857,12 +857,12 @@ NS_ASSUME_NONNULL_END
     _button.ba_buttonLayoutType = BAKit_ButtonLayoutTypeCenterImageTop;
 }
 
-#pragma mark - 测试大图片 button 的 layout 布局，如果你的图片宽高大于 自身的宽高，怎需要压缩后再配置布局
+#pragma mark - 测试大图片 button 的 layout 布局，如果你的图片宽高大于 自身的宽高，则需要压缩后再配置布局
 - (UIButton *)button
 {
     if (!_button)
     {
-        // 测试大图片 button 的 layout 布局，如果你的图片宽高大于 自身的宽高，怎需要压缩后再配置布局
+        // 测试大图片 button 的 layout 布局，如果你的图片宽高大于 自身的宽高，则需要压缩后再配置布局
         // 原生写法
         //        _button = [UIButton buttonWithType:UIButtonTypeCustom];
         //        [_button setTitle:@"123456" forState:UIControlStateNormal];
@@ -905,7 +905,7 @@ NS_ASSUME_NONNULL_END
  最新更新时间：2017-06-27 【倒叙】<br>
  最新Version：【Version：2.5.4】<br>
  更新内容：<br>
- 2.5.4.1、新增 大图片 button 的 layout 布局，如果你的图片宽高大于 自身的宽高，怎需要压缩后再配置布局，具体看 demo test2<br>
+ 2.5.4.1、新增 大图片 button 的 layout 布局，如果你的图片宽高大于 自身的宽高，则需要压缩后再配置布局，具体看 demo test2<br>
  
  最新更新时间：2017-06-23 【倒叙】<br>
  最新Version：【Version：2.5.3】<br>
