@@ -17,6 +17,9 @@
 * 9、修复 xib 下圆角右边无效的bug，注意：如果是 xib，需要要有固定 宽高，要不然 iOS 10 设置无效(感谢群里 @北京-小黑 同学提出的 bug！)
 * 10、新增 大图片 button 的 layout 布局，如果你的图片宽高大于 自身的宽高，怎需要压缩后再配置布局，具体看 demo
 * 11、重构 <UIButton+BAKit.h>类，新增多种快速创建 button 的方法
+* 12、新增 两种快速创建 button 的方法：1、快速创建纯文字 button，2、快速创建纯图片 button <br>
+* 13、新增 单独配置文字位置的封装 <br>
+* 14、新增 字体颜色、背景颜色、image 等的 disabled 状态下的配置 <br>
 
 ## 2、图片示例
 ![BAButton1](https://github.com/BAHome/BAButton/blob/master/Images/BAButton1.png)
@@ -64,6 +67,13 @@
  项目源码地址：
  OC 版 ：https://github.com/BAHome/BAButton
  
+ 最新更新时间：2017-07-19 【倒叙】<br>
+ 最新Version：【Version：2.5.7】<br>
+ 更新内容：<br>
+ 2.5.7.1、新增 两种快速创建 button 的方法：1、快速创建纯文字 button，2、快速创建纯图片 button <br>
+ 2.5.7.2、新增 单独配置文字位置的封装 <br>
+ 2.5.7.3、新增 字体颜色、背景颜色、image 等的 disabled 状态下的配置 <br>
+
  最新更新时间：2017-07-08 【倒叙】<br>
  最新Version：【Version：2.5.6】<br>
  更新内容：<br>
@@ -155,7 +165,7 @@
 NS_ASSUME_NONNULL_BEGIN
 /**
  button 的样式，以图片为基准
-
+ 
  - BAKit_ButtonLayoutTypeNormal: button 默认样式：内容居中-图左文右
  - BAKit_ButtonLayoutTypeCenterImageRight: 内容居中-图右文左
  - BAKit_ButtonLayoutTypeCenterImageTop: 内容居中-图上文下
@@ -197,7 +207,7 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
 #pragma mark - 快速创建 button
 
 /**
- 快速创建 button1：frame、title、titleColor、titleFont
+ UIButton：快速创建 button1：frame、title、titleColor、titleFont
  
  @param frame frame
  @param title title
@@ -211,7 +221,7 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
                titleFont:(UIFont * __nullable)titleFont;
 
 /**
- 快速创建 button2：frame、title、backgroundColor
+ UIButton：快速创建 button2：frame、title、backgroundColor
  
  @param frame frame
  @param title title
@@ -223,7 +233,7 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
          backgroundColor:(UIColor * __nullable)backgroundColor;
 
 /**
- 快速创建 button3：frame、title、titleColor、titleFont、backgroundColor
+ UIButton：快速创建 button3：frame、title、titleColor、titleFont、backgroundColor
  
  @param frame frame
  @param title title
@@ -239,7 +249,7 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
          backgroundColor:(UIColor * __nullable)backgroundColor;
 
 /**
- 快速创建 button4：frame、title、backgroundImage
+ UIButton：快速创建 button4：frame、title、backgroundImage
  
  @param frame frame
  @param title title
@@ -251,7 +261,7 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
          backgroundImage:(UIImage * __nullable)backgroundImage;
 
 /**
- 快速创建 button5：frame、title、titleColor、titleFont、image、backgroundColor
+ UIButton：快速创建 button5：frame、title、titleColor、titleFont、image、backgroundColor
  
  @param frame frame description
  @param title title description
@@ -269,7 +279,7 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
                    backgroundColor:(UIColor * __nullable)backgroundColor;
 
 /**
- 快速创建 button6：frame、title、titleColor、titleFont、image、backgroundImage
+ UIButton：快速创建 button6：frame、title、titleColor、titleFont、image、backgroundImage
  
  @param frame frame description
  @param title title description
@@ -287,7 +297,7 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
                    backgroundImage:(UIImage * __nullable)backgroundImage;
 
 /**
- 快速创建 button7：大汇总-点击事件、圆角
+ UIButton：快速创建 button7：大汇总-点击事件、圆角
  
  @param frame frame
  @param title title
@@ -319,7 +329,7 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
                                          selector:(SEL __nullable)sel;
 
 /**
- 快速创建 button8：大汇总-所有 normal、selected、highlighted 样式都有
+ UIButton：快速创建 button8：大汇总-所有 normal、selected、highlighted 样式都有
  
  @param frame frame
  @param title title description
@@ -336,8 +346,6 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
  @param selectedBackgroundImage selectedBackgroundImage description
  @param highlightedBackgroundImage highlightedBackgroundImage description
  @param backgroundColor backgroundColor description
- @param selectedBackgroundColor selectedBackgroundColor description
- @param highlightedBackgroundColor highlightedBackgroundColor description
  @return button
  */
 + (instancetype)ba_buttonWithFrame:(CGRect)frame
@@ -354,24 +362,81 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
                    backgroundImage:(UIImage * __nullable)backgroundImage
            selectedBackgroundImage:(UIImage * __nullable)selectedBackgroundImage
         highlightedBackgroundImage:(UIImage * __nullable)highlightedBackgroundImage
-                   backgroundColor:(UIColor * __nullable)backgroundColor
-           selectedBackgroundColor:(UIColor * __nullable)selectedBackgroundColor
-        highlightedBackgroundColor:(UIColor * __nullable)highlightedBackgroundColor;
+                   backgroundColor:(UIColor * __nullable)backgroundColor;
+
+/**
+ UIButton：快速创建一个纯文字 button
+ 
+ @param frame frame description
+ @param title title description
+ @param font font description
+ @param horizontalAlignment horizontalAlignment description
+ @param verticalAlignment verticalAlignment description
+ @param contentEdgeInsets contentEdgeInsets description
+ @param target target description
+ @param action action description
+ @param normalStateColor normalStateColor description
+ @param highlightedStateColor highlightedStateColor description
+ @param disabledStateColor disabledStateColor description
+ @return UIButton
+ */
++ (UIButton *)ba_buttonLabelButtonWithFrame:(CGRect)frame
+                                      title:(NSString *)title
+                                       font:(UIFont *)font
+                        horizontalAlignment:(UIControlContentHorizontalAlignment)horizontalAlignment
+                          verticalAlignment:(UIControlContentVerticalAlignment)verticalAlignment
+                          contentEdgeInsets:(UIEdgeInsets)contentEdgeInsets
+                                     target:(id)target
+                                     action:(SEL)action
+                           normalTitleColor:(UIColor *)normalStateColor
+                      highlightedTitleColor:(UIColor *)highlightedStateColor
+                         disabledTitleColor:(UIColor *)disabledStateColor;
+
+/**
+ UIButton：快速创建一个纯图片 button
+ 
+ @param frame frame description
+ @param horizontalAlignment horizontalAlignment description
+ @param verticalAlignment verticalAlignment description
+ @param contentEdgeInsets contentEdgeInsets description
+ @param normalImage normalImage description
+ @param highlightImage highlightImage description
+ @param disabledImage disabledImage description
+ @param target target description
+ @param action action description
+ @return UIButton
+ */
++ (UIButton *)ba_buttonImageButtonWithFrame:(CGRect)frame
+                        horizontalAlignment:(UIControlContentHorizontalAlignment)horizontalAlignment
+                          verticalAlignment:(UIControlContentVerticalAlignment)verticalAlignment
+                          contentEdgeInsets:(UIEdgeInsets)contentEdgeInsets
+                                normalImage:(UIImage *)normalImage
+                             highlightImage:(UIImage *)highlightImage
+                              disabledImage:(UIImage *)disabledImage
+                                     target:(id)target
+                                     action:(SEL)action;
 
 #pragma mark - 自定义：button
 /**
- 自定义：button backgroundColor、selectedBackgroundColor、highlightedBackgroundColor
+ UIButton：自定义 button backgroundColor
  
  @param backgroundColor backgroundColor
- @param selectedBackgroundColor selectedBackgroundColor
- @param highlightedBackgroundColor highlightedBackgroundColor
  */
-- (void)ba_buttonSetBackgroundColor:(UIColor * __nullable)backgroundColor
-            selectedBackgroundColor:(UIColor * __nullable)selectedBackgroundColor
-         highlightedBackgroundColor:(UIColor * __nullable)highlightedBackgroundColor;
+- (void)ba_buttonSetBackgroundColor:(UIColor * __nullable)backgroundColor;
 
 /**
- 自定义：button backgroundImage、selectedBackgroundImage、highlightedBackgroundImage
+ UIButton：backgroundColor、normalStateColor、highlightedStateColor、disabledStateColor
+ 
+ @param normalStateColor normalStateColor description
+ @param highlightedStateColor highlightedStateColor description
+ @param disabledStateColor disabledStateColor description
+ */
+- (void)ba_buttonBackgroundColorWithNormalStateColor:(UIColor *)normalStateColor
+                               highlightedStateColor:(UIColor *)highlightedStateColor
+                                  disabledStateColor:(UIColor *)disabledStateColor;
+
+/**
+ UIButton：自定义 button backgroundImage、selectedBackgroundImage、highlightedBackgroundImage
  
  @param backgroundImage backgroundImage
  @param selectedBackgroundImage selectedBackgroundImage
@@ -382,18 +447,20 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
          highlightedBackgroundImage:(UIImage * __nullable)highlightedBackgroundImage;
 
 /**
- 自定义：button image、selectedImage、highlightedImage
+ UIButton：自定义 button image、selectedImage、highlightedImage、disabledImage
  
  @param image image
  @param selectedImage selectedImage
  @param highlightedImage highlightedImage
+ @param disabledImage disabledImage
  */
 - (void)ba_buttonSetImage:(UIImage * __nullable)image
             selectedImage:(UIImage * __nullable)selectedImage
-         highlightedImage:(UIImage * __nullable)highlightedImage;
+         highlightedImage:(UIImage * __nullable)highlightedImage
+            disabledImage:(UIImage * __nullable)disabledImage;
 
 /**
- 自定义：button title、selectedTitle、highlightedTitle
+ UIButton：自定义 button title、selectedTitle、highlightedTitle
  
  @param title title
  @param selectedTitle selectedTitle
@@ -404,18 +471,20 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
          highlightedTitle:(NSString * __nullable)highlightedTitle;
 
 /**
- 自定义：button titleColor、selectedTitleColor、highlightedTitleColor
+ UIButton：自定义 button titleColor、selectedTitleColor、highlightedTitleColor、disabledTitleColor
  
  @param titleColor titleColor
  @param selectedTitleColor selectedTitleColor
  @param highlightedTitleColor highlightedTitleColor
+ @param disabledTitleColor disabledTitleColor
  */
 - (void)ba_buttonSetTitleColor:(UIColor * __nullable)titleColor
             selectedTitleColor:(UIColor * __nullable)selectedTitleColor
-         highlightedTitleColor:(UIColor * __nullable)highlightedTitleColor;
+         highlightedTitleColor:(UIColor * __nullable)highlightedTitleColor
+            disabledTitleColor:(UIColor * __nullable)disabledTitleColor;
 
 /**
- 自定义：button 字体、大小
+ UIButton：自定义 button 字体、大小
  
  @param fontName fontName
  @param size size
@@ -424,7 +493,7 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
                              size:(CGFloat)size;
 
 /**
- 自定义：button 点击事件，默认：UIControlEventTouchUpInside
+ UIButton：自定义 button 点击事件，默认：UIControlEventTouchUpInside
  
  @param target target
  @param tag tag
@@ -435,25 +504,23 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
                     action:(SEL)action;
 
 /**
- 快速设置 button 的布局样式 和 间距，注意：文字、字体大小、图片等设置一定要在设置 ba_button_setButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移
+ UIButton：快速设置 button 的布局样式 和 间距
  
  @param type button 的布局样式
  @param padding 文字与图片之间的间距
  */
-- (void)ba_button_setButtonLayoutType:(BAKit_ButtonLayoutType)type
-                              padding:(CGFloat)padding;
+- (void)ba_button_setButtonLayoutType:(BAKit_ButtonLayoutType)type padding:(CGFloat)padding;
 
 /**
- 快速切圆角，注意：文字、字体大小、图片等设置一定要在设置 ba_button_setButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移，如果是 xib，需要要有固定 宽高，要不然 iOS 10 设置无效
+ UIButton：快速切圆角，注意：文字、字体大小、图片等设置一定要在设置 ba_button_setButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移，如果是 xib，需要要有固定 宽高，要不然 iOS 10 设置无效
  
  @param type 圆角样式
  @param viewCornerRadius 圆角角度
  */
-- (void)ba_button_setViewRectCornerType:(BAKit_ViewRectCornerType)type
-                       viewCornerRadius:(CGFloat)viewCornerRadius;
+- (void)ba_button_setViewRectCornerType:(BAKit_ViewRectCornerType)type viewCornerRadius:(CGFloat)viewCornerRadius;
 
 /**
- 快速切圆角，带边框、边框颜色，如果是 xib，需要要有固定 宽高，要不然 iOS 10 设置无效
+ UIButton：快速切圆角，带边框、边框颜色，如果是 xib，需要要有固定 宽高，要不然 iOS 10 设置无效
  
  @param type 圆角样式
  @param viewCornerRadius 圆角角度
@@ -465,24 +532,43 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
                             borderWidth:(CGFloat)borderWidth
                             borderColor:(UIColor *)borderColor;
 
+/**
+ UIButton：title 位置
+ 
+ @param horizontalAlignment horizontalAlignment description
+ @param verticalAlignment verticalAlignment description
+ @param contentEdgeInsets contentEdgeInsets description
+ */
+- (void)ba_buttonTitleLabelHorizontalAlignment:(UIControlContentHorizontalAlignment)horizontalAlignment
+                             verticalAlignment:(UIControlContentVerticalAlignment)verticalAlignment
+                             contentEdgeInsets:(UIEdgeInsets)contentEdgeInsets;
+
 @end
 
 @interface UIImage (BAKit)
 
 /**
- 创建一个 纯颜色 图片【全部铺满】
+ UIImage：创建一个 纯颜色 图片【全部铺满】
  
  @param color color
  @return 纯颜色 图片
  */
 + (UIImage *)ba_image_Color:(UIColor *)color;
 
-/*!
- *  根据宽比例去缩放图片，注意：如果button 的图片 太宽，需要调用此方法去等比压缩图片，具体看示例demo
- *
- *  @param width width description
- *
- *  @return return value description
+/**
+ UIImage：创建一个 纯颜色 图片【可以设置 size】
+ 
+ @param color color
+ @param size size
+ @return 纯颜色 图片
+ */
++ (UIImage *)ba_image_Color:(UIColor *)color size:(CGSize)size;
+
+/**
+ UIImage：根据宽比例去缩放图片
+ 
+ @param width width description
+ @return UIImage
  */
 - (UIImage *)ba_imageScaleToWidth:(CGFloat)width;
 
@@ -798,7 +884,13 @@ NS_ASSUME_NONNULL_END
  欢迎使用 [【BAHome】](https://github.com/BAHome) 系列开源代码 ！
  如有更多需求，请前往：[【https://github.com/BAHome】](https://github.com/BAHome) 
  
-  
+ 最新更新时间：2017-07-19 【倒叙】<br>
+ 最新Version：【Version：2.5.7】<br>
+ 更新内容：<br>
+ 2.5.7.1、新增 两种快速创建 button 的方法：1、快速创建纯文字 button，2、快速创建纯图片 button <br>
+ 2.5.7.2、新增 单独配置文字位置的封装 <br>
+ 2.5.7.3、新增 字体颜色、背景颜色、image 等的 disabled 状态下的配置 <br>
+
  最新更新时间：2017-07-08 【倒叙】<br>
  最新Version：【Version：2.5.6】<br>
  更新内容：<br>
@@ -901,6 +993,7 @@ NS_ASSUME_NONNULL_END
  2.1.3、还可以设置文字或者图片间距<br>
  2.1.4、可以设置按钮的任意一个角的圆角度数<br>
  2.1.4、全面适配纯代码、xib、storyboard
+ 
 * 2016.03.04 <br>
 pod 最新上架，修复部分已知bug，代码更精简！
 
