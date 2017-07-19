@@ -11,7 +11,7 @@
 #import "BAKit_ConfigurationDefine.h"
 
 
-@implementation UIImage (BAKit)
+@implementation UIImage (BAButton)
 
 /**
  UIImage：创建一个 纯颜色 图片【全部铺满】
