@@ -14,7 +14,7 @@
 @implementation UIImage (BAKit)
 
 /**
- 创建一个 纯颜色 图片【全部铺满】
+ UIImage：创建一个 纯颜色 图片【全部铺满】
  
  @param color color
  @return 纯颜色 图片
@@ -26,7 +26,7 @@
 }
 
 /**
- 创建一个 纯颜色 图片【可以设置 size】
+ UIImage：创建一个 纯颜色 图片【可以设置 size】
  
  @param color color
  @param size size
@@ -46,12 +46,11 @@
     return image;
 }
 
-/*!
- *  根据宽比例去缩放图片
- *
- *  @param width width description
- *
- *  @return return value description
+/**
+ UIImage：根据宽比例去缩放图片
+
+ @param width width description
+ @return UIImage
  */
 - (UIImage *)ba_imageScaleToWidth:(CGFloat)width
 {
@@ -204,7 +203,7 @@
 #pragma mark - 快速创建 button
 
 /**
- 快速创建 button1：frame、title、titleColor、titleFont
+ UIButton：快速创建 button1：frame、title、titleColor、titleFont
  
  @param frame frame
  @param title title
@@ -223,7 +222,7 @@
 }
 
 /**
- 快速创建 button2：frame、title、backgroundColor
+ UIButton：快速创建 button2：frame、title、backgroundColor
  
  @param frame frame
  @param title title
@@ -240,7 +239,7 @@
 }
 
 /**
- 快速创建 button3：frame、title、titleColor、titleFont、backgroundColor
+ UIButton：快速创建 button3：frame、title、titleColor、titleFont、backgroundColor
  
  @param frame frame
  @param title title
@@ -261,7 +260,7 @@
 }
 
 /**
- 快速创建 button4：frame、title、backgroundImage
+ UIButton：快速创建 button4：frame、title、backgroundImage
  
  @param frame frame
  @param title title
@@ -277,7 +276,7 @@
 }
 
 /**
- 快速创建 button5：frame、title、titleColor、titleFont、image、backgroundColor
+ UIButton：快速创建 button5：frame、title、titleColor、titleFont、image、backgroundColor
  
  @param frame frame description
  @param title title description
@@ -300,7 +299,7 @@
 }
 
 /**
- 快速创建 button6：frame、title、titleColor、titleFont、image、backgroundImage
+ UIButton：快速创建 button6：frame、title、titleColor、titleFont、image、backgroundImage
  
  @param frame frame description
  @param title title description
@@ -324,7 +323,7 @@
 
 
 /**
- 快速创建 button7：大汇总-点击事件、圆角
+ UIButton：快速创建 button7：大汇总-点击事件、圆角
  
  @param frame frame
  @param title title
@@ -364,7 +363,7 @@
 }
 
 /**
- 快速创建 button8：大汇总-所有 normal、selected、highlighted 样式都有
+ UIButton：快速创建 button8：大汇总-所有 normal、selected、highlighted 样式都有
  
  @param frame frame
  @param title title description
@@ -407,10 +406,10 @@
     {
         titleColor = [UIColor blackColor];
     }
-    [button ba_buttonSetTitleColor:titleColor selectedTitleColor:selectedTitleColor highlightedTitleColor:highlightedTitleColor];
+    [button ba_buttonSetTitleColor:titleColor selectedTitleColor:selectedTitleColor highlightedTitleColor:highlightedTitleColor disabledTitleColor:nil];
     button.titleLabel.font = titleFont ? titleFont : [UIFont systemFontOfSize:15.0f];
     
-    [button ba_buttonSetImage:image selectedImage:selectedImage highlightedImage:highlightedImage];
+    [button ba_buttonSetImage:image selectedImage:selectedImage highlightedImage:highlightedImage disabledImage:nil];
     
     [button ba_buttonSetBackgroundImage:backgroundImage selectedBackgroundImage:selectedBackgroundImage highlightedBackgroundImage:highlightedBackgroundImage];
     
@@ -419,9 +418,88 @@
     return button;
 }
 
+/**
+ UIButton：快速创建一个纯文字 button
+
+ @param frame frame description
+ @param title title description
+ @param font font description
+ @param horizontalAlignment horizontalAlignment description
+ @param verticalAlignment verticalAlignment description
+ @param contentEdgeInsets contentEdgeInsets description
+ @param target target description
+ @param action action description
+ @param normalStateColor normalStateColor description
+ @param highlightedStateColor highlightedStateColor description
+ @param disabledStateColor disabledStateColor description
+ @return UIButton
+ */
++ (UIButton *)ba_buttonLabelButtonWithFrame:(CGRect)frame
+                                      title:(NSString *)title
+                                       font:(UIFont *)font
+                        horizontalAlignment:(UIControlContentHorizontalAlignment)horizontalAlignment
+                          verticalAlignment:(UIControlContentVerticalAlignment)verticalAlignment
+                          contentEdgeInsets:(UIEdgeInsets)contentEdgeInsets
+                                     target:(id)target
+                                     action:(SEL)action
+                           normalTitleColor:(UIColor *)normalStateColor
+                      highlightedTitleColor:(UIColor *)highlightedStateColor
+                         disabledTitleColor:(UIColor *)disabledStateColor
+{
+    UIButton *button = [[UIButton alloc] initWithFrame:frame];
+    
+    [button setTitle:title forState:UIControlStateNormal];
+    button.titleLabel.font = font;
+    
+    button.contentHorizontalAlignment = horizontalAlignment;
+    button.contentVerticalAlignment   = verticalAlignment;
+    button.contentEdgeInsets          = contentEdgeInsets;
+    
+    [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    [button ba_buttonSetTitleColor:normalStateColor selectedTitleColor:nil highlightedTitleColor:highlightedStateColor disabledTitleColor:disabledStateColor];
+    
+    return button;
+}
+
+/**
+ UIButton：快速创建一个纯图片 button
+
+ @param frame frame description
+ @param horizontalAlignment horizontalAlignment description
+ @param verticalAlignment verticalAlignment description
+ @param contentEdgeInsets contentEdgeInsets description
+ @param normalImage normalImage description
+ @param highlightImage highlightImage description
+ @param disabledImage disabledImage description
+ @param target target description
+ @param action action description
+ @return UIButton
+ */
++ (UIButton *)ba_buttonImageButtonWithFrame:(CGRect)frame
+                        horizontalAlignment:(UIControlContentHorizontalAlignment)horizontalAlignment
+                          verticalAlignment:(UIControlContentVerticalAlignment)verticalAlignment
+                          contentEdgeInsets:(UIEdgeInsets)contentEdgeInsets
+                                normalImage:(UIImage *)normalImage
+                             highlightImage:(UIImage *)highlightImage
+                              disabledImage:(UIImage *)disabledImage
+                                     target:(id)target
+                                     action:(SEL)action
+{
+    UIButton *button = [[UIButton alloc] initWithFrame:frame];
+    
+    button.contentHorizontalAlignment = horizontalAlignment;
+    button.contentVerticalAlignment   = verticalAlignment;
+    button.contentEdgeInsets          = contentEdgeInsets;
+    
+    [button ba_buttonSetImage:normalImage selectedImage:nil highlightedImage:highlightImage disabledImage:disabledImage];
+    [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+
+    return button;
+}
+
 #pragma mark - 自定义：button
 /**
- 自定义：button backgroundColor
+ UIButton：自定义 button backgroundColor
  
  @param backgroundColor backgroundColor
  */
@@ -434,7 +512,34 @@
 }
 
 /**
- 自定义：button backgroundImage、selectedBackgroundImage、highlightedBackgroundImage
+ UIButton：backgroundColor、normalStateColor、highlightedStateColor、disabledStateColor
+
+ @param normalStateColor normalStateColor description
+ @param highlightedStateColor highlightedStateColor description
+ @param disabledStateColor disabledStateColor description
+ */
+- (void)ba_buttonBackgroundColorWithNormalStateColor:(UIColor *)normalStateColor
+                               highlightedStateColor:(UIColor *)highlightedStateColor
+                                  disabledStateColor:(UIColor *)disabledStateColor
+{
+    if (normalStateColor)
+    {
+        [self setBackgroundImage:[UIImage ba_image_Color:normalStateColor size:CGSizeMake(5, 5)] forState:UIControlStateNormal];
+    }
+    
+    if (highlightedStateColor)
+    {
+        [self setBackgroundImage:[UIImage ba_image_Color:highlightedStateColor size:CGSizeMake(5, 5)] forState:UIControlStateHighlighted];
+    }
+    
+    if (disabledStateColor)
+    {
+        [self setBackgroundImage:[UIImage ba_image_Color:disabledStateColor size:CGSizeMake(5, 5)] forState:UIControlStateDisabled];
+    }
+}
+
+/**
+ UIButton：自定义 button backgroundImage、selectedBackgroundImage、highlightedBackgroundImage
  
  @param backgroundImage backgroundImage
  @param selectedBackgroundImage selectedBackgroundImage
@@ -457,21 +562,25 @@
     {
         [self setBackgroundImage:highlightedBackgroundImage forState:UIControlStateHighlighted];
     }
-    
 }
 
 /**
- 自定义：button image、selectedImage、highlightedImage
+ UIButton：自定义 button image、selectedImage、highlightedImage、disabledImage
  
  @param image image
  @param selectedImage selectedImage
  @param highlightedImage highlightedImage
+ @param disabledImage disabledImage
  */
 - (void)ba_buttonSetImage:(UIImage * __nullable)image
             selectedImage:(UIImage * __nullable)selectedImage
          highlightedImage:(UIImage * __nullable)highlightedImage
+            disabledImage:(UIImage * __nullable)disabledImage
 {
-    [self setImage:image forState:UIControlStateNormal];
+    if (image)
+    {
+        [self setImage:image forState:UIControlStateNormal];
+    }
     if (selectedImage)
     {
         [self setImage:selectedImage forState:UIControlStateSelected];
@@ -483,7 +592,7 @@
 }
 
 /**
- 自定义：button title、selectedTitle、highlightedTitle
+ UIButton：自定义 button title、selectedTitle、highlightedTitle
  
  @param title title
  @param selectedTitle selectedTitle
@@ -505,17 +614,22 @@
 }
 
 /**
- 自定义：button titleColor、selectedTitleColor、highlightedTitleColor
+ UIButton：自定义 button titleColor、selectedTitleColor、highlightedTitleColor、disabledTitleColor
  
  @param titleColor titleColor
  @param selectedTitleColor selectedTitleColor
  @param highlightedTitleColor highlightedTitleColor
+ @param disabledTitleColor disabledTitleColor
  */
 - (void)ba_buttonSetTitleColor:(UIColor * __nullable)titleColor
             selectedTitleColor:(UIColor * __nullable)selectedTitleColor
          highlightedTitleColor:(UIColor * __nullable)highlightedTitleColor
+            disabledTitleColor:(UIColor * __nullable)disabledTitleColor
 {
-    [self setTitleColor:titleColor forState:UIControlStateNormal];
+    if (titleColor)
+    {
+        [self setTitleColor:titleColor forState:UIControlStateNormal];
+    }
     if (selectedTitleColor)
     {
         [self setTitleColor:selectedTitleColor forState:UIControlStateSelected];
@@ -524,10 +638,14 @@
     {
         [self setTitleColor:highlightedTitleColor forState:UIControlStateHighlighted];
     }
+    if (disabledTitleColor)
+    {
+        [self setTitleColor:disabledTitleColor forState:UIControlStateDisabled];
+    }
 }
 
 /**
- 自定义：button 字体、大小
+ UIButton：自定义 button 字体、大小
  
  @param fontName fontName
  @param size size
@@ -539,7 +657,7 @@
 }
 
 /**
- 自定义：button 点击事件，默认：UIControlEventTouchUpInside
+ UIButton：自定义 button 点击事件，默认：UIControlEventTouchUpInside
  
  @param target target
  @param tag tag
@@ -554,7 +672,7 @@
 }
 
 /**
- 快速设置 button 的布局样式 和 间距
+ UIButton：快速设置 button 的布局样式 和 间距
  
  @param type button 的布局样式
  @param padding 文字与图片之间的间距
@@ -566,7 +684,7 @@
 }
 
 /**
- 快速切圆角
+ UIButton：快速切圆角，注意：文字、字体大小、图片等设置一定要在设置 ba_button_setButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移，如果是 xib，需要要有固定 宽高，要不然 iOS 10 设置无效
  
  @param type 圆角样式
  @param viewCornerRadius 圆角角度
@@ -577,7 +695,7 @@
 }
 
 /**
- 快速切圆角，带边框、边框颜色
+ UIButton：快速切圆角，带边框、边框颜色，如果是 xib，需要要有固定 宽高，要不然 iOS 10 设置无效
  
  @param type 圆角样式
  @param viewCornerRadius 圆角角度
@@ -590,6 +708,22 @@
                             borderColor:(UIColor *)borderColor
 {
     [self ba_view_setViewRectCornerType:type viewCornerRadius:viewCornerRadius borderWidth:borderWidth borderColor:borderColor];
+}
+
+/**
+ UIButton：title 位置
+
+ @param horizontalAlignment horizontalAlignment description
+ @param verticalAlignment verticalAlignment description
+ @param contentEdgeInsets contentEdgeInsets description
+ */
+- (void)ba_buttonTitleLabelHorizontalAlignment:(UIControlContentHorizontalAlignment)horizontalAlignment
+                              verticalAlignment:(UIControlContentVerticalAlignment)verticalAlignment
+                              contentEdgeInsets:(UIEdgeInsets)contentEdgeInsets
+{
+    self.contentHorizontalAlignment = horizontalAlignment;
+    self.contentVerticalAlignment   = verticalAlignment;
+    self.contentEdgeInsets          = contentEdgeInsets;
 }
 
 #pragma mark - setter / getter
