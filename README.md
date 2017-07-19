@@ -68,11 +68,11 @@
  OC 版 ：https://github.com/BAHome/BAButton
  
  最新更新时间：2017-07-19 【倒叙】<br>
- 最新Version：【Version：2.5.7】<br>
+ 最新Version：【Version：2.5.8】<br>
  更新内容：<br>
- 2.5.7.1、新增 两种快速创建 button 的方法：1、快速创建纯文字 button，2、快速创建纯图片 button <br>
- 2.5.7.2、新增 单独配置文字位置的封装 <br>
- 2.5.7.3、新增 字体颜色、背景颜色、image 等的 disabled 状态下的配置 <br>
+ 2.5.8.1、新增 两种快速创建 button 的方法：1、快速创建纯文字 button，2、快速创建纯图片 button <br>
+ 2.5.8.2、新增 单独配置文字位置的封装 <br>
+ 2.5.8.3、新增 字体颜色、背景颜色、image 等的 disabled 状态下的配置 <br>
 
  最新更新时间：2017-07-08 【倒叙】<br>
  最新Version：【Version：2.5.6】<br>
@@ -545,7 +545,7 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
 
 @end
 
-@interface UIImage (BAKit)
+@interface UIImage (BAButton)
 
 /**
  UIImage：创建一个 纯颜色 图片【全部铺满】
@@ -885,11 +885,11 @@ NS_ASSUME_NONNULL_END
  如有更多需求，请前往：[【https://github.com/BAHome】](https://github.com/BAHome) 
  
  最新更新时间：2017-07-19 【倒叙】<br>
- 最新Version：【Version：2.5.7】<br>
+ 最新Version：【Version：2.5.8】<br>
  更新内容：<br>
- 2.5.7.1、新增 两种快速创建 button 的方法：1、快速创建纯文字 button，2、快速创建纯图片 button <br>
- 2.5.7.2、新增 单独配置文字位置的封装 <br>
- 2.5.7.3、新增 字体颜色、背景颜色、image 等的 disabled 状态下的配置 <br>
+ 2.5.8.1、新增 两种快速创建 button 的方法：1、快速创建纯文字 button，2、快速创建纯图片 button <br>
+ 2.5.8.2、新增 单独配置文字位置的封装 <br>
+ 2.5.8.3、新增 字体颜色、背景颜色、image 等的 disabled 状态下的配置 <br>
 
  最新更新时间：2017-07-08 【倒叙】<br>
  最新Version：【Version：2.5.6】<br>

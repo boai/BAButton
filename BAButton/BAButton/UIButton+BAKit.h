@@ -444,7 +444,7 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
 
 @end
 
-@interface UIImage (BAKit)
+@interface UIImage (BAButton)
 
 /**
  UIImage：创建一个 纯颜色 图片【全部铺满】
