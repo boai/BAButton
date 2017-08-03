@@ -67,6 +67,11 @@
  项目源码地址：
  OC 版 ：https://github.com/BAHome/BAButton
  
+ 最新更新时间：2017-08-03 【倒叙】<br>
+ 最新Version：【Version：2.5.9】<br>
+ 更新内容：<br>
+ 2.5.9.1、修复 UIButton：快速创建 button4：frame、title、backgroundImage 方法死循环bug(感谢群里 [@杭州-秦小强  11:52:23](https://github.com/wqforeverhell) 同学提出的 bug！) <br>
+ 
  最新更新时间：2017-07-19 【倒叙】<br>
  最新Version：【Version：2.5.8】<br>
  更新内容：<br>
@@ -883,6 +888,11 @@ NS_ASSUME_NONNULL_END
 ## 5、更新记录：【倒叙】
  欢迎使用 [【BAHome】](https://github.com/BAHome) 系列开源代码 ！
  如有更多需求，请前往：[【https://github.com/BAHome】](https://github.com/BAHome) 
+ 
+ 最新更新时间：2017-08-03 【倒叙】<br>
+ 最新Version：【Version：2.5.9】<br>
+ 更新内容：<br>
+ 2.5.9.1、修复 UIButton：快速创建 button4：frame、title、backgroundImage 方法死循环bug(感谢群里 [@杭州-秦小强  11:52:23](https://github.com/wqforeverhell) 同学提出的 bug！) <br>
  
  最新更新时间：2017-07-19 【倒叙】<br>
  最新Version：【Version：2.5.8】<br>
