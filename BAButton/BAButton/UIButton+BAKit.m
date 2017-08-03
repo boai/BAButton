@@ -271,7 +271,7 @@
                    title:(NSString * __nullable)title
          backgroundImage:(UIImage * __nullable)backgroundImage
 {
-    UIButton *button = [UIButton ba_buttonWithFrame:frame title:title backgroundImage:backgroundImage];
+    UIButton *button = [UIButton ba_buttonWithFrame:frame title:title titleColor:nil titleFont:nil image:nil backgroundImage:backgroundImage];
     return button;
 }
 
