@@ -442,6 +442,15 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
                              verticalAlignment:(UIControlContentVerticalAlignment)verticalAlignment
                              contentEdgeInsets:(UIEdgeInsets)contentEdgeInsets;
 
+/**
+ UIButton：给 Button 添加点击音效，注意，此方法不带播放结束回调，如果需要播放结束回调，请将 .m 文件中的 C 函数（soundCompleteCallBack）回调复制到播放按钮的.m 里，在里面做相关处理即可
+ 
+ @param name 音乐文件名称
+ @param isNeedShock 是否播放音效并震动
+ */
+- (void)ba_buttonPlaySoundEffectWithFileName:(NSString *)name
+                                 isNeedShock:(BOOL)isNeedShock;
+
 @end
 
 @interface UIImage (BAButton)
@@ -472,6 +481,20 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
 - (UIImage *)ba_imageScaleToWidth:(CGFloat)width;
 
 @end
+
+@interface UIView (BAButton)
+
+/**
+ UIView：给 View 添加点击音效（一般用于 button 按钮的点击音效），注意，此方法不带播放结束回调，如果需要播放结束回调，请将 .m 文件中的 C 函数（soundCompleteCallBack）回调复制到播放按钮的.m 里，在里面做相关处理即可
+ 
+ @param name 音乐文件名称
+ @param isNeedShock 是否播放音效并震动
+ */
+- (void)ba_viewPlaySoundEffectWithFileName:(NSString *)name
+                               isNeedShock:(BOOL)isNeedShock;
+
+@end
+
 NS_ASSUME_NONNULL_END
 
 

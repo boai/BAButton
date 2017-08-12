@@ -8,6 +8,8 @@
 
 #import "UIButton+BAKit.h"
 #import <objc/runtime.h>
+#import <AudioToolbox/AudioToolbox.h>
+
 #import "BAKit_ConfigurationDefine.h"
 
 
@@ -104,6 +106,57 @@
     UIGraphicsEndImageContext();
     
     return newImage;
+}
+
+@end
+
+@implementation UIView (BAButton)
+
+/**
+ UIView：点击音效结束后的回调，实际情况可参考里面注释
+ 
+ @param soundID soundID description
+ @param clientData clientData description
+ */
+void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
+    NSLog(@"播放完成");
+    //    AudioServicesRemoveSystemSoundCompletion (mySSID);
+    //    UILabel *label = (__bridge UILabel *)data;
+    //    label.textColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1];
+}
+
+/**
+ UIView：给 View 添加点击音效（一般用于 button 按钮的点击音效），注意，此方法不带播放结束回调，如果需要播放结束回调，请将 .m 文件中的 C 函数（soundCompleteCallBack）回调复制到播放按钮的.m 里，在里面做相关处理即可
+ 
+ @param name 音乐文件名称
+ @param isNeedShock 是否播放音效并震动
+ */
+- (void)ba_viewPlaySoundEffectWithFileName:(NSString *)name
+                               isNeedShock:(BOOL)isNeedShock
+{
+    // 1、获取音效文件路径
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:name ofType:nil];
+    // 2、创建音效文件 URL
+    NSURL *fileUrl = [NSURL fileURLWithPath:filePath];
+    // 3、音效声音的唯一标示 soundID
+    SystemSoundID soundID = 0;
+    
+    /**
+     * inFileUrl: 音频文件 url
+     * outSystemSoundID: 声音 id（此函数会将音效文件加入到系统音频服务中并返回一个长整形ID）
+     */
+    // 4、将音效加入到系统音效服务中，NSURL 需要桥接成 CFURLRef，会返回一个长整形 soundID，用来做音效的唯一标示
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)(fileUrl), &soundID);
+    // 5、如果需要在播放完之后执行某些操作，可以调用如下方法注册一个播放完成回调函数
+    AudioServicesAddSystemSoundCompletion(soundID, NULL, NULL, soundCompleteCallback, NULL);
+    // 6、播放音频
+    AudioServicesPlaySystemSound(soundID);
+    
+    if (isNeedShock)
+    {
+        // 7、播放音效并震动
+        AudioServicesPlayAlertSound(soundID);
+    }
 }
 
 @end
@@ -724,6 +777,18 @@
     self.contentHorizontalAlignment = horizontalAlignment;
     self.contentVerticalAlignment   = verticalAlignment;
     self.contentEdgeInsets          = contentEdgeInsets;
+}
+
+/**
+ UIButton：给 Button 添加点击音效，注意，此方法不带播放结束回调，如果需要播放结束回调，请将 .m 文件中的 C 函数（soundCompleteCallBack）回调复制到播放按钮的.m 里，在里面做相关处理即可
+ 
+ @param name 音乐文件名称
+ @param isNeedShock 是否播放音效并震动
+ */
+- (void)ba_buttonPlaySoundEffectWithFileName:(NSString *)name
+                                 isNeedShock:(BOOL)isNeedShock
+{
+    [self ba_viewPlaySoundEffectWithFileName:name isNeedShock:isNeedShock];
 }
 
 #pragma mark - setter / getter

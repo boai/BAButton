@@ -20,6 +20,7 @@
 * 12、新增 两种快速创建 button 的方法：1、快速创建纯文字 button，2、快速创建纯图片 button <br>
 * 13、新增 单独配置文字位置的封装 <br>
 * 14、新增 字体颜色、背景颜色、image 等的 disabled 状态下的配置 <br>
+* 15、新增 按钮点击音效和震动效果封装
 
 ## 2、图片示例
 ![BAButton1](https://github.com/BAHome/BAButton/blob/master/Images/BAButton1.png)
@@ -66,6 +67,11 @@
  
  项目源码地址：
  OC 版 ：https://github.com/BAHome/BAButton
+ 
+ 最新更新时间：2017-08-12 【倒叙】<br>
+ 最新Version：【Version：2.6.0】<br>
+ 更新内容：<br>
+ 2.6.0.1、新增 按钮点击音效和震动效果封装 <br>
  
  最新更新时间：2017-08-03 【倒叙】<br>
  最新Version：【Version：2.5.9】<br>
@@ -548,6 +554,15 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
                              verticalAlignment:(UIControlContentVerticalAlignment)verticalAlignment
                              contentEdgeInsets:(UIEdgeInsets)contentEdgeInsets;
 
+/**
+ UIButton：给 Button 添加点击音效，注意，此方法不带播放结束回调，如果需要播放结束回调，请将 .m 文件中的 C 函数（soundCompleteCallBack）回调复制到播放按钮的.m 里，在里面做相关处理即可
+ 
+ @param name 音乐文件名称
+ @param isNeedShock 是否播放音效并震动
+ */
+- (void)ba_buttonPlaySoundEffectWithFileName:(NSString *)name
+                                 isNeedShock:(BOOL)isNeedShock;
+
 @end
 
 @interface UIImage (BAButton)
@@ -578,6 +593,20 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
 - (UIImage *)ba_imageScaleToWidth:(CGFloat)width;
 
 @end
+
+@interface UIView (BAButton)
+
+/**
+ UIView：给 View 添加点击音效（一般用于 button 按钮的点击音效），注意，此方法不带播放结束回调，如果需要播放结束回调，请将 .m 文件中的 C 函数（soundCompleteCallBack）回调复制到播放按钮的.m 里，在里面做相关处理即可
+ 
+ @param name 音乐文件名称
+ @param isNeedShock 是否播放音效并震动
+ */
+- (void)ba_viewPlaySoundEffectWithFileName:(NSString *)name
+                               isNeedShock:(BOOL)isNeedShock;
+
+@end
+
 NS_ASSUME_NONNULL_END
 
 ```
@@ -803,17 +832,32 @@ NS_ASSUME_NONNULL_END
     
     
 // 示例2：
+
 - (void)setupNavi
 {
     CGRect frame = CGRectMake(0, 0, 80, 40);
-    UIButton *navi_rightButton = [UIButton ba_creatButtonWithFrame:frame title:@"xib" selTitle:nil titleColor:BAKit_Color_Red titleFont:nil image:[UIImage imageNamed:@"tabbar_mainframeHL"] selImage:nil padding:2 buttonPositionStyle:BAKit_ButtonLayoutTypeCenterImageRight viewRectCornerType:BAKit_ViewRectCornerTypeAllCorners viewCornerRadius:20 target:self selector:@selector(handleRightNaviButtonAction)];
-    navi_rightButton.backgroundColor = BAKit_Color_RandomRGB();
+    UIButton *navi_rightButton = [UIButton ba_creatButtonWithFrame:frame title:@"xib" selTitle:nil titleColor:BAKit_Color_Red_pod titleFont:nil image:[UIImage imageNamed:@"tabbar_mainframeHL"] selImage:nil padding:2 buttonPositionStyle:BAKit_ButtonLayoutTypeCenterImageRight viewRectCornerType:BAKit_ViewRectCornerTypeAllCorners viewCornerRadius:20 target:self selector:@selector(handleRightNaviButtonAction:)];
+    navi_rightButton.backgroundColor = BAKit_Color_RandomRGB_pod();
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:navi_rightButton];
     
-    UIButton *navi_leftButton = [UIButton ba_creatButtonWithFrame:frame title:@"state" selTitle:nil titleColor:BAKit_Color_Red titleFont:nil image:[UIImage imageNamed:@"tabbar_mainframeHL"] selImage:nil padding:2 buttonPositionStyle:BAKit_ButtonLayoutTypeCenterImageRight viewRectCornerType:BAKit_ViewRectCornerTypeAllCorners viewCornerRadius:20 target:self selector:@selector(handleLeftNaviButtonAction)];
-    [navi_rightButton ba_view_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomLeftAndTopLeft viewCornerRadius:20 borderWidth:2.0f borderColor:BAKit_Color_RandomRGB()];
-    navi_rightButton.backgroundColor = BAKit_Color_RandomRGBA();
+    UIButton *navi_leftButton = [UIButton ba_creatButtonWithFrame:frame title:@"state" selTitle:nil titleColor:BAKit_Color_Red_pod titleFont:nil image:[UIImage imageNamed:@"tabbar_mainframeHL"] selImage:nil padding:2 buttonPositionStyle:BAKit_ButtonLayoutTypeCenterImageRight viewRectCornerType:BAKit_ViewRectCornerTypeAllCorners viewCornerRadius:20 target:self selector:@selector(handleLeftNaviButtonAction:)];
+    [navi_rightButton ba_view_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomLeftAndTopLeft viewCornerRadius:20 borderWidth:2.0f borderColor:BAKit_Color_RandomRGB_pod()];
+    navi_rightButton.backgroundColor = BAKit_Color_RandomRGBA_pod();
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:navi_leftButton];
+}
+
+- (void)handleLeftNaviButtonAction:(UIButton *)sender
+{
+    // 添加按钮点击音效和震动效果
+    [sender ba_viewPlaySoundEffectWithFileName:@"begin.mp3" isNeedShock:YES];
+    [self.navigationController pushViewController:[ViewController3 new] animated:YES];
+}
+
+- (void)handleRightNaviButtonAction:(UIButton *)sender
+{
+    // 添加按钮点击音效和震动效果
+    [sender ba_viewPlaySoundEffectWithFileName:@"failure.mp3" isNeedShock:YES];
+    [self.navigationController pushViewController:[ViewController2 new] animated:YES];
 }
 
 // 示例3：倒计时
@@ -888,6 +932,11 @@ NS_ASSUME_NONNULL_END
 ## 5、更新记录：【倒叙】
  欢迎使用 [【BAHome】](https://github.com/BAHome) 系列开源代码 ！
  如有更多需求，请前往：[【https://github.com/BAHome】](https://github.com/BAHome) 
+ 
+ 最新更新时间：2017-08-12 【倒叙】<br>
+ 最新Version：【Version：2.6.0】<br>
+ 更新内容：<br>
+ 2.6.0.1、新增 按钮点击音效和震动效果封装 <br>
  
  最新更新时间：2017-08-03 【倒叙】<br>
  最新Version：【Version：2.5.9】<br>
