@@ -63,6 +63,8 @@
 }
 
 - (IBAction)btnClick:(UIButton *)sender {
+    // 添加按钮点击音效和震动效果
+    [sender ba_viewPlaySoundEffectWithFileName:@"failure.mp3" isNeedShock:YES];
     sender.selected = !sender.isSelected;
 }
 
