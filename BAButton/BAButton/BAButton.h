@@ -80,6 +80,11 @@
  项目源码地址：
  OC 版 ：https://github.com/BAHome/BAButton
  
+ 最新更新时间：2017-08-12 【倒叙】<br>
+ 最新 Version：【Version：2.6.0】<br>
+ 更新内容：<br>
+ 2.6.0.1、新增 按钮点击音效和震动效果封装 <br>
+ 
  最新更新时间：2017-08-03 【倒叙】<br>
  最新Version：【Version：2.5.9】<br>
  更新内容：<br>
