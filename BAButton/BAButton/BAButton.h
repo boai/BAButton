@@ -80,6 +80,11 @@
  项目源码地址：
  OC 版 ：https://github.com/BAHome/BAButton
  
+ 最新更新时间：2017-08-14 【倒叙】<br>
+ 最新 Version：【Version：2.6.1】<br>
+ 更新内容：<br>
+ 2.6.1.1、新增 倒计时按钮纯图片更换，详情请看 倒计时 demo <br>
+ 
  最新更新时间：2017-08-12 【倒叙】<br>
  最新 Version：【Version：2.6.0】<br>
  更新内容：<br>

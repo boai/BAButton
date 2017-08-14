@@ -21,6 +21,7 @@
 * 13、新增 单独配置文字位置的封装 <br>
 * 14、新增 字体颜色、背景颜色、image 等的 disabled 状态下的配置 <br>
 * 15、新增 按钮点击音效和震动效果封装
+* 16、新增 倒计时按钮纯图片更换，详情请看 倒计时 demo <br>
 
 ## 2、图片示例
 ![BAButton1](https://github.com/BAHome/BAButton/blob/master/Images/BAButton1.png)
@@ -67,6 +68,12 @@
  
  项目源码地址：
  OC 版 ：https://github.com/BAHome/BAButton
+ 
+  
+ 最新更新时间：2017-08-14 【倒叙】<br>
+ 最新 Version：【Version：2.6.1】<br>
+ 更新内容：<br>
+ 2.6.1.1、新增 倒计时按钮纯图片更换，详情请看 倒计时 demo <br>
  
  最新更新时间：2017-08-12 【倒叙】<br>
  最新Version：【Version：2.6.0】<br>
@@ -800,20 +807,32 @@ NS_ASSUME_NONNULL_END
 ```
 #import <UIKit/UIKit.h>
 
+typedef void (^BAKit_BAButtonCountDownBlock)(NSInteger currentTime);
+
 @interface UIButton (BACountDown)
 
 @property (nonatomic, copy) void(^timeStoppedCallback)();
 
 /**
- 设置倒计时的间隔和倒计时文案
+ 倒计时：带 title，返回时间，title，具体使用看 demo
 
  @param duration 倒计时时间
  @param format 可选，传nil默认为 @"%zd秒"
  */
-- (void)ba_countDownWithTimeInterval:(NSTimeInterval)duration countDownFormat:(NSString *)format;
+- (void)ba_countDownWithTimeInterval:(NSTimeInterval)duration
+                     countDownFormat:(NSString *)format;
+
+/**
+ 倒计时：返回当前时间，可以自定义 title 和 image，具体使用看 demo
+ 
+ @param duration 倒计时时间
+ @param block 返回当前时间
+ */
+- (void)ba_countDownCustomWithTimeInterval:(NSTimeInterval)duration
+                                     block:(BAKit_BAButtonCountDownBlock)block;
 
 /** 
- * invalidate timer
+ * 倒计时：结束，取消倒计时
  */
 - (void)ba_cancelTimer;
 
@@ -864,7 +883,15 @@ NS_ASSUME_NONNULL_END
 - (IBAction)countDownClick:(UIButton *)sender {
     sender.userInteractionEnabled = NO;
     __block UIButton *btn = sender;
-    [sender ba_countDownWithTimeInterval:60 countDownFormat:@"剩余 %zd"];
+    [sender ba_countDownCustomWithTimeInterval:5 block:^(NSInteger currentTime) {
+        // 此处是可以自由定制 title 和 image
+        NSString *title = [NSString stringWithFormat:@"Countdown_0%ld", (long)currentTime];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [btn setTitle:nil forState:UIControlStateNormal];
+            [btn setBackgroundImage:BAKit_ImageName(title) forState:UIControlStateNormal];
+        });
+    }];
+
     [sender setTimeStoppedCallback:^{
         [btn setTitle:@"倒计时" forState:UIControlStateNormal];
     }];
@@ -932,6 +959,11 @@ NS_ASSUME_NONNULL_END
 ## 5、更新记录：【倒叙】
  欢迎使用 [【BAHome】](https://github.com/BAHome) 系列开源代码 ！
  如有更多需求，请前往：[【https://github.com/BAHome】](https://github.com/BAHome) 
+ 
+ 最新更新时间：2017-08-14 【倒叙】<br>
+ 最新 Version：【Version：2.6.1】<br>
+ 更新内容：<br>
+ 2.6.1.1、新增 倒计时按钮纯图片更换，详情请看 倒计时 demo <br>
  
  最新更新时间：2017-08-12 【倒叙】<br>
  最新Version：【Version：2.6.0】<br>
