@@ -71,7 +71,15 @@
 - (IBAction)countDownClick:(UIButton *)sender {
     sender.userInteractionEnabled = NO;
     __block UIButton *btn = sender;
-    [sender ba_countDownWithTimeInterval:60 countDownFormat:@"剩余 %zd"];
+    [sender ba_countDownCustomWithTimeInterval:5 block:^(NSInteger currentTime) {
+        // 此处是可以自由定制 title 和 image
+        NSString *title = [NSString stringWithFormat:@"Countdown_0%ld", (long)currentTime];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [btn setTitle:nil forState:UIControlStateNormal];
+            [btn setBackgroundImage:BAKit_ImageName(title) forState:UIControlStateNormal];
+        });
+    }];
+
     [sender setTimeStoppedCallback:^{
         [btn setTitle:@"倒计时" forState:UIControlStateNormal];
     }];
