@@ -81,20 +81,21 @@
     }
     self.normalTitle = self.titleLabel.text;
     __block NSInteger timeOut = duration; //倒计时时间
-    __weak typeof(self) weakSelf = self;
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
     dispatch_source_set_timer(self.timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
+    BAKit_WeakSelf
     dispatch_source_set_event_handler(self.timer, ^{
-        if (timeOut <= 0) { // 倒计时结束，关闭
-            [weakSelf ba_cancelTimer];
-        } else {
-            NSString *title = [NSString stringWithFormat:weakSelf.countDownFormat, timeOut];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf setTitle:title forState:UIControlStateNormal];
-            });
-            timeOut--;
-        }
+        BAKit_StrongSelf
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (timeOut <= 0) { // 倒计时结束，关闭
+                [self ba_cancelTimer];
+            } else {
+                NSString *title = [NSString stringWithFormat:self.countDownFormat, timeOut];
+                [self setTitle:title forState:UIControlStateNormal];
+                timeOut--;
+            }
+        });
     });
     dispatch_resume(self.timer);
 }
@@ -109,24 +110,28 @@
                                      block:(BAKit_BAButtonCountDownBlock)block
 {
     __block NSInteger timeOut = duration; //倒计时时间
-    __weak typeof(self) weakSelf = self;
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
     dispatch_source_set_timer(self.timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
+    BAKit_WeakSelf
     dispatch_source_set_event_handler(self.timer, ^{
-        if (block)
-        {
-            block(timeOut);
-        }
-        if (timeOut <= 0)
-        {
-            // 倒计时结束，关闭
-            [weakSelf ba_cancelTimer];
-        }
-        else
-        {
-            timeOut--;
-        }
+        BAKit_StrongSelf
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (block)
+            {
+                block(timeOut);
+            }
+            if (timeOut <= 0)
+            {
+                // 倒计时结束，关闭
+                [self ba_cancelTimer];
+            }
+            else
+            {
+                timeOut--;
+            }
+        });
+        
     });
     dispatch_resume(self.timer);
 }
@@ -136,9 +141,12 @@
  */
 - (void)ba_cancelTimer
 {
-    dispatch_source_cancel(self.timer);
-    self.timer = nil;
+    BAKit_WeakSelf
     dispatch_async(dispatch_get_main_queue(), ^{
+        BAKit_StrongSelf
+        dispatch_source_cancel(self.timer);
+        self.timer = nil;
+
         // 设置界面的按钮显示 根据自己需求设置
         [self setTitle:self.normalTitle forState:UIControlStateNormal];
         self.userInteractionEnabled = YES;

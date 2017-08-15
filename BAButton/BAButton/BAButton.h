@@ -80,6 +80,11 @@
  项目源码地址：
  OC 版 ：https://github.com/BAHome/BAButton
  
+ 最新更新时间：2017-08-15 【倒叙】<br>
+ 最新 Version：【Version：2.6.2】<br>
+ 更新内容：<br>
+ 2.6.2.1、优化倒计时封装，线程处理优化 <br>
+ 
  最新更新时间：2017-08-14 【倒叙】<br>
  最新 Version：【Version：2.6.1】<br>
  更新内容：<br>
