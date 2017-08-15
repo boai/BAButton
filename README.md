@@ -69,6 +69,11 @@
  项目源码地址：
  OC 版 ：https://github.com/BAHome/BAButton
  
+ 
+ 最新更新时间：2017-08-15 【倒叙】<br>
+ 最新 Version：【Version：2.6.2】<br>
+ 更新内容：<br>
+ 2.6.2.1、优化倒计时封装，线程处理优化 <br>
   
  最新更新时间：2017-08-14 【倒叙】<br>
  最新 Version：【Version：2.6.1】<br>
@@ -959,6 +964,12 @@ typedef void (^BAKit_BAButtonCountDownBlock)(NSInteger currentTime);
 ## 5、更新记录：【倒叙】
  欢迎使用 [【BAHome】](https://github.com/BAHome) 系列开源代码 ！
  如有更多需求，请前往：[【https://github.com/BAHome】](https://github.com/BAHome) 
+ 
+ 
+ 最新更新时间：2017-08-15 【倒叙】<br>
+ 最新 Version：【Version：2.6.2】<br>
+ 更新内容：<br>
+ 2.6.2.1、优化倒计时封装，线程处理优化 <br>
  
  最新更新时间：2017-08-14 【倒叙】<br>
  最新 Version：【Version：2.6.1】<br>
