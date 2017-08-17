@@ -80,6 +80,11 @@
  项目源码地址：
  OC 版 ：https://github.com/BAHome/BAButton
  
+ 最新更新时间：2017-08-17 【倒叙】<br>
+ 最新 Version：【Version：2.6.3】<br>
+ 更新内容：<br>
+ 2.6.3.1、优化细节处理，新增 连续点击按钮时停止播放上一音乐 <br>
+ 
  最新更新时间：2017-08-15 【倒叙】<br>
  最新 Version：【Version：2.6.2】<br>
  更新内容：<br>

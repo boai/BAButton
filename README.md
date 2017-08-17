@@ -22,6 +22,8 @@
 * 14、新增 字体颜色、背景颜色、image 等的 disabled 状态下的配置 <br>
 * 15、新增 按钮点击音效和震动效果封装
 * 16、新增 倒计时按钮纯图片更换，详情请看 倒计时 demo <br>
+* 17、新增 连续点击按钮时停止播放上一音乐 <br>
+
 
 ## 2、图片示例
 ![BAButton1](https://github.com/BAHome/BAButton/blob/master/Images/BAButton1.png)
@@ -69,6 +71,11 @@
  项目源码地址：
  OC 版 ：https://github.com/BAHome/BAButton
  
+  
+ 最新更新时间：2017-08-17 【倒叙】<br>
+ 最新 Version：【Version：2.6.3】<br>
+ 更新内容：<br>
+ 2.6.3.1、优化细节处理，新增 连续点击按钮时停止播放上一音乐 <br>
  
  最新更新时间：2017-08-15 【倒叙】<br>
  最新 Version：【Version：2.6.2】<br>
@@ -567,13 +574,13 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
                              contentEdgeInsets:(UIEdgeInsets)contentEdgeInsets;
 
 /**
- UIButton：给 Button 添加点击音效，注意，此方法不带播放结束回调，如果需要播放结束回调，请将 .m 文件中的 C 函数（soundCompleteCallBack）回调复制到播放按钮的.m 里，在里面做相关处理即可
+ UIView：给 View 添加点击音效（一般用于 button 按钮的点击音效），注意，此方法不带播放结束回调，如果需要播放结束回调，请将 .m 文件中的 C 函数（soundCompleteCallBack）回调复制到播放按钮的.m 里，在里面做相关处理即可
  
- @param name 音乐文件名称
+ @param filename 音乐文件名称
  @param isNeedShock 是否播放音效并震动
  */
-- (void)ba_buttonPlaySoundEffectWithFileName:(NSString *)name
-                                 isNeedShock:(BOOL)isNeedShock;
+- (void)ba_viewPlaySoundEffectWithFileName:(NSString *)filename
+                               isNeedShock:(BOOL)isNeedShock;
 
 @end
 
@@ -603,19 +610,6 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
  @return UIImage
  */
 - (UIImage *)ba_imageScaleToWidth:(CGFloat)width;
-
-@end
-
-@interface UIView (BAButton)
-
-/**
- UIView：给 View 添加点击音效（一般用于 button 按钮的点击音效），注意，此方法不带播放结束回调，如果需要播放结束回调，请将 .m 文件中的 C 函数（soundCompleteCallBack）回调复制到播放按钮的.m 里，在里面做相关处理即可
- 
- @param name 音乐文件名称
- @param isNeedShock 是否播放音效并震动
- */
-- (void)ba_viewPlaySoundEffectWithFileName:(NSString *)name
-                               isNeedShock:(BOOL)isNeedShock;
 
 @end
 
@@ -965,6 +959,11 @@ typedef void (^BAKit_BAButtonCountDownBlock)(NSInteger currentTime);
  欢迎使用 [【BAHome】](https://github.com/BAHome) 系列开源代码 ！
  如有更多需求，请前往：[【https://github.com/BAHome】](https://github.com/BAHome) 
  
+ 
+ 最新更新时间：2017-08-17 【倒叙】<br>
+ 最新 Version：【Version：2.6.3】<br>
+ 更新内容：<br>
+ 2.6.3.1、优化细节处理，新增 连续点击按钮时停止播放上一音乐 <br>
  
  最新更新时间：2017-08-15 【倒叙】<br>
  最新 Version：【Version：2.6.2】<br>
