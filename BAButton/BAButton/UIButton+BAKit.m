@@ -110,7 +110,22 @@
 
 @end
 
+
+@interface UIView (BAButton)
+
+/**
+ UIView：给 View 添加点击音效（一般用于 button 按钮的点击音效），注意，此方法不带播放结束回调，如果需要播放结束回调，请将 .m 文件中的 C 函数（soundCompleteCallBack）回调复制到播放按钮的.m 里，在里面做相关处理即可
+ 
+ @param filename 音乐文件名称
+ @param isNeedShock 是否播放音效并震动
+ */
+- (void)ba_viewPlaySoundEffectWithFileName:(NSString *)filename
+                               isNeedShock:(BOOL)isNeedShock;
+
+@end
+
 @implementation UIView (BAButton)
+
 
 /**
  UIView：点击音效结束后的回调，实际情况可参考里面注释
@@ -128,14 +143,21 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
 /**
  UIView：给 View 添加点击音效（一般用于 button 按钮的点击音效），注意，此方法不带播放结束回调，如果需要播放结束回调，请将 .m 文件中的 C 函数（soundCompleteCallBack）回调复制到播放按钮的.m 里，在里面做相关处理即可
  
- @param name 音乐文件名称
+ @param filename 音乐文件名称
  @param isNeedShock 是否播放音效并震动
  */
-- (void)ba_viewPlaySoundEffectWithFileName:(NSString *)name
+- (void)ba_viewPlaySoundEffectWithFileName:(NSString *)filename
                                isNeedShock:(BOOL)isNeedShock
 {
+    // 1、判断文件名是否为空
+    if (filename == nil)
+    {
+        return;
+    }
+    [self ba_viewStopAlertSound];
+    
     // 1、获取音效文件路径
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:name ofType:nil];
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:filename ofType:nil];
     // 2、创建音效文件 URL
     NSURL *fileUrl = [NSURL fileURLWithPath:filePath];
     // 3、音效声音的唯一标示 soundID
@@ -147,8 +169,7 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
      */
     // 4、将音效加入到系统音效服务中，NSURL 需要桥接成 CFURLRef，会返回一个长整形 soundID，用来做音效的唯一标示
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)(fileUrl), &soundID);
-    // 5、如果需要在播放完之后执行某些操作，可以调用如下方法注册一个播放完成回调函数
-    AudioServicesAddSystemSoundCompletion(soundID, NULL, NULL, soundCompleteCallback, NULL);
+    
     // 6、播放音频
     AudioServicesPlaySystemSound(soundID);
     
@@ -157,6 +178,29 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
         // 7、播放音效并震动
         AudioServicesPlayAlertSound(soundID);
     }
+    
+    // 保存
+    // 立即同步
+    [BAKit_NSUserDefaults setObject:@(soundID).stringValue forKey:@"soundID"];
+    [BAKit_NSUserDefaults synchronize];
+
+}
+
+/**
+ UIView：停止播放音乐（按钮点击音效的停止）
+ */
+- (void)ba_viewStopAlertSound
+{
+    NSString *soundIDString = [BAKit_NSUserDefaults objectForKey:@"soundID"];
+    
+    if (BAKit_stringIsBlank_pod(soundIDString))
+    {
+        return;
+    }
+    SystemSoundID soundID = [soundIDString intValue];
+    AudioServicesDisposeSystemSoundID(kSystemSoundID_Vibrate);
+    AudioServicesDisposeSystemSoundID(soundID);
+    AudioServicesRemoveSystemSoundCompletion(soundID);
 }
 
 @end
