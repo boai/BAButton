@@ -80,6 +80,13 @@
  项目源码地址：
  OC 版 ：https://github.com/BAHome/BAButton
  
+ 最新更新时间：2017-09-12 【倒叙】<br>
+ 最新 Version：【Version：2.6.4】<br>
+ 更新内容：<br>
+ 2.6.4.1、新增 button 点击事件 blcok，具体使用详见 demo！ <br>
+ 2.6.4.2、新增 button 不同状态下的阴影设置，具体使用详见 demo！ <br>
+ 2.6.4.3、原 方法 【ba_viewPlaySoundEffectWithFileName】替换为：【ba_buttonPlaySoundEffectWithFileName】，具体使用详见 demo！ <br>
+ 
  最新更新时间：2017-08-17 【倒叙】<br>
  最新 Version：【Version：2.6.3】<br>
  更新内容：<br>

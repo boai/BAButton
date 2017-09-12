@@ -85,6 +85,13 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
     BAKit_ButtonLayoutTypeRightImageRight,
 };
 
+/**
+ UIButton：点击事件 block 返回
+
+ @param button 当前的 button
+ */
+typedef void (^BAKit_UIButtonActionBlock)(UIButton * _Nonnull button);
+
 @interface UIButton (BAKit)
 
 /**
@@ -102,6 +109,10 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
  */
 @property (nonatomic, assign) CGFloat ba_padding_inset;
 
+/**
+ UIButton：点击事件 block 返回
+ */
+@property(nonatomic, copy) BAKit_UIButtonActionBlock ba_buttonActionBlock;
 
 #pragma mark - 快速创建 button
 
@@ -315,7 +326,7 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
                                      target:(id)target
                                      action:(SEL)action;
 
-#pragma mark - 自定义：button
+#pragma mark - 自定义：button 颜色
 /**
  UIButton：自定义 button backgroundColor
  
@@ -334,6 +345,7 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
                                highlightedStateColor:(UIColor *)highlightedStateColor
                                   disabledStateColor:(UIColor *)disabledStateColor;
 
+#pragma mark - 自定义 button backgroundImage
 /**
  UIButton：自定义 button backgroundImage、selectedBackgroundImage、highlightedBackgroundImage
  
@@ -345,6 +357,7 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
             selectedBackgroundImage:(UIImage * __nullable)selectedBackgroundImage
          highlightedBackgroundImage:(UIImage * __nullable)highlightedBackgroundImage;
 
+#pragma mark - 自定义 button image
 /**
  UIButton：自定义 button image、selectedImage、highlightedImage、disabledImage
  
@@ -358,6 +371,7 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
          highlightedImage:(UIImage * __nullable)highlightedImage
             disabledImage:(UIImage * __nullable)disabledImage;
 
+#pragma mark - 自定义 button title
 /**
  UIButton：自定义 button title、selectedTitle、highlightedTitle
  
@@ -391,6 +405,7 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
 - (void)ba_buttonSetTitleFontName:(NSString *)fontName
                              size:(CGFloat)size;
 
+#pragma mark - 点击事件
 /**
  UIButton：自定义 button 点击事件，默认：UIControlEventTouchUpInside
  
@@ -402,6 +417,7 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
                        tag:(NSInteger)tag
                     action:(SEL)action;
 
+#pragma mark - 布局样式 和 间距
 /**
  UIButton：快速设置 button 的布局样式 和 间距
  
@@ -410,6 +426,7 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
  */
 - (void)ba_button_setButtonLayoutType:(BAKit_ButtonLayoutType)type padding:(CGFloat)padding;
 
+#pragma mark - 快速切圆角
 /**
  UIButton：快速切圆角，注意：文字、字体大小、图片等设置一定要在设置 ba_button_setButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移，如果是 xib，需要要有固定 宽高，要不然 iOS 10 设置无效
  
@@ -431,6 +448,7 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
                             borderWidth:(CGFloat)borderWidth
                             borderColor:(UIColor *)borderColor;
 
+#pragma mark - title 位置
 /**
  UIButton：title 位置
  
@@ -442,14 +460,15 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
                              verticalAlignment:(UIControlContentVerticalAlignment)verticalAlignment
                              contentEdgeInsets:(UIEdgeInsets)contentEdgeInsets;
 
+#pragma mark - 给 View 添加点击音效
 /**
- UIView：给 View 添加点击音效（一般用于 button 按钮的点击音效），注意，此方法不带播放结束回调，如果需要播放结束回调，请将 .m 文件中的 C 函数（soundCompleteCallBack）回调复制到播放按钮的.m 里，在里面做相关处理即可
+ UIButton：给 button 添加点击音效（一般用于 button 按钮的点击音效），注意，此方法不带播放结束回调，如果需要播放结束回调，请将 .m 文件中的 C 函数（soundCompleteCallBack）回调复制到播放按钮的.m 里，在里面做相关处理即可
  
  @param filename 音乐文件名称
  @param isNeedShock 是否播放音效并震动
  */
-- (void)ba_viewPlaySoundEffectWithFileName:(NSString *)filename
-                               isNeedShock:(BOOL)isNeedShock;
+- (void)ba_buttonPlaySoundEffectWithFileName:(NSString *)filename
+                                 isNeedShock:(BOOL)isNeedShock;
 
 @end
 

@@ -39,20 +39,36 @@
     [navi_rightButton ba_view_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomLeftAndTopLeft viewCornerRadius:20 borderWidth:2.0f borderColor:BAKit_Color_RandomRGB_pod()];
     navi_rightButton.backgroundColor = BAKit_Color_RandomRGBA_pod();
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:navi_leftButton];
+    
+    // 点击事件 Block 返回！
+    BAKit_WeakSelf
+    navi_leftButton.ba_buttonActionBlock = ^(UIButton * _Nonnull button) {
+        BAKit_StrongSelf
+        // 添加按钮点击音效和震动效果
+        [button ba_buttonPlaySoundEffectWithFileName:@"begin.mp3" isNeedShock:YES];
+        [self.navigationController pushViewController:[ViewController3 new] animated:YES];
+    };
+    
+    navi_rightButton.ba_buttonActionBlock = ^(UIButton * _Nonnull button) {
+        BAKit_StrongSelf
+        // 添加按钮点击音效和震动效果
+        [button ba_buttonPlaySoundEffectWithFileName:@"failure.mp3" isNeedShock:YES];
+        [self.navigationController pushViewController:[ViewController2 new] animated:YES];
+    };
 }
 
 - (void)handleLeftNaviButtonAction:(UIButton *)sender
 {
     // 添加按钮点击音效和震动效果
-    [sender ba_viewPlaySoundEffectWithFileName:@"begin.mp3" isNeedShock:YES];
-    [self.navigationController pushViewController:[ViewController3 new] animated:YES];
+//    [sender ba_viewPlaySoundEffectWithFileName:@"begin.mp3" isNeedShock:YES];
+//    [self.navigationController pushViewController:[ViewController3 new] animated:YES];
 }
 
 - (void)handleRightNaviButtonAction:(UIButton *)sender
 {
     // 添加按钮点击音效和震动效果
-    [sender ba_viewPlaySoundEffectWithFileName:@"failure.mp3" isNeedShock:YES];
-    [self.navigationController pushViewController:[ViewController2 new] animated:YES];
+//    [sender ba_buttonPlaySoundEffectWithFileName:@"failure.mp3" isNeedShock:YES];
+//    [self.navigationController pushViewController:[ViewController2 new] animated:YES];
 }
 
 - (void)test
