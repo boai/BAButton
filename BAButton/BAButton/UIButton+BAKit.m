@@ -768,6 +768,24 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
     [self addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
 }
 
+///**
+// UIButton：自定义 button 点击事件 block 返回，默认：UIControlEventTouchUpInside
+// 
+// @param actionBlock actionBlock description
+// */
+//- (void)ba_buttonTouchActionBlock:(BAKit_UIButtonActionBlock)actionBlock
+//{
+//    [self addTarget:self action:@selector(handleButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+//}
+
+- (void)handleButtonAction:(UIButton *)sender
+{
+    if (self.ba_buttonActionBlock)
+    {
+        self.ba_buttonActionBlock(sender);
+    }
+}
+
 /**
  UIButton：快速设置 button 的布局样式 和 间距
  
@@ -867,6 +885,17 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
 - (CGFloat)ba_padding_inset
 {
     return [BAKit_Objc_getObj floatValue];
+}
+
+- (void)setBa_buttonActionBlock:(BAKit_UIButtonActionBlock)ba_buttonActionBlock
+{
+    [self addTarget:self action:@selector(handleButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    BAKit_Objc_setObj(@selector(ba_buttonActionBlock), ba_buttonActionBlock);
+}
+
+- (BAKit_UIButtonActionBlock)ba_buttonActionBlock
+{
+    return BAKit_Objc_getObj;
 }
 
 - (void)setFrame:(CGRect)frame

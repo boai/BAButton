@@ -23,7 +23,8 @@
 * 15、新增 按钮点击音效和震动效果封装
 * 16、新增 倒计时按钮纯图片更换，详情请看 倒计时 demo <br>
 * 17、新增 连续点击按钮时停止播放上一音乐 <br>
-
+* 18、新增 button 点击事件 blcok，具体使用详见 demo！ <br>
+* 19、新增 button 不同状态下的阴影设置，具体使用详见 demo！ <br>
 
 ## 2、图片示例
 ![BAButton1](https://github.com/BAHome/BAButton/blob/master/Images/BAButton1.png)
@@ -71,7 +72,13 @@
  项目源码地址：
  OC 版 ：https://github.com/BAHome/BAButton
  
-  
+ 最新更新时间：2017-09-12 【倒叙】<br>
+ 最新 Version：【Version：2.6.4】<br>
+ 更新内容：<br>
+ 2.6.4.1、新增 button 点击事件 blcok，具体使用详见 demo！ <br>
+ 2.6.4.2、新增 button 不同状态下的阴影设置，具体使用详见 demo！ <br>
+ 2.6.4.3、原 方法 【ba_viewPlaySoundEffectWithFileName】替换为：【ba_buttonPlaySoundEffectWithFileName】，具体使用详见 demo！ <br>
+ 
  最新更新时间：2017-08-17 【倒叙】<br>
  最新 Version：【Version：2.6.3】<br>
  更新内容：<br>
@@ -216,6 +223,13 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
     BAKit_ButtonLayoutTypeRightImageRight,
 };
 
+/**
+ UIButton：点击事件 block 返回
+
+ @param button 当前的 button
+ */
+typedef void (^BAKit_UIButtonActionBlock)(UIButton * _Nonnull button);
+
 @interface UIButton (BAKit)
 
 /**
@@ -233,6 +247,10 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
  */
 @property (nonatomic, assign) CGFloat ba_padding_inset;
 
+/**
+ UIButton：点击事件 block 返回
+ */
+@property(nonatomic, copy) BAKit_UIButtonActionBlock ba_buttonActionBlock;
 
 #pragma mark - 快速创建 button
 
@@ -446,7 +464,7 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
                                      target:(id)target
                                      action:(SEL)action;
 
-#pragma mark - 自定义：button
+#pragma mark - 自定义：button 颜色
 /**
  UIButton：自定义 button backgroundColor
  
@@ -465,6 +483,7 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
                                highlightedStateColor:(UIColor *)highlightedStateColor
                                   disabledStateColor:(UIColor *)disabledStateColor;
 
+#pragma mark - 自定义 button backgroundImage
 /**
  UIButton：自定义 button backgroundImage、selectedBackgroundImage、highlightedBackgroundImage
  
@@ -476,6 +495,7 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
             selectedBackgroundImage:(UIImage * __nullable)selectedBackgroundImage
          highlightedBackgroundImage:(UIImage * __nullable)highlightedBackgroundImage;
 
+#pragma mark - 自定义 button image
 /**
  UIButton：自定义 button image、selectedImage、highlightedImage、disabledImage
  
@@ -489,6 +509,7 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
          highlightedImage:(UIImage * __nullable)highlightedImage
             disabledImage:(UIImage * __nullable)disabledImage;
 
+#pragma mark - 自定义 button title
 /**
  UIButton：自定义 button title、selectedTitle、highlightedTitle
  
@@ -522,6 +543,7 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
 - (void)ba_buttonSetTitleFontName:(NSString *)fontName
                              size:(CGFloat)size;
 
+#pragma mark - 点击事件
 /**
  UIButton：自定义 button 点击事件，默认：UIControlEventTouchUpInside
  
@@ -533,6 +555,7 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
                        tag:(NSInteger)tag
                     action:(SEL)action;
 
+#pragma mark - 布局样式 和 间距
 /**
  UIButton：快速设置 button 的布局样式 和 间距
  
@@ -541,6 +564,7 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
  */
 - (void)ba_button_setButtonLayoutType:(BAKit_ButtonLayoutType)type padding:(CGFloat)padding;
 
+#pragma mark - 快速切圆角
 /**
  UIButton：快速切圆角，注意：文字、字体大小、图片等设置一定要在设置 ba_button_setButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移，如果是 xib，需要要有固定 宽高，要不然 iOS 10 设置无效
  
@@ -562,6 +586,7 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
                             borderWidth:(CGFloat)borderWidth
                             borderColor:(UIColor *)borderColor;
 
+#pragma mark - title 位置
 /**
  UIButton：title 位置
  
@@ -573,14 +598,15 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
                              verticalAlignment:(UIControlContentVerticalAlignment)verticalAlignment
                              contentEdgeInsets:(UIEdgeInsets)contentEdgeInsets;
 
+#pragma mark - 给 View 添加点击音效
 /**
- UIView：给 View 添加点击音效（一般用于 button 按钮的点击音效），注意，此方法不带播放结束回调，如果需要播放结束回调，请将 .m 文件中的 C 函数（soundCompleteCallBack）回调复制到播放按钮的.m 里，在里面做相关处理即可
+ UIButton：给 button 添加点击音效（一般用于 button 按钮的点击音效），注意，此方法不带播放结束回调，如果需要播放结束回调，请将 .m 文件中的 C 函数（soundCompleteCallBack）回调复制到播放按钮的.m 里，在里面做相关处理即可
  
  @param filename 音乐文件名称
  @param isNeedShock 是否播放音效并震动
  */
-- (void)ba_viewPlaySoundEffectWithFileName:(NSString *)filename
-                               isNeedShock:(BOOL)isNeedShock;
+- (void)ba_buttonPlaySoundEffectWithFileName:(NSString *)filename
+                                 isNeedShock:(BOOL)isNeedShock;
 
 @end
 
@@ -612,6 +638,7 @@ typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
 - (UIImage *)ba_imageScaleToWidth:(CGFloat)width;
 
 @end
+
 
 NS_ASSUME_NONNULL_END
 
@@ -778,6 +805,23 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (UIFont *)ba_buttonTitleLabelFontForState:(UIControlState)state;
 
+/**
+ BAButton：创建圆角半径阴影，带半径、阴影颜色
+ 
+ @param cornerRadius 半径
+ @param shadowColor 阴影颜色
+ @param offset 偏移量
+ @param opacity 透明度
+ @param shadowRadius 模糊程度
+ @param state 状态
+ */
+- (void)ba_buttonSetRoundShadowWithCornerRadius:(CGFloat)cornerRadius
+                                    shadowColor:(UIColor *)shadowColor
+                                         offset:(CGSize)offset
+                                        opacity:(CGFloat)opacity
+                                   shadowRadius:(CGFloat)shadowRadius
+                                       forState:(UIControlState)state;
+
 #pragma mark - 使用key-value方式设置
 
 /** 
@@ -862,20 +906,36 @@ typedef void (^BAKit_BAButtonCountDownBlock)(NSInteger currentTime);
     [navi_rightButton ba_view_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomLeftAndTopLeft viewCornerRadius:20 borderWidth:2.0f borderColor:BAKit_Color_RandomRGB_pod()];
     navi_rightButton.backgroundColor = BAKit_Color_RandomRGBA_pod();
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:navi_leftButton];
+    
+     // 点击事件 Block 返回！
+    BAKit_WeakSelf
+    navi_leftButton.ba_buttonActionBlock = ^(UIButton * _Nonnull button) {
+        BAKit_StrongSelf
+        // 添加按钮点击音效和震动效果
+        [button ba_buttonPlaySoundEffectWithFileName:@"begin.mp3" isNeedShock:YES];
+        [self.navigationController pushViewController:[ViewController3 new] animated:YES];
+    };
+    
+    navi_rightButton.ba_buttonActionBlock = ^(UIButton * _Nonnull button) {
+        BAKit_StrongSelf
+        // 添加按钮点击音效和震动效果
+        [button ba_buttonPlaySoundEffectWithFileName:@"failure.mp3" isNeedShock:YES];
+        [self.navigationController pushViewController:[ViewController2 new] animated:YES];
+    };
 }
 
 - (void)handleLeftNaviButtonAction:(UIButton *)sender
 {
     // 添加按钮点击音效和震动效果
-    [sender ba_viewPlaySoundEffectWithFileName:@"begin.mp3" isNeedShock:YES];
-    [self.navigationController pushViewController:[ViewController3 new] animated:YES];
+//    [sender ba_viewPlaySoundEffectWithFileName:@"begin.mp3" isNeedShock:YES];
+//    [self.navigationController pushViewController:[ViewController3 new] animated:YES];
 }
 
 - (void)handleRightNaviButtonAction:(UIButton *)sender
 {
     // 添加按钮点击音效和震动效果
-    [sender ba_viewPlaySoundEffectWithFileName:@"failure.mp3" isNeedShock:YES];
-    [self.navigationController pushViewController:[ViewController2 new] animated:YES];
+//    [sender ba_buttonPlaySoundEffectWithFileName:@"failure.mp3" isNeedShock:YES];
+//    [self.navigationController pushViewController:[ViewController2 new] animated:YES];
 }
 
 // 示例3：倒计时
@@ -1143,7 +1203,7 @@ git：[https://github.com/CrazyCoderShi](https://github.com/CrazyCoderShi) <br>
 > 开发使用 最新版本 Xcode，理论上支持 iOS 8 及以上版本，如有版本适配问题，请及时反馈！多谢合作！
 
 ## 9、感谢
-> 感谢 BAHome 团队成员倾力合作，后期会推出一系列 常用 UI 控件的封装，大家有需求得也可以在 issue 提出，如果合理，我们会尽快推出新版本！<br>
+> 感谢 [【BAHome】](https://github.com/BAHome) 团队成员倾力合作，后期会推出一系列 常用 UI 控件的封装，大家有需求得也可以在 issue 提出，如果合理，我们会尽快推出新版本！<br>
 
-> BAHome 的发展离不开小伙伴儿的信任与推广，再次感谢各位小伙伴儿的支持！
+>  [【BAHome】](https://github.com/BAHome)  的发展离不开小伙伴儿的信任与推广，再次感谢各位小伙伴儿的支持！
 

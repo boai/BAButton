@@ -14,12 +14,12 @@
 		C47869A81ECE8249006A55B5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C47869A71ECE8249006A55B5 /* ViewController.m */; };
 		C47869AB1ECE8249006A55B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C47869A91ECE8249006A55B5 /* Main.storyboard */; };
 		C47869AD1ECE8249006A55B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C47869AC1ECE8249006A55B5 /* Assets.xcassets */; };
-		C47869B01ECE8249006A55B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C47869AE1ECE8249006A55B5 /* LaunchScreen.storyboard */; };
 		C49231231ECFDD4A00B61C37 /* ViewController2.xib in Resources */ = {isa = PBXBuildFile; fileRef = C49231221ECFDD4A00B61C37 /* ViewController2.xib */; };
 		C49231261ECFDD6300B61C37 /* ViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = C49231251ECFDD6300B61C37 /* ViewController2.m */; };
 		C4BD9EBE1F3E9BFC0021C57C /* begin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C4BD9EBD1F3E9BFC0021C57C /* begin.mp3 */; };
 		C4BD9EC01F3E9D110021C57C /* failure.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C4BD9EBF1F3E9D110021C57C /* failure.mp3 */; };
 		C4C8BFF61F022E1200D57B07 /* 条形码.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C4C8BFF51F022E1200D57B07 /* 条形码.jpg */; };
+		C4E9341B1F67D5C8004A457A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4E9341A1F67D5C7004A457A /* LaunchScreen.storyboard */; };
 		CC5C65971ED97BFB00AE184B /* UIButton+BAState.m in Sources */ = {isa = PBXBuildFile; fileRef = CC5C65941ED97BFB00AE184B /* UIButton+BAState.m */; };
 		CC5C65981ED97BFC00AE184B /* UIButton+BACountDown.m in Sources */ = {isa = PBXBuildFile; fileRef = CC5C65961ED97BFB00AE184B /* UIButton+BACountDown.m */; };
 		CC5C659C1ED97C6A00AE184B /* ViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = CC5C659A1ED97C6A00AE184B /* ViewController3.m */; };
@@ -40,7 +40,6 @@
 		C47869A71ECE8249006A55B5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		C47869AA1ECE8249006A55B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C47869AC1ECE8249006A55B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C47869AF1ECE8249006A55B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C47869B11ECE8249006A55B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C49231211ECFD23900B61C37 /* BAButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAButton.h; sourceTree = "<group>"; };
 		C49231221ECFDD4A00B61C37 /* ViewController2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController2.xib; sourceTree = "<group>"; };
@@ -49,6 +48,7 @@
 		C4BD9EBD1F3E9BFC0021C57C /* begin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = begin.mp3; sourceTree = "<group>"; };
 		C4BD9EBF1F3E9D110021C57C /* failure.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = failure.mp3; sourceTree = "<group>"; };
 		C4C8BFF51F022E1200D57B07 /* 条形码.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "条形码.jpg"; sourceTree = "<group>"; };
+		C4E9341A1F67D5C7004A457A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CC5C65931ED97BFA00AE184B /* UIButton+BAState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+BAState.h"; sourceTree = "<group>"; };
 		CC5C65941ED97BFB00AE184B /* UIButton+BAState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+BAState.m"; sourceTree = "<group>"; };
 		CC5C65951ED97BFB00AE184B /* UIButton+BACountDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+BACountDown.h"; sourceTree = "<group>"; };
@@ -104,8 +104,8 @@
 				C4BD9EBD1F3E9BFC0021C57C /* begin.mp3 */,
 				C4BD9EBF1F3E9D110021C57C /* failure.mp3 */,
 				C47869AC1ECE8249006A55B5 /* Assets.xcassets */,
-				C47869AE1ECE8249006A55B5 /* LaunchScreen.storyboard */,
 				C47869B11ECE8249006A55B5 /* Info.plist */,
+				C4E9341A1F67D5C7004A457A /* LaunchScreen.storyboard */,
 				C47869A01ECE8249006A55B5 /* Supporting Files */,
 			);
 			path = BAButton;
@@ -196,8 +196,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4C8BFF61F022E1200D57B07 /* 条形码.jpg in Resources */,
+				C4E9341B1F67D5C8004A457A /* LaunchScreen.storyboard in Resources */,
 				C4BD9EC01F3E9D110021C57C /* failure.mp3 in Resources */,
-				C47869B01ECE8249006A55B5 /* LaunchScreen.storyboard in Resources */,
 				C47869AD1ECE8249006A55B5 /* Assets.xcassets in Resources */,
 				C49231231ECFDD4A00B61C37 /* ViewController2.xib in Resources */,
 				C47869AB1ECE8249006A55B5 /* Main.storyboard in Resources */,
@@ -234,14 +234,6 @@
 				C47869AA1ECE8249006A55B5 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		C47869AE1ECE8249006A55B5 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C47869AF1ECE8249006A55B5 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

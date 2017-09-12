@@ -36,6 +36,9 @@
 {
     [self.btn1 ba_buttonSetBackgroundColor:BAKit_Color_RandomRGB_pod() forState:UIControlStateNormal animated:YES];
     [self.btn1 ba_buttonSetBackgroundColor:BAKit_Color_RandomRGB_pod() forState:UIControlStateSelected animated:YES];
+    // 不同状态下的阴影效果
+    [self.btn1 ba_buttonSetRoundShadowWithCornerRadius:0 shadowColor:BAKit_Color_Yellow_pod offset:CGSizeMake(0.6, 0.6) opacity:1 shadowRadius:5 forState:UIControlStateNormal];
+    [self.btn1 ba_buttonSetRoundShadowWithCornerRadius:0 shadowColor:BAKit_Color_Red_pod offset:CGSizeMake(0.6, 0.6) opacity:1 shadowRadius:5 forState:UIControlStateSelected];
     
     [self.btn2 ba_buttonSetBackgroundColor:BAKit_Color_RandomRGB_pod() forState:UIControlStateNormal animated:NO];
     [self.btn2 ba_buttonSetBackgroundColor:BAKit_Color_RandomRGB_pod() forState:UIControlStateSelected animated:NO];
@@ -64,7 +67,7 @@
 
 - (IBAction)btnClick:(UIButton *)sender {
     // 添加按钮点击音效和震动效果
-    [sender ba_viewPlaySoundEffectWithFileName:@"failure.mp3" isNeedShock:YES];
+    [sender ba_buttonPlaySoundEffectWithFileName:@"failure.mp3" isNeedShock:YES];
     sender.selected = !sender.isSelected;
 }
 
