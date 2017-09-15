@@ -141,6 +141,10 @@
  */
 - (void)ba_cancelTimer
 {
+    if (!self.timer)
+    {
+        return;
+    }
     BAKit_WeakSelf
     dispatch_async(dispatch_get_main_queue(), ^{
         BAKit_StrongSelf
