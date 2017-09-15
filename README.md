@@ -72,6 +72,11 @@
  项目源码地址：
  OC 版 ：https://github.com/BAHome/BAButton
  
+ 最新更新时间：2017-09-15【倒叙】<br>
+ 最新 Version：【Version：2.6.5】<br>
+ 更新内容：<br>
+ 2.6.5.1、优化内部代码，修复隐形崩溃 bug！ <br>
+ 
  最新更新时间：2017-09-12 【倒叙】<br>
  最新 Version：【Version：2.6.4】<br>
  更新内容：<br>
@@ -1019,6 +1024,17 @@ typedef void (^BAKit_BAButtonCountDownBlock)(NSInteger currentTime);
  欢迎使用 [【BAHome】](https://github.com/BAHome) 系列开源代码 ！
  如有更多需求，请前往：[【https://github.com/BAHome】](https://github.com/BAHome) 
  
+ 最新更新时间：2017-09-15【倒叙】<br>
+ 最新 Version：【Version：2.6.5】<br>
+ 更新内容：<br>
+ 2.6.5.1、优化内部代码，修复隐形崩溃 bug！ <br>
+ 
+ 最新更新时间：2017-09-12 【倒叙】<br>
+ 最新 Version：【Version：2.6.4】<br>
+ 更新内容：<br>
+ 2.6.4.1、新增 button 点击事件 blcok，具体使用详见 demo！ <br>
+ 2.6.4.2、新增 button 不同状态下的阴影设置，具体使用详见 demo！ <br>
+ 2.6.4.3、原 方法 【ba_viewPlaySoundEffectWithFileName】替换为：【ba_buttonPlaySoundEffectWithFileName】，具体使用详见 demo！ <br>
  
  最新更新时间：2017-08-17 【倒叙】<br>
  最新 Version：【Version：2.6.3】<br>
