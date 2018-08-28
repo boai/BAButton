@@ -27,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9C66CF5A21356B0300A66B03 /* BAButton_Version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BAButton_Version.h; sourceTree = "<group>"; };
 		C43D260C1EF7631B00CD078C /* UIView+BARectCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BARectCorner.h"; sourceTree = "<group>"; };
 		C43D260D1EF7631B00CD078C /* UIView+BARectCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BARectCorner.m"; sourceTree = "<group>"; };
 		C43D26121EF7634900CD078C /* UIButton+BAKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+BAKit.h"; sourceTree = "<group>"; };
@@ -132,6 +133,7 @@
 				C43D260D1EF7631B00CD078C /* UIView+BARectCorner.m */,
 				C43D26121EF7634900CD078C /* UIButton+BAKit.h */,
 				C43D26131EF7634900CD078C /* UIButton+BAKit.m */,
+				9C66CF5A21356B0300A66B03 /* BAButton_Version.h */,
 			);
 			path = BAButton;
 			sourceTree = "<group>";
@@ -167,7 +169,7 @@
 				TargetAttributes = {
 					C478699C1ECE8249006A55B5 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 8JQ2PK6XN8;
+						DevelopmentTeam = A7FRU6ZJRL;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -333,7 +335,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8JQ2PK6XN8;
+				DEVELOPMENT_TEAM = A7FRU6ZJRL;
 				INFOPLIST_FILE = BAButton/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -346,7 +348,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8JQ2PK6XN8;
+				DEVELOPMENT_TEAM = A7FRU6ZJRL;
 				INFOPLIST_FILE = BAButton/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

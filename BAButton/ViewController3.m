@@ -72,7 +72,7 @@
 }
 
 - (IBAction)countDownClick:(UIButton *)sender {
-    sender.userInteractionEnabled = NO;
+//    sender.userInteractionEnabled = NO;
     __block UIButton *btn = sender;
     [sender ba_countDownCustomWithTimeInterval:5 block:^(NSInteger currentTime) {
         // 此处是可以自由定制 title 和 image
@@ -89,11 +89,11 @@
 }
 
 - (IBAction)skipClick:(UIButton *)sender {
-    __block UIButton *btn = sender;
-    [sender ba_countDownWithTimeInterval:5 countDownFormat:@"跳过 %zd"];
-    [sender setTimeStoppedCallback:^{
-        [btn setTitle:@"跳过" forState:UIControlStateNormal];
-    }];
+//    __block UIButton *btn = sender;
+    [sender ba_countDownWithTimeInterval:5 countDownFormat:nil endTitle:@"重新发送"];
+//    [sender setTimeStoppedCallback:^{
+//        [btn setTitle:@"跳过" forState:UIControlStateNormal];
+//    }];
 }
 
 - (void)dealloc {
