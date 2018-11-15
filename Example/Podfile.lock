@@ -1,0 +1,16 @@
+PODS:
+  - BAButton (2.6.7)
+
+DEPENDENCIES:
+  - BAButton (from `../`)
+
+EXTERNAL SOURCES:
+  BAButton:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  BAButton: 04612a37b697d2978fff18de7d04963a045230b8
+
+PODFILE CHECKSUM: 932ca8088ecdad49b16a4b19f32648c22cd994b4
+
+COCOAPODS: 1.6.0.beta.2
