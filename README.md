@@ -4,7 +4,6 @@
 [![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu) [![LICENSE](https://img.shields.io/badge/license-NPL%20(The%20996%20Prohibited%20License)-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE) 
 [![CI Status](https://img.shields.io/travis/boai/BAButton.svg?style=flat)](https://travis-ci.org/boai/BAButton)
 [![Version](https://img.shields.io/cocoapods/v/BAButton.svg?style=flat)](https://cocoapods.org/pods/BAButton)
-[![License](https://img.shields.io/cocoapods/l/BAButton.svg?style=flat)](https://cocoapods.org/pods/BAButton)
 [![Platform](https://img.shields.io/cocoapods/p/BAButton.svg?style=flat)](https://cocoapods.org/pods/BAButton)
 [![](https://img.shields.io/badge/微博-博爱1616-red.svg)](http://weibo.com/538298123)
 
