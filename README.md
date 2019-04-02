@@ -1,6 +1,7 @@
 # BAButton
 
 [![BAHome Team Name](https://img.shields.io/badge/Team-BAHome-brightgreen.svg?style=flat)](https://github.com/BAHome "BAHome Team")
+[![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu) [![LICENSE](https://img.shields.io/badge/license-NPL%20(The%20996%20Prohibited%20License)-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE) 
 [![CI Status](https://img.shields.io/travis/boai/BAButton.svg?style=flat)](https://travis-ci.org/boai/BAButton)
 [![Version](https://img.shields.io/cocoapods/v/BAButton.svg?style=flat)](https://cocoapods.org/pods/BAButton)
 [![License](https://img.shields.io/cocoapods/l/BAButton.svg?style=flat)](https://cocoapods.org/pods/BAButton)
@@ -28,7 +29,7 @@ boai, sunboyan@outlook.com
 
 ## License
 
-BAButton is available under the MIT license. See the LICENSE file for more info.
+[![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu) [![LICENSE](https://img.shields.io/badge/license-NPL%20(The%20996%20Prohibited%20License)-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE) 
 
 ## 1、功能及简介
 * 1、UIButton 图片、文字自定义布局 <br>

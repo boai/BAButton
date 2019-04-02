@@ -23,7 +23,7 @@ TODO: Add long description of the pod here.
 
   s.homepage         = 'https://github.com/BAHome/BAButton'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
-  s.license          = { :type => 'MIT', :file => 'LICENSE' }
+  s.license          = { :type => 'https://github.com/996icu/996.ICU/blob/master/LICENSE', :file => 'LICENSE' }
   s.author           = { 'boai' => 'sunboyan@outlook.com' }
   s.source           = { :git => 'https://github.com/BAHome/BAButton.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
