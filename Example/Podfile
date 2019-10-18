@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'BAButton_Example' do
+  pod 'BAButton', :path => '../'
+
+  target 'BAButton_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
