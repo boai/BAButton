@@ -32,8 +32,7 @@
     [self test];
 }
 
-- (void)test
-{
+- (void)test {
     [self.btn1 ba_buttonSetBackgroundColor:BAKit_Color_RandomRGB_pod() forState:UIControlStateNormal animated:YES];
     [self.btn1 ba_buttonSetBackgroundColor:BAKit_Color_RandomRGB_pod() forState:UIControlStateSelected animated:YES];
     // 不同状态下的阴影效果
@@ -67,7 +66,7 @@
 
 - (IBAction)btnClick:(UIButton *)sender {
     // 添加按钮点击音效和震动效果
-    [sender ba_buttonPlaySoundEffectWithFileName:@"failure.mp3" isNeedShock:YES];
+//    [sender ba_buttonPlaySoundEffectWithFileName:@"failure.mp3" isNeedShock:YES];
     sender.selected = !sender.isSelected;
 }
 

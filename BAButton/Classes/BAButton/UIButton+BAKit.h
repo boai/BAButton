@@ -75,7 +75,10 @@ NS_ASSUME_NONNULL_BEGIN
  - BAKit_ButtonLayoutTypeRightImageRight: 内容居右-图右文左
  */
 typedef NS_ENUM(NSInteger, BAKit_ButtonLayoutType) {
-    BAKit_ButtonLayoutTypeNormal = 0,
+    // 无任何处理
+    BAKit_ButtonLayoutTypeDefault = 0,
+    // 系统默认样式
+    BAKit_ButtonLayoutTypeNormal,
     BAKit_ButtonLayoutTypeCenterImageRight,
     BAKit_ButtonLayoutTypeCenterImageTop,
     BAKit_ButtonLayoutTypeCenterImageBottom,

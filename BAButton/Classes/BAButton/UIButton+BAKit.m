@@ -21,8 +21,7 @@
  @param color color
  @return 纯颜色 图片
  */
-+ (UIImage *)ba_image_Color:(UIColor *)color
-{
++ (UIImage *)ba_image_Color:(UIColor *)color {
     UIImage *image = [self ba_image_Color:color size:CGSizeMake(1.0f, 1.0f)];
     return image;
 }
@@ -34,8 +33,7 @@
  @param size size
  @return 纯颜色 图片
  */
-+ (UIImage *)ba_image_Color:(UIColor *)color size:(CGSize)size
-{
++ (UIImage *)ba_image_Color:(UIColor *)color size:(CGSize)size {
     CGRect rect          = CGRectMake(0.0f, 0.0f, size.width, size.height);
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -54,8 +52,7 @@
  @param width width description
  @return UIImage
  */
-- (UIImage *)ba_imageScaleToWidth:(CGFloat)width
-{
+- (UIImage *)ba_imageScaleToWidth:(CGFloat)width {
     UIImage *newImage = nil;
     CGSize imageSize = self.size;
     CGFloat old_width = imageSize.width;
@@ -68,26 +65,21 @@
     CGFloat scaledHeight = targetHeight;
     CGPoint thumbnailPoint = CGPointMake(0.0, 0.0);
     
-    if (CGSizeEqualToSize(imageSize, size) == NO)
-    {
+    if (CGSizeEqualToSize(imageSize, size) == NO) {
         CGFloat widthFactor = targetWidth / old_width;
         CGFloat heightFactor = targetHeight / old_height;
-        if(widthFactor > heightFactor)
-        {
+        if(widthFactor > heightFactor) {
             scaleFactor = widthFactor;
         }
-        else
-        {
+        else {
             scaleFactor = heightFactor;
         }
         scaledWidth = old_width * scaleFactor;
         scaledHeight = old_height * scaleFactor;
-        if(widthFactor > heightFactor)
-        {
+        if(widthFactor > heightFactor) {
             thumbnailPoint.y = (targetHeight - scaledHeight) * 0.5;
         }
-        else if (widthFactor < heightFactor)
-        {
+        else if (widthFactor < heightFactor) {
             thumbnailPoint.x = (targetWidth - scaledWidth) * 0.5;
         }
     }
@@ -147,11 +139,9 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
  @param isNeedShock 是否播放音效并震动
  */
 - (void)ba_viewPlaySoundEffectWithFileName:(NSString *)filename
-                               isNeedShock:(BOOL)isNeedShock
-{
+                               isNeedShock:(BOOL)isNeedShock {
     // 1、判断文件名是否为空
-    if (filename == nil)
-    {
+    if (filename == nil) {
         return;
     }
     [self ba_viewStopAlertSound];
@@ -173,8 +163,7 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
     // 6、播放音频
     AudioServicesPlaySystemSound(soundID);
     
-    if (isNeedShock)
-    {
+    if (isNeedShock) {
         // 7、播放音效并震动
         AudioServicesPlayAlertSound(soundID);
     }
@@ -189,8 +178,7 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
 /**
  UIView：停止播放音乐（按钮点击音效的停止）
  */
-- (void)ba_viewStopAlertSound
-{
+- (void)ba_viewStopAlertSound {
     NSString *soundIDString = [BAKit_NSUserDefaults objectForKey:@"soundID"];
     
     NSAssert(soundIDString.length, @"soundID 不能为空！");
@@ -205,16 +193,17 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
 
 @implementation UIButton (BAKit)
 
-- (void)setupBAButtonLayout
-{
+- (void)setupBAButtonLayout {
+    if (self.ba_buttonLayoutType == BAKit_ButtonLayoutTypeDefault) {
+        return;
+    }
     CGFloat image_w = self.imageView.bounds.size.width;
     CGFloat image_h = self.imageView.bounds.size.height;
     
     CGFloat title_w = self.titleLabel.bounds.size.width;
     CGFloat title_h = self.titleLabel.bounds.size.height;
     
-    if ([UIDevice currentDevice].systemVersion.floatValue >= 8.0)
-    {
+    if ([UIDevice currentDevice].systemVersion.floatValue >= 8.0) {
         // 由于iOS8中titleLabel的size为0，用下面的这种设置
         title_w = self.titleLabel.intrinsicContentSize.width;
         title_h = self.titleLabel.intrinsicContentSize.height;
@@ -223,65 +212,50 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
     UIEdgeInsets imageEdge = UIEdgeInsetsZero;
     UIEdgeInsets titleEdge = UIEdgeInsetsZero;
     
-    if (self.ba_padding_inset == 0)
-    {
+    if (self.ba_padding_inset == 0) {
         self.ba_padding_inset = 5;
     }
     
     switch (self.ba_buttonLayoutType) {
-        case BAKit_ButtonLayoutTypeNormal:
-        {
-            
+        case BAKit_ButtonLayoutTypeNormal: {
             titleEdge = UIEdgeInsetsMake(0, self.ba_padding, 0, 0);
-            
             imageEdge = UIEdgeInsetsMake(0, 0, 0, self.ba_padding);
-            
         }
             break;
-        case BAKit_ButtonLayoutTypeCenterImageRight:
-        {
+        case BAKit_ButtonLayoutTypeCenterImageRight: {
             titleEdge = UIEdgeInsetsMake(0, -image_w - self.ba_padding, 0, image_w);
             imageEdge = UIEdgeInsetsMake(0, title_w + self.ba_padding, 0, -title_w);
         }
             break;
-        case BAKit_ButtonLayoutTypeCenterImageTop:
-        {
+        case BAKit_ButtonLayoutTypeCenterImageTop: {
             titleEdge = UIEdgeInsetsMake(0, -image_w, -image_h - self.ba_padding, 0);
             imageEdge = UIEdgeInsetsMake(-title_h - self.ba_padding, 0, 0, -title_w);
         }
             break;
-        case BAKit_ButtonLayoutTypeCenterImageBottom:
-        {
+        case BAKit_ButtonLayoutTypeCenterImageBottom: {
             titleEdge = UIEdgeInsetsMake(-image_h - self.ba_padding, -image_w, 0, 0);
             imageEdge = UIEdgeInsetsMake(0, 0, -title_h - self.ba_padding, -title_w);
         }
             break;
-        case BAKit_ButtonLayoutTypeLeftImageLeft:
-        {
+        case BAKit_ButtonLayoutTypeLeftImageLeft: {
             titleEdge = UIEdgeInsetsMake(0, self.ba_padding + self.ba_padding_inset, 0, 0);
-            
             imageEdge = UIEdgeInsetsMake(0, self.ba_padding_inset, 0, 0);
-            
             self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         }
             break;
-        case BAKit_ButtonLayoutTypeLeftImageRight:
-        {
+        case BAKit_ButtonLayoutTypeLeftImageRight: {
             titleEdge = UIEdgeInsetsMake(0, -image_w + self.ba_padding_inset, 0, 0);
             imageEdge = UIEdgeInsetsMake(0, title_w + self.ba_padding + self.ba_padding_inset, 0, 0);
             self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         }
             break;
-        case BAKit_ButtonLayoutTypeRightImageLeft:
-        {
+        case BAKit_ButtonLayoutTypeRightImageLeft: {
             imageEdge = UIEdgeInsetsMake(0, 0, 0, self.ba_padding + self.ba_padding_inset);
             titleEdge = UIEdgeInsetsMake(0, 0, 0, self.ba_padding_inset);
-            
             self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
         }
             break;
-        case BAKit_ButtonLayoutTypeRightImageRight:
-        {
+        case BAKit_ButtonLayoutTypeRightImageRight: {
             titleEdge = UIEdgeInsetsMake(0, 0, 0, image_w + self.ba_padding + self.ba_padding_inset);
             imageEdge = UIEdgeInsetsMake(0, 0, 0, -title_w + self.ba_padding_inset);
             self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
@@ -309,8 +283,7 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
 + (id)ba_buttonWithFrame:(CGRect)frame
                    title:(NSString * __nullable)title
               titleColor:(UIColor * __nullable)titleColor
-               titleFont:(UIFont * __nullable)titleFont
-{
+               titleFont:(UIFont * __nullable)titleFont {
     UIButton *button = [UIButton ba_buttonWithFrame:frame title:title titleColor:titleColor titleFont:titleFont backgroundColor:nil];
     
     return button;
@@ -326,8 +299,7 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
  */
 + (id)ba_buttonWithFrame:(CGRect)frame
                    title:(NSString * __nullable)title
-         backgroundColor:(UIColor * __nullable)backgroundColor
-{
+         backgroundColor:(UIColor * __nullable)backgroundColor {
     UIButton *button = [UIButton ba_buttonWithFrame:frame title:title titleColor:nil titleFont:nil backgroundColor:backgroundColor];
     
     return button;
@@ -347,8 +319,7 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
                    title:(NSString * __nullable)title
               titleColor:(UIColor * __nullable)titleColor
                titleFont:(UIFont * __nullable)titleFont
-         backgroundColor:(UIColor * __nullable)backgroundColor
-{
+         backgroundColor:(UIColor * __nullable)backgroundColor {
     UIButton *button = [UIButton ba_buttonWithFrame:frame title:title titleColor:titleColor titleFont:titleFont image:nil backgroundColor:backgroundColor];
     
     return button;
@@ -364,8 +335,7 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
  */
 + (id)ba_buttonWithFrame:(CGRect)frame
                    title:(NSString * __nullable)title
-         backgroundImage:(UIImage * __nullable)backgroundImage
-{
+         backgroundImage:(UIImage * __nullable)backgroundImage {
     UIButton *button = [UIButton ba_buttonWithFrame:frame title:title titleColor:nil titleFont:nil image:nil backgroundImage:backgroundImage];
     return button;
 }
@@ -386,8 +356,7 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
                         titleColor:(UIColor * __nullable)titleColor
                          titleFont:(UIFont * __nullable)titleFont
                              image:(UIImage * __nullable)image
-                   backgroundColor:(UIColor * __nullable)backgroundColor
-{
+                   backgroundColor:(UIColor * __nullable)backgroundColor {
     UIButton *button = [UIButton ba_buttonWithFrame:frame title:title selectedTitle:nil highlightedTitle:nil titleColor:titleColor selectedTitleColor:nil highlightedTitleColor:nil titleFont:titleFont image:image selectedImage:nil highlightedImage:nil backgroundImage:nil selectedBackgroundImage:nil highlightedBackgroundImage:nil backgroundColor:backgroundColor];
     
     return button;
@@ -409,8 +378,7 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
                         titleColor:(UIColor * __nullable)titleColor
                          titleFont:(UIFont * __nullable)titleFont
                              image:(UIImage * __nullable)image
-                   backgroundImage:(UIImage * __nullable)backgroundImage
-{
+                   backgroundImage:(UIImage * __nullable)backgroundImage {
     UIButton *button = [UIButton ba_buttonWithFrame:frame title:title selectedTitle:nil highlightedTitle:nil titleColor:titleColor selectedTitleColor:nil highlightedTitleColor:nil titleFont:titleFont image:image selectedImage:nil highlightedImage:nil backgroundImage:backgroundImage selectedBackgroundImage:nil highlightedBackgroundImage:nil backgroundColor:nil];
     
     return button;
@@ -447,8 +415,7 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
                                viewRectCornerType:(BAKit_ViewRectCornerType)viewRectCornerType
                                  viewCornerRadius:(CGFloat)viewCornerRadius
                                            target:(id __nullable)target
-                                         selector:(SEL __nullable)sel
-{
+                                         selector:(SEL __nullable)sel {
     UIButton *button = [UIButton ba_buttonWithFrame:frame title:title selectedTitle:selTitle highlightedTitle:nil titleColor:titleColor selectedTitleColor:nil highlightedTitleColor:nil titleFont:titleFont image:image selectedImage:selImage highlightedImage:nil backgroundImage:nil selectedBackgroundImage:nil highlightedBackgroundImage:nil backgroundColor:nil];
     [button ba_button_setButtonLayoutType:buttonLayoutType padding:padding];
     [button ba_button_setViewRectCornerType:viewRectCornerType viewCornerRadius:viewCornerRadius];
@@ -491,14 +458,12 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
                    backgroundImage:(UIImage * __nullable)backgroundImage
            selectedBackgroundImage:(UIImage * __nullable)selectedBackgroundImage
         highlightedBackgroundImage:(UIImage * __nullable)highlightedBackgroundImage
-                   backgroundColor:(UIColor * __nullable)backgroundColor
-{
+                   backgroundColor:(UIColor * __nullable)backgroundColor {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = frame;
     
     [button ba_buttonSetTitle:title selectedTitle:selectedTitle highlightedTitle:highlightedTitle];
-    if (!titleColor)
-    {
+    if (!titleColor) {
         titleColor = [UIColor blackColor];
     }
     [button ba_buttonSetTitleColor:titleColor selectedTitleColor:selectedTitleColor highlightedTitleColor:highlightedTitleColor disabledTitleColor:nil];
@@ -539,8 +504,7 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
                                      action:(SEL)action
                            normalTitleColor:(UIColor *)normalStateColor
                       highlightedTitleColor:(UIColor *)highlightedStateColor
-                         disabledTitleColor:(UIColor *)disabledStateColor
-{
+                         disabledTitleColor:(UIColor *)disabledStateColor {
     UIButton *button = [[UIButton alloc] initWithFrame:frame];
     
     [button setTitle:title forState:UIControlStateNormal];
@@ -578,8 +542,7 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
                              highlightImage:(UIImage *)highlightImage
                               disabledImage:(UIImage *)disabledImage
                                      target:(id)target
-                                     action:(SEL)action
-{
+                                     action:(SEL)action {
     UIButton *button = [[UIButton alloc] initWithFrame:frame];
     
     button.contentHorizontalAlignment = horizontalAlignment;
@@ -598,10 +561,8 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
  
  @param backgroundColor backgroundColor
  */
-- (void)ba_buttonSetBackgroundColor:(UIColor * __nullable)backgroundColor
-{
-    if (backgroundColor)
-    {
+- (void)ba_buttonSetBackgroundColor:(UIColor * __nullable)backgroundColor {
+    if (backgroundColor) {
         self.backgroundColor = backgroundColor;
     }
 }
@@ -615,20 +576,16 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
  */
 - (void)ba_buttonBackgroundColorWithNormalStateColor:(UIColor *)normalStateColor
                                highlightedStateColor:(UIColor *)highlightedStateColor
-                                  disabledStateColor:(UIColor *)disabledStateColor
-{
-    if (normalStateColor)
-    {
+                                  disabledStateColor:(UIColor *)disabledStateColor {
+    if (normalStateColor) {
         [self setBackgroundImage:[UIImage ba_image_Color:normalStateColor size:CGSizeMake(5, 5)] forState:UIControlStateNormal];
     }
     
-    if (highlightedStateColor)
-    {
+    if (highlightedStateColor) {
         [self setBackgroundImage:[UIImage ba_image_Color:highlightedStateColor size:CGSizeMake(5, 5)] forState:UIControlStateHighlighted];
     }
     
-    if (disabledStateColor)
-    {
+    if (disabledStateColor) {
         [self setBackgroundImage:[UIImage ba_image_Color:disabledStateColor size:CGSizeMake(5, 5)] forState:UIControlStateDisabled];
     }
 }
@@ -642,19 +599,15 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
  */
 - (void)ba_buttonSetBackgroundImage:(UIImage * __nullable)backgroundImage
             selectedBackgroundImage:(UIImage * __nullable)selectedBackgroundImage
-         highlightedBackgroundImage:(UIImage * __nullable)highlightedBackgroundImage
-{
-    if (backgroundImage)
-    {
+         highlightedBackgroundImage:(UIImage * __nullable)highlightedBackgroundImage {
+    if (backgroundImage) {
         [self setBackgroundImage:backgroundImage forState:UIControlStateNormal];
     }
     
-    if (selectedBackgroundImage)
-    {
+    if (selectedBackgroundImage) {
         [self setBackgroundImage:selectedBackgroundImage forState:UIControlStateSelected];
     }
-    if (highlightedBackgroundImage)
-    {
+    if (highlightedBackgroundImage) {
         [self setBackgroundImage:highlightedBackgroundImage forState:UIControlStateHighlighted];
     }
 }
@@ -670,18 +623,14 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
 - (void)ba_buttonSetImage:(UIImage * __nullable)image
             selectedImage:(UIImage * __nullable)selectedImage
          highlightedImage:(UIImage * __nullable)highlightedImage
-            disabledImage:(UIImage * __nullable)disabledImage
-{
-    if (image)
-    {
+            disabledImage:(UIImage * __nullable)disabledImage {
+    if (image) {
         [self setImage:image forState:UIControlStateNormal];
     }
-    if (selectedImage)
-    {
+    if (selectedImage) {
         [self setImage:selectedImage forState:UIControlStateSelected];
     }
-    if (highlightedImage)
-    {
+    if (highlightedImage) {
         [self setImage:highlightedImage forState:UIControlStateHighlighted];
     }
 }
@@ -695,15 +644,11 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
  */
 - (void)ba_buttonSetTitle:(NSString * __nullable)title
             selectedTitle:(NSString * __nullable)selectedTitle
-         highlightedTitle:(NSString * __nullable)highlightedTitle
-{
+         highlightedTitle:(NSString * __nullable)highlightedTitle {
     [self setTitle:title forState:UIControlStateNormal];
-    if (selectedTitle)
-    {
+    if (selectedTitle) {
         [self setTitle:selectedTitle forState:UIControlStateSelected];
-    }
-    else
-    {
+    } else {
         [self setTitle:highlightedTitle forState:UIControlStateHighlighted];
     }
 }
@@ -719,22 +664,17 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
 - (void)ba_buttonSetTitleColor:(UIColor * __nullable)titleColor
             selectedTitleColor:(UIColor * __nullable)selectedTitleColor
          highlightedTitleColor:(UIColor * __nullable)highlightedTitleColor
-            disabledTitleColor:(UIColor * __nullable)disabledTitleColor
-{
-    if (titleColor)
-    {
+            disabledTitleColor:(UIColor * __nullable)disabledTitleColor {
+    if (titleColor) {
         [self setTitleColor:titleColor forState:UIControlStateNormal];
     }
-    if (selectedTitleColor)
-    {
+    if (selectedTitleColor) {
         [self setTitleColor:selectedTitleColor forState:UIControlStateSelected];
     }
-    if (highlightedTitleColor)
-    {
+    if (highlightedTitleColor) {
         [self setTitleColor:highlightedTitleColor forState:UIControlStateHighlighted];
     }
-    if (disabledTitleColor)
-    {
+    if (disabledTitleColor) {
         [self setTitleColor:disabledTitleColor forState:UIControlStateDisabled];
     }
 }
@@ -746,8 +686,7 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
  @param size size
  */
 - (void)ba_buttonSetTitleFontName:(NSString *)fontName
-                             size:(CGFloat)size
-{
+                             size:(CGFloat)size {
     [self.titleLabel setFont:[UIFont fontWithName:fontName size:size]];
 }
 
@@ -760,8 +699,7 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
  */
 - (void)ba_buttonAddTarget:(nullable id)target
                        tag:(NSInteger)tag
-                    action:(SEL)action
-{
+                    action:(SEL)action {
     self.tag = tag;
     [self addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
 }
@@ -776,10 +714,8 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
 //    [self addTarget:self action:@selector(handleButtonAction:) forControlEvents:UIControlEventTouchUpInside];
 //}
 
-- (void)handleButtonAction:(UIButton *)sender
-{
-    if (self.ba_buttonActionBlock)
-    {
+- (void)handleButtonAction:(UIButton *)sender {
+    if (self.ba_buttonActionBlock) {
         self.ba_buttonActionBlock(sender);
     }
 }
@@ -790,8 +726,7 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
  @param type button 的布局样式
  @param padding 文字与图片之间的间距
  */
-- (void)ba_button_setButtonLayoutType:(BAKit_ButtonLayoutType)type padding:(CGFloat)padding
-{
+- (void)ba_button_setButtonLayoutType:(BAKit_ButtonLayoutType)type padding:(CGFloat)padding {
     self.ba_buttonLayoutType = type;
     self.ba_padding = padding;
 }
@@ -802,8 +737,7 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
  @param type 圆角样式
  @param viewCornerRadius 圆角角度
  */
-- (void)ba_button_setViewRectCornerType:(BAKit_ViewRectCornerType)type viewCornerRadius:(CGFloat)viewCornerRadius
-{
+- (void)ba_button_setViewRectCornerType:(BAKit_ViewRectCornerType)type viewCornerRadius:(CGFloat)viewCornerRadius {
     [self ba_view_setViewRectCornerType:type viewCornerRadius:viewCornerRadius];
 }
 
@@ -818,8 +752,7 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
 - (void)ba_button_setViewRectCornerType:(BAKit_ViewRectCornerType)type
                        viewCornerRadius:(CGFloat)viewCornerRadius
                             borderWidth:(CGFloat)borderWidth
-                            borderColor:(UIColor *)borderColor
-{
+                            borderColor:(UIColor *)borderColor {
     [self ba_view_setViewRectCornerType:type viewCornerRadius:viewCornerRadius borderWidth:borderWidth borderColor:borderColor];
 }
 
@@ -832,8 +765,7 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
  */
 - (void)ba_buttonTitleLabelHorizontalAlignment:(UIControlContentHorizontalAlignment)horizontalAlignment
                               verticalAlignment:(UIControlContentVerticalAlignment)verticalAlignment
-                              contentEdgeInsets:(UIEdgeInsets)contentEdgeInsets
-{
+                              contentEdgeInsets:(UIEdgeInsets)contentEdgeInsets {
     self.contentHorizontalAlignment = horizontalAlignment;
     self.contentVerticalAlignment   = verticalAlignment;
     self.contentEdgeInsets          = contentEdgeInsets;
@@ -846,59 +778,53 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
  @param isNeedShock 是否播放音效并震动
  */
 - (void)ba_buttonPlaySoundEffectWithFileName:(NSString *)name
-                                 isNeedShock:(BOOL)isNeedShock
-{
+                                 isNeedShock:(BOOL)isNeedShock {
     [self ba_viewPlaySoundEffectWithFileName:name isNeedShock:isNeedShock];
 }
 
 #pragma mark - setter / getter
-- (void)setBa_buttonLayoutType:(BAKit_ButtonLayoutType)ba_buttonLayoutType
-{
+- (void)setBa_buttonLayoutType:(BAKit_ButtonLayoutType)ba_buttonLayoutType {
     BAKit_Objc_setObj(@selector(ba_buttonLayoutType), @(ba_buttonLayoutType));
     [self setupBAButtonLayout];
 }
 
-- (BAKit_ButtonLayoutType)ba_buttonLayoutType
-{
+- (BAKit_ButtonLayoutType)ba_buttonLayoutType {
     return [BAKit_Objc_getObj integerValue];
 }
 
-- (void)setBa_padding:(CGFloat)ba_padding
-{
+- (void)setBa_padding:(CGFloat)ba_padding {
     BAKit_Objc_setObj(@selector(ba_padding), @(ba_padding));
     [self setupBAButtonLayout];
 }
 
-- (CGFloat)ba_padding
-{
+- (CGFloat)ba_padding {
     return [BAKit_Objc_getObj floatValue];
 }
 
-- (void)setBa_padding_inset:(CGFloat)ba_padding_inset
-{
+- (void)setBa_padding_inset:(CGFloat)ba_padding_inset {
     BAKit_Objc_setObj(@selector(ba_padding_inset), @(ba_padding_inset));
     [self setupBAButtonLayout];
 }
 
-- (CGFloat)ba_padding_inset
-{
+- (CGFloat)ba_padding_inset {
     return [BAKit_Objc_getObj floatValue];
 }
 
-- (void)setBa_buttonActionBlock:(BAKit_UIButtonActionBlock)ba_buttonActionBlock
-{
+- (void)setBa_buttonActionBlock:(BAKit_UIButtonActionBlock)ba_buttonActionBlock {
     [self addTarget:self action:@selector(handleButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     BAKit_Objc_setObj(@selector(ba_buttonActionBlock), ba_buttonActionBlock);
 }
 
-- (BAKit_UIButtonActionBlock)ba_buttonActionBlock
-{
+- (BAKit_UIButtonActionBlock)ba_buttonActionBlock {
     return BAKit_Objc_getObj;
 }
 
-- (void)setFrame:(CGRect)frame
-{
+- (void)setFrame:(CGRect)frame {
     [super setFrame:frame];
+
+    if (self.ba_buttonLayoutType == BAKit_ButtonLayoutTypeDefault) {
+        return;
+    }
     [self setupBAButtonLayout];
 }
 

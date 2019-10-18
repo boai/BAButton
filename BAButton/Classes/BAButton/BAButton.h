@@ -61,6 +61,8 @@
 #ifndef BAButton_h
 #define BAButton_h
 
+#import <UIKit/UIKit.h>
+
 #import "UIButton+BAKit.h"
 #import "UIButton+BAState.h"
 #import "UIButton+BACountDown.h"

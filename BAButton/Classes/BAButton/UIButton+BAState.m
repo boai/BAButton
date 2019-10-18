@@ -70,10 +70,8 @@
                                   shadowColor:(UIColor *)shadowColor
                                        offset:(CGSize)offset
                                       opacity:(CGFloat)opacity
-                                 shadowRadius:(CGFloat)shadowRadius
-{
-    if (!shadowColor)
-    {
+                                 shadowRadius:(CGFloat)shadowRadius {
+    if (!shadowColor) {
         shadowColor = [UIColor blackColor];
     }
     // 设置阴影的颜色
@@ -324,8 +322,7 @@
                                          offset:(CGSize)offset
                                         opacity:(CGFloat)opacity
                                    shadowRadius:(CGFloat)shadowRadius
-                                       forState:(UIControlState)state
-{
+                                       forState:(UIControlState)state {
     [self ba_viewSetRoundShadowWithCornerRadius:0 shadowColor:nil offset:CGSizeZero opacity:0 shadowRadius:0];
 
     [self ba_viewSetRoundShadowWithCornerRadius:cornerRadius shadowColor:shadowColor offset:offset opacity:opacity shadowRadius:shadowRadius];

@@ -61,13 +61,6 @@
 #ifndef BAKit_ConfigurationDefine_h
 #define BAKit_ConfigurationDefine_h
 
-
-#ifndef __OPTIMIZE__
-#define NSLog(...) NSLog(__VA_ARGS__)
-#else
-#define NSLog(...){}
-#endif
-
 #pragma mark - weak / strong
 #define BAKit_WeakSelf        @BAKit_Weakify(self);
 #define BAKit_StrongSelf      @BAKit_Strongify(self);
@@ -352,12 +345,9 @@ BAKit_getColumnCountWithArrayAndRowCount_pod(NSArray *array, NSInteger rowCount)
     NSUInteger count = array.count;
     
     NSUInteger i = 0;
-    if (count % rowCount == 0)
-    {
+    if (count % rowCount == 0) {
         i = count / rowCount;
-    }
-    else
-    {
+    } else {
         i = count / rowCount + 1;
     }
     return i;

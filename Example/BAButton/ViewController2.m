@@ -33,8 +33,7 @@
     [self test];
 }
 
-- (void)test
-{
+- (void)test {
     self.title = @"xib、storyboard";
     CGFloat padding = 10;
     CGFloat viewCornerRadius = 15;
