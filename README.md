@@ -50,6 +50,11 @@ boai, sunboyan@outlook.com
 * 17、新增 连续点击按钮时停止播放上一音乐 <br>
 * 18、新增 button 点击事件 blcok，具体使用详见 demo！ <br>
 * 19、新增 button 不同状态下的阴影设置，具体使用详见 demo！ <br>
+* 20、修复 iPhone X 等异形屏键盘异常问题，具体使用详见 demo！要更新 V 2.6.8 及以上版本 <br>
+* 21、关于 使用 `Masonry` 嵌套布局时的注意事项： <br>
+*  21.1、如果 父视图 frame 布局为空的时候，会切圆角失败，具体使用请在 `layoutSubviews` 之后再进行切圆角
+  <br>
+
 
 ## 2、图片示例
 ![BAButton1](https://github.com/BAHome/BAButton/blob/master/Images/BAButton1.png)
