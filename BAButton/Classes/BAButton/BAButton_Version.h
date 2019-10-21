@@ -21,6 +21,12 @@
  项目源码地址：
  OC 版 ：https://github.com/BAHome/BAButton
  
+ 
+ 最新更新时间：2019-10-22【倒叙】<br>
+ 最新 Version：【Version：2.6.9】<br>
+ 更新内容：<br>
+ 2.6.9.1、优化细节 <br>
+ 
  最新更新时间：2019-10-18【倒叙】<br>
  最新 Version：【Version：2.6.8】<br>
  更新内容：<br>

@@ -37,13 +37,15 @@
 
 #pragma mark - view 的 角半径，默认 CGSizeMake(0, 0)
 - (void)setupViewCornerType {
+    
+    if (CGRectEqualToRect(self.bounds, CGRectZero)) {
+        NSLog(@"******** %s view frame 错误！", __func__);
+    }
     UIRectCorner corners;
     CGSize cornerRadii;
     
     cornerRadii = CGSizeMake(self.ba_viewCornerRadius, self.ba_viewCornerRadius);
-    if (self.ba_viewCornerRadius == 0) {
-        cornerRadii = CGSizeMake(0, 0);
-    }
+    
     
     switch (self.ba_viewRectCornerType) {
         case BAKit_ViewRectCornerTypeBottomLeft: {
@@ -98,21 +100,25 @@
     UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds
                                                      byRoundingCorners:corners
                                                            cornerRadii:cornerRadii];
-
+    
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     shapeLayer.path = bezierPath.CGPath;
     shapeLayer.frame = self.bounds;
     
-    CAShapeLayer *borderLayer = [CAShapeLayer layer];
-    borderLayer.path = bezierPath.CGPath;
-    borderLayer.fillColor = [UIColor clearColor].CGColor;
-    borderLayer.strokeColor = self.ba_viewBorderColor.CGColor;
-    borderLayer.lineWidth = self.ba_viewBorderWidth;
-    borderLayer.frame = self.bounds;
-    
     self.layer.mask = shapeLayer;
-    [self.layer addSublayer:borderLayer];
-//    self.clipsToBounds = YES;
+    
+    if (self.ba_viewBorderWidth > 0) {
+        CAShapeLayer *borderLayer = [CAShapeLayer layer];
+        borderLayer.path = bezierPath.CGPath;
+        borderLayer.fillColor = [UIColor clearColor].CGColor;
+        borderLayer.strokeColor = self.ba_viewBorderColor.CGColor;
+        borderLayer.lineWidth = self.ba_viewBorderWidth;
+        borderLayer.frame = self.bounds;
+        [self.layer addSublayer:borderLayer];
+        
+    }
+    
+    //    self.clipsToBounds = YES;
 }
 
 #pragma mark - setter / getter
