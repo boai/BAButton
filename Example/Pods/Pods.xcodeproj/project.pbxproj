@@ -55,20 +55,20 @@
 		1D69F9D495C0CEA0607DADFFA939E6BF /* Pods-BAButton_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BAButton_Example-umbrella.h"; sourceTree = "<group>"; };
 		1EE5727FDFBB49BCDD942DBB359B080D /* Pods-BAButton_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BAButton_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		1F3081107FA3CFBC60F35DF52A5E5EDB /* Pods-BAButton_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BAButton_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		2183837A666665FEFDF6868F5D2C4049 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		2183837A666665FEFDF6868F5D2C4049 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		24C053E6D6E7A9BB15FAE8DF755C702E /* BAButton-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BAButton-umbrella.h"; sourceTree = "<group>"; };
 		2C1FC3475C4947218A98638477945A57 /* BAButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BAButton.h; path = BAButton/Classes/BAButton/BAButton.h; sourceTree = "<group>"; };
-		2E2519606377820B56B4AE07853634C0 /* Pods_BAButton_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_BAButton_Tests.framework; path = "Pods-BAButton_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E2519606377820B56B4AE07853634C0 /* Pods_BAButton_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BAButton_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EFB40531CB700ADF867FEEE78561E78 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		336746CF1BAA8DEFB9FF94B1CEB73BD7 /* UIButton+BACountDown.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIButton+BACountDown.m"; path = "BAButton/Classes/BAButton/UIButton+BACountDown.m"; sourceTree = "<group>"; };
 		35737DB8D24A5C30113A96CFC88821E8 /* Pods-BAButton_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BAButton_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		3CD4BE4177F957A80342A9EA744778EE /* Pods_BAButton_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_BAButton_Example.framework; path = "Pods-BAButton_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CD4BE4177F957A80342A9EA744778EE /* Pods_BAButton_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BAButton_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		47B97AD6929B42D742E364880F6299DB /* BAButton-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BAButton-prefix.pch"; sourceTree = "<group>"; };
 		47BC188BE62003AF56A3B2C37A05263F /* Pods-BAButton_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BAButton_Example-dummy.m"; sourceTree = "<group>"; };
 		48C5B69273234427E923BE3D2E5D62D9 /* UIView+BARectCorner.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+BARectCorner.h"; path = "BAButton/Classes/BAButton/UIView+BARectCorner.h"; sourceTree = "<group>"; };
 		4FA132B1B40485147900015F8832C243 /* Pods-BAButton_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-BAButton_Example.modulemap"; sourceTree = "<group>"; };
 		555D487F55D5B818C0FDA632B5EEA09A /* Pods-BAButton_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BAButton_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		59C34B25BFE9BA1F30D85C3482DE3108 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		59C34B25BFE9BA1F30D85C3482DE3108 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		6A191C6961F642ABAABC0C8D6F8F08C1 /* UIView+BARectCorner.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+BARectCorner.m"; path = "BAButton/Classes/BAButton/UIView+BARectCorner.m"; sourceTree = "<group>"; };
 		74E404AA6957590324067E330E0EC533 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		77ED67EA18F24B656312D34FFA31388C /* Pods-BAButton_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BAButton_Example-Info.plist"; sourceTree = "<group>"; };
@@ -80,17 +80,17 @@
 		8CB4F4972421BAC8B2CE7F20D11D6168 /* BAButton.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = BAButton.modulemap; sourceTree = "<group>"; };
 		8FCEBDDF27B4D1F84FF32BE2C31BFDC4 /* Pods-BAButton_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BAButton_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		A187AE280F4B4AE7E8D677F0061FE592 /* Pods-BAButton_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BAButton_Example-frameworks.sh"; sourceTree = "<group>"; };
-		B36AB396275697EEE1A5B13BA8A38FE3 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		B36AB396275697EEE1A5B13BA8A38FE3 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		B90D97663F8EE0C472B05DDAC4C24A92 /* BAKit_ConfigurationDefine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BAKit_ConfigurationDefine.h; path = BAButton/Classes/BAButton/BAKit_ConfigurationDefine.h; sourceTree = "<group>"; };
 		C55612494E0BC932DB76CFDB7060744D /* BAButton-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "BAButton-Info.plist"; sourceTree = "<group>"; };
 		D23915B45B84D9696341304E9A0021A2 /* BAButton-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BAButton-dummy.m"; sourceTree = "<group>"; };
 		D30AEBB9B71C66F1778D849988BBAD3D /* BAButton.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BAButton.xcconfig; sourceTree = "<group>"; };
 		DC01E8BF460E3258C9CD4191CD9138BB /* Pods-BAButton_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BAButton_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		DF1C690ECF1AE1645751458D16DEABBB /* UIButton+BACountDown.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIButton+BACountDown.h"; path = "BAButton/Classes/BAButton/UIButton+BACountDown.h"; sourceTree = "<group>"; };
-		E39017755B0B489C6E5E0092A5909DEB /* BAButton.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = BAButton.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		E39017755B0B489C6E5E0092A5909DEB /* BAButton.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = BAButton.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		ED809150E6BA3B3D8F6D7E9343865C4E /* Pods-BAButton_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BAButton_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		F2CB45E6FDE4141873B6B92445D7CF41 /* Pods-BAButton_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-BAButton_Tests.modulemap"; sourceTree = "<group>"; };
-		FF1BFE8F8E524DD3848691BA01045697 /* BAButton.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = BAButton.framework; path = BAButton.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF1BFE8F8E524DD3848691BA01045697 /* BAButton.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BAButton.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -359,10 +359,11 @@
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
 			productRefGroup = CD5F49BC5750D2501B561A13B5E6CE75 /* Products */;
@@ -695,8 +696,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.2;
 				SYMROOT = "${SRCROOT}/../build";
 			};

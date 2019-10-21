@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		010A6AE32F84173CC1195502 /* Pods_BAButton_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E91E0D17306C046FD441CDD7 /* Pods_BAButton_Example.framework */; };
 		154892C655CD1286156824DC /* Pods_BAButton_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 080CF07FF55E9A8F1C6F7625 /* Pods_BAButton_Tests.framework */; };
+		21D1117A235D80070065788B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21D11179235D80070065788B /* Main.storyboard */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -30,7 +31,6 @@
 		9CD191DF219D592D00AA7F77 /* ViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD191DB219D592D00AA7F77 /* ViewController2.m */; };
 		9CD191E0219D592D00AA7F77 /* ViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD191DC219D592D00AA7F77 /* ViewController3.m */; };
 		9CD191E1219D592D00AA7F77 /* ViewController2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CD191DD219D592D00AA7F77 /* ViewController2.xib */; };
-		9CD191E3219D596100AA7F77 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CD191E2219D596100AA7F77 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +46,7 @@
 /* Begin PBXFileReference section */
 		02002594E2540006EA3C9575 /* BAButton.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = BAButton.podspec; path = ../BAButton.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		080CF07FF55E9A8F1C6F7625 /* Pods_BAButton_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BAButton_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		21D11179235D80070065788B /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		26971FFD02DF6622321A033B /* Pods-BAButton_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BAButton_Example.release.xcconfig"; path = "Target Support Files/Pods-BAButton_Example/Pods-BAButton_Example.release.xcconfig"; sourceTree = "<group>"; };
 		40F697658E12E6F6E5058ABB /* Pods-BAButton_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BAButton_Example.debug.xcconfig"; path = "Target Support Files/Pods-BAButton_Example/Pods-BAButton_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* BAButton_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BAButton_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,7 +79,6 @@
 		9CD191DB219D592D00AA7F77 /* ViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController2.m; sourceTree = "<group>"; };
 		9CD191DC219D592D00AA7F77 /* ViewController3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController3.m; sourceTree = "<group>"; };
 		9CD191DD219D592D00AA7F77 /* ViewController2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController2.xib; sourceTree = "<group>"; };
-		9CD191E2219D596100AA7F77 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		B9BCA171D9F621B42056E140 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		E52E2C00F6D4F5BE59EF1697 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		E91E0D17306C046FD441CDD7 /* Pods_BAButton_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BAButton_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,8 +168,8 @@
 		6003F594195388D20070C39A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				9CD191E2219D596100AA7F77 /* Main.storyboard */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
+				21D11179235D80070065788B /* Main.storyboard */,
 				6003F595195388D20070C39A /* BAButton-Info.plist */,
 				6003F596195388D20070C39A /* InfoPlist.strings */,
 				9C24995E219D5C7B001B190F /* Assets.xcassets */,
@@ -277,7 +277,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = BA;
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1110;
 				ORGANIZATIONNAME = boai;
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
@@ -290,10 +290,9 @@
 			};
 			buildConfigurationList = 6003F585195388D10070C39A /* Build configuration list for PBXProject "BAButton" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
@@ -317,9 +316,9 @@
 				9C24995C219D5B95001B190F /* failure.mp3 in Resources */,
 				9C24995D219D5B95001B190F /* 条形码.jpg in Resources */,
 				9CD191E1219D592D00AA7F77 /* ViewController2.xib in Resources */,
-				9CD191E3219D596100AA7F77 /* Main.storyboard in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 				9CD191DE219D592D00AA7F77 /* ViewController3.xib in Resources */,
+				21D1117A235D80070065788B /* Main.storyboard in Resources */,
 				9C24995F219D5C7B001B190F /* Assets.xcassets in Resources */,
 				9C24995B219D5B95001B190F /* begin.mp3 in Resources */,
 			);
@@ -467,6 +466,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -520,6 +520,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
