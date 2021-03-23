@@ -65,10 +65,15 @@
  *  注意：BAKit_ViewRectCornerType 必须要先设置 viewCornerRadius，才能有效，否则设置无效，
  */
 typedef NS_ENUM(NSInteger, BAKit_ViewRectCornerType) {
+    
+    /*!
+     *  设置全部四个角 圆角半径
+     */
+    BAKit_ViewRectCornerTypeAllCorners = 0,
     /*!
      *  设置下左角 圆角半径
      */
-    BAKit_ViewRectCornerTypeBottomLeft = 0,
+    BAKit_ViewRectCornerTypeBottomLeft,
     /*!
      *  设置下右角 圆角半径
      */
@@ -90,6 +95,10 @@ typedef NS_ENUM(NSInteger, BAKit_ViewRectCornerType) {
      */
     BAKit_ViewRectCornerTypeTopLeftAndTopRight,
     /*!
+     *  设置上左、下右角 圆角半径
+     */
+    BAKit_ViewRectCornerTypeTopLeftAndBottomRight,
+    /*!
      *  设置下左、上左角 圆角半径
      */
     BAKit_ViewRectCornerTypeBottomLeftAndTopLeft,
@@ -105,10 +114,6 @@ typedef NS_ENUM(NSInteger, BAKit_ViewRectCornerType) {
      *  设置下右、上右、下左角 圆角半径
      */
     BAKit_ViewRectCornerTypeBottomRightAndTopRightAndBottomLeft,
-    /*!
-     *  设置全部四个角 圆角半径
-     */
-    BAKit_ViewRectCornerTypeAllCorners
 };
 
 @interface UIView (BARectCorner)

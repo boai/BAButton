@@ -10,7 +10,7 @@
 
 #import "ViewController2.h"
 #import "ViewController3.h"
-#import <BAButton/BAButton.h>
+#import "BAButton.h"
 
 @interface BAViewController ()
 
@@ -34,53 +34,55 @@
     UIButton *navi_rightButton = [UIButton ba_creatButtonWithFrame:frame title:@"xib" selTitle:nil titleColor:BAKit_Color_Red_pod titleFont:nil image:[UIImage imageNamed:@"tabbar_mainframeHL"] selImage:nil padding:2 buttonPositionStyle:BAKit_ButtonLayoutTypeCenterImageRight viewRectCornerType:BAKit_ViewRectCornerTypeAllCorners viewCornerRadius:20 target:self selector:@selector(handleRightNaviButtonAction:)];
     navi_rightButton.backgroundColor = BAKit_Color_RandomRGB_pod();
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:navi_rightButton];
-
+    
     UIButton *navi_leftButton = [UIButton ba_creatButtonWithFrame:frame title:@"state" selTitle:nil titleColor:BAKit_Color_Red_pod titleFont:nil image:[UIImage imageNamed:@"tabbar_mainframeHL"] selImage:nil padding:2 buttonPositionStyle:BAKit_ButtonLayoutTypeCenterImageRight viewRectCornerType:BAKit_ViewRectCornerTypeAllCorners viewCornerRadius:20 target:self selector:@selector(handleLeftNaviButtonAction:)];
     [navi_rightButton ba_view_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomLeftAndTopLeft viewCornerRadius:20 borderWidth:2.0f borderColor:BAKit_Color_RandomRGB_pod()];
     navi_rightButton.backgroundColor = BAKit_Color_RandomRGBA_pod();
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:navi_leftButton];
-
+    
     // 点击事件 Block 返回！
     BAKit_WeakSelf
     navi_leftButton.ba_buttonActionBlock = ^(UIButton * _Nonnull button) {
         BAKit_StrongSelf
         // 添加按钮点击音效和震动效果
-//        [button ba_buttonPlaySoundEffectWithFileName:@"begin.mp3" isNeedShock:YES];
+        //        [button ba_buttonPlaySoundEffectWithFileName:@"begin.mp3" isNeedShock:YES];
         [self.navigationController pushViewController:[ViewController3 new] animated:YES];
     };
-
+    
     navi_rightButton.ba_buttonActionBlock = ^(UIButton * _Nonnull button) {
         BAKit_StrongSelf
         // 添加按钮点击音效和震动效果
-//        [button ba_buttonPlaySoundEffectWithFileName:@"failure.mp3" isNeedShock:YES];
+        //        [button ba_buttonPlaySoundEffectWithFileName:@"failure.mp3" isNeedShock:YES];
         [self.navigationController pushViewController:[ViewController2 new] animated:YES];
     };
 }
 
 - (void)handleLeftNaviButtonAction:(UIButton *)sender {
-//     添加按钮点击音效和震动效果
-//    [sender ba_viewPlaySoundEffectWithFileName:@"begin.mp3" isNeedShock:YES];
-//    [self.navigationController pushViewController:[ViewController3 new] animated:YES];
+    //     添加按钮点击音效和震动效果
+    //    [sender ba_viewPlaySoundEffectWithFileName:@"begin.mp3" isNeedShock:YES];
+    //    [self.navigationController pushViewController:[ViewController3 new] animated:YES];
 }
 
 - (void)handleRightNaviButtonAction:(UIButton *)sender {
-//     添加按钮点击音效和震动效果
-//    [sender ba_buttonPlaySoundEffectWithFileName:@"failure.mp3" isNeedShock:YES];
-//    [self.navigationController pushViewController:[ViewController2 new] animated:YES];
+    //     添加按钮点击音效和震动效果
+    //    [sender ba_buttonPlaySoundEffectWithFileName:@"failure.mp3" isNeedShock:YES];
+    //    [self.navigationController pushViewController:[ViewController2 new] animated:YES];
 }
 
 - (void)initUI {
     
-    UITextField *textField = UITextField.new;
-    textField.backgroundColor = UIColor.greenColor;
-    textField.placeholder = @"修复 iPhone X 等异形屏键盘异常";
-    textField.frame = CGRectMake(50, 70, BAKit_SCREEN_WIDTH - 50 * 2, 100);
-    [self.view addSubview:textField];
+    CGRect textFieldFrame = CGRectMake(50, kStatusBarAndNavigationBarHeight + 10, BAKit_SCREEN_WIDTH - 50 * 2, 50);
     
+    if (kStatusBarHeight > 20) {
+        UITextField *textField = UITextField.new;
+        textField.backgroundColor = UIColor.greenColor;
+        textField.placeholder = @"修复 iPhone X 等异形屏键盘异常";
+        textField.frame = textFieldFrame;
+        [self.view addSubview:textField];
+    }
     
     CGFloat min_x = 40;
-    CGFloat min_y = CGRectGetMaxY(textField.frame) + 10;
-
+    CGFloat min_y = (kStatusBarHeight > 20) ? CGRectGetMaxY(textFieldFrame) + 10 : kStatusBarAndNavigationBarHeight + 10;
     CGFloat min_w = CGRectGetWidth(self.view.frame) - min_x * 2;
     //    CGFloat min_w = 200;
     
@@ -101,7 +103,12 @@
         //        [button setImage:[UIImage imageNamed:@"tabbar_mainframeHL"] forState:UIControlStateNormal];
         
         // BAButton 简单写法
-        UIButton *button = [UIButton ba_buttonWithFrame:CGRectMake(min_x, min_y, min_w, min_h) title:nil titleColor:nil titleFont:[UIFont systemFontOfSize:13] image:[UIImage imageNamed:@"tabbar_mainframeHL"] backgroundColor:BAKit_Color_RandomRGBA_pod()];
+        UIButton *button = [UIButton ba_buttonWithFrame:CGRectMake(min_x, min_y, min_w, min_h)
+                                                  title:nil
+                                             titleColor:nil
+                                              titleFont:[UIFont systemFontOfSize:13]
+                                                  image:[UIImage imageNamed:@"tabbar_mainframeHL"]
+                                        backgroundColor:BAKit_Color_RandomRGBA_pod()];
         
         min_y = CGRectGetMaxY(button.frame) + min_space;
         
@@ -114,14 +121,12 @@
                 [button setTitle:@"默认样式：内容居中-图左文右" forState:UIControlStateNormal];
                 type = BAKit_ButtonLayoutTypeNormal;
                 [button ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomRightAndTopRight viewCornerRadius:viewCornerRadius borderWidth:2.0f borderColor:BAKit_Color_RandomRGB_pod()];
-            }
-                break;
+            } break;
             case 1: {
                 [button setTitle:@"内容居中-图右文左" forState:UIControlStateNormal];
                 type = BAKit_ButtonLayoutTypeCenterImageRight;
                 [button ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomRight viewCornerRadius:viewCornerRadius];
-            }
-                break;
+            } break;
             case 2: {
                 [button setTitle:@"内容居中-图上文下" forState:UIControlStateNormal];
                 // 测试大图片 button 的 layout 布局，如果你的图片宽高大于 自身的宽高，怎需要压缩后再配置布局
@@ -131,43 +136,37 @@
                 
                 type = BAKit_ButtonLayoutTypeCenterImageTop;
                 [button ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeTopLeftAndTopRight viewCornerRadius:viewCornerRadius * 2 borderWidth:2.0f borderColor:BAKit_Color_RandomRGB_pod()];
-            }
-                break;
+            } break;
             case 3: {
                 [button setTitle:@"内容居中-图下文上" forState:UIControlStateNormal];
                 type = BAKit_ButtonLayoutTypeCenterImageBottom;
                 [button ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomRightAndTopRightAndTopLeft viewCornerRadius:viewCornerRadius * 2];
-            }
-                break;
+            } break;
             case 4: {
                 [button setTitle:@"内容居左-图左文右" forState:UIControlStateNormal];
                 type = BAKit_ButtonLayoutTypeLeftImageLeft;
                 [button ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomRight viewCornerRadius:viewCornerRadius borderWidth:2.0f borderColor:BAKit_Color_RandomRGB_pod()];
                 button.ba_padding_inset = 20;
-            }
-                break;
+            } break;
             case 5: {
                 [button setTitle:@"内容居左-图右文左" forState:UIControlStateNormal];
                 type = BAKit_ButtonLayoutTypeLeftImageRight;
                 [button ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomLeftAndTopLeft viewCornerRadius:viewCornerRadius];
-            }
-                break;
+            } break;
             case 6: {
                 [button setTitle:@"内容居右-图左文右" forState:UIControlStateNormal];
                 type = BAKit_ButtonLayoutTypeRightImageLeft;
                 [button ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomRightAndTopRightAndBottomLeft viewCornerRadius:viewCornerRadius];
-            }
-                break;
+            } break;
             case 7: {
                 [button setTitle:@"内容居右-图右文左" forState:UIControlStateNormal];
                 type = BAKit_ButtonLayoutTypeRightImageRight;
                 [button ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeAllCorners viewCornerRadius:viewCornerRadius];
-            }
-                break;
+            } break;
                 
-            default:
+            default: {
                 type = BAKit_ButtonLayoutTypeNormal;
-                break;
+            } break;
         }
         
         // 注意：文字、字体大小、图片等设置一定要在设置 ba_button_setBAButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移

@@ -62,6 +62,7 @@
 #define BAButton_h
 
 #import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 #import "UIButton+BAKit.h"
 #import "UIButton+BAState.h"
