@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -29,25 +27,25 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fvv-q8-bh0">
-                    <rect key="frame" x="18" y="80" width="230" height="40"/>
+                    <rect key="frame" x="26" y="90" width="230" height="40"/>
                     <color key="backgroundColor" red="0.88265058289999998" green="0.31079761" blue="0.13338752670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="Da6-sY-eaf"/>
                         <constraint firstAttribute="width" constant="230" id="beU-4i-IaV"/>
                     </constraints>
                     <state key="normal" title="内容居中-图左文右" image="tabbar_mainframeHL">
-                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="titleColor" systemColor="darkTextColor"/>
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rXG-2i-qP9">
-                    <rect key="frame" x="125" y="130" width="230" height="23"/>
+                    <rect key="frame" x="125" y="140" width="230" height="23"/>
                     <color key="backgroundColor" red="0.88265058289999998" green="0.31079761" blue="0.13338752670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <state key="normal" title="内容居中-图右文左" image="tabbar_mainframeHL">
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e9R-FK-GnO">
-                    <rect key="frame" x="50" y="163" width="230" height="80"/>
+                    <rect key="frame" x="50" y="173" width="230" height="80"/>
                     <color key="backgroundColor" red="0.88265058289999998" green="0.31079761" blue="0.13338752670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="80" id="bUr-sK-dmU"/>
@@ -57,14 +55,14 @@
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qRf-ib-npG">
-                    <rect key="frame" x="18" y="253" width="230" height="80"/>
+                    <rect key="frame" x="26" y="263" width="230" height="80"/>
                     <color key="backgroundColor" red="0.88265058289999998" green="0.31079761" blue="0.13338752670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <state key="normal" title="内容居中-图下文上" image="tabbar_mainframeHL">
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JMi-bD-p8k">
-                    <rect key="frame" x="18" y="343" width="230" height="30"/>
+                    <rect key="frame" x="26" y="353" width="230" height="30"/>
                     <color key="backgroundColor" red="0.88265058289999998" green="0.31079761" blue="0.13338752670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="6ge-rF-GNd"/>
@@ -74,32 +72,33 @@
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cnc-CS-LrJ">
-                    <rect key="frame" x="18" y="383" width="230" height="30"/>
+                    <rect key="frame" x="26" y="393" width="230" height="30"/>
                     <color key="backgroundColor" red="0.88265058289999998" green="0.31079761" blue="0.13338752670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <state key="normal" title="内容居左-图右文左" image="tabbar_mainframeHL">
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dGA-ua-a1Y">
-                    <rect key="frame" x="18" y="423" width="230" height="30"/>
+                    <rect key="frame" x="26" y="433" width="230" height="30"/>
                     <color key="backgroundColor" red="0.88265058289999998" green="0.31079761" blue="0.13338752670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <state key="normal" title="内容居右-图左文右" image="tabbar_mainframeHL">
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2gm-L2-Wuq">
-                    <rect key="frame" x="18" y="463" width="230" height="30"/>
+                    <rect key="frame" x="26" y="473" width="230" height="30"/>
                     <color key="backgroundColor" red="0.88265058289999998" green="0.31079761" blue="0.13338752670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <state key="normal" title="内容居右-图右文左" image="tabbar_mainframeHL">
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="NqR-mP-LVE"/>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="qRf-ib-npG" firstAttribute="height" secondItem="e9R-FK-GnO" secondAttribute="height" id="0jZ-Td-ouk"/>
                 <constraint firstItem="cnc-CS-LrJ" firstAttribute="width" secondItem="JMi-bD-p8k" secondAttribute="width" id="8Ig-1T-veE"/>
-                <constraint firstItem="Fvv-q8-bh0" firstAttribute="top" secondItem="eTL-Up-c5k" secondAttribute="top" constant="80" id="Avh-jT-Ed3"/>
+                <constraint firstItem="Fvv-q8-bh0" firstAttribute="top" secondItem="eTL-Up-c5k" secondAttribute="top" constant="90" id="Avh-jT-Ed3"/>
                 <constraint firstItem="e9R-FK-GnO" firstAttribute="leading" secondItem="eTL-Up-c5k" secondAttribute="leading" constant="50" id="BZa-ed-7wq"/>
                 <constraint firstItem="2gm-L2-Wuq" firstAttribute="centerX" secondItem="dGA-ua-a1Y" secondAttribute="centerX" id="Bfn-7r-syo"/>
                 <constraint firstItem="JMi-bD-p8k" firstAttribute="width" secondItem="qRf-ib-npG" secondAttribute="width" id="D02-PL-4nG"/>
@@ -130,5 +129,8 @@
     </objects>
     <resources>
         <image name="tabbar_mainframeHL" width="25" height="23"/>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

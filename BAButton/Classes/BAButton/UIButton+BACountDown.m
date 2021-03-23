@@ -34,7 +34,7 @@
 }
 
 - (NSTimeInterval)leaveTime {
-     return  [BAKit_Objc_getObj doubleValue];
+    return  [BAKit_Objc_getObj doubleValue];
 }
 
 - (void)setCountDownFormat:(NSString *)countDownFormat {
@@ -62,9 +62,8 @@
 }
 
 #pragma mark - public
-
 /**
- 倒计时: 一行代码快速使用 , 带 title，返回时间，title，具体使用看 demo
+ 倒计时：带 title，返回时间，title，具体使用看 demo
  
  @param duration 倒计时时间
  @param format 可选，传nil默认为 @"%zd秒"
@@ -95,7 +94,6 @@
                 NSString *title = [NSString stringWithFormat:self.countDownFormat, timeOut];
                 [self setTitle:title forState:UIControlStateNormal];
                 timeOut--;
-                
             }
         });
     });
@@ -138,7 +136,7 @@
 
 /**
  倒计时：返回当前时间，可以自定义 title 和 image，具体使用看 demo
-
+ 
  @param duration 倒计时时间
  @param block 返回当前时间
  */
@@ -180,7 +178,7 @@
         BAKit_StrongSelf
         dispatch_source_cancel(self.timer);
         self.timer = nil;
-
+        
         // 设置界面的按钮显示 根据自己需求设置
         [self setTitle:self.normalTitle forState:UIControlStateNormal];
         self.userInteractionEnabled = YES;

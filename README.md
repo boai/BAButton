@@ -919,6 +919,11 @@ return _button;
 欢迎使用 [【BAHome】](https://github.com/BAHome) 系列开源代码 ！
 如有更多需求，请前往：[【https://github.com/BAHome】](https://github.com/BAHome) 
 
+最新更新时间：2021-03-23【倒叙】<br>
+最新 Version：【Version：2.6.9】<br>
+更新内容：<br>
+2.6.9.1、`BAKit_ViewRectCornerType` 新增 `BAKit_ViewRectCornerTypeTopLeftAndBottomRight` 类型！ <br>
+2.6.9.2、优化代码规范！ <br>
 
 最新更新时间：2019-10-18【倒叙】<br>
 最新 Version：【Version：2.6.8】<br>

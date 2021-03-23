@@ -14,8 +14,6 @@
 
 @interface BAViewController ()
 
-//@property(nonatomic, strong) UIButton *button;
-
 @end
 
 @implementation BAViewController
@@ -70,11 +68,10 @@
 }
 
 - (void)initUI {
-    
     UITextField *textField = UITextField.new;
     textField.backgroundColor = UIColor.greenColor;
     textField.placeholder = @"修复 iPhone X 等异形屏键盘异常";
-    textField.frame = CGRectMake(50, 70, BAKit_SCREEN_WIDTH - 50 * 2, 100);
+    textField.frame = CGRectMake(50, 90, BAKit_SCREEN_WIDTH - 50 * 2, 100);
     [self.view addSubview:textField];
     
     
@@ -114,60 +111,47 @@
                 [button setTitle:@"默认样式：内容居中-图左文右" forState:UIControlStateNormal];
                 type = BAKit_ButtonLayoutTypeNormal;
                 [button ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomRightAndTopRight viewCornerRadius:viewCornerRadius borderWidth:2.0f borderColor:BAKit_Color_RandomRGB_pod()];
-            }
-                break;
+            } break;
             case 1: {
                 [button setTitle:@"内容居中-图右文左" forState:UIControlStateNormal];
                 type = BAKit_ButtonLayoutTypeCenterImageRight;
                 [button ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomRight viewCornerRadius:viewCornerRadius];
-            }
-                break;
+            } break;
             case 2: {
-                [button setTitle:@"内容居中-图上文下" forState:UIControlStateNormal];
-                // 测试大图片 button 的 layout 布局，如果你的图片宽高大于 自身的宽高，怎需要压缩后再配置布局
-                // 根据宽比例去缩放图片，注意：如果button 的图片 太宽，需要调用此方法去等比压缩图片，压缩完的图片，记得要在frame 之后设置图片
+                [button setTitle:@"内容居中-图上文下" forState:UIControlStateNormal]; // 测试大图片 button 的 layout 布局，如果你的图片宽高大于 自身的宽高，怎需要压缩后再配置布局 // 根据宽比例去缩放图片，注意：如果button 的图片 太宽，需要调用此方法去等比压缩图片，压缩完的图片，记得要在frame 之后设置图片
                 UIImage *stretchableButtonImage = [[UIImage imageNamed:@"条形码.jpg"] ba_imageScaleToWidth:button.frame.size.width];
                 [button setImage:stretchableButtonImage forState:UIControlStateNormal];
-                
                 type = BAKit_ButtonLayoutTypeCenterImageTop;
                 [button ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeTopLeftAndTopRight viewCornerRadius:viewCornerRadius * 2 borderWidth:2.0f borderColor:BAKit_Color_RandomRGB_pod()];
-            }
-                break;
+            } break;
             case 3: {
                 [button setTitle:@"内容居中-图下文上" forState:UIControlStateNormal];
                 type = BAKit_ButtonLayoutTypeCenterImageBottom;
                 [button ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomRightAndTopRightAndTopLeft viewCornerRadius:viewCornerRadius * 2];
-            }
-                break;
+            } break;
             case 4: {
                 [button setTitle:@"内容居左-图左文右" forState:UIControlStateNormal];
                 type = BAKit_ButtonLayoutTypeLeftImageLeft;
-                [button ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomRight viewCornerRadius:viewCornerRadius borderWidth:2.0f borderColor:BAKit_Color_RandomRGB_pod()];
-                button.ba_padding_inset = 20;
-            }
-                break;
+                [button ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomRight viewCornerRadius:viewCornerRadius borderWidth:2.0f borderColor:BAKit_Color_RandomRGB_pod()]; button.ba_padding_inset = 20;
+            } break;
             case 5: {
                 [button setTitle:@"内容居左-图右文左" forState:UIControlStateNormal];
                 type = BAKit_ButtonLayoutTypeLeftImageRight;
                 [button ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomLeftAndTopLeft viewCornerRadius:viewCornerRadius];
-            }
-                break;
+            } break;
             case 6: {
                 [button setTitle:@"内容居右-图左文右" forState:UIControlStateNormal];
                 type = BAKit_ButtonLayoutTypeRightImageLeft;
                 [button ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomRightAndTopRightAndBottomLeft viewCornerRadius:viewCornerRadius];
-            }
-                break;
+            } break;
             case 7: {
                 [button setTitle:@"内容居右-图右文左" forState:UIControlStateNormal];
                 type = BAKit_ButtonLayoutTypeRightImageRight;
                 [button ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeAllCorners viewCornerRadius:viewCornerRadius];
-            }
-                break;
-                
-            default:
+            } break;
+            default: {
                 type = BAKit_ButtonLayoutTypeNormal;
-                break;
+            } break;
         }
         
         // 注意：文字、字体大小、图片等设置一定要在设置 ba_button_setBAButtonLayoutType 之前设置，要不然计算会以默认字体大小计算，导致位置偏移

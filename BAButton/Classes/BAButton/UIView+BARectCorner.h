@@ -90,6 +90,10 @@ typedef NS_ENUM(NSInteger, BAKit_ViewRectCornerType) {
      */
     BAKit_ViewRectCornerTypeTopLeftAndTopRight,
     /*!
+     *  设置上左、下右角 圆角半径
+     */
+    BAKit_ViewRectCornerTypeTopLeftAndBottomRight,
+    /*!
      *  设置下左、上左角 圆角半径
      */
     BAKit_ViewRectCornerTypeBottomLeftAndTopLeft,

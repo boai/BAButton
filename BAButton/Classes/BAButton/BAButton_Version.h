@@ -21,6 +21,12 @@
  项目源码地址：
  OC 版 ：https://github.com/BAHome/BAButton
  
+ 最新更新时间：2021-03-23【倒叙】<br>
+ 最新 Version：【Version：2.6.9】<br>
+ 更新内容：<br>
+ 2.6.9.1、`BAKit_ViewRectCornerType` 新增 `BAKit_ViewRectCornerTypeTopLeftAndBottomRight` 类型！ <br>
+ 2.6.9.2、优化代码规范！ <br>
+ 
  最新更新时间：2019-10-18【倒叙】<br>
  最新 Version：【Version：2.6.8】<br>
  更新内容：<br>

@@ -11,8 +11,7 @@
 
 @implementation UIView (BARectCorner)
 
-- (void)ba_view_setViewRectCornerType:(BAKit_ViewRectCornerType)type
-                     viewCornerRadius:(CGFloat)viewCornerRadius {
+- (void)ba_view_setViewRectCornerType:(BAKit_ViewRectCornerType)type          viewCornerRadius:(CGFloat)viewCornerRadius {
     self.ba_viewCornerRadius = viewCornerRadius;
     self.ba_viewRectCornerType = type;
 }
@@ -25,10 +24,7 @@
  @param borderWidth 边线宽度
  @param borderColor 边线颜色
  */
-- (void)ba_view_setViewRectCornerType:(BAKit_ViewRectCornerType)type
-                     viewCornerRadius:(CGFloat)viewCornerRadius
-                          borderWidth:(CGFloat)borderWidth
-                          borderColor:(UIColor *)borderColor {
+- (void)ba_view_setViewRectCornerType:(BAKit_ViewRectCornerType)type          viewCornerRadius:(CGFloat)viewCornerRadius               borderWidth:(CGFloat)borderWidth               borderColor:(UIColor *)borderColor {
     self.ba_viewCornerRadius = viewCornerRadius;
     self.ba_viewRectCornerType = type;
     self.ba_viewBorderWidth = borderWidth;
@@ -48,56 +44,45 @@
     switch (self.ba_viewRectCornerType) {
         case BAKit_ViewRectCornerTypeBottomLeft: {
             corners = UIRectCornerBottomLeft;
-        }
-            break;
+        } break;
         case BAKit_ViewRectCornerTypeBottomRight: {
             corners = UIRectCornerBottomRight;
-        }
-            break;
+        } break;
         case BAKit_ViewRectCornerTypeTopLeft: {
             corners = UIRectCornerTopLeft;
-        }
-            break;
+        } break;
         case BAKit_ViewRectCornerTypeTopRight: {
             corners = UIRectCornerTopRight;
-        }
-            break;
+        } break;
         case BAKit_ViewRectCornerTypeBottomLeftAndBottomRight: {
             corners = UIRectCornerBottomLeft | UIRectCornerBottomRight;
-        }
-            break;
+        } break;
         case BAKit_ViewRectCornerTypeTopLeftAndTopRight: {
             corners = UIRectCornerTopLeft | UIRectCornerTopRight;
-        }
-            break;
+        } break;
+        case BAKit_ViewRectCornerTypeTopLeftAndBottomRight: {
+            corners = UIRectCornerTopLeft | UIRectCornerBottomRight;
+        } break;
         case BAKit_ViewRectCornerTypeBottomLeftAndTopLeft: {
             corners = UIRectCornerBottomLeft | UIRectCornerTopLeft;
-        }
-            break;
+        } break;
         case BAKit_ViewRectCornerTypeBottomRightAndTopRight: {
             corners = UIRectCornerBottomRight | UIRectCornerTopRight;
-        }
-            break;
+        } break;
         case BAKit_ViewRectCornerTypeBottomRightAndTopRightAndTopLeft: {
             corners = UIRectCornerBottomRight | UIRectCornerTopRight | UIRectCornerTopLeft;
-        }
-            break;
+        } break;
         case BAKit_ViewRectCornerTypeBottomRightAndTopRightAndBottomLeft: {
             corners = UIRectCornerBottomRight | UIRectCornerTopRight | UIRectCornerBottomLeft;
-        }
-            break;
+        } break;
         case BAKit_ViewRectCornerTypeAllCorners: {
             corners = UIRectCornerAllCorners;
-        }
-            break;
-            
+        } break;
         default:
             break;
     }
     
-    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds
-                                                     byRoundingCorners:corners
-                                                           cornerRadii:cornerRadii];
+    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds                                          byRoundingCorners:corners                                                cornerRadii:cornerRadii];
 
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     shapeLayer.path = bezierPath.CGPath;
