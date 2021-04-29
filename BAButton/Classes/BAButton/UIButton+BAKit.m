@@ -48,7 +48,7 @@
 
 /**
  UIImage：根据宽比例去缩放图片
-
+ 
  @param width width description
  @return UIImage
  */
@@ -172,7 +172,7 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
     // 立即同步
     [BAKit_NSUserDefaults setObject:@(soundID).stringValue forKey:@"soundID"];
     [BAKit_NSUserDefaults synchronize];
-
+    
 }
 
 /**
@@ -182,7 +182,7 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
     NSString *soundIDString = [BAKit_NSUserDefaults objectForKey:@"soundID"];
     
     NSAssert(soundIDString.length, @"soundID 不能为空！");
-
+    
     SystemSoundID soundID = [soundIDString intValue];
     AudioServicesDisposeSystemSoundID(kSystemSoundID_Vibrate);
     AudioServicesDisposeSystemSoundID(soundID);
@@ -212,55 +212,43 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
     UIEdgeInsets imageEdge = UIEdgeInsetsZero;
     UIEdgeInsets titleEdge = UIEdgeInsetsZero;
     
-    if (self.ba_padding_inset == 0) {
-        self.ba_padding_inset = 5;
-    }
-    
     switch (self.ba_buttonLayoutType) {
         case BAKit_ButtonLayoutTypeNormal: {
             titleEdge = UIEdgeInsetsMake(0, self.ba_padding, 0, 0);
             imageEdge = UIEdgeInsetsMake(0, 0, 0, self.ba_padding);
-        }
-            break;
+        } break;
         case BAKit_ButtonLayoutTypeCenterImageRight: {
             titleEdge = UIEdgeInsetsMake(0, -image_w - self.ba_padding, 0, image_w);
             imageEdge = UIEdgeInsetsMake(0, title_w + self.ba_padding, 0, -title_w);
-        }
-            break;
+        } break;
         case BAKit_ButtonLayoutTypeCenterImageTop: {
             titleEdge = UIEdgeInsetsMake(0, -image_w, -image_h - self.ba_padding, 0);
             imageEdge = UIEdgeInsetsMake(-title_h - self.ba_padding, 0, 0, -title_w);
-        }
-            break;
+        } break;
         case BAKit_ButtonLayoutTypeCenterImageBottom: {
             titleEdge = UIEdgeInsetsMake(-image_h - self.ba_padding, -image_w, 0, 0);
             imageEdge = UIEdgeInsetsMake(0, 0, -title_h - self.ba_padding, -title_w);
-        }
-            break;
+        } break;
         case BAKit_ButtonLayoutTypeLeftImageLeft: {
             titleEdge = UIEdgeInsetsMake(0, self.ba_padding + self.ba_padding_inset, 0, 0);
             imageEdge = UIEdgeInsetsMake(0, self.ba_padding_inset, 0, 0);
             self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-        }
-            break;
+        } break;
         case BAKit_ButtonLayoutTypeLeftImageRight: {
             titleEdge = UIEdgeInsetsMake(0, -image_w + self.ba_padding_inset, 0, 0);
             imageEdge = UIEdgeInsetsMake(0, title_w + self.ba_padding + self.ba_padding_inset, 0, 0);
             self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-        }
-            break;
+        } break;
         case BAKit_ButtonLayoutTypeRightImageLeft: {
-            imageEdge = UIEdgeInsetsMake(0, 0, 0, self.ba_padding + self.ba_padding_inset);
             titleEdge = UIEdgeInsetsMake(0, 0, 0, self.ba_padding_inset);
+            imageEdge = UIEdgeInsetsMake(0, 0, 0, self.ba_padding + self.ba_padding_inset);
             self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-        }
-            break;
+        } break;
         case BAKit_ButtonLayoutTypeRightImageRight: {
-            titleEdge = UIEdgeInsetsMake(0, 0, 0, image_w + self.ba_padding + self.ba_padding_inset);
+            titleEdge = UIEdgeInsetsMake(0, -(image_w + self.ba_padding + self.ba_padding_inset), 0, image_w + self.ba_padding + self.ba_padding_inset);
             imageEdge = UIEdgeInsetsMake(0, 0, 0, -title_w + self.ba_padding_inset);
             self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-        }
-            break;
+        } break;
             
         default:
             break;
@@ -480,7 +468,7 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
 
 /**
  UIButton：快速创建一个纯文字 button
-
+ 
  @param frame frame description
  @param title title description
  @param font font description
@@ -522,7 +510,7 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
 
 /**
  UIButton：快速创建一个纯图片 button
-
+ 
  @param frame frame description
  @param horizontalAlignment horizontalAlignment description
  @param verticalAlignment verticalAlignment description
@@ -551,7 +539,7 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
     
     [button ba_buttonSetImage:normalImage selectedImage:nil highlightedImage:highlightImage disabledImage:disabledImage];
     [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
-
+    
     return button;
 }
 
@@ -569,7 +557,7 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
 
 /**
  UIButton：backgroundColor、normalStateColor、highlightedStateColor、disabledStateColor
-
+ 
  @param normalStateColor normalStateColor description
  @param highlightedStateColor highlightedStateColor description
  @param disabledStateColor disabledStateColor description
@@ -758,14 +746,14 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
 
 /**
  UIButton：title 位置
-
+ 
  @param horizontalAlignment horizontalAlignment description
  @param verticalAlignment verticalAlignment description
  @param contentEdgeInsets contentEdgeInsets description
  */
 - (void)ba_buttonTitleLabelHorizontalAlignment:(UIControlContentHorizontalAlignment)horizontalAlignment
-                              verticalAlignment:(UIControlContentVerticalAlignment)verticalAlignment
-                              contentEdgeInsets:(UIEdgeInsets)contentEdgeInsets {
+                             verticalAlignment:(UIControlContentVerticalAlignment)verticalAlignment
+                             contentEdgeInsets:(UIEdgeInsets)contentEdgeInsets {
     self.contentHorizontalAlignment = horizontalAlignment;
     self.contentVerticalAlignment   = verticalAlignment;
     self.contentEdgeInsets          = contentEdgeInsets;
@@ -821,7 +809,7 @@ void soundCompleteCallback(SystemSoundID soundID, void *clientData) {
 
 - (void)setFrame:(CGRect)frame {
     [super setFrame:frame];
-
+    
     if (self.ba_buttonLayoutType == BAKit_ButtonLayoutTypeDefault) {
         return;
     }

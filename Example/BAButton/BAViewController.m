@@ -159,7 +159,9 @@
                 [button ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeBottomRightAndTopRightAndBottomLeft viewCornerRadius:viewCornerRadius];
             } break;
             case 7: {
-                [button setTitle:@"内容居右-图右文左" forState:UIControlStateNormal];
+                button.ba_padding = 10;
+                button.ba_padding_inset = 20;
+                [button setTitle:@"内容居右-图右文左2" forState:UIControlStateNormal];
                 type = BAKit_ButtonLayoutTypeRightImageRight;
                 [button ba_button_setViewRectCornerType:BAKit_ViewRectCornerTypeAllCorners viewCornerRadius:viewCornerRadius];
             } break;

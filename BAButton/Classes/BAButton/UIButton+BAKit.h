@@ -108,7 +108,7 @@ typedef void (^BAKit_UIButtonActionBlock)(UIButton * _Nonnull button);
 @property (nonatomic, assign) CGFloat ba_padding;
 
 /*!
- *  文字或图片距离 button 左右边界的最小距离，默认为：5
+ *  文字或图片距离 button 左右边界的最小距离，默认为：0
  */
 @property (nonatomic, assign) CGFloat ba_padding_inset;
 

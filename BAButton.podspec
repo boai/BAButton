@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BAButton'
-  s.version          = '2.6.9'
+  s.version          = '2.6.10'
   s.summary      = '自定义 button 类！用分类全新重构 BAButton，代码配置更灵活！可以自由设置 button 的文字和图片的布局、间距、每个角的切圆角！'
 
 # This description is used to generate tags and improve search results.
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-                        修复 iPhone X 等异形屏 键盘异常问题！优化代码规范
+  修复 BAKit_ButtonLayoutTypeRightImageRight 样式下文字显示不全问题，ba_padding_inset 默认改为0
                        DESC
 
   s.homepage         = 'https://github.com/BAHome/BAButton'
@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/BAHome/BAButton.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
 
   s.source_files  = "BAButton/**/*.{h,m}"
 
